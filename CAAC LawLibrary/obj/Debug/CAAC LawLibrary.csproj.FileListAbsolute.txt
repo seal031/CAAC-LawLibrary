@@ -1,0 +1,12 @@
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\bin\Debug\CAAC LawLibrary.exe.config
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\bin\Debug\CAAC LawLibrary.exe
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\bin\Debug\CAAC LawLibrary.pdb
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Login.resources
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Properties.Resources.resources
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.GenerateResource.Cache
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.exe
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.pdb
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.dll
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.xml
+c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LibraryList.resources
+C:\Users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseListItem.resources
