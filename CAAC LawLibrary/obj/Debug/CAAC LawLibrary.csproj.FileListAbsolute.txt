@@ -24,3 +24,11 @@ C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibr
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Properties.Resources.resources
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.GenerateResource.Cache
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.DownloadListItem.resources
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.dll
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.dll
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.xml
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.xml
