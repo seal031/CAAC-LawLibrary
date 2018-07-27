@@ -55,6 +55,12 @@
     <Compile Include="BaseListItem.Designer.cs">
       <DependentUpon>BaseListItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="DownloadListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DownloadListItem.Designer.cs">
+      <DependentUpon>DownloadListItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="LibraryList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseListItem.resx">
       <DependentUpon>BaseListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DownloadListItem.resx">
+      <DependentUpon>DownloadListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LibraryList.resx">
       <DependentUpon>LibraryList.cs</DependentUpon>

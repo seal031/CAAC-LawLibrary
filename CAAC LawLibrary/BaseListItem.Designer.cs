@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lbl_name = new System.Windows.Forms.Label();
-            this.lbl_downloadState = new System.Windows.Forms.Label();
             this.lbl_state = new System.Windows.Forms.Label();
-            this.lbl_title = new System.Windows.Forms.Label();
-            this.lbl_effectiveDate = new System.Windows.Forms.Label();
-            this.lbl_expiryDate = new System.Windows.Forms.Label();
-            this.lbl_organization = new System.Windows.Forms.Label();
+            this.lbl_downloadState = new System.Windows.Forms.Label();
+            this.lbl_name = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_businessType = new System.Windows.Forms.Label();
+            this.lbl_organization = new System.Windows.Forms.Label();
+            this.lbl_expiryDate = new System.Windows.Forms.Label();
+            this.lbl_effectiveDate = new System.Windows.Forms.Label();
+            this.lbl_title = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +54,33 @@
             this.panel1.Size = new System.Drawing.Size(1000, 40);
             this.panel1.TabIndex = 0;
             // 
+            // lbl_state
+            // 
+            this.lbl_state.AutoSize = true;
+            this.lbl_state.Location = new System.Drawing.Point(921, 14);
+            this.lbl_state.Name = "lbl_state";
+            this.lbl_state.Size = new System.Drawing.Size(41, 12);
+            this.lbl_state.TabIndex = 2;
+            this.lbl_state.Text = "label1";
+            // 
+            // lbl_downloadState
+            // 
+            this.lbl_downloadState.AutoSize = true;
+            this.lbl_downloadState.Location = new System.Drawing.Point(613, 14);
+            this.lbl_downloadState.Name = "lbl_downloadState";
+            this.lbl_downloadState.Size = new System.Drawing.Size(41, 12);
+            this.lbl_downloadState.TabIndex = 1;
+            this.lbl_downloadState.Text = "label1";
+            // 
+            // lbl_name
+            // 
+            this.lbl_name.AutoSize = true;
+            this.lbl_name.Location = new System.Drawing.Point(35, 14);
+            this.lbl_name.Name = "lbl_name";
+            this.lbl_name.Size = new System.Drawing.Size(41, 12);
+            this.lbl_name.TabIndex = 0;
+            this.lbl_name.Text = "label1";
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.lbl_businessType);
@@ -67,58 +94,14 @@
             this.panel2.Size = new System.Drawing.Size(1000, 148);
             this.panel2.TabIndex = 1;
             // 
-            // lbl_name
+            // lbl_businessType
             // 
-            this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(35, 14);
-            this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(41, 12);
-            this.lbl_name.TabIndex = 0;
-            this.lbl_name.Text = "label1";
-            // 
-            // lbl_downloadState
-            // 
-            this.lbl_downloadState.AutoSize = true;
-            this.lbl_downloadState.Location = new System.Drawing.Point(613, 14);
-            this.lbl_downloadState.Name = "lbl_downloadState";
-            this.lbl_downloadState.Size = new System.Drawing.Size(41, 12);
-            this.lbl_downloadState.TabIndex = 1;
-            this.lbl_downloadState.Text = "label1";
-            // 
-            // lbl_state
-            // 
-            this.lbl_state.AutoSize = true;
-            this.lbl_state.Location = new System.Drawing.Point(921, 14);
-            this.lbl_state.Name = "lbl_state";
-            this.lbl_state.Size = new System.Drawing.Size(41, 12);
-            this.lbl_state.TabIndex = 2;
-            this.lbl_state.Text = "label1";
-            // 
-            // lbl_title
-            // 
-            this.lbl_title.Location = new System.Drawing.Point(37, 3);
-            this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(670, 42);
-            this.lbl_title.TabIndex = 1;
-            this.lbl_title.Text = "label1";
-            // 
-            // lbl_effectiveDate
-            // 
-            this.lbl_effectiveDate.AutoSize = true;
-            this.lbl_effectiveDate.Location = new System.Drawing.Point(39, 65);
-            this.lbl_effectiveDate.Name = "lbl_effectiveDate";
-            this.lbl_effectiveDate.Size = new System.Drawing.Size(65, 12);
-            this.lbl_effectiveDate.TabIndex = 2;
-            this.lbl_effectiveDate.Text = "生效日期：";
-            // 
-            // lbl_expiryDate
-            // 
-            this.lbl_expiryDate.AutoSize = true;
-            this.lbl_expiryDate.Location = new System.Drawing.Point(360, 65);
-            this.lbl_expiryDate.Name = "lbl_expiryDate";
-            this.lbl_expiryDate.Size = new System.Drawing.Size(65, 12);
-            this.lbl_expiryDate.TabIndex = 3;
-            this.lbl_expiryDate.Text = "失效日期：";
+            this.lbl_businessType.AutoSize = true;
+            this.lbl_businessType.Location = new System.Drawing.Point(39, 107);
+            this.lbl_businessType.Name = "lbl_businessType";
+            this.lbl_businessType.Size = new System.Drawing.Size(41, 12);
+            this.lbl_businessType.TabIndex = 5;
+            this.lbl_businessType.Text = "label1";
             // 
             // lbl_organization
             // 
@@ -129,14 +112,31 @@
             this.lbl_organization.TabIndex = 4;
             this.lbl_organization.Text = "label1";
             // 
-            // lbl_businessType
+            // lbl_expiryDate
             // 
-            this.lbl_businessType.AutoSize = true;
-            this.lbl_businessType.Location = new System.Drawing.Point(39, 107);
-            this.lbl_businessType.Name = "lbl_businessType";
-            this.lbl_businessType.Size = new System.Drawing.Size(41, 12);
-            this.lbl_businessType.TabIndex = 5;
-            this.lbl_businessType.Text = "label1";
+            this.lbl_expiryDate.AutoSize = true;
+            this.lbl_expiryDate.Location = new System.Drawing.Point(360, 65);
+            this.lbl_expiryDate.Name = "lbl_expiryDate";
+            this.lbl_expiryDate.Size = new System.Drawing.Size(65, 12);
+            this.lbl_expiryDate.TabIndex = 3;
+            this.lbl_expiryDate.Text = "失效日期：";
+            // 
+            // lbl_effectiveDate
+            // 
+            this.lbl_effectiveDate.AutoSize = true;
+            this.lbl_effectiveDate.Location = new System.Drawing.Point(39, 65);
+            this.lbl_effectiveDate.Name = "lbl_effectiveDate";
+            this.lbl_effectiveDate.Size = new System.Drawing.Size(65, 12);
+            this.lbl_effectiveDate.TabIndex = 2;
+            this.lbl_effectiveDate.Text = "生效日期：";
+            // 
+            // lbl_title
+            // 
+            this.lbl_title.Location = new System.Drawing.Point(37, 3);
+            this.lbl_title.Name = "lbl_title";
+            this.lbl_title.Size = new System.Drawing.Size(670, 42);
+            this.lbl_title.TabIndex = 1;
+            this.lbl_title.Text = "label1";
             // 
             // BaseListItem
             // 
@@ -156,9 +156,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         protected System.Windows.Forms.Label lbl_state;
         protected System.Windows.Forms.Label lbl_downloadState;
         protected System.Windows.Forms.Label lbl_name;
@@ -167,5 +164,7 @@
         protected System.Windows.Forms.Label lbl_effectiveDate;
         protected System.Windows.Forms.Label lbl_organization;
         protected System.Windows.Forms.Label lbl_businessType;
+        protected internal System.Windows.Forms.Panel panel1;
+        protected internal System.Windows.Forms.Panel panel2;
     }
 }

@@ -34,20 +34,19 @@
             this.pl_main = new System.Windows.Forms.Panel();
             this.tbc = new System.Windows.Forms.TabControl();
             this.tp_libraryList = new System.Windows.Forms.TabPage();
-            this.tp_viewHistory = new System.Windows.Forms.TabPage();
-            this.tp_downloadTask = new System.Windows.Forms.TabPage();
             this.flp_libraryList = new System.Windows.Forms.FlowLayoutPanel();
-            this.baseListItem1 = new CAAC_LawLibrary.BaseListItem();
-            this.baseListItem2 = new CAAC_LawLibrary.BaseListItem();
+            this.tp_viewHistory = new System.Windows.Forms.TabPage();
             this.flp_viewHistory = new System.Windows.Forms.FlowLayoutPanel();
+            this.tp_downloadTask = new System.Windows.Forms.TabPage();
             this.flp_downloadTask = new System.Windows.Forms.FlowLayoutPanel();
+            this.downloadListItem1 = new CAAC_LawLibrary.DownloadListItem();
             this.pl_title.SuspendLayout();
             this.pl_main.SuspendLayout();
             this.tbc.SuspendLayout();
             this.tp_libraryList.SuspendLayout();
             this.tp_viewHistory.SuspendLayout();
             this.tp_downloadTask.SuspendLayout();
-            this.flp_libraryList.SuspendLayout();
+            this.flp_downloadTask.SuspendLayout();
             this.SuspendLayout();
             // 
             // pl_title
@@ -112,6 +111,15 @@
             this.tp_libraryList.Text = "法规库目录";
             this.tp_libraryList.UseVisualStyleBackColor = true;
             // 
+            // flp_libraryList
+            // 
+            this.flp_libraryList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_libraryList.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp_libraryList.Location = new System.Drawing.Point(3, 3);
+            this.flp_libraryList.Name = "flp_libraryList";
+            this.flp_libraryList.Size = new System.Drawing.Size(1011, 691);
+            this.flp_libraryList.TabIndex = 0;
+            // 
             // tp_viewHistory
             // 
             this.tp_viewHistory.Controls.Add(this.flp_viewHistory);
@@ -122,6 +130,15 @@
             this.tp_viewHistory.TabIndex = 1;
             this.tp_viewHistory.Text = "阅读历史";
             this.tp_viewHistory.UseVisualStyleBackColor = true;
+            // 
+            // flp_viewHistory
+            // 
+            this.flp_viewHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_viewHistory.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp_viewHistory.Location = new System.Drawing.Point(3, 3);
+            this.flp_viewHistory.Name = "flp_viewHistory";
+            this.flp_viewHistory.Size = new System.Drawing.Size(1011, 691);
+            this.flp_viewHistory.TabIndex = 1;
             // 
             // tp_downloadTask
             // 
@@ -134,50 +151,23 @@
             this.tp_downloadTask.Text = "下载任务管理";
             this.tp_downloadTask.UseVisualStyleBackColor = true;
             // 
-            // flp_libraryList
-            // 
-            this.flp_libraryList.Controls.Add(this.baseListItem1);
-            this.flp_libraryList.Controls.Add(this.baseListItem2);
-            this.flp_libraryList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_libraryList.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_libraryList.Location = new System.Drawing.Point(3, 3);
-            this.flp_libraryList.Name = "flp_libraryList";
-            this.flp_libraryList.Size = new System.Drawing.Size(1011, 691);
-            this.flp_libraryList.TabIndex = 0;
-            // 
-            // baseListItem1
-            // 
-            this.baseListItem1.BackColor = System.Drawing.Color.White;
-            this.baseListItem1.Location = new System.Drawing.Point(3, 3);
-            this.baseListItem1.Name = "baseListItem1";
-            this.baseListItem1.Size = new System.Drawing.Size(1000, 188);
-            this.baseListItem1.TabIndex = 0;
-            // 
-            // baseListItem2
-            // 
-            this.baseListItem2.BackColor = System.Drawing.Color.White;
-            this.baseListItem2.Location = new System.Drawing.Point(3, 197);
-            this.baseListItem2.Name = "baseListItem2";
-            this.baseListItem2.Size = new System.Drawing.Size(1000, 188);
-            this.baseListItem2.TabIndex = 1;
-            // 
-            // flp_viewHistory
-            // 
-            this.flp_viewHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_viewHistory.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_viewHistory.Location = new System.Drawing.Point(3, 3);
-            this.flp_viewHistory.Name = "flp_viewHistory";
-            this.flp_viewHistory.Size = new System.Drawing.Size(1011, 691);
-            this.flp_viewHistory.TabIndex = 1;
-            // 
             // flp_downloadTask
             // 
+            this.flp_downloadTask.Controls.Add(this.downloadListItem1);
             this.flp_downloadTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_downloadTask.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flp_downloadTask.Location = new System.Drawing.Point(3, 3);
             this.flp_downloadTask.Name = "flp_downloadTask";
             this.flp_downloadTask.Size = new System.Drawing.Size(1011, 691);
             this.flp_downloadTask.TabIndex = 1;
+            // 
+            // downloadListItem1
+            // 
+            this.downloadListItem1.BackColor = System.Drawing.Color.White;
+            this.downloadListItem1.Location = new System.Drawing.Point(3, 3);
+            this.downloadListItem1.Name = "downloadListItem1";
+            this.downloadListItem1.Size = new System.Drawing.Size(1000, 188);
+            this.downloadListItem1.TabIndex = 0;
             // 
             // LibraryList
             // 
@@ -194,7 +184,7 @@
             this.tp_libraryList.ResumeLayout(false);
             this.tp_viewHistory.ResumeLayout(false);
             this.tp_downloadTask.ResumeLayout(false);
-            this.flp_libraryList.ResumeLayout(false);
+            this.flp_downloadTask.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -210,10 +200,9 @@
         private System.Windows.Forms.TabPage tp_viewHistory;
         private System.Windows.Forms.TabPage tp_downloadTask;
         private System.Windows.Forms.FlowLayoutPanel flp_libraryList;
-        private BaseListItem baseListItem1;
-        private BaseListItem baseListItem2;
         private System.Windows.Forms.FlowLayoutPanel flp_viewHistory;
         private System.Windows.Forms.FlowLayoutPanel flp_downloadTask;
+        private DownloadListItem downloadListItem1;
     }
 }
 
