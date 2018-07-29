@@ -14,11 +14,13 @@ namespace CAAC_LawLibrary
         [STAThread]
         static void Main()
         {
-            selectDb();
+            //selectDb();
             //initDb();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LibraryList());
+            //Application.Run(new LibraryList());
+            Application.Run(new LawView());
+
         }
 
         private static void initDb()

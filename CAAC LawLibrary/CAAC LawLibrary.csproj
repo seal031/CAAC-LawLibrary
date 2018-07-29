@@ -86,6 +86,12 @@
     </Compile>
     <Compile Include="Entity\Law.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="LawView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LawView.Designer.cs">
+      <DependentUpon>LawView.cs</DependentUpon>
+    </Compile>
     <Compile Include="LibraryList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <EmbeddedResource Include="DownloadListItem.resx">
       <DependentUpon>DownloadListItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LawView.resx">
+      <DependentUpon>LawView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibraryList.resx">
       <DependentUpon>LibraryList.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +131,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="doc\开发计划.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
