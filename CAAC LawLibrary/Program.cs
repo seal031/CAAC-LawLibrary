@@ -19,8 +19,8 @@ namespace CAAC_LawLibrary
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new LibraryList());
-            Application.Run(new LawView());
-
+            //Application.Run(new LawView());
+            Application.Run(new Login());
         }
 
         private static void initDb()

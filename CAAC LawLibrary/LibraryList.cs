@@ -16,5 +16,15 @@ namespace CAAC_LawLibrary
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// 窗体关闭时退出程序
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LibraryList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
     }
 }
