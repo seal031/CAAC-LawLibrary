@@ -1,6 +1,6 @@
 ﻿namespace CAAC_LawLibrary
 {
-    partial class DownloadListItem
+    partial class LawListItem
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -28,11 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bgw = new System.ComponentModel.BackgroundWorker();
             this.ckb = new System.Windows.Forms.CheckBox();
+            this.lbl_delete = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // lbl_title
+            // 
+            this.lbl_title.Click += new System.EventHandler(this.lbl_title_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbl_delete);
+            this.panel1.Controls.SetChildIndex(this.lbl_name, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_downloadState, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_state, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_delete, 0);
             // 
             // panel2
             // 
@@ -50,15 +62,24 @@
             this.ckb.Location = new System.Drawing.Point(18, 7);
             this.ckb.Name = "ckb";
             this.ckb.Size = new System.Drawing.Size(18, 17);
-            this.ckb.TabIndex = 7;
+            this.ckb.TabIndex = 6;
             this.ckb.UseVisualStyleBackColor = true;
             // 
-            // DownloadListItem
+            // lbl_delete
+            // 
+            this.lbl_delete.AutoSize = true;
+            this.lbl_delete.Location = new System.Drawing.Point(1249, 18);
+            this.lbl_delete.Name = "lbl_delete";
+            this.lbl_delete.Size = new System.Drawing.Size(67, 15);
+            this.lbl_delete.TabIndex = 3;
+            this.lbl_delete.TabStop = true;
+            this.lbl_delete.Text = "删除任务";
+            // 
+            // LawListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.Name = "DownloadListItem";
+            this.Name = "LawListItem";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -69,7 +90,7 @@
 
         #endregion
 
-        private System.ComponentModel.BackgroundWorker bgw;
         public System.Windows.Forms.CheckBox ckb;
+        private System.Windows.Forms.LinkLabel lbl_delete;
     }
 }

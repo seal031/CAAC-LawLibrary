@@ -21,5 +21,8 @@ namespace CAAC_LawLibrary.Entity
         public string digest { get; set; }
         public string effectiveDate { get; set; }
         public string expiryDate { get; set; }
+        public string isLocal { get; set; }
+        public string name { get; set; }
+        public string downloadDate { get; set; }
     }
 }
