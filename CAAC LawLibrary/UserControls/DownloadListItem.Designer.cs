@@ -30,9 +30,18 @@
         {
             this.bgw = new System.ComponentModel.BackgroundWorker();
             this.ckb = new System.Windows.Forms.CheckBox();
+            this.lbl_delete = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbl_delete);
+            this.panel1.Controls.SetChildIndex(this.lbl_name, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_downloadState, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_state, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_delete, 0);
             // 
             // panel2
             // 
@@ -53,11 +62,21 @@
             this.ckb.TabIndex = 7;
             this.ckb.UseVisualStyleBackColor = true;
             // 
+            // lbl_delete
+            // 
+            this.lbl_delete.AutoSize = true;
+            this.lbl_delete.Location = new System.Drawing.Point(1254, 18);
+            this.lbl_delete.Name = "lbl_delete";
+            this.lbl_delete.Size = new System.Drawing.Size(67, 15);
+            this.lbl_delete.TabIndex = 4;
+            this.lbl_delete.TabStop = true;
+            this.lbl_delete.Text = "删除任务";
+            // 
             // DownloadListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "DownloadListItem";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -71,5 +90,6 @@
 
         private System.ComponentModel.BackgroundWorker bgw;
         public System.Windows.Forms.CheckBox ckb;
+        private System.Windows.Forms.LinkLabel lbl_delete;
     }
 }

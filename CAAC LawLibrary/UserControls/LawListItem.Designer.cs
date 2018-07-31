@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.ckb = new System.Windows.Forms.CheckBox();
-            this.lbl_delete = new System.Windows.Forms.LinkLabel();
+            this.ccb_version = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -40,11 +40,11 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lbl_delete);
+            this.panel1.Controls.Add(this.ccb_version);
             this.panel1.Controls.SetChildIndex(this.lbl_name, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_downloadState, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_state, 0);
-            this.panel1.Controls.SetChildIndex(this.lbl_delete, 0);
+            this.panel1.Controls.SetChildIndex(this.ccb_version, 0);
             // 
             // panel2
             // 
@@ -65,15 +65,13 @@
             this.ckb.TabIndex = 6;
             this.ckb.UseVisualStyleBackColor = true;
             // 
-            // lbl_delete
+            // ccb_version
             // 
-            this.lbl_delete.AutoSize = true;
-            this.lbl_delete.Location = new System.Drawing.Point(1249, 18);
-            this.lbl_delete.Name = "lbl_delete";
-            this.lbl_delete.Size = new System.Drawing.Size(67, 15);
-            this.lbl_delete.TabIndex = 3;
-            this.lbl_delete.TabStop = true;
-            this.lbl_delete.Text = "删除任务";
+            this.ccb_version.FormattingEnabled = true;
+            this.ccb_version.Location = new System.Drawing.Point(1197, 15);
+            this.ccb_version.Name = "ccb_version";
+            this.ccb_version.Size = new System.Drawing.Size(121, 23);
+            this.ccb_version.TabIndex = 3;
             // 
             // LawListItem
             // 
@@ -91,6 +89,6 @@
         #endregion
 
         public System.Windows.Forms.CheckBox ckb;
-        private System.Windows.Forms.LinkLabel lbl_delete;
+        private System.Windows.Forms.ComboBox ccb_version;
     }
 }

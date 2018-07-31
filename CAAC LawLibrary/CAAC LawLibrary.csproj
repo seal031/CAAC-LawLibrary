@@ -75,26 +75,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseListItem.cs">
+    <Compile Include="UserControls\BaseFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaseListItem.Designer.cs">
+    <Compile Include="UserControls\BaseFilter.Designer.cs">
+      <DependentUpon>BaseFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BaseListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BaseListItem.Designer.cs">
       <DependentUpon>BaseListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\DbHelper.cs" />
-    <Compile Include="DownloadListItem.cs">
+    <Compile Include="UserControls\DownloadFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DownloadListItem.Designer.cs">
+    <Compile Include="UserControls\DownloadFilter.Designer.cs">
+      <DependentUpon>DownloadFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DownloadListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DownloadListItem.Designer.cs">
       <DependentUpon>DownloadListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\Law.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\ViewHistory.cs" />
-    <Compile Include="LawListItem.cs">
+    <Compile Include="UserControls\LawFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LawListItem.Designer.cs">
+    <Compile Include="UserControls\LawFilter.Designer.cs">
+      <DependentUpon>LawFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LawListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LawListItem.Designer.cs">
       <DependentUpon>LawListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="LawView.cs">
@@ -118,22 +136,37 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqliteContext.cs" />
+    <Compile Include="UserControls\ViewHistoryFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ViewHistoryFilter.Designer.cs">
+      <DependentUpon>ViewHistoryFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utity\Enums.cs" />
     <Compile Include="Utity\Global.cs" />
     <Compile Include="Utity\QueryParam.cs" />
-    <Compile Include="ViewHistoryListItem.cs">
+    <Compile Include="UserControls\ViewHistoryListItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ViewHistoryListItem.Designer.cs">
+    <Compile Include="UserControls\ViewHistoryListItem.Designer.cs">
       <DependentUpon>ViewHistoryListItem.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BaseListItem.resx">
+    <EmbeddedResource Include="UserControls\BaseFilter.resx">
+      <DependentUpon>BaseFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BaseListItem.resx">
       <DependentUpon>BaseListItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DownloadListItem.resx">
+    <EmbeddedResource Include="UserControls\DownloadFilter.resx">
+      <DependentUpon>DownloadFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DownloadListItem.resx">
       <DependentUpon>DownloadListItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LawListItem.resx">
+    <EmbeddedResource Include="UserControls\LawFilter.resx">
+      <DependentUpon>LawFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LawListItem.resx">
       <DependentUpon>LawListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LawView.resx">
@@ -154,7 +187,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ViewHistoryListItem.resx">
+    <EmbeddedResource Include="UserControls\ViewHistoryFilter.resx">
+      <DependentUpon>ViewHistoryFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ViewHistoryListItem.resx">
       <DependentUpon>ViewHistoryListItem.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="doc\开发计划.xlsx" />

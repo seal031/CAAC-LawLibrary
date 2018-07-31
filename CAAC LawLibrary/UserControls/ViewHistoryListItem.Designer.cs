@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lbl_version = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -35,6 +36,23 @@
             // lbl_title
             // 
             this.lbl_title.Click += new System.EventHandler(this.lbl_title_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbl_version);
+            this.panel1.Controls.SetChildIndex(this.lbl_name, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_downloadState, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_state, 0);
+            this.panel1.Controls.SetChildIndex(this.lbl_version, 0);
+            // 
+            // lbl_version
+            // 
+            this.lbl_version.AutoSize = true;
+            this.lbl_version.Location = new System.Drawing.Point(1244, 18);
+            this.lbl_version.Name = "lbl_version";
+            this.lbl_version.Size = new System.Drawing.Size(55, 15);
+            this.lbl_version.TabIndex = 3;
+            this.lbl_version.Text = "label1";
             // 
             // ViewHistoryListItem
             // 
@@ -50,5 +68,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lbl_version;
     }
 }
