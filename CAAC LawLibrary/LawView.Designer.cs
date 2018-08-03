@@ -43,6 +43,10 @@
             this.navigationPanePanel1 = new DevComponents.DotNetBar.NavigationPanePanel();
             this.btn_item_relation = new DevComponents.DotNetBar.ButtonItem();
             this.pn_main_document = new DevComponents.DotNetBar.PanelEx();
+            this.btn_return = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btn_search = new System.Windows.Forms.Button();
+            this.btn_suggest = new System.Windows.Forms.Button();
             this.pl_title.SuspendLayout();
             this.np_left.SuspendLayout();
             this.np_right.SuspendLayout();
@@ -50,6 +54,10 @@
             // 
             // pl_title
             // 
+            this.pl_title.Controls.Add(this.btn_suggest);
+            this.pl_title.Controls.Add(this.btn_search);
+            this.pl_title.Controls.Add(this.textBox1);
+            this.pl_title.Controls.Add(this.btn_return);
             this.pl_title.Controls.Add(this.btn_logout);
             this.pl_title.Controls.Add(this.lbl_welcome);
             this.pl_title.Dock = System.Windows.Forms.DockStyle.Top;
@@ -72,7 +80,7 @@
             // lbl_welcome
             // 
             this.lbl_welcome.AutoSize = true;
-            this.lbl_welcome.Location = new System.Drawing.Point(1003, 16);
+            this.lbl_welcome.Location = new System.Drawing.Point(1048, 16);
             this.lbl_welcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_welcome.Name = "lbl_welcome";
             this.lbl_welcome.Size = new System.Drawing.Size(52, 15);
@@ -278,6 +286,40 @@
             this.pn_main_document.Style.GradientAngle = 90;
             this.pn_main_document.TabIndex = 4;
             // 
+            // btn_return
+            // 
+            this.btn_return.Location = new System.Drawing.Point(28, 13);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.Size = new System.Drawing.Size(106, 23);
+            this.btn_return.TabIndex = 2;
+            this.btn_return.Text = "返回库";
+            this.btn_return.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(267, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(324, 25);
+            this.textBox1.TabIndex = 3;
+            // 
+            // btn_search
+            // 
+            this.btn_search.Location = new System.Drawing.Point(612, 13);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(75, 23);
+            this.btn_search.TabIndex = 4;
+            this.btn_search.Text = "查找";
+            this.btn_search.UseVisualStyleBackColor = true;
+            // 
+            // btn_suggest
+            // 
+            this.btn_suggest.Location = new System.Drawing.Point(836, 14);
+            this.btn_suggest.Name = "btn_suggest";
+            this.btn_suggest.Size = new System.Drawing.Size(102, 23);
+            this.btn_suggest.TabIndex = 5;
+            this.btn_suggest.Text = "意见征询";
+            this.btn_suggest.UseVisualStyleBackColor = true;
+            // 
             // LawView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -316,5 +358,9 @@
         private DevComponents.DotNetBar.NavigationPanePanel navigationPanePanel2;
         private DevComponents.DotNetBar.ButtonItem btn_item_comment;
         private DevComponents.DotNetBar.PanelEx pn_main_document;
+        private System.Windows.Forms.Button btn_return;
+        private System.Windows.Forms.Button btn_search;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btn_suggest;
     }
 }

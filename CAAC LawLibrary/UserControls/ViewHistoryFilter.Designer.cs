@@ -51,6 +51,7 @@
             this.ckb_showDownloaded.TabIndex = 9;
             this.ckb_showDownloaded.Text = "仅显示已下载";
             this.ckb_showDownloaded.UseVisualStyleBackColor = true;
+            this.ckb_showDownloaded.CheckedChanged += new System.EventHandler(this.ckb_showDownloaded_CheckedChanged);
             // 
             // btn_clearHistory
             // 

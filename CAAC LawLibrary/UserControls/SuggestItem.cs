@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace CAAC_LawLibrary
 {
-    public partial class ViewHistoryFilter : BaseFilter
+    public partial class SuggestItem : UserControl
     {
-        public ViewHistoryFilter()
+        public SuggestItem()
         {
             InitializeComponent();
-        }
-
-        private void ckb_showDownloaded_CheckedChanged(object sender, EventArgs e)
-        {
-            queryParam.downloaded = ckb_showDownloaded.Checked ? "1" : "0";
         }
     }
 }

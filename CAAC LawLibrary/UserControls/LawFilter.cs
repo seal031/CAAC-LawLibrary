@@ -21,5 +21,10 @@ namespace CAAC_LawLibrary
         {
             menu.Show(btn_manageLocal, 0,20);
         }
+
+        private void ckb_showDownloaded_CheckedChanged(object sender, EventArgs e)
+        {
+            queryParam.downloaded = ckb_showDownloaded.Checked ? "1" : "0";
+        }
     }
 }

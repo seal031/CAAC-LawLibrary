@@ -57,6 +57,7 @@
             this.ckb_showDownloaded.TabIndex = 8;
             this.ckb_showDownloaded.Text = "仅显示已下载";
             this.ckb_showDownloaded.UseVisualStyleBackColor = true;
+            this.ckb_showDownloaded.CheckedChanged += new System.EventHandler(this.ckb_showDownloaded_CheckedChanged);
             // 
             // ckb_selectAll
             // 

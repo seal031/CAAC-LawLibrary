@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace CAAC_LawLibrary
 {
-    public partial class ViewHistoryFilter : BaseFilter
+    public partial class Suggest : Form
     {
-        public ViewHistoryFilter()
+        public Suggest()
         {
             InitializeComponent();
-        }
-
-        private void ckb_showDownloaded_CheckedChanged(object sender, EventArgs e)
-        {
-            queryParam.downloaded = ckb_showDownloaded.Checked ? "1" : "0";
         }
     }
 }

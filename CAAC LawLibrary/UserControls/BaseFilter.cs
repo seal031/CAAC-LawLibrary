@@ -13,7 +13,7 @@ namespace CAAC_LawLibrary
 {
     public partial class BaseFilter : UserControl
     {
-        protected QueryParam queryParam = new QueryParam();
+        protected internal QueryParam queryParam = new QueryParam();
 
         public BaseFilter()
         {
