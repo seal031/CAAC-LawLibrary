@@ -75,6 +75,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Code.cs" />
+    <Compile Include="Entity\Suggest.cs" />
     <Compile Include="Suggest.cs">
       <SubType>Form</SubType>
     </Compile>
