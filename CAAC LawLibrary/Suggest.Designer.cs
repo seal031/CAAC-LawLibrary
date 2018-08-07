@@ -1,6 +1,6 @@
 ﻿namespace CAAC_LawLibrary
 {
-    partial class Suggest
+    partial class SuggestForm
     {
         /// <summary>
         /// Required designer variable.

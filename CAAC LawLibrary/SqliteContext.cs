@@ -22,5 +22,9 @@ namespace CAAC_LawLibrary
 
         public DbSet<User> User { get; set; }
         public DbSet<Law> Law { get; set; }
+
+        public DbSet<Code> Code { get; set; }
+        public DbSet<Suggest> Suggest { get; set; }
+        public DbSet<ViewHistory> ViewHistory { get; set; }
     }
 }

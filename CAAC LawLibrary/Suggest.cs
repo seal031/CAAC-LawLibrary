@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CAAC_LawLibrary
 {
-    public partial class Suggest : Form
+    public partial class SuggestForm : Form
     {
-        public Suggest()
+        public SuggestForm()
         {
             InitializeComponent();
         }
