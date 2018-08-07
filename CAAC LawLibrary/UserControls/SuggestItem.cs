@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAAC_LawLibrary.Entity;
 
 namespace CAAC_LawLibrary
 {
@@ -15,6 +16,13 @@ namespace CAAC_LawLibrary
         public SuggestItem()
         {
             InitializeComponent();
+        }
+
+        public void ShowEntity<T>(T entity) where T : Suggest
+        {
+            this.lbl_lawNo.Text = entity.lawId;
+            this.rtb_remark.Text = entity.remark;
+            this.rtb_suggest.Text = entity.suggest_content;
         }
     }
 }

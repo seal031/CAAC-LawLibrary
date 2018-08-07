@@ -115,6 +115,15 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+
+        public List<Suggest> getSuggests(string lawId,string userId)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                return context.Suggest.Where(s => s.lawId == lawId && s.userId == userId).ToList();
+            }
+        }
+
         public bool saveSuggest(Suggest suggest)
         {
             using (SqliteContext context = new SqliteContext())
