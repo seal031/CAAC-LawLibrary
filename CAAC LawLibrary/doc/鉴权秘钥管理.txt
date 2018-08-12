@@ -1,0 +1,13 @@
+﻿pc端：
+appid 838cc1c6
+appkey 22bcd8511e8ed17ce31c15fecd81f265
+
+
+mobile端：
+appid c70edfe3
+appkey 763530420321ecee144baa32ba754961
+
+
+enforce端：
+appid 25315147
+appkey 9c294584b5cf381f738bc888950865c8
