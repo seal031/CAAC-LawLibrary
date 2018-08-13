@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CAAC_LawLibrary.Entity
 {
     [Table("Law")]
-    public class Law
+    public class Law:BaseEntity
     {
         /// <summary>
         /// 主键

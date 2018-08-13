@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CAAC_LawLibrary.Entity
 {
     [Table("User")]
-    public class User
+    public class User : BaseEntity
     {
         [Key]
         public string Id { get; set; }

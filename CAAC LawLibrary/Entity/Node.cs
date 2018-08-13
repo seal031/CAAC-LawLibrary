@@ -8,14 +8,17 @@ using System.Threading.Tasks;
 
 namespace CAAC_LawLibrary.Entity
 {
-    [Table("Suggest")]
-    public class Suggest : BaseEntity
+    [Table("Node")]
+    public class Node : BaseEntity
     {
         [Key]
         public string Id { get; set; }
+        public string NodeId { get; set; }
         public string lawId { get; set; }
-        public string userId { get; set; }
-        public string suggest_content { get; set; }
-        public string remark { get; set; }
+        public string title { get; set; }
+        public string nodeNumber { get; set; }
+        public int nodeLevel { get; set; }
+        public int nodeOrder { get; set; }
+        public string content { get; set; }
     }
 }

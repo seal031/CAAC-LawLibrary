@@ -1,4 +1,5 @@
 ﻿using CAAC_LawLibrary.Entity;
+using CAAC_LawLibrary.Utity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,13 +20,18 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
-        public List<Law> getLaws()
+        public List<Law> getLaws(QueryParam param)
         {
             using (SqliteContext context = new SqliteContext())
             {
-                var list = context.Law.ToList();
+                var list = from law in context.Law.Where(l => l.userId == Global.user.Id)
+                           where param.buhao == null ? 1 == 1 : law.buhao == param.buhao
+                           && param.siju == null ? 1 == 1 : law.siju == param.siju
+                           && param.weijie == null ? 1 == 1 : law.weijie == param.weijie
+                           && param.yewu == null ? 1 == 1 : law.yewu == param.yewu
+                           select law;
 
-                return list;
+                return list.ToList() ;
             }
         }
 

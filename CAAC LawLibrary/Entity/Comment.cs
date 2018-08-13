@@ -8,14 +8,18 @@ using System.Threading.Tasks;
 
 namespace CAAC_LawLibrary.Entity
 {
-    [Table("Suggest")]
-    public class Suggest : BaseEntity
+    /// <summary>
+    /// 注释表
+    /// </summary>
+    [Table("Comment")]
+    public class Comment : BaseEntity
     {
         [Key]
         public string Id { get; set; }
         public string lawId { get; set; }
+        public string nodeId { get; set; }
         public string userId { get; set; }
-        public string suggest_content { get; set; }
-        public string remark { get; set; }
+        public string comment_content { get; set; }
+        public string comment_date { get; set; }
     }
 }

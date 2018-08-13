@@ -76,7 +76,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Entity\HttpEntity.cs" />
+    <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\Code.cs" />
+    <Compile Include="Entity\Comment.cs" />
+    <Compile Include="Entity\Node.cs" />
     <Compile Include="Entity\Suggest.cs" />
     <Compile Include="Suggest.cs">
       <SubType>Form</SubType>

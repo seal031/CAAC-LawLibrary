@@ -26,5 +26,30 @@ namespace CAAC_LawLibrary
         {
             System.Environment.Exit(0);
         }
+
+        private void LibraryList_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadRemoteLawList()
+        {
+            //todo读取远程法规库列表，并更新数据库
+        }
+
+        private void loadLocalLawList()
+        {
+
+        }
+
+        private void loadViewHistoryList()
+        {
+
+        }
+
+        private void loadDownLoadList()
+        {
+
+        }
     }
 }

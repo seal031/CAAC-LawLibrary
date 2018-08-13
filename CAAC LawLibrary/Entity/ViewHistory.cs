@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CAAC_LawLibrary.Entity
 {
     [Table("ViewHistory")]
-    public class ViewHistory
+    public class ViewHistory : BaseEntity
     {
         public string LawID { get; set; }
         public string ViewDate { get; set; }
