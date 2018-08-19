@@ -19,6 +19,7 @@ namespace CAAC_LawLibrary
         public LawView()
         {
             InitializeComponent();
+            wb.DocumentText = "<b>123</b>";
         }
 
         private void LawView_FormClosed(object sender, FormClosedEventArgs e)

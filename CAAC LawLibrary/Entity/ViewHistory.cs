@@ -10,6 +10,7 @@ namespace CAAC_LawLibrary.Entity
     [Table("ViewHistory")]
     public class ViewHistory : BaseEntity
     {
+        public string Id { get; set; }
         public string LawID { get; set; }
         public string ViewDate { get; set; }
         public string UserID { get; set; }

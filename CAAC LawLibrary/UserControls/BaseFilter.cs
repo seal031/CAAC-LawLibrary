@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAAC_LawLibrary.Utity;
+using CAAC_LawLibrary.DAL;
 
 namespace CAAC_LawLibrary
 {
     public partial class BaseFilter : UserControl
     {
         protected internal QueryParam queryParam = new QueryParam();
+        private DbHelper db = new DbHelper();
 
         public BaseFilter()
         {
@@ -25,6 +27,21 @@ namespace CAAC_LawLibrary
             cbb_sort.DataSource = new BindingSource(Global.SortSource, null);
             cbb_sort.DisplayMember = "Value";
             cbb_sort.ValueMember = "Key";
+
+            bindComboBox();
+        }
+
+        private void bindComboBox()
+        {
+            bindYewu();
+        }
+
+        private void bindYewu()
+        {
+            var a = db.getCode("biz");
+            cbb_yewu.DataSource = new BindingSource(db.getCode("biz"), null);
+            cbb_yewu.DisplayMember = "desc";
+            cbb_yewu.ValueMember = "Id";
         }
 
         private void cbb_buhao_SelectedIndexChanged(object sender, EventArgs e)

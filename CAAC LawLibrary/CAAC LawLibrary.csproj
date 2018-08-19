@@ -121,6 +121,12 @@
     <Compile Include="UserControls\LawFilter.Designer.cs">
       <DependentUpon>LawFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\LawInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LawInfo.Designer.cs">
+      <DependentUpon>LawInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\LawListItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LawFilter.resx">
       <DependentUpon>LawFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LawInfo.resx">
+      <DependentUpon>LawInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LawListItem.resx">
       <DependentUpon>LawListItem.cs</DependentUpon>

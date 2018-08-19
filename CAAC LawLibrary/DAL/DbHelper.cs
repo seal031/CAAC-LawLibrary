@@ -61,6 +61,21 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        public List<Code> getCode(string type)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                try
+                {
+                    return context.Code.Where(c => c.type == type).OrderBy(c => c.order).ToList();
+                }
+                catch (Exception ex)
+                {
+                    return new List<Code>();
+                }
+            }
+        }
+
         public bool saveCode(Code code)
         {
             using (SqliteContext context = new SqliteContext())
