@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CAAC_LawLibrary.DAL;
+using CAAC_LawLibrary.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace CAAC_LawLibrary
 {
     public partial class LibraryList : Form
     {
+        DbHelper db = new DbHelper();
+
         public LibraryList()
         {
             InitializeComponent();
@@ -29,7 +33,10 @@ namespace CAAC_LawLibrary
 
         private void LibraryList_Load(object sender, EventArgs e)
         {
-
+            loadRemoteLawList();
+            loadLocalLawList();
+            loadViewHistoryList();
+            loadDownLoadList();
         }
 
         private void loadRemoteLawList()
@@ -39,7 +46,13 @@ namespace CAAC_LawLibrary
 
         private void loadLocalLawList()
         {
-
+            List<Law> list = db.getLaws(lawFilter.queryParam);
+            foreach (Law law in list)
+            {
+                LawListItem item = new LawListItem();
+                item.law = law;
+                flp_libraryList.Controls.Add(item);
+            }
         }
 
         private void loadViewHistoryList()

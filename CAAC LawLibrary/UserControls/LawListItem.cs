@@ -14,7 +14,7 @@ namespace CAAC_LawLibrary
     public partial class LawListItem : BaseListItem
     {
         public string lawId { get; set; }
-        private Law law { get; set; }
+        public Law law { get; set; }
 
         public LawListItem()
         {
