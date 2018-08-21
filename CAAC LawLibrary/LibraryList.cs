@@ -57,7 +57,13 @@ namespace CAAC_LawLibrary
 
         private void loadViewHistoryList()
         {
+            List<ViewHistory> list = db.getViewHistory(viewHistoryFilter.queryParam);
+            foreach (ViewHistory vh in list)
+            {
+                ViewHistoryListItem item = new ViewHistoryListItem();
 
+                flp_viewHistory.Controls.Add(item);
+            }
         }
 
         private void loadDownLoadList()

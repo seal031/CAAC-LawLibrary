@@ -47,8 +47,8 @@
             // 
             this.panel2.Controls.Add(this.ckb);
             this.panel2.Controls.SetChildIndex(this.lbl_title, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_effectiveDate, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_expiryDate, 0);
+            this.panel2.Controls.SetChildIndex(this.lable1, 0);
+            this.panel2.Controls.SetChildIndex(this.label2, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_organization, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_businessType, 0);
             this.panel2.Controls.SetChildIndex(this.ckb, 0);

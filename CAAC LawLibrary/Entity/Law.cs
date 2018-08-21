@@ -76,6 +76,6 @@ namespace CAAC_LawLibrary.Entity
         /// <summary>
         /// 下载进度
         /// </summary>
-        public int downloadPercent { get; set; }
+        public int? downloadPercent { get; set; }
     }
 }

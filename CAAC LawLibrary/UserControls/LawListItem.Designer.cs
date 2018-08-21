@@ -50,8 +50,8 @@
             // 
             this.panel2.Controls.Add(this.ckb);
             this.panel2.Controls.SetChildIndex(this.lbl_title, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_effectiveDate, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_expiryDate, 0);
+            this.panel2.Controls.SetChildIndex(this.lable1, 0);
+            this.panel2.Controls.SetChildIndex(this.label2, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_organization, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_businessType, 0);
             this.panel2.Controls.SetChildIndex(this.ckb, 0);
@@ -59,25 +59,29 @@
             // ckb
             // 
             this.ckb.AutoSize = true;
-            this.ckb.Location = new System.Drawing.Point(18, 7);
+            this.ckb.Location = new System.Drawing.Point(14, 6);
+            this.ckb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckb.Name = "ckb";
-            this.ckb.Size = new System.Drawing.Size(18, 17);
+            this.ckb.Size = new System.Drawing.Size(15, 14);
             this.ckb.TabIndex = 6;
             this.ckb.UseVisualStyleBackColor = true;
             // 
             // ccb_version
             // 
             this.ccb_version.FormattingEnabled = true;
-            this.ccb_version.Location = new System.Drawing.Point(1197, 15);
+            this.ccb_version.Location = new System.Drawing.Point(898, 12);
+            this.ccb_version.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ccb_version.Name = "ccb_version";
-            this.ccb_version.Size = new System.Drawing.Size(121, 23);
+            this.ccb_version.Size = new System.Drawing.Size(92, 20);
             this.ccb_version.TabIndex = 3;
             // 
             // LawListItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "LawListItem";
+            this.Load += new System.EventHandler(this.LawListItem_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAAC_LawLibrary.Entity;
+using CAAC_LawLibrary.Utity;
 
 namespace CAAC_LawLibrary
 {
@@ -31,7 +32,7 @@ namespace CAAC_LawLibrary
                 lbl_businessType.Text = law.yewu;
                 lbl_effectiveDate.Text = law.effectiveDate;
                 lbl_expiryDate.Text = law.expiryDate;
-                lbl_organization.Text = law.siju;
+                lbl_organization.Text = Global.GetCodeValueById(law.siju);
                 lbl_downloadState.Text = law.isLocal;
             }
         }
@@ -41,6 +42,11 @@ namespace CAAC_LawLibrary
             LawView lv = new CAAC_LawLibrary.LawView();
             lv.Show(this);
             this.Hide();
+        }
+
+        private void LawListItem_Load(object sender, EventArgs e)
+        {
+            showInfo();
         }
     }
 }

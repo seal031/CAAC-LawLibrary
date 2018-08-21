@@ -30,7 +30,6 @@ namespace CAAC_LawLibrary.DAL
                            && param.weijie == null ? 1 == 1 : law.weijie == param.weijie
                            && param.yewu == null ? 1 == 1 : law.yewu == param.yewu
                            select law;
-
                 return list.ToList() ;
             }
         }
@@ -76,6 +75,21 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        public List<Code> getCode()
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                try
+                {
+                    return context.Code.OrderBy(c => c.order).ToList();
+                }
+                catch (Exception ex)
+                {
+                    return new List<Code>();
+                }
+            }
+        }
+
         public bool saveCode(Code code)
         {
             using (SqliteContext context = new SqliteContext())
@@ -98,6 +112,16 @@ namespace CAAC_LawLibrary.DAL
                 {
                     return false;
                 }
+            }
+        }
+
+        public List<ViewHistory> getViewHistory(QueryParam param)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                var list = from vh in context.ViewHistory.Where(v => v.UserID == Global.user.Id)
+                           select vh;
+                return list.ToList();
             }
         }
 

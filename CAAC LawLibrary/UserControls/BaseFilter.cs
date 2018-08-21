@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAAC_LawLibrary.Utity;
 using CAAC_LawLibrary.DAL;
+using CAAC_LawLibrary.Entity;
 
 namespace CAAC_LawLibrary
 {
@@ -34,14 +35,45 @@ namespace CAAC_LawLibrary
         private void bindComboBox()
         {
             bindYewu();
+            bindSiju();
+            bindBuhao();
+            bindWeijie();
+            bindZidingyi();
+        }
+
+        private void bindBuhao()
+        {
+            cbb_buhao.DataSource = new BindingSource(Global.buhao, null);
+            cbb_buhao.DisplayMember = "desc";
+            cbb_buhao.ValueMember = "Id";
         }
 
         private void bindYewu()
         {
-            var a = db.getCode("biz");
-            cbb_yewu.DataSource = new BindingSource(db.getCode("biz"), null);
+            cbb_yewu.DataSource = new BindingSource(Global.yewu, null);
             cbb_yewu.DisplayMember = "desc";
             cbb_yewu.ValueMember = "Id";
+        }
+
+        private void bindSiju()
+        {
+            cbb_siju.DataSource = new BindingSource(Global.siju, null);
+            cbb_siju.DisplayMember = "desc";
+            cbb_siju.ValueMember = "Id";
+        }
+
+        private void bindWeijie()
+        {
+            cbb_weijie.DataSource = new BindingSource(Global.weijie, null);
+            cbb_weijie.DisplayMember = "desc";
+            cbb_weijie.ValueMember = "Id";
+        }
+
+        private void bindZidingyi()
+        {
+            cbb_zidingyi.DataSource = new BindingSource(Global.zidingyi, null);
+            cbb_zidingyi.DisplayMember = "desc";
+            cbb_zidingyi.ValueMember = "Id";
         }
 
         private void cbb_buhao_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,7 +93,7 @@ namespace CAAC_LawLibrary
 
         private void cbb_yewu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            queryParam.yewu = cbb_yewu.SelectedValue.ToString();
+            queryParam.yewu = (cbb_yewu.SelectedValue as Code).Id.ToString();
         }
 
         private void cbb_zidingyi_SelectedIndexChanged(object sender, EventArgs e)
