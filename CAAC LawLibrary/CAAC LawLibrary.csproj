@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Entity\HttpEntity.cs" />
+    <Compile Include="BLL\NodeWorker.cs" />
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\Code.cs" />
     <Compile Include="Entity\Comment.cs" />

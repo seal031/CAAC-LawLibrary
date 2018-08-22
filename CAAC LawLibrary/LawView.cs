@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAAC_LawLibrary.BLL;
+using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
 
 namespace CAAC_LawLibrary
@@ -15,16 +17,27 @@ namespace CAAC_LawLibrary
     {
         public string lawId = string.Empty;
         public Law law;
+        private List<Node> nodes;
+        private DbHelper db = new DbHelper();
 
         public LawView()
         {
             InitializeComponent();
-            wb.DocumentText = "<b>123</b>";
         }
 
         private void LawView_FormClosed(object sender, FormClosedEventArgs e)
         {
             System.Environment.Exit(0);
+        }
+
+        private void LawView_Load(object sender, EventArgs e)
+        {
+            lawInfo1.law = law;
+            if (law != null)
+            {
+                nodes = db.getNodeByLawId(law.Id);
+                wb.DocumentText = NodeWorker.buildFromNodeContext(nodes);
+            }
         }
     }
 }

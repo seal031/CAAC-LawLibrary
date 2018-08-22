@@ -77,5 +77,25 @@ namespace CAAC_LawLibrary.Entity
         /// 下载进度
         /// </summary>
         public int? downloadPercent { get; set; }
+        /// <summary>
+        /// 关键字
+        /// </summary>
+        public string keyword { get; set; }
+        /// <summary>
+        /// 令号
+        /// </summary>
+        public string linghao { get; set; }
+        /// <summary>
+        /// 修订令
+        /// </summary>
+        public string xiudingling { get; set; }
+        /// <summary>
+        /// 依赖
+        /// </summary>
+        public string yilai { get; set; }
+        /// <summary>
+        /// 责罚
+        /// </summary>
+        public string zefa { get; set; }
     }
 }

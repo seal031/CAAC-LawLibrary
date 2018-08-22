@@ -131,6 +131,7 @@
             this.np_left.CanCollapse = true;
             this.np_left.ConfigureItemVisible = false;
             this.np_left.Controls.Add(this.npp_docInfo);
+            this.np_left.Controls.Add(this.np_left.TitlePanel);
             this.np_left.Controls.Add(this.npp_tree);
             this.np_left.Dock = System.Windows.Forms.DockStyle.Left;
             this.np_left.ItemPaddingBottom = 2;
@@ -144,25 +145,6 @@
             this.np_left.Size = new System.Drawing.Size(200, 735);
             this.np_left.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
             this.np_left.TabIndex = 2;
-            // 
-            // 
-            // 
-            this.np_left.TitlePanel.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
-            this.np_left.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.np_left.TitlePanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.np_left.TitlePanel.Location = new System.Drawing.Point(1, 1);
-            this.np_left.TitlePanel.Name = "panelTitle";
-            this.np_left.TitlePanel.Size = new System.Drawing.Size(198, 24);
-            this.np_left.TitlePanel.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.np_left.TitlePanel.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.np_left.TitlePanel.Style.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.np_left.TitlePanel.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.np_left.TitlePanel.Style.BorderSide = DevComponents.DotNetBar.eBorderSide.Bottom;
-            this.np_left.TitlePanel.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.np_left.TitlePanel.Style.GradientAngle = 90;
-            this.np_left.TitlePanel.Style.MarginLeft = 4;
-            this.np_left.TitlePanel.TabIndex = 0;
-            this.np_left.TitlePanel.Text = "目录";
             // 
             // npp_docInfo
             // 
@@ -225,6 +207,7 @@
             this.np_right.CanCollapse = true;
             this.np_right.ConfigureItemVisible = false;
             this.np_right.Controls.Add(this.navigationPanePanel2);
+            this.np_right.Controls.Add(this.np_right.TitlePanel);
             this.np_right.Controls.Add(this.navigationPanePanel1);
             this.np_right.Dock = System.Windows.Forms.DockStyle.Right;
             this.np_right.ItemPaddingBottom = 2;
@@ -238,25 +221,6 @@
             this.np_right.Size = new System.Drawing.Size(200, 735);
             this.np_right.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.np_right.TabIndex = 3;
-            // 
-            // 
-            // 
-            this.np_right.TitlePanel.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.np_right.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.np_right.TitlePanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.np_right.TitlePanel.Location = new System.Drawing.Point(1, 1);
-            this.np_right.TitlePanel.Name = "panelTitle";
-            this.np_right.TitlePanel.Size = new System.Drawing.Size(198, 24);
-            this.np_right.TitlePanel.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.np_right.TitlePanel.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.np_right.TitlePanel.Style.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.np_right.TitlePanel.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.np_right.TitlePanel.Style.BorderSide = DevComponents.DotNetBar.eBorderSide.Bottom;
-            this.np_right.TitlePanel.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.np_right.TitlePanel.Style.GradientAngle = 90;
-            this.np_right.TitlePanel.Style.MarginLeft = 4;
-            this.np_right.TitlePanel.TabIndex = 0;
-            this.np_right.TitlePanel.Text = "评论";
             // 
             // navigationPanePanel2
             // 
@@ -346,6 +310,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "法规详情";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LawView_FormClosed);
+            this.Load += new System.EventHandler(this.LawView_Load);
             this.pl_title.ResumeLayout(false);
             this.pl_title.PerformLayout();
             this.np_left.ResumeLayout(false);

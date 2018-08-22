@@ -311,6 +311,7 @@
             this.Controls.Add(this.label1);
             this.Name = "LawInfo";
             this.Size = new System.Drawing.Size(198, 677);
+            this.Load += new System.EventHandler(this.LawInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -60,6 +60,86 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        /// <summary>
+        /// 从本地库移除
+        /// </summary>
+        /// <param name="law"></param>
+        /// <returns></returns>
+        public bool removeLawFromLocal(Law law)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        law.downloadDate = null;
+                        law.downloadPercent = null;
+                        law.isLocal = "0";
+
+                        var list = context.Node.Where(n => n.lawId == law.Id && law.userId == Global.user.Id);
+                        foreach (var node in list)
+                        {
+                            node.content = string.Empty;
+                        }
+                        context.SaveChanges();
+                        dbContextTransaction.Commit();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        dbContextTransaction.Rollback();
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public List<Node> getNodeByLawId(string lawId)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                try
+                {
+                    var law = context.Law.FirstOrDefault(l => l.Id == lawId && l.userId == Global.user.Id);
+                    if (law == null) return new List<Node>();
+                    else
+                    {
+                        return context.Node.Where(n => n.lawId == law.Id).OrderBy(n => n.nodeLevel).ThenBy(n => n.nodeOrder).ToList();
+                    }
+                }
+                catch (Exception)
+                {
+                    return new List<Node>();
+                }
+            }
+        }
+
+        public bool saveNode(Node node)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                try
+                {
+                    var old = context.Node.FirstOrDefault(c => c.Id == node.Id);
+                    if (old == null)
+                    {
+                        context.Node.Add(node);
+                    }
+                    else
+                    {
+                        old = node;
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
         public List<Code> getCode(string type)
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
