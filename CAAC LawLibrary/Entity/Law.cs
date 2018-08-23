@@ -37,7 +37,7 @@ namespace CAAC_LawLibrary.Entity
         /// </summary>
         public string siju { get; set; }
         /// <summary>
-        /// 未接
+        /// 位阶
         /// </summary>
         public string weijie { get; set; }
         /// <summary>
@@ -97,5 +97,13 @@ namespace CAAC_LawLibrary.Entity
         /// 责罚
         /// </summary>
         public string zefa { get; set; }
+        /// <summary>
+        /// 最新版本的id
+        /// </summary>
+        public int lastversion { get; set; }
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int status { get; set; }
     }
 }

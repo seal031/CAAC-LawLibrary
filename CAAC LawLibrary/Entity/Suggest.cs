@@ -14,6 +14,7 @@ namespace CAAC_LawLibrary.Entity
         [Key]
         public string Id { get; set; }
         public string lawId { get; set; }
+        public string nodeId { get; set; }
         public string userId { get; set; }
         public string suggest_content { get; set; }
         public string remark { get; set; }
