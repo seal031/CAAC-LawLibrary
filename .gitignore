@@ -1,3 +1,7 @@
 
 .vs/CAAC LawLibrary/v14/.suo
 .vs/CAAC LawLibrary/v14/.suo
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
