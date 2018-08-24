@@ -65,7 +65,6 @@ E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LawF
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.DownloadFilter.resources
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.ViewHistoryFilter.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Suggest.resources
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestItem.resources
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestForm.resources
@@ -75,3 +74,5 @@ C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibr
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestItem.resources
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.ViewHistoryFilter.resources
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.LawInfo.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestForm.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.LawInfo.resources

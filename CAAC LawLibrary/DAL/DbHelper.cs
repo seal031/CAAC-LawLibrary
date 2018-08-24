@@ -115,6 +115,41 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        public List<Node> getNodeByLawIdAndLevel(string lawId,int nodeLevel)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                try
+                {
+                    var law = context.Law.FirstOrDefault(l => l.Id == lawId && l.userId == Global.user.Id);
+                    if (law == null) return new List<Node>();
+                    else
+                    {
+                        return context.Node.Where(n => n.lawId == law.Id && n.nodeLevel == nodeLevel).OrderBy(n => n.nodeOrder).ThenBy(n => n.nodeOrder).ToList();
+                    }
+                }
+                catch (Exception)
+                {
+                    return new List<Node>();
+                }
+            }
+        }
+
+        public List<Node> getNodeByParentNode(Node node)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                try
+                {
+                    return context.Node.Where(n => n.lawId == node.Id && n.nodeLevel == node.nodeLevel+1).OrderBy(n => n.nodeOrder).ThenBy(n => n.nodeOrder).ToList();
+                }
+                catch (Exception)
+                {
+                    return new List<Node>();
+                }
+            }
+        }
+
         public bool saveNode(Node node)
         {
             using (SqliteContext context = new SqliteContext())

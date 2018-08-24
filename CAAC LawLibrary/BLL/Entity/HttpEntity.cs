@@ -221,7 +221,7 @@ namespace CAAC_LawLibrary.BLL.Entity
         public string nodeIds { get; set; }
     }
     /// <summary>
-    /// 获取张杰内容响应对象
+    /// 获取章节内容响应对象
     /// </summary>
     public class NodeDetailResponse:CommonResponse
     {
@@ -244,6 +244,23 @@ namespace CAAC_LawLibrary.BLL.Entity
             /// </summary>
             public string nodeNumber { get; set; }
             public string content { get; set; }
+        }
+
+        public List<Node> ConvertToNodes()
+        {
+            List<Node> nodes = new List<Node>();
+            foreach (listItem item in this.data.list)
+            {
+                Node node = new Node();
+                node.Id = item.id.ToString();
+                node.lawId = item.bookId.ToString();
+                node.NodeId = item.id.ToString();
+                node.title = item.title;
+                node.nodeNumber = item.nodeNumber;
+                node.content = item.content;
+                nodes.Add(node);
+            }
+            return nodes;
         }
     }
     /// <summary>
@@ -275,6 +292,24 @@ namespace CAAC_LawLibrary.BLL.Entity
             public string nodeNumber { get; set; }
             public int nodeLevel { get; set; }
             public int nodeOrder { get; set; }
+        }
+
+        public List<Node> ConvertToNodes()
+        {
+            List<Node> nodes = new List<Node>();
+            foreach (listItem item in this.data.list)
+            {
+                Node node = new CAAC_LawLibrary.Entity.Node();
+                node.Id = item.id.ToString();
+                node.NodeId = item.id.ToString();
+                node.lawId = item.bookId.ToString();
+                node.title = item.title;
+                node.nodeLevel = item.nodeLevel;
+                node.nodeNumber = item.nodeNumber;
+                node.nodeOrder = item.nodeOrder;
+                nodes.Add(node);
+            }
+            return nodes;
         }
     }
     /// <summary>
@@ -310,6 +345,23 @@ namespace CAAC_LawLibrary.BLL.Entity
             public string nodeNumber { get; set; }
             public int nodeLevel { get; set; }
             public int nodeOrder { get; set; }
+        }
+
+        public List<Node> ConvertToNodes()
+        {
+            List<Node> nodes = new List<CAAC_LawLibrary.Entity.Node>();
+            foreach (listItem item in this.data.list)
+            {
+                Node node = new CAAC_LawLibrary.Entity.Node();
+                node.Id = item.id.ToString();
+                node.NodeId = item.id.ToString();
+                node.title = item.title;
+                node.nodeLevel = item.nodeLevel;
+                node.nodeNumber = item.nodeNumber;
+                node.nodeOrder = item.nodeOrder;
+                nodes.Add(node);
+            }
+            return nodes;
         }
     }
     /// <summary>
