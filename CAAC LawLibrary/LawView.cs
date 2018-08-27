@@ -39,5 +39,11 @@ namespace CAAC_LawLibrary
                 wb.DocumentText = NodeWorker.buildFromNodeContext(nodes);
             }
         }
+
+
+        private void bindingTree()
+        {
+
+        }
     }
 }
