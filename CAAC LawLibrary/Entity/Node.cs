@@ -20,5 +20,6 @@ namespace CAAC_LawLibrary.Entity
         public int nodeLevel { get; set; }
         public int nodeOrder { get; set; }
         public string content { get; set; }
+        public string parentNodeId { get; set; }
     }
 }
