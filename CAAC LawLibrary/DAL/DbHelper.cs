@@ -60,6 +60,32 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        public bool refreshLaw(List<Law> laws)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                using (DbContextTransaction transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        context.Law.RemoveRange(context.Law);
+                        foreach (Law law in laws)
+                        {
+                            context.Law.Add(law);
+                        }
+                        context.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 从本地库移除
         /// </summary>
@@ -226,6 +252,32 @@ namespace CAAC_LawLibrary.DAL
                 catch (Exception)
                 {
                     return false;
+                }
+            }
+        }
+
+        public bool refreshCode(List<Code> codes)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        context.Code.RemoveRange(context.Code);
+                        foreach (Code code in codes)
+                        {
+                            context.Code.Add(code);
+                        }
+                        context.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
                 }
             }
         }

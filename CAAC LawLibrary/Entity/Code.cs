@@ -11,7 +11,8 @@ namespace CAAC_LawLibrary.Entity
     [Table("Code")]
     public class Code: BaseEntity
     {
-        public int Id { get; set; }
+        [Key]
+        public string Id { get; set; }
         public string type { get; set; }
         public string desc { get; set; }
         public int order { get; set; }

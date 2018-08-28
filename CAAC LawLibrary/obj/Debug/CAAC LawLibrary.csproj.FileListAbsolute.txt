@@ -109,3 +109,4 @@ D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.CoreC
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.CopyComplete
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.exe
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.pdb
+D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.xml

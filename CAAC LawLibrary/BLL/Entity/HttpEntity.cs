@@ -1,5 +1,6 @@
 ﻿using CAAC_LawLibrary.Entity;
 using CAAC_LawLibrary.Utity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -425,12 +426,19 @@ namespace CAAC_LawLibrary.BLL.Entity
         {
             public List<listItem> biz { get; set; }
             public List<listItem> org { get; set; }
-            //todo 待补充
+            public List<listItem> release { get; set; }
+            public List<listItem> tag { get; set; }
+            public List<listItem> type { get; set; }
+            public List<listItem> buhao { get; set; }
 
             public dataItem()
             {
                 biz = new List<listItem>();
                 org = new List<listItem>();
+                release = new List<listItem>();
+                tag = new List<listItem>();
+                type = new List<listItem>();
+                buhao = new List<listItem>();
             }
         }
         public class listItem
@@ -443,6 +451,22 @@ namespace CAAC_LawLibrary.BLL.Entity
             public long updateTime { get; set; }
             public string value { get; set; }
         }
+
+        public List<Code> ConvertToCodes()
+        {
+            List<Code> codes = new List<Code>();
+            var allList = data.biz.Concat(data.org).Concat(data.release).Concat(data.tag).Concat(data.type).Concat(data.buhao);
+            foreach (listItem item in allList)
+            {
+                Code code = new Code();
+                code.Id = item.id.ToString();
+                code.desc = item.desc;
+                code.order = item.order;
+                code.type = item.type;
+                codes.Add(code);
+            }
+            return codes;
+        }
     }
     /// <summary>
     /// 通用返回对象
@@ -452,5 +476,27 @@ namespace CAAC_LawLibrary.BLL.Entity
         public string status { get; set; }
         public string errmsg { get; set; }
         public string data { get; set; }
+    }
+
+    public class TranslationWorker
+    {
+        /// <summary>
+        /// 字符串转换为实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static T ConvertStringToEntity<T>(string str) where T : class
+        {
+            try
+            {
+                var result = (T)(JsonConvert.DeserializeObject<T>(str));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

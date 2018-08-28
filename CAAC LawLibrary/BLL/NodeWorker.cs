@@ -17,23 +17,5 @@ namespace CAAC_LawLibrary.BLL
             return result;
         }
 
-        /// <summary>
-        /// 字符串转换为实体
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static T ConvertStringToEntity<T>(string str) where T:class
-        {
-            try
-            {
-                var result = (T)(JsonConvert.DeserializeObject(str));
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
     }
 }

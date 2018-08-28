@@ -59,7 +59,7 @@ namespace CAAC_LawLibrary.Utity
             if (int.TryParse(Id, out id) == false) { return string.Empty; }
             else
             {
-                var code = allCode.FirstOrDefault(c => c.Id == id);
+                var code = allCode.FirstOrDefault(c => c.Id == Id);
                 if (code == null) { return string.Empty; }
                 else
                 {
@@ -71,18 +71,18 @@ namespace CAAC_LawLibrary.Utity
 
     public class UTC
     {
-        public static int ConvertDateTimeInt(System.DateTime time)
+        public static double ConvertDateTimeInt(System.DateTime time)
         {
             double intResult = 0;
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-            intResult = (time - startTime).TotalSeconds;
-            return (int)intResult;
+            intResult = (time - startTime).TotalMilliseconds;
+            return intResult;
         }
 
         public static DateTime ConvertIntDatetime(double utc)
         {
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-            startTime = startTime.AddSeconds(utc);
+            startTime = startTime.AddMilliseconds(utc);
             startTime = startTime.AddHours(8);//转化为北京时间(北京时间=UTC时间+8小时 )    
             return startTime;
         }
@@ -107,6 +107,25 @@ namespace CAAC_LawLibrary.Utity
                 sb.Append(data[i].ToString("x2"));
             }
             return sb.ToString();
+        }
+
+        public static string HttpGet(string Url, string postDataStr)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
+            request.Method = "GET";
+            request.ContentType = "text/html;charset=UTF-8";
+            request.Headers.Add("X-Appid", Global.Appid);
+            request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
+            request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
+
+            return retString;
         }
 
         public static string PostJson(string Url, string postDataStr)
