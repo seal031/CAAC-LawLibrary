@@ -17,6 +17,7 @@ namespace CAAC_LawLibrary
     {
         protected internal QueryParam queryParam = new QueryParam();
         private DbHelper db = new DbHelper();
+        private bool bindState = false;
 
         public BaseFilter()
         {
@@ -39,6 +40,7 @@ namespace CAAC_LawLibrary
             bindBuhao();
             bindWeijie();
             bindZidingyi();
+            bindState = true;
         }
 
         private void bindBuhao()
@@ -78,27 +80,32 @@ namespace CAAC_LawLibrary
 
         private void cbb_buhao_SelectedIndexChanged(object sender, EventArgs e)
         {
-            queryParam.buhao = cbb_buhao.SelectedValue.ToString();
+            if (bindState)
+                queryParam.buhao = (cbb_buhao.SelectedValue as Code).Id;
         }
 
         private void cbb_siju_SelectedIndexChanged(object sender, EventArgs e)
         {
-            queryParam.siju = cbb_siju.SelectedValue.ToString();
+            if (bindState)
+                queryParam.siju = (cbb_siju.SelectedValue as Code).Id;
         }
 
         private void cbb_weijie_SelectedIndexChanged(object sender, EventArgs e)
         {
-            queryParam.weijie = cbb_weijie.SelectedValue.ToString();
+            if (bindState)
+                queryParam.weijie = (cbb_weijie.SelectedValue as Code).Id;
         }
 
         private void cbb_yewu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            queryParam.yewu = (cbb_yewu.SelectedValue as Code).Id.ToString();
+            if (bindState)
+                queryParam.yewu = (cbb_yewu.SelectedValue as Code).Id;
         }
 
         private void cbb_zidingyi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            queryParam.zidingyi = cbb_zidingyi.SelectedValue.ToString();
+            if (bindState)
+                queryParam.zidingyi = (cbb_zidingyi.SelectedValue as  Code).Id;
         }
     }
 }

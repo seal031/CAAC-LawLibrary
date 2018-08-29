@@ -12,6 +12,8 @@ namespace CAAC_LawLibrary
 {
     public partial class LawFilter : BaseFilter
     {
+        public Form parentForm;
+
         public LawFilter()
         {
             InitializeComponent();
@@ -25,6 +27,21 @@ namespace CAAC_LawLibrary
         private void ckb_showDownloaded_CheckedChanged(object sender, EventArgs e)
         {
             queryParam.downloaded = ckb_showDownloaded.Checked ? "1" : "0";
+        }
+
+        private void 下载已选项到本地库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 从本地库移除已选项ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 清空本地库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -17,10 +17,6 @@ namespace CAAC_LawLibrary.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 同步获取到的法规id
-        /// </summary>
-        public string lawId { get; set; }
-        /// <summary>
         /// 法规版本
         /// </summary>
         public string version { get; set; }
@@ -100,10 +96,10 @@ namespace CAAC_LawLibrary.Entity
         /// <summary>
         /// 最新版本的id
         /// </summary>
-        public int lastversion { get; set; }
+        public int? lastversion { get; set; }
         /// <summary>
         /// 状态
         /// </summary>
-        public int status { get; set; }
+        public int? status { get; set; }
     }
 }

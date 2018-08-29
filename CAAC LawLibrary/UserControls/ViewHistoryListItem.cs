@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAAC_LawLibrary.Entity;
 
 namespace CAAC_LawLibrary
 {
     public partial class ViewHistoryListItem : BaseListItem
     {
+        public ViewHistory viewHistory;
+        public Form parentForm;
+
         public ViewHistoryListItem()
         {
             InitializeComponent();
@@ -21,7 +25,7 @@ namespace CAAC_LawLibrary
         {
             LawView lv = new CAAC_LawLibrary.LawView();
             lv.Show();
-            this.Hide();
+            parentForm.Hide();
         }
     }
 }

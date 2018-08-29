@@ -38,7 +38,6 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
-
                 try
                 {
                     var old = context.Law.FirstOrDefault(l => l.Id == law.Id);
@@ -68,10 +67,39 @@ namespace CAAC_LawLibrary.DAL
                 {
                     try
                     {
-                        context.Law.RemoveRange(context.Law);
+                        //context.Law.RemoveRange(context.Law);
+                        //foreach (Law law in laws)
+                        //{
+                        //    context.Law.Add(law);
+                        //}
                         foreach (Law law in laws)
                         {
-                            context.Law.Add(law);
+                            var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id);
+                            if (law == null)//如果没有就新增
+                            {
+                                context.Law.Add(law);
+                            }
+                            else//如果有就更新，但不更新是否下载到本地、下载时间、下载进度、用户id等本地信息。
+                            {
+                                currentLaw.name = law.name;
+                                currentLaw.buhao = law.buhao;
+                                currentLaw.digest = law.digest;
+                                currentLaw.effectiveDate = law.effectiveDate;
+                                currentLaw.expiryDate = law.expiryDate;
+                                currentLaw.keyword = law.keyword;
+                                currentLaw.lastversion = law.lastversion;
+                                currentLaw.linghao = law.linghao;
+                                currentLaw.siju = law.siju;
+                                currentLaw.status = law.status;
+                                currentLaw.title = law.title;
+                                currentLaw.userLabel = law.userLabel;
+                                currentLaw.version = law.version;
+                                currentLaw.weijie = law.weijie;
+                                currentLaw.xiudingling = law.xiudingling;
+                                currentLaw.yewu = law.yewu;
+                                currentLaw.yilai = law.yilai;
+                                currentLaw.zefa = law.zefa;
+                            }
                         }
                         context.SaveChanges();
                         transaction.Commit();

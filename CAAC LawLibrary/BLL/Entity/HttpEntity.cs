@@ -195,7 +195,6 @@ namespace CAAC_LawLibrary.BLL.Entity
             {
                 Law law = new Law();
                 law.Id = list.id.ToString();
-                law.lawId = list.id.ToString();
                 law.title = list.title;
                 law.version = list.version;
                 law.digest = list.abs;
@@ -255,7 +254,6 @@ namespace CAAC_LawLibrary.BLL.Entity
                 Node node = new Node();
                 node.Id = item.id.ToString();
                 node.lawId = item.bookId.ToString();
-                node.NodeId = item.id.ToString();
                 node.title = item.title;
                 node.nodeNumber = item.nodeNumber;
                 node.content = item.content;
@@ -302,7 +300,6 @@ namespace CAAC_LawLibrary.BLL.Entity
             {
                 Node node = new CAAC_LawLibrary.Entity.Node();
                 node.Id = item.id.ToString();
-                node.NodeId = item.id.ToString();
                 node.lawId = item.bookId.ToString();
                 node.title = item.title;
                 node.nodeLevel = item.nodeLevel;
@@ -355,7 +352,6 @@ namespace CAAC_LawLibrary.BLL.Entity
             {
                 Node node = new CAAC_LawLibrary.Entity.Node();
                 node.Id = item.id.ToString();
-                node.NodeId = item.id.ToString();
                 node.title = item.title;
                 node.nodeLevel = item.nodeLevel;
                 node.nodeNumber = item.nodeNumber;

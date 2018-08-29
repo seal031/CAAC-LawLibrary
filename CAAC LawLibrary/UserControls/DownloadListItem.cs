@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using CAAC_LawLibrary.Entity;
 
 namespace CAAC_LawLibrary
 {
     public partial class DownloadListItem : BaseListItem
     {
+        public Law law;
         public string downloadUrl;
         private int downLoadValue = 0;
 

@@ -16,9 +16,11 @@ namespace CAAC_LawLibrary
     {
         DbHelper db = new DbHelper();
 
+
         public LibraryList()
         {
             InitializeComponent();
+            lawFilter.parentForm = this;
         }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace CAAC_LawLibrary
             loadDownLoadList();
         }
 
+        #region 加载3个列表
         private void loadRemoteLawList()
         {
             //todo读取远程法规库列表，并更新数据库
@@ -51,6 +54,7 @@ namespace CAAC_LawLibrary
             {
                 LawListItem item = new LawListItem();
                 item.law = law;
+                item.parentForm = this;
                 flp_libraryList.Controls.Add(item);
             }
         }
@@ -61,12 +65,40 @@ namespace CAAC_LawLibrary
             foreach (ViewHistory vh in list)
             {
                 ViewHistoryListItem item = new ViewHistoryListItem();
-
+                item.viewHistory = vh;
                 flp_viewHistory.Controls.Add(item);
             }
         }
 
         private void loadDownLoadList()
+        {
+            List<Law> list = db.getLaws(downloadFilter.queryParam).Where(l=>l.downloadPercent!=null).ToList();
+            foreach (Law law in list)
+            {
+                DownloadListItem item = new DownloadListItem();
+                item.law = law;
+                flp_downloadTask.Controls.Add(item);
+            }
+        }
+        #endregion
+        /// <summary>
+        /// 下载到本地库
+        /// </summary>
+        public void downloadSelectedLawToLocal()
+        {
+
+        }
+        /// <summary>
+        /// 从本地库移除
+        /// </summary>
+        public void removeSelectedLocalLaw()
+        {
+
+        }
+        /// <summary>
+        /// 清空本地库
+        /// </summary>
+        public void clearLocal()
         {
 
         }

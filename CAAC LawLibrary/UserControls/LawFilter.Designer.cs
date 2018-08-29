@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LawFilter));
             this.ckb_showDownloaded = new System.Windows.Forms.CheckBox();
             this.ckb_selectAll = new System.Windows.Forms.CheckBox();
@@ -39,6 +40,31 @@
             this.btn_manageLocal = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // cbb_buhao
+            // 
+            this.cbb_buhao.DisplayMember = "desc";
+            this.cbb_buhao.ValueMember = "Id";
+            // 
+            // cbb_siju
+            // 
+            this.cbb_siju.DisplayMember = "desc";
+            this.cbb_siju.ValueMember = "Id";
+            // 
+            // cbb_weijie
+            // 
+            this.cbb_weijie.DisplayMember = "desc";
+            this.cbb_weijie.ValueMember = "Id";
+            // 
+            // cbb_yewu
+            // 
+            this.cbb_yewu.DisplayMember = "desc";
+            this.cbb_yewu.ValueMember = "Id";
+            // 
+            // cbb_zidingyi
+            // 
+            this.cbb_zidingyi.DisplayMember = "desc";
+            this.cbb_zidingyi.ValueMember = "Id";
             // 
             // cbb_sort
             // 
@@ -78,25 +104,28 @@
             this.清空本地库ToolStripMenuItem});
             this.menu.Name = "menu";
             this.menu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menu.Size = new System.Drawing.Size(220, 82);
+            this.menu.Size = new System.Drawing.Size(220, 110);
             // 
             // 下载已选项到本地库ToolStripMenuItem
             // 
             this.下载已选项到本地库ToolStripMenuItem.Name = "下载已选项到本地库ToolStripMenuItem";
             this.下载已选项到本地库ToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.下载已选项到本地库ToolStripMenuItem.Text = "下载已选项到本地库";
+            this.下载已选项到本地库ToolStripMenuItem.Click += new System.EventHandler(this.下载已选项到本地库ToolStripMenuItem_Click);
             // 
             // 从本地库移除已选项ToolStripMenuItem
             // 
             this.从本地库移除已选项ToolStripMenuItem.Name = "从本地库移除已选项ToolStripMenuItem";
             this.从本地库移除已选项ToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.从本地库移除已选项ToolStripMenuItem.Text = "从本地库移除已选项";
+            this.从本地库移除已选项ToolStripMenuItem.Click += new System.EventHandler(this.从本地库移除已选项ToolStripMenuItem_Click);
             // 
             // 清空本地库ToolStripMenuItem
             // 
             this.清空本地库ToolStripMenuItem.Name = "清空本地库ToolStripMenuItem";
             this.清空本地库ToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.清空本地库ToolStripMenuItem.Text = "清空本地库";
+            this.清空本地库ToolStripMenuItem.Click += new System.EventHandler(this.清空本地库ToolStripMenuItem_Click);
             // 
             // btn_manageLocal
             // 

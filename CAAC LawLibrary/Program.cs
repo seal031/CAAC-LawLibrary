@@ -1,4 +1,5 @@
-﻿using CAAC_LawLibrary.BLL.Entity;
+﻿//using CAAC_LawLibrary.BLL.Entity;
+using CAAC_LawLibrary.BLL.Entity;
 using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Utity;
 using System;
@@ -59,6 +60,8 @@ namespace CAAC_LawLibrary
         private static void getLawResponse()
         {
             string laws = HttpWorker.HttpGet(Global.AllBooksApi, "beginTime="+ UTC.ConvertDateTimeInt(new DateTime(2010,01,01)).ToString());
+            AllBooksResponse allBookResponse = TranslationWorker.ConvertStringToEntity<AllBooksResponse>(laws);
+            db.refreshLaw(allBookResponse.ConvertToLaws());
         }
     }
 }

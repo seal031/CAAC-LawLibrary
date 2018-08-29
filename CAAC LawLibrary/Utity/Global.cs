@@ -47,8 +47,8 @@ namespace CAAC_LawLibrary.Utity
             siju = db.getCode("org");
             yewu = db.getCode("biz");
             buhao = db.getCode("buhao");
-            zidingyi = db.getCode("zidingyi");
-            weijie = db.getCode("weijie");
+            zidingyi = db.getCode("tag");
+            weijie = db.getCode("release");
 
             allCode = db.getCode();
         }
