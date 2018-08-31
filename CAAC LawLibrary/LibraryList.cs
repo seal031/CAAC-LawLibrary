@@ -21,6 +21,20 @@ namespace CAAC_LawLibrary
         {
             InitializeComponent();
             lawFilter.parentForm = this;
+            setFlpTopDownOnly(flp_libraryList);
+            setFlpTopDownOnly(flp_viewHistory);
+            setFlpTopDownOnly(flp_downloadTask);
+        }
+
+        /// <summary>
+        /// 设置flowLayoutPanel只能上下滚动
+        /// </summary>
+        private void setFlpTopDownOnly(FlowLayoutPanel flp)
+        {
+            flp.AutoScroll = false;
+            flp.WrapContents = false;
+            flp.HorizontalScroll.Maximum = 0;
+            flp.AutoScroll = true;
         }
 
         /// <summary>
@@ -100,7 +114,12 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void clearLocal()
         {
+            db.clearHistory();
+        }
 
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

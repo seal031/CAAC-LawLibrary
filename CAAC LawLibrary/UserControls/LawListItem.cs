@@ -21,6 +21,7 @@ namespace CAAC_LawLibrary
         public LawListItem()
         {
             InitializeComponent();
+            
         }
 
         private void showInfo()
@@ -28,19 +29,37 @@ namespace CAAC_LawLibrary
             if (law != null)
             {
                 lbl_title.Text = law.title;
-                lbl_state.Text = "下载日期："+law.downloadDate;
+                lbl_state.Text = law.status == 1 ? "有效" : "失效";
                 lbl_name.Text = law.name;
                 lbl_businessType.Text = Global.GetCodeValueById(law.yewu);
                 lbl_effectiveDate.Text = law.effectiveDate;
                 lbl_expiryDate.Text = law.expiryDate;
                 lbl_organization.Text = Global.GetCodeValueById(law.siju);
-                lbl_downloadState.Text = law.isLocal;
+                if (law.isLocal == "1")
+                {
+                    lbl_downloadState.Text = "从本地库移除";
+                }
+                else
+                {
+                    if (law.downloadPercent.HasValue == false)
+                    {
+                        lbl_downloadState.Text = "下载";
+                    }
+                    else
+                    {
+                        lbl_downloadState.Text = "下载中……";
+                    }
+                }
+                ccb_version.Items.Add(law.version);//tood 多个version
+                if (ccb_version.Items.Count > 0)
+                { ccb_version.SelectedIndex = 0; }
             }
         }
 
         private void lbl_title_Click(object sender, EventArgs e)
         {
             LawView lv = new CAAC_LawLibrary.LawView();
+            lv.parentForm = parentForm;
             lv.Show(this);
             parentForm.Hide();
         }

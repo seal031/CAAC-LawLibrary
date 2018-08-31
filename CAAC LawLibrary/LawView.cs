@@ -19,6 +19,7 @@ namespace CAAC_LawLibrary
         public Law law;
         private List<Node> nodes;
         private DbHelper db = new DbHelper();
+        public Form parentForm;
 
         public LawView()
         {
@@ -27,7 +28,7 @@ namespace CAAC_LawLibrary
 
         private void LawView_FormClosed(object sender, FormClosedEventArgs e)
         {
-            System.Environment.Exit(0);
+            //System.Environment.Exit(0);
         }
 
         private void LawView_Load(object sender, EventArgs e)
@@ -44,6 +45,15 @@ namespace CAAC_LawLibrary
         private void bindingTree()
         {
 
+        }
+
+        private void btn_return_Click(object sender, EventArgs e)
+        {
+            if (parentForm != null)
+            {
+                parentForm.Show();
+                this.Close();
+            }
         }
     }
 }

@@ -24,9 +24,10 @@ namespace CAAC_LawLibrary
             //initDb();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Global.user = new Entity.User() { Id = "02954944-57ab-4571-9b1e-0062ef04fef2" };//todo 替换真实user
             //Application.Run(new LibraryList());
             //Application.Run(new LawView());
-            //getSetResponse();
+            getSetResponse();
             getLawResponse();
             Application.Run(new Login());
         }
@@ -52,7 +53,7 @@ namespace CAAC_LawLibrary
 
         private static void getSetResponse()
         {
-            string sets = HttpWorker.HttpGet(Global.SetListApi, "biz");
+            string sets = HttpWorker.HttpGet(Global.SetListApi, "");
             SetListResponse setListResponse = TranslationWorker.ConvertStringToEntity<SetListResponse>(sets);
             db.refreshCode(setListResponse.ConvertToCodes());
         }

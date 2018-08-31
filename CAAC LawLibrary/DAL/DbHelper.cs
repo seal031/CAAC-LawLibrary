@@ -75,8 +75,9 @@ namespace CAAC_LawLibrary.DAL
                         foreach (Law law in laws)
                         {
                             var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id);
-                            if (law == null)//如果没有就新增
+                            if (currentLaw == null)//如果没有就新增
                             {
+                                law.userId = Global.user.Id;
                                 context.Law.Add(law);
                             }
                             else//如果有就更新，但不更新是否下载到本地、下载时间、下载进度、用户id等本地信息。
@@ -338,6 +339,10 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        /// <summary>
+        /// 情况浏览记录
+        /// </summary>
+        /// <returns></returns>
         public bool clearHistory()
         {
             using (SqliteContext context = new SqliteContext())
@@ -346,6 +351,26 @@ namespace CAAC_LawLibrary.DAL
                 {
                     context.Database.ExecuteSqlCommand("delete from ViewHistory");
                     context.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空本地库
+        /// </summary>
+        /// <returns></returns>
+        public bool clearLocal()
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                try
+                {
+                    context.Database.ExecuteSqlCommand("update Law set isLocal=null,downloadDate=null,downloadPercent=null where userId='"+Global.user.Id+"'");
                     return true;
                 }
                 catch (Exception)

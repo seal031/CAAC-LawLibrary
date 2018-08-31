@@ -83,7 +83,7 @@ namespace CAAC_LawLibrary.Utity
         {
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
             startTime = startTime.AddMilliseconds(utc);
-            startTime = startTime.AddHours(8);//转化为北京时间(北京时间=UTC时间+8小时 )    
+            //startTime = startTime.AddHours(8);//转化为北京时间(北京时间=UTC时间+8小时 )    
             return startTime;
         }
     }

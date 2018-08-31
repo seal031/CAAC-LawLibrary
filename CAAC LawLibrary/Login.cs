@@ -16,7 +16,6 @@ namespace CAAC_LawLibrary
         public Login()
         {
             InitializeComponent();
-            Global.user = new Entity.User() { Id = "02954944-57ab-4571-9b1e-0062ef04fef2" };
         }
 
         private void btn_login_Click(object sender, EventArgs e)
