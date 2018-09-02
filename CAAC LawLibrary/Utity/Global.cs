@@ -15,6 +15,8 @@ namespace CAAC_LawLibrary.Utity
 {
     public static class Global
     {
+        public static bool online = true;
+
         public static string Appid = ConfigWorker.GetConfigValue("Appid");
         public static string Appkey = ConfigWorker.GetConfigValue("Appkey");
         public static string RemoteUrl = ConfigWorker.GetConfigValue("RemoteUrl");
@@ -55,8 +57,12 @@ namespace CAAC_LawLibrary.Utity
 
         public static string GetCodeValueById(string Id)
         {
-            int id;
-            if (int.TryParse(Id, out id) == false) { return string.Empty; }
+            if (Id.Contains(","))
+            {
+                var idList = Id.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                var list = allCode.Where(c=>idList.Contains(c.Id)).Select(c=>c.desc);
+                return string.Join(",", list.ToList());
+            }
             else
             {
                 var code = allCode.FirstOrDefault(c => c.Id == Id);
@@ -112,6 +118,8 @@ namespace CAAC_LawLibrary.Utity
         public static string HttpGet(string Url, string postDataStr)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
+            request.Timeout = 1000 * 30;
+            request.ReadWriteTimeout = 1000 * 30;
             request.Method = "GET";
             request.ContentType = "text/html;charset=UTF-8";
             request.Headers.Add("X-Appid", Global.Appid);

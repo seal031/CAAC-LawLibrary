@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LawFilter));
             this.ckb_showDownloaded = new System.Windows.Forms.CheckBox();
             this.ckb_selectAll = new System.Windows.Forms.CheckBox();
@@ -94,6 +93,7 @@
             this.ckb_selectAll.TabIndex = 9;
             this.ckb_selectAll.Text = "本页全选";
             this.ckb_selectAll.UseVisualStyleBackColor = true;
+            this.ckb_selectAll.CheckedChanged += new System.EventHandler(this.ckb_selectAll_CheckedChanged);
             // 
             // menu
             // 
@@ -104,7 +104,7 @@
             this.清空本地库ToolStripMenuItem});
             this.menu.Name = "menu";
             this.menu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menu.Size = new System.Drawing.Size(220, 110);
+            this.menu.Size = new System.Drawing.Size(220, 82);
             // 
             // 下载已选项到本地库ToolStripMenuItem
             // 
@@ -131,7 +131,7 @@
             // 
             this.btn_manageLocal.Location = new System.Drawing.Point(1132, 70);
             this.btn_manageLocal.Name = "btn_manageLocal";
-            this.btn_manageLocal.Size = new System.Drawing.Size(164, 23);
+            this.btn_manageLocal.Size = new System.Drawing.Size(164, 30);
             this.btn_manageLocal.TabIndex = 10;
             this.btn_manageLocal.Text = "管理本地库";
             this.btn_manageLocal.UseVisualStyleBackColor = true;

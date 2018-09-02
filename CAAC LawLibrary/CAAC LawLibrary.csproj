@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="BLL\Entity\HttpEntity.cs" />
     <Compile Include="BLL\NodeWorker.cs" />
+    <Compile Include="BLL\RemoteWorker.cs" />
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\Code.cs" />
     <Compile Include="Entity\Comment.cs" />
@@ -102,6 +103,12 @@
       <DependentUpon>BaseListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\DbHelper.cs" />
+    <Compile Include="UserControls\CommentItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CommentItem.Designer.cs">
+      <DependentUpon>CommentItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DownloadFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -185,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\BaseListItem.resx">
       <DependentUpon>BaseListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CommentItem.resx">
+      <DependentUpon>CommentItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\DownloadFilter.resx">
       <DependentUpon>DownloadFilter.cs</DependentUpon>

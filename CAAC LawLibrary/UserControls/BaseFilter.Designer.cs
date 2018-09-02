@@ -103,7 +103,7 @@
             // 
             this.btn_search.Location = new System.Drawing.Point(817, 71);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(75, 23);
+            this.btn_search.Size = new System.Drawing.Size(75, 30);
             this.btn_search.TabIndex = 7;
             this.btn_search.Text = "搜索";
             this.btn_search.UseVisualStyleBackColor = true;

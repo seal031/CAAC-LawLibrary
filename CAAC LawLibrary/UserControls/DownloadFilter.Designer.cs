@@ -41,6 +41,31 @@
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
+            // cbb_buhao
+            // 
+            this.cbb_buhao.DisplayMember = "desc";
+            this.cbb_buhao.ValueMember = "Id";
+            // 
+            // cbb_siju
+            // 
+            this.cbb_siju.DisplayMember = "desc";
+            this.cbb_siju.ValueMember = "Id";
+            // 
+            // cbb_weijie
+            // 
+            this.cbb_weijie.DisplayMember = "desc";
+            this.cbb_weijie.ValueMember = "Id";
+            // 
+            // cbb_yewu
+            // 
+            this.cbb_yewu.DisplayMember = "desc";
+            this.cbb_yewu.ValueMember = "Id";
+            // 
+            // cbb_zidingyi
+            // 
+            this.cbb_zidingyi.DisplayMember = "desc";
+            this.cbb_zidingyi.ValueMember = "Id";
+            // 
             // cbb_sort
             // 
             this.cbb_sort.DisplayMember = "Value";
@@ -71,7 +96,7 @@
             // 
             this.btn_manageTask.Location = new System.Drawing.Point(1132, 71);
             this.btn_manageTask.Name = "btn_manageTask";
-            this.btn_manageTask.Size = new System.Drawing.Size(164, 23);
+            this.btn_manageTask.Size = new System.Drawing.Size(164, 30);
             this.btn_manageTask.TabIndex = 10;
             this.btn_manageTask.Text = "管理任务";
             this.btn_manageTask.UseVisualStyleBackColor = true;

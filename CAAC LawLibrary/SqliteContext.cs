@@ -28,5 +28,7 @@ namespace CAAC_LawLibrary
         public DbSet<ViewHistory> ViewHistory { get; set; }
 
         public DbSet<Node> Node { get; set; }
+
+        public DbSet<Comment> Comment { get; set; }
     }
 }

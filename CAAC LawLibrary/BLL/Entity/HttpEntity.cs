@@ -164,11 +164,19 @@ namespace CAAC_LawLibrary.BLL.Entity
             /// </summary>
             public int lastversion { get; set; }
             /// <summary>
-            /// 自定义关键字
+            /// 自定义关键字id
+            /// </summary>
+            public string tag { get; set; }
+            /// <summary>
+            /// 自定义关键字对象
             /// </summary>
             public List<tagItem> tagList { get; set; }
             /// <summary>
-            /// 业务分类
+            /// 业务分类id
+            /// </summary>
+            public string biz { get; set; }
+            /// <summary>
+            /// 业务分类对象
             /// </summary>
             public List<bizItem> bizList { get; set; }
             public listItem()
@@ -206,8 +214,8 @@ namespace CAAC_LawLibrary.BLL.Entity
                 law.siju = list.managerOrg;
                 law.status = list.status;
                 law.lastversion = list.lastversion;
-                law.userLabel = string.Join(",", list.tagList.Select(t => t.desc));
-                law.yewu = string.Join(",", list.bizList.Select(b => b.desc));
+                law.userLabel = list.tag;//string.Join(",", list.tagList.Select(t => t.desc));
+                law.yewu = list.biz;//string.Join(",", list.bizList.Select(b => b.desc));
                 laws.Add(law);
             }
             return laws;

@@ -34,6 +34,31 @@
             this.btn_clearHistory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // cbb_buhao
+            // 
+            this.cbb_buhao.DisplayMember = "desc";
+            this.cbb_buhao.ValueMember = "Id";
+            // 
+            // cbb_siju
+            // 
+            this.cbb_siju.DisplayMember = "desc";
+            this.cbb_siju.ValueMember = "Id";
+            // 
+            // cbb_weijie
+            // 
+            this.cbb_weijie.DisplayMember = "desc";
+            this.cbb_weijie.ValueMember = "Id";
+            // 
+            // cbb_yewu
+            // 
+            this.cbb_yewu.DisplayMember = "desc";
+            this.cbb_yewu.ValueMember = "Id";
+            // 
+            // cbb_zidingyi
+            // 
+            this.cbb_zidingyi.DisplayMember = "desc";
+            this.cbb_zidingyi.ValueMember = "Id";
+            // 
             // cbb_sort
             // 
             this.cbb_sort.DisplayMember = "Value";
@@ -57,7 +82,7 @@
             // 
             this.btn_clearHistory.Location = new System.Drawing.Point(1132, 72);
             this.btn_clearHistory.Name = "btn_clearHistory";
-            this.btn_clearHistory.Size = new System.Drawing.Size(164, 23);
+            this.btn_clearHistory.Size = new System.Drawing.Size(164, 30);
             this.btn_clearHistory.TabIndex = 10;
             this.btn_clearHistory.Text = "清空历史";
             this.btn_clearHistory.UseVisualStyleBackColor = true;

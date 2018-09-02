@@ -17,6 +17,7 @@ namespace CAAC_LawLibrary
         public string lawId { get; set; }
         public Law law { get; set; }
         public Form parentForm;
+        public bool isChecked = false;
 
         public LawListItem()
         {
@@ -24,13 +25,26 @@ namespace CAAC_LawLibrary
             
         }
 
+        public void checkChange()
+        {
+            isChecked = !isChecked;
+            if (isChecked)
+            {
+                ckb.Checked = true;
+            }
+            else
+            {
+                ckb.Checked = false;
+            }
+        }
+
         private void showInfo()
         {
             if (law != null)
             {
-                lbl_title.Text = law.title;
+                lbl_title.Text = law.digest; ;
                 lbl_state.Text = law.status == 1 ? "有效" : "失效";
-                lbl_name.Text = law.name;
+                lbl_name.Text = law.title;
                 lbl_businessType.Text = Global.GetCodeValueById(law.yewu);
                 lbl_effectiveDate.Text = law.effectiveDate;
                 lbl_expiryDate.Text = law.expiryDate;
@@ -59,6 +73,7 @@ namespace CAAC_LawLibrary
         private void lbl_title_Click(object sender, EventArgs e)
         {
             LawView lv = new CAAC_LawLibrary.LawView();
+            lv.law = law;
             lv.parentForm = parentForm;
             lv.Show(this);
             parentForm.Hide();

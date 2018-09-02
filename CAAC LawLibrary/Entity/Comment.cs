@@ -21,5 +21,11 @@ namespace CAAC_LawLibrary.Entity
         public string userId { get; set; }
         public string comment_content { get; set; }
         public string comment_date { get; set; }
+        [NotMapped]
+        public string nodeName { get; set; }
+        [NotMapped]
+        public string userName { get; set; }
+        [NotMapped]
+        public string department { get; set; }
     }
 }

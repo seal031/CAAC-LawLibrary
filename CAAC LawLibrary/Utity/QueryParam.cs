@@ -36,6 +36,14 @@ namespace CAAC_LawLibrary.Utity
         /// </summary>
         public string downloaded { get; set; }
         /// <summary>
+        /// 法规id
+        /// </summary>
+        public string lawId { get; set; }
+        /// <summary>
+        /// 章节id
+        /// </summary>
+        public string nodeId { get; set; }
+        /// <summary>
         /// 排序方式
         /// </summary>
         public int sort { get; set; }

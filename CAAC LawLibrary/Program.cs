@@ -1,4 +1,5 @@
 ﻿//using CAAC_LawLibrary.BLL.Entity;
+using CAAC_LawLibrary.BLL;
 using CAAC_LawLibrary.BLL.Entity;
 using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Utity;
@@ -12,7 +13,6 @@ namespace CAAC_LawLibrary
 {
     static class Program
     {
-        private static DbHelper db = new DbHelper();
 
         /// <summary>
         /// 应用程序的主入口点。
@@ -24,12 +24,18 @@ namespace CAAC_LawLibrary
             //initDb();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Global.user = new Entity.User() { Id = "02954944-57ab-4571-9b1e-0062ef04fef2" };//todo 替换真实user
-            //Application.Run(new LibraryList());
-            //Application.Run(new LawView());
-            getSetResponse();
-            getLawResponse();
-            Application.Run(new Login());
+            //验证网络是否可用
+            if (RemoteWorker.checkInternet())
+            {
+                Global.user = new Entity.User() { Id = "02954944-57ab-4571-9b1e-0062ef04fef2" };//todo 替换真实user
+                //RemoteWorker.getSetResponse();
+                RemoteWorker.getLawResponse();
+                Application.Run(new Login());
+            }
+            else
+            {
+
+            }
         }
 
         private static void initDb()
@@ -50,19 +56,6 @@ namespace CAAC_LawLibrary
                 var a = context.Law.First(l => DateTime.Parse( l.effectiveDate)>DateTime.Parse("2018-07-27"));
             }
         }
-
-        private static void getSetResponse()
-        {
-            string sets = HttpWorker.HttpGet(Global.SetListApi, "");
-            SetListResponse setListResponse = TranslationWorker.ConvertStringToEntity<SetListResponse>(sets);
-            db.refreshCode(setListResponse.ConvertToCodes());
-        }
-
-        private static void getLawResponse()
-        {
-            string laws = HttpWorker.HttpGet(Global.AllBooksApi, "beginTime="+ UTC.ConvertDateTimeInt(new DateTime(2010,01,01)).ToString());
-            AllBooksResponse allBookResponse = TranslationWorker.ConvertStringToEntity<AllBooksResponse>(laws);
-            db.refreshLaw(allBookResponse.ConvertToLaws());
-        }
+       
     }
 }

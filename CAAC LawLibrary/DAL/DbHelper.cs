@@ -29,6 +29,7 @@ namespace CAAC_LawLibrary.DAL
                            && param.siju == null ? 1 == 1 : law.siju == param.siju
                            && param.weijie == null ? 1 == 1 : law.weijie == param.weijie
                            && param.yewu == null ? 1 == 1 : law.yewu == param.yewu
+                           && param.lawId == null ? 1 == 1 : law.Id == param.lawId
                            select law;
                 return list.ToList() ;
             }
@@ -332,7 +333,7 @@ namespace CAAC_LawLibrary.DAL
                     return true;
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -420,17 +421,67 @@ namespace CAAC_LawLibrary.DAL
             {
                 try
                 {
-                    var list = context.Suggest.Where(s => s.lawId == lawId && s.userId == userId);
-                    foreach (var l in list)
-                    {
-                        context.Suggest.Remove(l);
-                    }
+                    //var list = context.Suggest.Where(s => s.lawId == lawId && s.userId == userId);
+                    //foreach (var l in list)
+                    //{
+                    //    context.Suggest.Remove(l);
+                    //}
+                    context.Suggest.RemoveRange(context.Suggest);
                     return true;
                 }
                 catch (Exception)
                 {
                     return false;
                 }
+            }
+        }
+
+        public bool refreshComment(List<Comment> comments)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                using (DbContextTransaction transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (Comment comment in comments)
+                        {
+                            var currentComment = context.Comment.FirstOrDefault(c => c.Id == comment.Id);
+                            if (currentComment == null)
+                            {
+                                context.Comment.Add(comment);
+                            }
+                            else
+                            {
+                                currentComment.lawId = comment.lawId;
+                                currentComment.nodeId = comment.nodeId;
+                                currentComment.userId = comment.userId;
+                                currentComment.comment_content = comment.comment_content;
+                                currentComment.comment_date = comment.comment_date;
+                            }
+                        }
+                        context.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public List<Comment> getComment(QueryParam param)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                var list = from comment in context.Comment
+                           where param.lawId == null ? 1 == 1 : comment.lawId == param.lawId &&
+                           param.nodeId == null ? 1 == 1 : comment.nodeId == param.nodeId
+                           select comment;
+                return list.ToList();
             }
         }
     }

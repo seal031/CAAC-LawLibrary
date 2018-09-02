@@ -41,23 +41,25 @@
             this.LawTree = new DevComponents.AdvTree.AdvTree();
             this.nodeConnector1 = new DevComponents.AdvTree.NodeConnector();
             this.elementStyle1 = new DevComponents.DotNetBar.ElementStyle();
-            this.btn_item_tree = new DevComponents.DotNetBar.ButtonItem();
             this.npp_docInfo = new DevComponents.DotNetBar.NavigationPanePanel();
-            this.lawInfo1 = new CAAC_LawLibrary.UserControls.LawInfo();
-            this.btn_item_docInfo = new DevComponents.DotNetBar.ButtonItem();
             this.np_right = new DevComponents.DotNetBar.NavigationPane();
             this.navigationPanePanel2 = new DevComponents.DotNetBar.NavigationPanePanel();
-            this.btn_item_comment = new DevComponents.DotNetBar.ButtonItem();
             this.navigationPanePanel1 = new DevComponents.DotNetBar.NavigationPanePanel();
-            this.btn_item_relation = new DevComponents.DotNetBar.ButtonItem();
             this.pn_main_document = new DevComponents.DotNetBar.PanelEx();
             this.wb = new System.Windows.Forms.WebBrowser();
+            this.btn_item_comment = new DevComponents.DotNetBar.ButtonItem();
+            this.btn_item_relation = new DevComponents.DotNetBar.ButtonItem();
+            this.btn_item_tree = new DevComponents.DotNetBar.ButtonItem();
+            this.btn_item_docInfo = new DevComponents.DotNetBar.ButtonItem();
+            this.flp_comment = new System.Windows.Forms.FlowLayoutPanel();
+            this.lawInfo1 = new CAAC_LawLibrary.UserControls.LawInfo();
             this.pl_title.SuspendLayout();
             this.np_left.SuspendLayout();
             this.npp_tree.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LawTree)).BeginInit();
             this.npp_docInfo.SuspendLayout();
             this.np_right.SuspendLayout();
+            this.navigationPanePanel2.SuspendLayout();
             this.pn_main_document.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,20 +80,20 @@
             // 
             // btn_suggest
             // 
-            this.btn_suggest.Location = new System.Drawing.Point(836, 14);
+            this.btn_suggest.Location = new System.Drawing.Point(836, 11);
             this.btn_suggest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_suggest.Name = "btn_suggest";
-            this.btn_suggest.Size = new System.Drawing.Size(101, 22);
+            this.btn_suggest.Size = new System.Drawing.Size(101, 30);
             this.btn_suggest.TabIndex = 5;
             this.btn_suggest.Text = "意见征询";
             this.btn_suggest.UseVisualStyleBackColor = true;
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(612, 12);
+            this.btn_search.Location = new System.Drawing.Point(612, 11);
             this.btn_search.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(75, 22);
+            this.btn_search.Size = new System.Drawing.Size(75, 30);
             this.btn_search.TabIndex = 4;
             this.btn_search.Text = "查找";
             this.btn_search.UseVisualStyleBackColor = true;
@@ -106,10 +108,10 @@
             // 
             // btn_return
             // 
-            this.btn_return.Location = new System.Drawing.Point(28, 12);
+            this.btn_return.Location = new System.Drawing.Point(25, 9);
             this.btn_return.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_return.Name = "btn_return";
-            this.btn_return.Size = new System.Drawing.Size(107, 22);
+            this.btn_return.Size = new System.Drawing.Size(107, 30);
             this.btn_return.TabIndex = 2;
             this.btn_return.Text = "返回库";
             this.btn_return.UseVisualStyleBackColor = true;
@@ -120,10 +122,11 @@
             this.btn_logout.Location = new System.Drawing.Point(1251, 10);
             this.btn_logout.Margin = new System.Windows.Forms.Padding(4);
             this.btn_logout.Name = "btn_logout";
-            this.btn_logout.Size = new System.Drawing.Size(100, 29);
+            this.btn_logout.Size = new System.Drawing.Size(100, 30);
             this.btn_logout.TabIndex = 1;
             this.btn_logout.Text = "退出";
             this.btn_logout.UseVisualStyleBackColor = true;
+            this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
             // 
             // lbl_welcome
             // 
@@ -139,8 +142,8 @@
             // 
             this.np_left.CanCollapse = true;
             this.np_left.ConfigureItemVisible = false;
-            this.np_left.Controls.Add(this.npp_tree);
             this.np_left.Controls.Add(this.npp_docInfo);
+            this.np_left.Controls.Add(this.npp_tree);
             this.np_left.Dock = System.Windows.Forms.DockStyle.Left;
             this.np_left.ItemPaddingBottom = 2;
             this.np_left.ItemPaddingTop = 2;
@@ -169,7 +172,7 @@
             this.np_left.TitlePanel.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
             this.np_left.TitlePanel.Style.ForeColor.Color = System.Drawing.Color.White;
             this.np_left.TitlePanel.TabIndex = 0;
-            this.np_left.TitlePanel.Text = "目录";
+            this.np_left.TitlePanel.Text = "文档信息";
             // 
             // npp_tree
             // 
@@ -219,15 +222,6 @@
             this.elementStyle1.Name = "elementStyle1";
             this.elementStyle1.TextColor = System.Drawing.SystemColors.ControlText;
             // 
-            // btn_item_tree
-            // 
-            this.btn_item_tree.Checked = true;
-            this.btn_item_tree.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_tree.Image")));
-            this.btn_item_tree.ImageFixedSize = new System.Drawing.Size(16, 16);
-            this.btn_item_tree.Name = "btn_item_tree";
-            this.btn_item_tree.OptionGroup = "navBar";
-            this.btn_item_tree.Text = "目录";
-            // 
             // npp_docInfo
             // 
             this.npp_docInfo.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
@@ -244,23 +238,6 @@
             this.npp_docInfo.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.npp_docInfo.Style.GradientAngle = 90;
             this.npp_docInfo.TabIndex = 3;
-            // 
-            // lawInfo1
-            // 
-            this.lawInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lawInfo1.Location = new System.Drawing.Point(0, 0);
-            this.lawInfo1.Margin = new System.Windows.Forms.Padding(5);
-            this.lawInfo1.Name = "lawInfo1";
-            this.lawInfo1.Size = new System.Drawing.Size(265, 882);
-            this.lawInfo1.TabIndex = 0;
-            // 
-            // btn_item_docInfo
-            // 
-            this.btn_item_docInfo.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_docInfo.Image")));
-            this.btn_item_docInfo.ImageFixedSize = new System.Drawing.Size(16, 16);
-            this.btn_item_docInfo.Name = "btn_item_docInfo";
-            this.btn_item_docInfo.OptionGroup = "navBar";
-            this.btn_item_docInfo.Text = "文档信息";
             // 
             // np_right
             // 
@@ -301,6 +278,7 @@
             // navigationPanePanel2
             // 
             this.navigationPanePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.navigationPanePanel2.Controls.Add(this.flp_comment);
             this.navigationPanePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanePanel2.Location = new System.Drawing.Point(1, 1);
             this.navigationPanePanel2.Margin = new System.Windows.Forms.Padding(4);
@@ -313,15 +291,6 @@
             this.navigationPanePanel2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.navigationPanePanel2.Style.GradientAngle = 90;
             this.navigationPanePanel2.TabIndex = 3;
-            // 
-            // btn_item_comment
-            // 
-            this.btn_item_comment.Checked = true;
-            this.btn_item_comment.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_comment.Image")));
-            this.btn_item_comment.ImageFixedSize = new System.Drawing.Size(16, 16);
-            this.btn_item_comment.Name = "btn_item_comment";
-            this.btn_item_comment.OptionGroup = "navBar";
-            this.btn_item_comment.Text = "评论";
             // 
             // navigationPanePanel1
             // 
@@ -338,14 +307,6 @@
             this.navigationPanePanel1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.navigationPanePanel1.Style.GradientAngle = 90;
             this.navigationPanePanel1.TabIndex = 2;
-            // 
-            // btn_item_relation
-            // 
-            this.btn_item_relation.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_relation.Image")));
-            this.btn_item_relation.ImageFixedSize = new System.Drawing.Size(16, 16);
-            this.btn_item_relation.Name = "btn_item_relation";
-            this.btn_item_relation.OptionGroup = "navBar";
-            this.btn_item_relation.Text = "关系";
             // 
             // pn_main_document
             // 
@@ -377,6 +338,58 @@
             this.wb.Size = new System.Drawing.Size(833, 919);
             this.wb.TabIndex = 0;
             // 
+            // btn_item_comment
+            // 
+            this.btn_item_comment.Checked = true;
+            this.btn_item_comment.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_comment.Image")));
+            this.btn_item_comment.ImageFixedSize = new System.Drawing.Size(16, 16);
+            this.btn_item_comment.Name = "btn_item_comment";
+            this.btn_item_comment.OptionGroup = "navBar";
+            this.btn_item_comment.Text = "评论";
+            // 
+            // btn_item_relation
+            // 
+            this.btn_item_relation.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_relation.Image")));
+            this.btn_item_relation.ImageFixedSize = new System.Drawing.Size(16, 16);
+            this.btn_item_relation.Name = "btn_item_relation";
+            this.btn_item_relation.OptionGroup = "navBar";
+            this.btn_item_relation.Text = "关系";
+            // 
+            // btn_item_tree
+            // 
+            this.btn_item_tree.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_tree.Image")));
+            this.btn_item_tree.ImageFixedSize = new System.Drawing.Size(16, 16);
+            this.btn_item_tree.Name = "btn_item_tree";
+            this.btn_item_tree.OptionGroup = "navBar";
+            this.btn_item_tree.Text = "目录";
+            // 
+            // btn_item_docInfo
+            // 
+            this.btn_item_docInfo.Checked = true;
+            this.btn_item_docInfo.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_docInfo.Image")));
+            this.btn_item_docInfo.ImageFixedSize = new System.Drawing.Size(16, 16);
+            this.btn_item_docInfo.Name = "btn_item_docInfo";
+            this.btn_item_docInfo.OptionGroup = "navBar";
+            this.btn_item_docInfo.Text = "文档信息";
+            // 
+            // flp_comment
+            // 
+            this.flp_comment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_comment.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp_comment.Location = new System.Drawing.Point(0, 0);
+            this.flp_comment.Name = "flp_comment";
+            this.flp_comment.Size = new System.Drawing.Size(265, 882);
+            this.flp_comment.TabIndex = 0;
+            // 
+            // lawInfo1
+            // 
+            this.lawInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lawInfo1.Location = new System.Drawing.Point(0, 0);
+            this.lawInfo1.Margin = new System.Windows.Forms.Padding(5);
+            this.lawInfo1.Name = "lawInfo1";
+            this.lawInfo1.Size = new System.Drawing.Size(265, 882);
+            this.lawInfo1.TabIndex = 0;
+            // 
             // LawView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -399,6 +412,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LawTree)).EndInit();
             this.npp_docInfo.ResumeLayout(false);
             this.np_right.ResumeLayout(false);
+            this.navigationPanePanel2.ResumeLayout(false);
             this.pn_main_document.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -429,5 +443,6 @@
         private DevComponents.AdvTree.AdvTree LawTree;
         private DevComponents.AdvTree.NodeConnector nodeConnector1;
         private DevComponents.DotNetBar.ElementStyle elementStyle1;
+        private System.Windows.Forms.FlowLayoutPanel flp_comment;
     }
 }

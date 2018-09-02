@@ -23,12 +23,17 @@ namespace CAAC_LawLibrary.UserControls
 
         private void LawInfo_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        public void fillLawInfo()
+        {
             if (law != null)
             {
                 lbl_name.Text = law.name;
                 lbl_guanlijigou.Text = Global.GetCodeValueById(law.siju);
                 lbl_banben.Text = law.version;
-                lbl_banwendanwei.Text= Global.GetCodeValueById(law.siju);
+                lbl_banwendanwei.Text = Global.GetCodeValueById(law.siju);
                 lbl_buhao.Text = law.buhao;
                 lbl_guanjianzi.Text = law.keyword;
                 lbl_leixing.Text = Global.GetCodeValueById(law.yewu);

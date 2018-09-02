@@ -1,5 +1,6 @@
 ﻿using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
+using DevComponents.DotNetBar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,6 +81,8 @@ namespace CAAC_LawLibrary
             {
                 ViewHistoryListItem item = new ViewHistoryListItem();
                 item.viewHistory = vh;
+                item.fillViewHistory();
+                item.parentForm = this;
                 flp_viewHistory.Controls.Add(item);
             }
         }
@@ -117,9 +120,36 @@ namespace CAAC_LawLibrary
             db.clearHistory();
         }
 
+        public void addHistory(ViewHistory history)
+        {
+            ViewHistoryListItem item = new ViewHistoryListItem();
+            item.viewHistory = history;
+            item.fillViewHistory();
+            flp_viewHistory.Controls.Add(item);
+            flp_viewHistory.Controls.SetChildIndex(item, 1);
+        }
+
+        public void lawCheckBoxChange()
+        {
+            foreach (var item in flp_libraryList.Controls)
+            {
+                var lawItem = item as LawListItem;
+                if (lawItem == null) continue;
+                lawItem.checkChange();
+            }
+        }
+
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            this.Close();
+            logout();
+        }
+
+        public void logout()
+        {
+            if (MessageBoxEx.Show("确认退出？", "退出", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }
