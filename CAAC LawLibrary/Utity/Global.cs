@@ -10,6 +10,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CAAC_LawLibrary.Utity
 {
@@ -253,6 +254,21 @@ namespace CAAC_LawLibrary.Utity
             cfa.AppSettings.Settings[key].Value = value;
             cfa.Save();
             ConfigurationManager.RefreshSection("appSettings");
+        }
+    }
+
+    public class BalloonBox
+    {
+        static DevComponents.DotNetBar.Balloon box = new DevComponents.DotNetBar.Balloon();
+        static BalloonBox()
+        {
+
+        }
+
+        public void showBox(Form form, Control control, string caption, string content)
+        {
+            box.Owner = form;
+            box.Show(control,)
         }
     }
 }

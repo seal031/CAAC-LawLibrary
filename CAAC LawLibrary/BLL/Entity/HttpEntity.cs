@@ -112,6 +112,11 @@ namespace CAAC_LawLibrary.BLL.Entity
             this.nodeId = comment.nodeId;
             this.msg = comment.comment_content;
         }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 
     /// <summary>

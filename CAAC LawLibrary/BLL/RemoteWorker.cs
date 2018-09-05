@@ -1,5 +1,6 @@
 ﻿using CAAC_LawLibrary.BLL.Entity;
 using CAAC_LawLibrary.DAL;
+using CAAC_LawLibrary.Entity;
 using CAAC_LawLibrary.Utity;
 using DevComponents.DotNetBar;
 using System;
@@ -104,5 +105,48 @@ namespace CAAC_LawLibrary.BLL
             OpinionResponse opinionResponse = TranslationWorker.ConvertStringToEntity<OpinionResponse>(opinions);
             db.refreshComment(opinionResponse.ConverToComments());
         }
+
+        /// <summary>
+        /// 获取法规整体目录
+        /// </summary>
+        /// <param name="bookId"></param>
+        public static Tuple<List<Node>, List<Node>> getBookContent(string bookId)
+        {
+            string bookContents = HttpWorker.HttpGet(Global.BookContentApi, "bookId=" + bookId);
+            BookContentResponse bookContentResponse = TranslationWorker.ConvertStringToEntity<BookContentResponse>(bookContents);
+            List<Node> nodes = bookContentResponse.ConvertToNodes();
+            db.refreshNode(nodes);
+            List<Node> details = getNodeDetail(nodes.Select(n => n.Id).ToList());
+            return new Tuple<List<Node>, List<Node>>(nodes, details);
+        }
+
+        /// <summary>
+        /// 获取章节内容
+        /// </summary>
+        /// <param name="nodeIdList"></param>
+        public static List<Node> getNodeDetail(List<string> nodeIdList)
+        {
+            string nodeDetails = HttpWorker.HttpGet(Global.NodeDetailApi, "nodeIds=" + string.Join(",", nodeIdList));
+            NodeDetailResponse nodeDtailResponse = TranslationWorker.ConvertStringToEntity<NodeDetailResponse>(nodeDetails);
+            List<Node> nodes = nodeDtailResponse.ConvertToNodes();
+            db.refreshNode(nodes,detailOnly:true);
+            return nodes;
+        }
+
+        #region post
+        public static string postOpinion(OpinionCommitRequest opinion)
+        {
+            string result = string.Empty;
+            try
+            {
+                result= HttpWorker.PostJson(Global.OpinionCommitApi, opinion.ToJson());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("提交评论失败，请重试");
+            }
+            return result;
+        }
+        #endregion
     }
 }

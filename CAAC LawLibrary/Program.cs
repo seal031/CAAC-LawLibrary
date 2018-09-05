@@ -24,6 +24,7 @@ namespace CAAC_LawLibrary
             //initDb();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             //验证网络是否可用
             if (RemoteWorker.checkInternet())
             {

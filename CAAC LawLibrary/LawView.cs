@@ -20,12 +20,15 @@ namespace CAAC_LawLibrary
         public string lawId = string.Empty;
         public Law law;
         private List<Node> nodes;
+        private List<Comment> commentList;
         private DbHelper db = new DbHelper();
         public Form parentForm;
+        private int commentShownCount = 0;
 
         public LawView()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;//打开时最大化
             setFlpTopDownOnly(flp_comment);
         }
 
@@ -46,16 +49,22 @@ namespace CAAC_LawLibrary
             {
                 parentForm.Show();
             }
-            //System.Environment.Exit(0);
         }
 
         private void LawView_Load(object sender, EventArgs e)
         {
             if (law != null)
             {
+                //如果在线，且未下载到本地，则从远程获取章节信息，并入库
+                if (Global.online&&string.IsNullOrEmpty(law.isLocal))
+                {
+                    RemoteWorker.getBookContent(law.Id);
+                }
                 //绑定树结构
                 nodes = db.getNodeByLawId(law.Id);
-                wb.DocumentText = NodeWorker.buildFromNodeContext(nodes);
+                string content = NodeWorker.buildFromNodeContext(NodeTree,nodes);
+                //绑定法规内容
+                wb.DocumentText = content+"<button id='button' value='button' title='button' onclick='function(){alert('a')}'><button/>";
                 //远程获取评论
                 RemoteWorker.getOpinionList(law.Id);
                 //加载评论
@@ -78,22 +87,51 @@ namespace CAAC_LawLibrary
             }
         }
 
+        //private void loadRemoteNodes()
+        //{
+        //    Tuple<List<Node>,List<Node>> tupleNodes = RemoteWorker.getBookContent(law.Id);
+        //    List<Node> nodes = tupleNodes.Item1;
+        //    List<Node> details = tupleNodes.Item2;
+        //    foreach (Node node in nodes)
+        //    {
+        //        DevComponents.AdvTree.Node treeNode = new DevComponents.AdvTree.Node();
+        //        treeNode.Text = node.title;
+        //        treeNode.Tag = node;
+        //        treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Folder;
+        //        NodeTree.Nodes.Add(treeNode);
+        //        var detail = details.FirstOrDefault(d => d.Id == node.Id);
+        //        if (detail != null)
+        //        {
+
+        //        }
+        //    }
+        //}
+
         private void loadComment()
         {
-            List<Comment> commentList = db.getComment(new Utity.QueryParam() { lawId = law.Id });
-            foreach (Comment comment in commentList)
+            if (commentList == null)
+            {
+                commentList = db.getComment(new Utity.QueryParam() { lawId = law.Id });
+            }
+            int remainCommentCount = commentList.Count - commentShownCount;
+            List<Comment> currentCommentList=null;
+            if (remainCommentCount >= 5)
+            {
+                currentCommentList = commentList.GetRange(commentShownCount, 5);
+            }
+            else
+            {
+                currentCommentList = commentList.GetRange(commentShownCount, remainCommentCount);
+            }
+            commentShownCount += currentCommentList.Count;
+            if (currentCommentList.Count < 5) lbl_loadMore.Text = "没有更多评论了";
+            foreach (Comment comment in currentCommentList)
             {
                 CommentItem ci = new UserControls.CommentItem();
                 ci.comment = comment;
                 ci.fillContent();
                 flp_comment.Controls.Add(ci);
             }
-        }
-
-
-        private void bindingTree()
-        {
-
         }
 
         private void btn_return_Click(object sender, EventArgs e)
@@ -108,6 +146,23 @@ namespace CAAC_LawLibrary
         private void btn_logout_Click(object sender, EventArgs e)
         {
             ((LibraryList)parentForm).logout();
+        }
+
+        /// <summary>
+        /// 加载更多评论按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbl_loadMore_Click(object sender, EventArgs e)
+        {
+            loadComment();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            XiudingLiShi xdls = new CAAC_LawLibrary.XiudingLiShi();
+            xdls.setRtbText(law.xiudingling);
+            xdls.Show(this);
         }
     }
 }

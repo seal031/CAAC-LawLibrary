@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewComment.Designer.cs">
+      <DependentUpon>AddNewComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="BLL\Entity\HttpEntity.cs" />
     <Compile Include="BLL\NodeWorker.cs" />
     <Compile Include="BLL\RemoteWorker.cs" />
@@ -184,6 +190,15 @@
     <Compile Include="UserControls\ViewHistoryListItem.Designer.cs">
       <DependentUpon>ViewHistoryListItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="XiudingLiShi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XiudingLiShi.Designer.cs">
+      <DependentUpon>XiudingLiShi.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddNewComment.resx">
+      <DependentUpon>AddNewComment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Suggest.resx">
       <DependentUpon>Suggest.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ViewHistoryListItem.resx">
       <DependentUpon>ViewHistoryListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XiudingLiShi.resx">
+      <DependentUpon>XiudingLiShi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="doc\开发计划.xlsx" />
     <None Include="packages.config" />

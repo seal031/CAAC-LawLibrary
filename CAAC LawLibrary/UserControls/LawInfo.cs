@@ -40,6 +40,7 @@ namespace CAAC_LawLibrary.UserControls
                 lbl_linghao.Text = law.linghao;
                 lbl_xiudingling.Text = law.xiudingling;
                 lbl_yewufenlei.Text = Global.GetCodeValueById(law.yewu);
+                lbl_guanjianzi.Text = Global.GetCodeValueById(law.userLabel);
                 lbl_yilai.Text = law.yilai;
                 lbl_zefa.Text = law.zefa;
                 rtb_zhaiyao.Text = law.digest;

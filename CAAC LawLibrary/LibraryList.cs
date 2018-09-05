@@ -1,5 +1,6 @@
 ﻿using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
+using CAAC_LawLibrary.Utity;
 using DevComponents.DotNetBar;
 using System;
 using System.Collections.Generic;
@@ -50,18 +51,14 @@ namespace CAAC_LawLibrary
 
         private void LibraryList_Load(object sender, EventArgs e)
         {
-            loadRemoteLawList();
+            if (Global.online) { this.Text = "联网模式"; }
+            else { this.Text = "离线模式"; }
             loadLocalLawList();
             loadViewHistoryList();
             loadDownLoadList();
         }
 
         #region 加载3个列表
-        private void loadRemoteLawList()
-        {
-            //todo读取远程法规库列表，并更新数据库
-        }
-
         private void loadLocalLawList()
         {
             List<Law> list = db.getLaws(lawFilter.queryParam);
@@ -120,13 +117,31 @@ namespace CAAC_LawLibrary
             db.clearHistory();
         }
 
+        /// <summary>
+        /// 将阅读历史主动加到阅读历史列表中，避免再次查库。加入时，如果列表中没有相同的法规，则新增，如果有，则将其提至第一条
+        /// </summary>
+        /// <param name="history"></param>
         public void addHistory(ViewHistory history)
         {
-            ViewHistoryListItem item = new ViewHistoryListItem();
-            item.viewHistory = history;
-            item.fillViewHistory();
-            flp_viewHistory.Controls.Add(item);
-            flp_viewHistory.Controls.SetChildIndex(item, 1);
+            bool found = false;
+            for (int i = 1; i < flp_viewHistory.Controls.Count; i++)
+            {
+                var tempVh = flp_viewHistory.Controls[i] as ViewHistoryListItem;
+                if (tempVh.viewHistory.LawID == history.LawID)
+                {
+                    flp_viewHistory.Controls.SetChildIndex(tempVh, 1);
+                    found = true;
+                    break;
+                }
+            }
+            if (found == false)
+            {
+                ViewHistoryListItem item = new ViewHistoryListItem();
+                item.viewHistory = history;
+                item.fillViewHistory();
+                flp_viewHistory.Controls.Add(item);
+                flp_viewHistory.Controls.SetChildIndex(item, 1);
+            }
         }
 
         public void lawCheckBoxChange()

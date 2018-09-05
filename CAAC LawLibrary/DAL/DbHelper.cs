@@ -24,13 +24,13 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
-                var list = from law in context.Law.Where(l => l.userId == Global.user.Id)
-                           where param.buhao == null ? 1 == 1 : law.buhao == param.buhao
-                           && param.siju == null ? 1 == 1 : law.siju == param.siju
-                           && param.weijie == null ? 1 == 1 : law.weijie == param.weijie
-                           && param.yewu == null ? 1 == 1 : law.yewu == param.yewu
-                           && param.lawId == null ? 1 == 1 : law.Id == param.lawId
-                           select law;
+                var list = (from law in context.Law
+                            where (param.buhao == null ? 1 == 1 : law.buhao == param.buhao)
+                            && (param.siju == null ? 1 == 1 : law.siju == param.siju)
+                            && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
+                            && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
+                            && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
+                            select law).ToList();
                 return list.ToList() ;
             }
         }
@@ -161,7 +161,7 @@ namespace CAAC_LawLibrary.DAL
                     if (law == null) return new List<Node>();
                     else
                     {
-                        return context.Node.Where(n => n.lawId == law.Id).OrderBy(n => n.nodeLevel).ThenBy(n => n.nodeOrder).ToList();
+                        return context.Node.Where(n => n.lawId == law.Id).OrderBy(n => n.nodeOrder).ToList();
                     }
                 }
                 catch (Exception)
@@ -227,6 +227,50 @@ namespace CAAC_LawLibrary.DAL
                 catch (Exception)
                 {
                     return false;
+                }
+            }
+        }
+
+        public bool refreshNode(List<Node> nodes,Node parentNode=null,bool detailOnly=false)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                using (DbContextTransaction transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (Node node in nodes)
+                        {
+                            var currentNode = context.Node.FirstOrDefault(n => n.Id == node.Id);
+                            if (currentNode == null)
+                            {
+                                context.Node.Add(node);
+                            }
+                            else
+                            {
+                                if (detailOnly)
+                                {
+                                    currentNode.content = node.content;
+                                }
+                                else
+                                {
+                                    currentNode.lawId = node.lawId;
+                                    currentNode.nodeLevel = node.nodeLevel;
+                                    currentNode.nodeNumber = node.nodeNumber;
+                                    currentNode.nodeOrder = node.nodeOrder;
+                                    currentNode.title = node.title;
+                                }
+                                if (parentNode != null) currentNode.parentNodeId = parentNode.Id;
+                            }
+                        }
+                        context.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
                 }
             }
         }
@@ -328,10 +372,17 @@ namespace CAAC_LawLibrary.DAL
             {
                 try
                 {
-                    context.ViewHistory.Add(history);
+                    var tempViewHistory = context.ViewHistory.FirstOrDefault(v => v.LawID == history.LawID && v.UserID == Global.user.Id);
+                    if (tempViewHistory == null)
+                    {
+                        context.ViewHistory.Add(history);
+                    }
+                    else
+                    {
+                        tempViewHistory.ViewDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    }
                     context.SaveChanges();
                     return true;
-
                 }
                 catch (Exception ex)
                 {
@@ -478,8 +529,9 @@ namespace CAAC_LawLibrary.DAL
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
             {
                 var list = from comment in context.Comment
-                           where param.lawId == null ? 1 == 1 : comment.lawId == param.lawId &&
-                           param.nodeId == null ? 1 == 1 : comment.nodeId == param.nodeId
+                           where (param.lawId == null ? 1 == 1 : comment.lawId == param.lawId) &&
+                           (param.nodeId == null ? 1 == 1 : comment.nodeId == param.nodeId)
+                           orderby comment.comment_date
                            select comment;
                 return list.ToList();
             }

@@ -1,0 +1,14 @@
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\CAAC LawLibraryTests.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\CAAC LawLibraryTests.pdb
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\CAAC LawLibrary.exe
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\DevComponents.DotNetBar2.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\EntityFramework.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\Newtonsoft.Json.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\CAAC LawLibrary.pdb
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\DevComponents.DotNetBar2.xml
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\EntityFramework.xml
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\obj\Debug\CAAC LawLibraryTests.csprojResolveAssemblyReference.cache
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\obj\Debug\CAAC LawLibraryTests.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibraryTests\obj\Debug\CAAC LawLibraryTests.pdb

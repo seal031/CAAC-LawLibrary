@@ -35,12 +35,12 @@
             this.tbc = new System.Windows.Forms.TabControl();
             this.tp_libraryList = new System.Windows.Forms.TabPage();
             this.flp_libraryList = new System.Windows.Forms.FlowLayoutPanel();
-            this.lawFilter = new CAAC_LawLibrary.LawFilter();
             this.tp_viewHistory = new System.Windows.Forms.TabPage();
             this.flp_viewHistory = new System.Windows.Forms.FlowLayoutPanel();
-            this.viewHistoryFilter = new CAAC_LawLibrary.ViewHistoryFilter();
             this.tp_downloadTask = new System.Windows.Forms.TabPage();
             this.flp_downloadTask = new System.Windows.Forms.FlowLayoutPanel();
+            this.lawFilter = new CAAC_LawLibrary.LawFilter();
+            this.viewHistoryFilter = new CAAC_LawLibrary.ViewHistoryFilter();
             this.downloadFilter = new CAAC_LawLibrary.DownloadFilter();
             this.pl_title.SuspendLayout();
             this.pl_main.SuspendLayout();
@@ -59,15 +59,16 @@
             this.pl_title.Controls.Add(this.lbl_welcome);
             this.pl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.pl_title.Location = new System.Drawing.Point(0, 0);
-            this.pl_title.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pl_title.Margin = new System.Windows.Forms.Padding(4);
             this.pl_title.Name = "pl_title";
             this.pl_title.Size = new System.Drawing.Size(1363, 49);
             this.pl_title.TabIndex = 0;
             // 
             // btn_logout
             // 
+            this.btn_logout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_logout.Location = new System.Drawing.Point(1251, 10);
-            this.btn_logout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_logout.Margin = new System.Windows.Forms.Padding(4);
             this.btn_logout.Name = "btn_logout";
             this.btn_logout.Size = new System.Drawing.Size(100, 29);
             this.btn_logout.TabIndex = 1;
@@ -77,6 +78,7 @@
             // 
             // lbl_welcome
             // 
+            this.lbl_welcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_welcome.AutoSize = true;
             this.lbl_welcome.Location = new System.Drawing.Point(1003, 16);
             this.lbl_welcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -87,10 +89,11 @@
             // 
             // pl_main
             // 
+            this.pl_main.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pl_main.Controls.Add(this.tbc);
-            this.pl_main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_main.Location = new System.Drawing.Point(0, 49);
-            this.pl_main.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pl_main.Margin = new System.Windows.Forms.Padding(4);
             this.pl_main.Name = "pl_main";
             this.pl_main.Size = new System.Drawing.Size(1363, 919);
             this.pl_main.TabIndex = 1;
@@ -104,7 +107,7 @@
             this.tbc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbc.ItemSize = new System.Drawing.Size(100, 30);
             this.tbc.Location = new System.Drawing.Point(0, 0);
-            this.tbc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbc.Margin = new System.Windows.Forms.Padding(4);
             this.tbc.Name = "tbc";
             this.tbc.SelectedIndex = 0;
             this.tbc.Size = new System.Drawing.Size(1363, 919);
@@ -114,9 +117,9 @@
             // 
             this.tp_libraryList.Controls.Add(this.flp_libraryList);
             this.tp_libraryList.Location = new System.Drawing.Point(4, 34);
-            this.tp_libraryList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_libraryList.Margin = new System.Windows.Forms.Padding(4);
             this.tp_libraryList.Name = "tp_libraryList";
-            this.tp_libraryList.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_libraryList.Padding = new System.Windows.Forms.Padding(4);
             this.tp_libraryList.Size = new System.Drawing.Size(1355, 881);
             this.tp_libraryList.TabIndex = 0;
             this.tp_libraryList.Text = "法规库目录";
@@ -128,26 +131,18 @@
             this.flp_libraryList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_libraryList.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flp_libraryList.Location = new System.Drawing.Point(4, 4);
-            this.flp_libraryList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flp_libraryList.Margin = new System.Windows.Forms.Padding(4);
             this.flp_libraryList.Name = "flp_libraryList";
             this.flp_libraryList.Size = new System.Drawing.Size(1347, 873);
             this.flp_libraryList.TabIndex = 0;
-            // 
-            // lawFilter
-            // 
-            this.lawFilter.Location = new System.Drawing.Point(3, 2);
-            this.lawFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lawFilter.Name = "lawFilter";
-            this.lawFilter.Size = new System.Drawing.Size(1333, 129);
-            this.lawFilter.TabIndex = 0;
             // 
             // tp_viewHistory
             // 
             this.tp_viewHistory.Controls.Add(this.flp_viewHistory);
             this.tp_viewHistory.Location = new System.Drawing.Point(4, 34);
-            this.tp_viewHistory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_viewHistory.Margin = new System.Windows.Forms.Padding(4);
             this.tp_viewHistory.Name = "tp_viewHistory";
-            this.tp_viewHistory.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_viewHistory.Padding = new System.Windows.Forms.Padding(4);
             this.tp_viewHistory.Size = new System.Drawing.Size(1355, 881);
             this.tp_viewHistory.TabIndex = 1;
             this.tp_viewHistory.Text = "阅读历史";
@@ -159,26 +154,18 @@
             this.flp_viewHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_viewHistory.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flp_viewHistory.Location = new System.Drawing.Point(4, 4);
-            this.flp_viewHistory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flp_viewHistory.Margin = new System.Windows.Forms.Padding(4);
             this.flp_viewHistory.Name = "flp_viewHistory";
             this.flp_viewHistory.Size = new System.Drawing.Size(1347, 873);
             this.flp_viewHistory.TabIndex = 1;
-            // 
-            // viewHistoryFilter
-            // 
-            this.viewHistoryFilter.Location = new System.Drawing.Point(3, 2);
-            this.viewHistoryFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.viewHistoryFilter.Name = "viewHistoryFilter";
-            this.viewHistoryFilter.Size = new System.Drawing.Size(1333, 122);
-            this.viewHistoryFilter.TabIndex = 0;
             // 
             // tp_downloadTask
             // 
             this.tp_downloadTask.Controls.Add(this.flp_downloadTask);
             this.tp_downloadTask.Location = new System.Drawing.Point(4, 34);
-            this.tp_downloadTask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_downloadTask.Margin = new System.Windows.Forms.Padding(4);
             this.tp_downloadTask.Name = "tp_downloadTask";
-            this.tp_downloadTask.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_downloadTask.Padding = new System.Windows.Forms.Padding(4);
             this.tp_downloadTask.Size = new System.Drawing.Size(1355, 881);
             this.tp_downloadTask.TabIndex = 2;
             this.tp_downloadTask.Text = "下载任务管理";
@@ -190,10 +177,26 @@
             this.flp_downloadTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_downloadTask.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flp_downloadTask.Location = new System.Drawing.Point(4, 4);
-            this.flp_downloadTask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flp_downloadTask.Margin = new System.Windows.Forms.Padding(4);
             this.flp_downloadTask.Name = "flp_downloadTask";
             this.flp_downloadTask.Size = new System.Drawing.Size(1347, 873);
             this.flp_downloadTask.TabIndex = 1;
+            // 
+            // lawFilter
+            // 
+            this.lawFilter.Location = new System.Drawing.Point(3, 2);
+            this.lawFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lawFilter.Name = "lawFilter";
+            this.lawFilter.Size = new System.Drawing.Size(1333, 129);
+            this.lawFilter.TabIndex = 0;
+            // 
+            // viewHistoryFilter
+            // 
+            this.viewHistoryFilter.Location = new System.Drawing.Point(3, 2);
+            this.viewHistoryFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.viewHistoryFilter.Name = "viewHistoryFilter";
+            this.viewHistoryFilter.Size = new System.Drawing.Size(1333, 122);
+            this.viewHistoryFilter.TabIndex = 0;
             // 
             // downloadFilter
             // 
@@ -207,10 +210,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1363, 968);
             this.Controls.Add(this.pl_main);
             this.Controls.Add(this.pl_title);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "LibraryList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LibraryList_FormClosed);
