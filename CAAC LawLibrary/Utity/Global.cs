@@ -265,10 +265,17 @@ namespace CAAC_LawLibrary.Utity
 
         }
 
-        public void showBox(Form form, Control control, string caption, string content)
+        public static void showBox(Form form, Control control, string caption, string content)
         {
             box.Owner = form;
-            box.Show(control,)
+            box.CaptionText = caption;
+            box.Text = content;
+            box.Style = DevComponents.DotNetBar.eBallonStyle.Alert;
+            box.AlertAnimation = DevComponents.DotNetBar.eAlertAnimation.None;
+            box.AutoResize();
+            box.AutoClose = true;
+            box.AutoCloseTimeOut = 3;
+            box.Show(control,false);
         }
     }
 }

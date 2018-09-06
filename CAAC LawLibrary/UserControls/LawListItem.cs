@@ -69,19 +69,25 @@ namespace CAAC_LawLibrary
                 { ccb_version.SelectedIndex = 0; }
             }
         }
+       
 
-        private void lbl_title_Click(object sender, EventArgs e)
+        private void LawListItem_Load(object sender, EventArgs e)
+        {
+            showInfo();
+        }
+
+        private void ccb_version_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LawListItem_Click(object sender, EventArgs e)
         {
             LawView lv = new CAAC_LawLibrary.LawView();
             lv.law = law;
             lv.parentForm = parentForm;
             lv.Show(this);
             parentForm.Hide();
-        }
-
-        private void LawListItem_Load(object sender, EventArgs e)
-        {
-            showInfo();
         }
     }
 }
