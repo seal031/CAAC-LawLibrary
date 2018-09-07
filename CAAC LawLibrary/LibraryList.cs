@@ -62,12 +62,29 @@ namespace CAAC_LawLibrary
         private void loadLocalLawList()
         {
             List<Law> list = db.getLaws(lawFilter.queryParam);
+            List<string> addedLawId = new List<string>();//已经添加过的法规id
             foreach (Law law in list)
             {
-                LawListItem item = new LawListItem();
-                item.law = law;
-                item.parentForm = this;
-                flp_libraryList.Controls.Add(item);
+                if (addedLawId.Contains(law.Id)) { continue; }
+                else
+                {
+                    addedLawId.Add(law.Id);
+                    LawListItem item = new LawListItem();
+                    //查找同一部法规的全部版本（包括本身）
+                    var allVersionList = list.Where(l => l.lastversion == law.lastversion).OrderByDescending(l => l.Id);
+                    if (allVersionList.Count() > 1)
+                    {
+                        item.law = allVersionList.Last();//如果有多个版本，取最新版本
+                    }
+                    else
+                    {
+                        item.law = law;
+                    }
+                    item.laws = allVersionList.ToList();
+                    item.parentForm = this;
+                    item.addVerionDropDown();
+                    flp_libraryList.Controls.Add(item);
+                }
             }
         }
 

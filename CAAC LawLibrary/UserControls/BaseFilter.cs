@@ -87,25 +87,25 @@ namespace CAAC_LawLibrary
         private void cbb_siju_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
-                queryParam.siju = (cbb_siju.SelectedValue as Code).Id;
+                queryParam.siju = (cbb_siju.SelectedItem as Code).Id;
         }
 
         private void cbb_weijie_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
-                queryParam.weijie = (cbb_weijie.SelectedValue as Code).Id;
+                queryParam.weijie = (cbb_weijie.SelectedItem as Code).Id;
         }
 
         private void cbb_yewu_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
-                queryParam.yewu = (cbb_yewu.SelectedValue as Code).Id;
+                queryParam.yewu = (cbb_yewu.SelectedItem as Code).Id;
         }
 
         private void cbb_zidingyi_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
-                queryParam.zidingyi = (cbb_zidingyi.SelectedValue as  Code).Id;
+                queryParam.zidingyi = (cbb_zidingyi.SelectedItem as  Code).Id;
         }
     }
 }
