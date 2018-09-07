@@ -16,13 +16,14 @@ namespace CAAC_LawLibrary
     {
         public string lawId { get; set; }
         public Law law { get; set; }
+        public List<Law> laws { get; set; }
         public Form parentForm;
         public bool isChecked = false;
 
         public LawListItem()
         {
             InitializeComponent();
-            
+            laws = new List<Law>();
         }
 
         public void checkChange()
@@ -78,10 +79,19 @@ namespace CAAC_LawLibrary
 
         private void ccb_version_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Law selectedLaw = laws.FirstOrDefault(l => l.Id ==);
+            if (selectedLaw != null)
+            {
+                openLaw(law);
+            }
         }
 
         private void LawListItem_Click(object sender, EventArgs e)
+        {
+            openLaw(law);
+        }
+
+        private void openLaw(Law law)
         {
             LawView lv = new CAAC_LawLibrary.LawView();
             lv.law = law;
