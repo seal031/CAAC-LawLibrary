@@ -105,6 +105,15 @@ namespace CAAC_LawLibrary
         {
             openLaw(law);
         }
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            openLaw(law);
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            openLaw(law);
+        }
 
         private void openLaw(Law law)
         {

@@ -26,7 +26,11 @@ namespace CAAC_LawLibrary
             setFlpTopDownOnly(flp_libraryList);
             setFlpTopDownOnly(flp_viewHistory);
             setFlpTopDownOnly(flp_downloadTask);
+            lawFilter.onSelectedChanged += loadLocalLawList;
+            viewHistoryFilter.onSelectedChanged += loadViewHistoryList;
+            downloadFilter.onSelectedChanged += loadDownLoadList;
         }
+        
 
         /// <summary>
         /// 设置flowLayoutPanel只能上下滚动
@@ -61,14 +65,15 @@ namespace CAAC_LawLibrary
         #region 加载3个列表
         private void loadLocalLawList()
         {
+            removeFromFlp(flp_libraryList);
             List<Law> list = db.getLaws(lawFilter.queryParam);
-            List<string> addedLawId = new List<string>();//已经添加过的法规id
+            List<string> addedLastVersion = new List<string>();//已经添加过的法规id
             foreach (Law law in list)
             {
-                if (addedLawId.Contains(law.Id)) { continue; }
+                if (addedLastVersion.Contains(law.lastversion.ToString())) { continue; }
                 else
                 {
-                    addedLawId.Add(law.Id);
+                    addedLastVersion.Add(law.lastversion.ToString());
                     LawListItem item = new LawListItem();
                     //查找同一部法规的全部版本（包括本身）
                     var allVersionList = list.Where(l => l.lastversion == law.lastversion).OrderByDescending(l => l.Id);
@@ -83,13 +88,14 @@ namespace CAAC_LawLibrary
                     item.laws = allVersionList.ToList();
                     item.parentForm = this;
                     item.addVerionDropDown();
-                    flp_libraryList.Controls.Add(item);
+                    flp_libraryList.Controls.Add(item); 
                 }
             }
         }
 
         private void loadViewHistoryList()
         {
+            removeFromFlp(flp_viewHistory);
             List<ViewHistory> list = db.getViewHistory(viewHistoryFilter.queryParam);
             foreach (ViewHistory vh in list)
             {
@@ -103,12 +109,22 @@ namespace CAAC_LawLibrary
 
         private void loadDownLoadList()
         {
+            removeFromFlp(flp_downloadTask);
             List<Law> list = db.getLaws(downloadFilter.queryParam).Where(l=>l.downloadPercent!=null).ToList();
             foreach (Law law in list)
             {
                 DownloadListItem item = new DownloadListItem();
                 item.law = law;
                 flp_downloadTask.Controls.Add(item);
+            }
+        }
+
+        private void removeFromFlp(FlowLayoutPanel flp)
+        {
+            int controlsCount = flp.Controls.Count;
+            for (int i = controlsCount - 1; i >= 1; i--)
+            {
+                flp.Controls.RemoveAt(i);
             }
         }
         #endregion

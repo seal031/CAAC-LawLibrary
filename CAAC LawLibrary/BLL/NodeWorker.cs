@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CAAC_LawLibrary.BLL
 {
@@ -20,7 +21,7 @@ namespace CAAC_LawLibrary.BLL
                 DevComponents.AdvTree.Node treeNode = new DevComponents.AdvTree.Node();
                 treeNode.Text = node.title;
                 treeNode.Tag = node;
-                content += node.content + Environment.NewLine;
+                content += node.content + Environment.NewLine; 
                 if (perTreeNode == null)//第一个节点
                 {
                     treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Folder;
@@ -58,6 +59,6 @@ namespace CAAC_LawLibrary.BLL
             }
             return content;
         }
-
+        
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CAAC_LawLibrary.Utity;
 using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
+using System.Collections;
 
 namespace CAAC_LawLibrary
 {
@@ -18,6 +19,9 @@ namespace CAAC_LawLibrary
         protected internal QueryParam queryParam = new QueryParam();
         private DbHelper db = new DbHelper();
         private bool bindState = false;
+
+        public delegate void selectedChanged();
+        public event selectedChanged onSelectedChanged;
 
         public BaseFilter()
         {
@@ -81,31 +85,46 @@ namespace CAAC_LawLibrary
         private void cbb_buhao_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
-                queryParam.buhao = (cbb_buhao.SelectedValue as Code).Id;
+            {
+                queryParam.buhao = (cbb_buhao.SelectedItem as Code).Id;
+                onSelectedChanged();
+            }
         }
 
         private void cbb_siju_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
+            {
                 queryParam.siju = (cbb_siju.SelectedItem as Code).Id;
+                onSelectedChanged();
+            }
         }
 
         private void cbb_weijie_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
+            {
                 queryParam.weijie = (cbb_weijie.SelectedItem as Code).Id;
+                onSelectedChanged();
+            }
         }
 
         private void cbb_yewu_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
+            {
                 queryParam.yewu = (cbb_yewu.SelectedItem as Code).Id;
+                onSelectedChanged();
+            }
         }
 
         private void cbb_zidingyi_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
-                queryParam.zidingyi = (cbb_zidingyi.SelectedItem as  Code).Id;
+            {
+                queryParam.zidingyi = (cbb_zidingyi.SelectedItem as Code).Id;
+                onSelectedChanged();
+            }
         }
     }
 }

@@ -28,7 +28,9 @@ namespace CAAC_LawLibrary
         private void lbl_title_Click(object sender, EventArgs e)
         {
             LawView lv = new CAAC_LawLibrary.LawView();
-            lv.Show();
+            lv.law = law;
+            lv.parentForm = parentForm;
+            lv.Show(this);
             parentForm.Hide();
         }
 

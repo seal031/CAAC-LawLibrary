@@ -40,46 +40,56 @@
             // 
             // cbb_buhao
             // 
+            this.cbb_buhao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_buhao.FormattingEnabled = true;
-            this.cbb_buhao.Location = new System.Drawing.Point(25, 20);
+            this.cbb_buhao.Location = new System.Drawing.Point(19, 16);
+            this.cbb_buhao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbb_buhao.Name = "cbb_buhao";
-            this.cbb_buhao.Size = new System.Drawing.Size(229, 23);
+            this.cbb_buhao.Size = new System.Drawing.Size(173, 20);
             this.cbb_buhao.TabIndex = 0;
             this.cbb_buhao.SelectedIndexChanged += new System.EventHandler(this.cbb_buhao_SelectedIndexChanged);
             // 
             // cbb_siju
             // 
+            this.cbb_siju.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_siju.FormattingEnabled = true;
-            this.cbb_siju.Location = new System.Drawing.Point(291, 20);
+            this.cbb_siju.Location = new System.Drawing.Point(218, 16);
+            this.cbb_siju.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbb_siju.Name = "cbb_siju";
-            this.cbb_siju.Size = new System.Drawing.Size(143, 23);
+            this.cbb_siju.Size = new System.Drawing.Size(108, 20);
             this.cbb_siju.TabIndex = 1;
             this.cbb_siju.SelectedIndexChanged += new System.EventHandler(this.cbb_siju_SelectedIndexChanged);
             // 
             // cbb_weijie
             // 
+            this.cbb_weijie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_weijie.FormattingEnabled = true;
-            this.cbb_weijie.Location = new System.Drawing.Point(466, 20);
+            this.cbb_weijie.Location = new System.Drawing.Point(350, 16);
+            this.cbb_weijie.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbb_weijie.Name = "cbb_weijie";
-            this.cbb_weijie.Size = new System.Drawing.Size(145, 23);
+            this.cbb_weijie.Size = new System.Drawing.Size(110, 20);
             this.cbb_weijie.TabIndex = 2;
             this.cbb_weijie.SelectedIndexChanged += new System.EventHandler(this.cbb_weijie_SelectedIndexChanged);
             // 
             // cbb_yewu
             // 
+            this.cbb_yewu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_yewu.FormattingEnabled = true;
-            this.cbb_yewu.Location = new System.Drawing.Point(636, 20);
+            this.cbb_yewu.Location = new System.Drawing.Point(477, 16);
+            this.cbb_yewu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbb_yewu.Name = "cbb_yewu";
-            this.cbb_yewu.Size = new System.Drawing.Size(149, 23);
+            this.cbb_yewu.Size = new System.Drawing.Size(113, 20);
             this.cbb_yewu.TabIndex = 3;
             this.cbb_yewu.SelectedIndexChanged += new System.EventHandler(this.cbb_yewu_SelectedIndexChanged);
             // 
             // cbb_zidingyi
             // 
+            this.cbb_zidingyi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_zidingyi.FormattingEnabled = true;
-            this.cbb_zidingyi.Location = new System.Drawing.Point(817, 20);
+            this.cbb_zidingyi.Location = new System.Drawing.Point(613, 16);
+            this.cbb_zidingyi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbb_zidingyi.Name = "cbb_zidingyi";
-            this.cbb_zidingyi.Size = new System.Drawing.Size(150, 23);
+            this.cbb_zidingyi.Size = new System.Drawing.Size(114, 20);
             this.cbb_zidingyi.TabIndex = 4;
             this.cbb_zidingyi.SelectedIndexChanged += new System.EventHandler(this.cbb_zidingyi_SelectedIndexChanged);
             // 
@@ -87,30 +97,33 @@
             // 
             this.cbb_sort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_sort.FormattingEnabled = true;
-            this.cbb_sort.Location = new System.Drawing.Point(1132, 20);
+            this.cbb_sort.Location = new System.Drawing.Point(849, 16);
+            this.cbb_sort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbb_sort.Name = "cbb_sort";
-            this.cbb_sort.Size = new System.Drawing.Size(164, 23);
+            this.cbb_sort.Size = new System.Drawing.Size(124, 20);
             this.cbb_sort.TabIndex = 5;
             // 
             // txt_keyword
             // 
-            this.txt_keyword.Location = new System.Drawing.Point(467, 71);
+            this.txt_keyword.Location = new System.Drawing.Point(350, 57);
+            this.txt_keyword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_keyword.Name = "txt_keyword";
-            this.txt_keyword.Size = new System.Drawing.Size(328, 25);
+            this.txt_keyword.Size = new System.Drawing.Size(247, 21);
             this.txt_keyword.TabIndex = 6;
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(817, 71);
+            this.btn_search.Location = new System.Drawing.Point(613, 57);
+            this.btn_search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(75, 30);
+            this.btn_search.Size = new System.Drawing.Size(56, 24);
             this.btn_search.TabIndex = 7;
             this.btn_search.Text = "搜索";
             this.btn_search.UseVisualStyleBackColor = true;
             // 
             // BaseFilter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.txt_keyword);
@@ -120,8 +133,9 @@
             this.Controls.Add(this.cbb_weijie);
             this.Controls.Add(this.cbb_siju);
             this.Controls.Add(this.cbb_buhao);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "BaseFilter";
-            this.Size = new System.Drawing.Size(1333, 123);
+            this.Size = new System.Drawing.Size(1000, 98);
             this.Load += new System.EventHandler(this.BaseFilter_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

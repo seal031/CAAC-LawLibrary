@@ -360,7 +360,16 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
+                var laws = from law in context.Law
+                           where (param.buhao == null ? 1 == 1 : law.buhao == param.buhao)
+                           && (param.siju == null ? 1 == 1 : law.siju == param.siju)
+                           && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
+                           && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
+                           && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
+                           select law;
                 var list = from vh in context.ViewHistory.Where(v => v.UserID == Global.user.Id)
+                           from law in laws
+                           where vh.LawID==law.Id && vh.UserID==law.userId
                            select vh;
                 return list.ToList();
             }

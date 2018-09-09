@@ -164,5 +164,70 @@ namespace CAAC_LawLibrary
             xdls.setRtbText(law.xiudingling);
             xdls.Show(this);
         }
+
+        private void NodeTree_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
+        {
+            DevComponents.AdvTree.Node clickedNode = e.Node;
+            Node node = clickedNode.Tag as Node;
+            if (node != null)
+            {
+                findLocation(node.content);
+            }
+        }
+
+        /// <summary>
+        /// 文字定位
+        /// </summary>
+        /// <param name="title"></param>
+        private void findLocation(string title)
+        {
+            foreach (HtmlElement item in wb.Document.All)
+            {
+                if (item.InnerText != null)
+                {
+                    //string content = item.InnerText;
+                    //title = HtmlCleaner.clean(title);
+                    //title = ClearChar(title);
+                    ////if (ClearChar(content) == title)
+                    //if (ClearChar(content).IndexOf(title) == 0)
+                    //{
+                    //    Point point = GetPoint(item);
+                    //    wb.Document.Window.ScrollTo(point.X, point.Y);//滚动条至指定位置
+                    //    break;
+                    //}
+
+                    string content = item.OuterHtml.ToLower();
+                    content = ClearChar(content);
+                    if (title.IndexOf(content)==0)
+                    {
+                        Point point = GetPoint(item);
+                        wb.Document.Window.ScrollTo(point.X, point.Y);//滚动条至指定位置
+                        //break;
+                    }
+                }
+            }
+        }
+        private Point GetPoint(HtmlElement el)
+        {
+            Point pos = new Point(el.OffsetRectangle.Left, el.OffsetRectangle.Top);
+            //循环获取父级的坐标
+            HtmlElement tempEl = el.OffsetParent;
+            while (tempEl != null)
+            {
+                pos.X += tempEl.OffsetRectangle.Left;
+                pos.Y += tempEl.OffsetRectangle.Top;
+                tempEl = tempEl.OffsetParent;
+            }
+            return pos;
+        }
+
+        private string ClearChar(string str)
+        {
+            str = str.Replace("\n", null);
+            str = str.Replace("\r", null);
+            str = str.Replace("&nbsp;", null);
+            str = str.Replace(" ", null);
+            return str;
+        }
     }
 }

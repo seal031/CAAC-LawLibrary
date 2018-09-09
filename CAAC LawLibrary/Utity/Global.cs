@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,10 +49,15 @@ namespace CAAC_LawLibrary.Utity
 
             DbHelper db = new DbHelper();
             siju = db.getCode("org");
+            siju.Insert(0, new Code() { Id = null, desc = "不限司局" });
             yewu = db.getCode("biz");
+            yewu.Insert(0, new Code() { Id = null, desc = "不限业务分类" });
             buhao = db.getCode("buhao");
+            buhao.Insert(0, new Code() { Id = null, desc = "不限部号范围" });
             zidingyi = db.getCode("tag");
-            weijie = db.getCode("release");
+            zidingyi.Insert(0, new Code() { Id = null, desc = "不限自定义标签" });
+            weijie = db.getCode("type");
+            weijie.Insert(0, new Code() { Id = null, desc = "不限位阶范围" });
 
             allCode = db.getCode();
         }
@@ -276,6 +282,17 @@ namespace CAAC_LawLibrary.Utity
             box.AutoClose = true;
             box.AutoCloseTimeOut = 3;
             box.Show(control,false);
+        }
+    }
+
+    public class HtmlCleaner
+    {
+        private static string reg = @"[<].*?[>]";
+        private static string regEx_space = "\\s*|\t|\r|\n";
+
+        public static string clean(string content)
+        {
+            return Regex.Replace(Regex.Replace(content, reg, ""), regEx_space, "");
         }
     }
 }
