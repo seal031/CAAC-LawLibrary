@@ -171,9 +171,22 @@ namespace CAAC_LawLibrary
             Node node = clickedNode.Tag as Node;
             if (node != null)
             {
+                //如果当前节点内容不为空，直接定位
                 if (node.content != string.Empty)
                 {
                     findLocation(node.content);
+                }
+                else//否则查找内容不为空的第一个子节点，再定位
+                {
+                    foreach (DevComponents.AdvTree.Node subTreeNode in clickedNode.Nodes)
+                    {
+                        Node subNode = subTreeNode.Tag as Node;
+                        if (subNode.content != string.Empty)
+                        {
+                            findLocation(subNode.content);
+                            break;
+                        }
+                    }
                 }
             }
         }
