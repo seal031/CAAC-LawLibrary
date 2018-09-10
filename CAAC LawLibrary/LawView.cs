@@ -171,7 +171,10 @@ namespace CAAC_LawLibrary
             Node node = clickedNode.Tag as Node;
             if (node != null)
             {
-                findLocation(node.content);
+                if (node.content != string.Empty)
+                {
+                    findLocation(node.content);
+                }
             }
         }
 
