@@ -37,14 +37,15 @@
             this.btn_logout = new System.Windows.Forms.Button();
             this.lbl_welcome = new System.Windows.Forms.Label();
             this.np_left = new DevComponents.DotNetBar.NavigationPane();
-            this.npp_docInfo = new DevComponents.DotNetBar.NavigationPanePanel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.btn_item_docInfo = new DevComponents.DotNetBar.ButtonItem();
             this.npp_tree = new DevComponents.DotNetBar.NavigationPanePanel();
             this.NodeTree = new DevComponents.AdvTree.AdvTree();
             this.nodeConnector1 = new DevComponents.AdvTree.NodeConnector();
             this.elementStyle1 = new DevComponents.DotNetBar.ElementStyle();
             this.btn_item_tree = new DevComponents.DotNetBar.ButtonItem();
+            this.npp_docInfo = new DevComponents.DotNetBar.NavigationPanePanel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lawInfo1 = new CAAC_LawLibrary.UserControls.LawInfo();
+            this.btn_item_docInfo = new DevComponents.DotNetBar.ButtonItem();
             this.np_right = new DevComponents.DotNetBar.NavigationPane();
             this.navigationPanePanel2 = new DevComponents.DotNetBar.NavigationPanePanel();
             this.lbl_loadMore = new System.Windows.Forms.Label();
@@ -54,12 +55,11 @@
             this.btn_item_relation = new DevComponents.DotNetBar.ButtonItem();
             this.pn_main_document = new DevComponents.DotNetBar.PanelEx();
             this.wb = new System.Windows.Forms.WebBrowser();
-            this.lawInfo1 = new CAAC_LawLibrary.UserControls.LawInfo();
             this.pl_title.SuspendLayout();
             this.np_left.SuspendLayout();
-            this.npp_docInfo.SuspendLayout();
             this.npp_tree.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NodeTree)).BeginInit();
+            this.npp_docInfo.SuspendLayout();
             this.np_right.SuspendLayout();
             this.navigationPanePanel2.SuspendLayout();
             this.pn_main_document.SuspendLayout();
@@ -82,17 +82,18 @@
             // btn_suggest
             // 
             this.btn_suggest.Location = new System.Drawing.Point(627, 9);
-            this.btn_suggest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_suggest.Margin = new System.Windows.Forms.Padding(2);
             this.btn_suggest.Name = "btn_suggest";
             this.btn_suggest.Size = new System.Drawing.Size(76, 24);
             this.btn_suggest.TabIndex = 5;
             this.btn_suggest.Text = "意见征询";
             this.btn_suggest.UseVisualStyleBackColor = true;
+            this.btn_suggest.Click += new System.EventHandler(this.btn_suggest_Click);
             // 
             // btn_search
             // 
             this.btn_search.Location = new System.Drawing.Point(459, 9);
-            this.btn_search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_search.Margin = new System.Windows.Forms.Padding(2);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(56, 24);
             this.btn_search.TabIndex = 4;
@@ -102,7 +103,7 @@
             // txt_keyword
             // 
             this.txt_keyword.Location = new System.Drawing.Point(200, 10);
-            this.txt_keyword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_keyword.Margin = new System.Windows.Forms.Padding(2);
             this.txt_keyword.Name = "txt_keyword";
             this.txt_keyword.Size = new System.Drawing.Size(244, 21);
             this.txt_keyword.TabIndex = 3;
@@ -110,7 +111,7 @@
             // btn_return
             // 
             this.btn_return.Location = new System.Drawing.Point(19, 7);
-            this.btn_return.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_return.Margin = new System.Windows.Forms.Padding(2);
             this.btn_return.Name = "btn_return";
             this.btn_return.Size = new System.Drawing.Size(80, 24);
             this.btn_return.TabIndex = 2;
@@ -171,43 +172,6 @@
             this.np_left.TitlePanel.TabIndex = 0;
             this.np_left.TitlePanel.Text = "目录";
             // 
-            // npp_docInfo
-            // 
-            this.npp_docInfo.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
-            this.npp_docInfo.Controls.Add(this.linkLabel1);
-            this.npp_docInfo.Controls.Add(this.lawInfo1);
-            this.npp_docInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.npp_docInfo.Location = new System.Drawing.Point(1, 1);
-            this.npp_docInfo.Name = "npp_docInfo";
-            this.npp_docInfo.ParentItem = this.btn_item_docInfo;
-            this.npp_docInfo.Size = new System.Drawing.Size(208, 701);
-            this.npp_docInfo.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.npp_docInfo.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.npp_docInfo.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.npp_docInfo.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.npp_docInfo.Style.GradientAngle = 90;
-            this.npp_docInfo.TabIndex = 3;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(124, 102);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(89, 12);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "查看修订历史页";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // btn_item_docInfo
-            // 
-            this.btn_item_docInfo.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_docInfo.Image")));
-            this.btn_item_docInfo.ImageFixedSize = new System.Drawing.Size(16, 16);
-            this.btn_item_docInfo.Name = "btn_item_docInfo";
-            this.btn_item_docInfo.OptionGroup = "navBar";
-            this.btn_item_docInfo.Text = "文档信息";
-            // 
             // npp_tree
             // 
             this.npp_tree.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
@@ -236,7 +200,7 @@
             this.NodeTree.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.NodeTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NodeTree.Location = new System.Drawing.Point(0, 0);
-            this.NodeTree.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NodeTree.Margin = new System.Windows.Forms.Padding(2);
             this.NodeTree.Name = "NodeTree";
             this.NodeTree.NodesConnector = this.nodeConnector1;
             this.NodeTree.NodeStyle = this.elementStyle1;
@@ -266,6 +230,52 @@
             this.btn_item_tree.Name = "btn_item_tree";
             this.btn_item_tree.OptionGroup = "navBar";
             this.btn_item_tree.Text = "目录";
+            // 
+            // npp_docInfo
+            // 
+            this.npp_docInfo.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.npp_docInfo.Controls.Add(this.linkLabel1);
+            this.npp_docInfo.Controls.Add(this.lawInfo1);
+            this.npp_docInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.npp_docInfo.Location = new System.Drawing.Point(1, 1);
+            this.npp_docInfo.Name = "npp_docInfo";
+            this.npp_docInfo.ParentItem = this.btn_item_docInfo;
+            this.npp_docInfo.Size = new System.Drawing.Size(208, 701);
+            this.npp_docInfo.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.npp_docInfo.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.npp_docInfo.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.npp_docInfo.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.npp_docInfo.Style.GradientAngle = 90;
+            this.npp_docInfo.TabIndex = 3;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(124, 102);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(89, 12);
+            this.linkLabel1.TabIndex = 1;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "查看修订历史页";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // lawInfo1
+            // 
+            this.lawInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lawInfo1.Location = new System.Drawing.Point(0, 0);
+            this.lawInfo1.Margin = new System.Windows.Forms.Padding(4);
+            this.lawInfo1.Name = "lawInfo1";
+            this.lawInfo1.Size = new System.Drawing.Size(208, 701);
+            this.lawInfo1.TabIndex = 0;
+            // 
+            // btn_item_docInfo
+            // 
+            this.btn_item_docInfo.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_docInfo.Image")));
+            this.btn_item_docInfo.ImageFixedSize = new System.Drawing.Size(16, 16);
+            this.btn_item_docInfo.Name = "btn_item_docInfo";
+            this.btn_item_docInfo.OptionGroup = "navBar";
+            this.btn_item_docInfo.Text = "文档信息";
             // 
             // np_right
             // 
@@ -334,7 +344,7 @@
             this.flp_comment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_comment.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flp_comment.Location = new System.Drawing.Point(0, 0);
-            this.flp_comment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flp_comment.Margin = new System.Windows.Forms.Padding(2);
             this.flp_comment.Name = "flp_comment";
             this.flp_comment.Size = new System.Drawing.Size(212, 701);
             this.flp_comment.TabIndex = 0;
@@ -399,15 +409,6 @@
             this.wb.Size = new System.Drawing.Size(601, 735);
             this.wb.TabIndex = 0;
             // 
-            // lawInfo1
-            // 
-            this.lawInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lawInfo1.Location = new System.Drawing.Point(0, 0);
-            this.lawInfo1.Margin = new System.Windows.Forms.Padding(4);
-            this.lawInfo1.Name = "lawInfo1";
-            this.lawInfo1.Size = new System.Drawing.Size(208, 701);
-            this.lawInfo1.TabIndex = 0;
-            // 
             // LawView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -425,10 +426,10 @@
             this.pl_title.ResumeLayout(false);
             this.pl_title.PerformLayout();
             this.np_left.ResumeLayout(false);
-            this.npp_docInfo.ResumeLayout(false);
-            this.npp_docInfo.PerformLayout();
             this.npp_tree.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NodeTree)).EndInit();
+            this.npp_docInfo.ResumeLayout(false);
+            this.npp_docInfo.PerformLayout();
             this.np_right.ResumeLayout(false);
             this.navigationPanePanel2.ResumeLayout(false);
             this.pn_main_document.ResumeLayout(false);

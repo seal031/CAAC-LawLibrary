@@ -134,6 +134,11 @@ namespace CAAC_LawLibrary.BLL
         }
 
         #region post
+        /// <summary>
+        /// 提交评论
+        /// </summary>
+        /// <param name="opinion"></param>
+        /// <returns></returns>
         public static string postOpinion(OpinionCommitRequest opinion)
         {
             string result = string.Empty;
@@ -144,6 +149,25 @@ namespace CAAC_LawLibrary.BLL
             catch (Exception)
             {
                 MessageBox.Show("提交评论失败，请重试");
+            }
+            return result;
+        }
+        /// <summary>
+        /// 提交意见征询
+        /// </summary>
+        /// <param name="consult"></param>
+        /// <returns></returns>
+        public static string postCommit(ConsultRequest consult)
+        {
+            string result = string.Empty;
+            try
+            {
+                result = HttpWorker.PostJson(Global.ConsultCommitApi, consult.ToJson());
+                MessageBox.Show("提交成功");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("提交征询意见失败，请重试");
             }
             return result;
         }

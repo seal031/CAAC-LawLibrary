@@ -37,6 +37,7 @@ namespace CAAC_LawLibrary
             OpinionCommitRequest opinionRequest = new OpinionCommitRequest();
             opinionRequest.ConvertFromComment(newComment);
             //RemoteWorker
+            RemoteWorker.postOpinion(opinionRequest);
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)

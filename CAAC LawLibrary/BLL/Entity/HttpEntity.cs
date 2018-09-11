@@ -42,6 +42,10 @@ namespace CAAC_LawLibrary.BLL.Entity
                 });
             }
         }
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 
     /// <summary>
@@ -58,6 +62,11 @@ namespace CAAC_LawLibrary.BLL.Entity
     public class OpinionResponse:CommonResponse
     {
         public new dataItem data { get; set; }
+
+        public OpinionResponse()
+        {
+            data = new dataItem();
+        }
         public class dataItem
         {
             public List<opinionItem> list { get; set; }
@@ -134,6 +143,11 @@ namespace CAAC_LawLibrary.BLL.Entity
     public class AllBooksResponse:CommonResponse
     {
         public new dataItem data { get; set; }
+
+        public AllBooksResponse()
+        {
+            data = new dataItem();
+        }
         public class dataItem
         {
             public List<listItem> list { get; set; }
@@ -239,6 +253,11 @@ namespace CAAC_LawLibrary.BLL.Entity
     public class NodeDetailResponse:CommonResponse
     {
         public new dataItem data { get; set; }
+
+        public NodeDetailResponse()
+        {
+            data = new dataItem();
+        }
         public class dataItem
         {
             public List<listItem> list { get; set; }
@@ -288,6 +307,11 @@ namespace CAAC_LawLibrary.BLL.Entity
     public class BookContentResponse:CommonResponse
     {
         public new dataItem data { get; set; }
+
+        public BookContentResponse()
+        {
+            data = new dataItem();
+        }
         public class dataItem
         {
             public List<listItem> list { get; set; }
@@ -337,9 +361,14 @@ namespace CAAC_LawLibrary.BLL.Entity
     /// <summary>
     /// 获取章节子节点响应对象
     /// </summary>
-    public class BookNodeCIdResponse
+    public class BookNodeCIdResponse:CommonResponse
     {
         public new dataItem data { get; set; }
+
+        public BookNodeCIdResponse()
+        {
+            data = new dataItem();
+        }
         public class dataItem
         {
             public List<listItem> list { get; set; }
@@ -389,6 +418,11 @@ namespace CAAC_LawLibrary.BLL.Entity
     public class SearchResponse:CommonResponse
     {
         public new dataItem data { get; set; }
+
+        public SearchResponse()
+        {
+            data = new dataItem();
+        }
         public class dataItem
         {
             public List<listItem> list { get; set; }
@@ -431,6 +465,11 @@ namespace CAAC_LawLibrary.BLL.Entity
     public class SetListResponse:CommonResponse
     {
         public new dataItem data { get; set; }
+
+        public SetListResponse()
+        {
+            data = new dataItem();
+        }
         public class dataItem
         {
             public List<listItem> biz { get; set; }

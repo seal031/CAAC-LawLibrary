@@ -37,6 +37,8 @@ namespace CAAC_LawLibrary.UserControls
             else
             {
                 AddNewComment addComment = new CAAC_LawLibrary.AddNewComment();
+                addComment.lawId = comment.lawId;
+                addComment.nodeId = comment.nodeId;
                 addComment.Show(this);
             }
         }

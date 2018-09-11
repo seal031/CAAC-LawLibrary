@@ -64,7 +64,7 @@ namespace CAAC_LawLibrary
                 nodes = db.getNodeByLawId(law.Id);
                 string content = NodeWorker.buildFromNodeContext(NodeTree,nodes);
                 //绑定法规内容
-                wb.DocumentText = content+"<button id='button' value='button' title='button' onclick='function(){alert('a')}'><button/>";
+                wb.DocumentText = content;
                 //远程获取评论
                 RemoteWorker.getOpinionList(law.Id);
                 //加载评论
@@ -244,6 +244,12 @@ namespace CAAC_LawLibrary
             str = str.Replace("&nbsp;", null);
             str = str.Replace(" ", null);
             return str;
+        }
+
+        private void btn_suggest_Click(object sender, EventArgs e)
+        {
+            SuggestForm suggest = new SuggestForm();
+            suggest.Show(this);
         }
     }
 }

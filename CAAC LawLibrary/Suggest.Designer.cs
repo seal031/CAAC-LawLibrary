@@ -41,10 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.suggestItem1 = new CAAC_LawLibrary.SuggestItem();
-            this.suggestItem2 = new CAAC_LawLibrary.SuggestItem();
             this.panel1.SuspendLayout();
-            this.flp.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -68,18 +65,16 @@
             this.panel1.Location = new System.Drawing.Point(0, 29);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(586, 413);
+            this.panel1.Size = new System.Drawing.Size(586, 481);
             this.panel1.TabIndex = 1;
             // 
             // flp
             // 
-            this.flp.Controls.Add(this.suggestItem1);
-            this.flp.Controls.Add(this.suggestItem2);
             this.flp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp.Location = new System.Drawing.Point(0, 72);
             this.flp.Margin = new System.Windows.Forms.Padding(2);
             this.flp.Name = "flp";
-            this.flp.Size = new System.Drawing.Size(586, 305);
+            this.flp.Size = new System.Drawing.Size(586, 373);
             this.flp.TabIndex = 2;
             // 
             // panel3
@@ -87,7 +82,7 @@
             this.panel3.Controls.Add(this.btn_submit);
             this.panel3.Controls.Add(this.btn_cancel);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 377);
+            this.panel3.Location = new System.Drawing.Point(0, 445);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(586, 36);
@@ -102,6 +97,7 @@
             this.btn_submit.TabIndex = 1;
             this.btn_submit.Text = "提交";
             this.btn_submit.UseVisualStyleBackColor = true;
+            this.btn_submit.Click += new System.EventHandler(this.btn_submit_Click);
             // 
             // btn_cancel
             // 
@@ -112,6 +108,7 @@
             this.btn_cancel.TabIndex = 0;
             this.btn_cancel.Text = "取消";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // panel2
             // 
@@ -130,14 +127,16 @@
             // 
             // txt_department
             // 
+            this.txt_department.Enabled = false;
             this.txt_department.Location = new System.Drawing.Point(140, 43);
             this.txt_department.Margin = new System.Windows.Forms.Padding(2);
             this.txt_department.Name = "txt_department";
-            this.txt_department.Size = new System.Drawing.Size(152, 21);
+            this.txt_department.Size = new System.Drawing.Size(408, 21);
             this.txt_department.TabIndex = 11;
             // 
             // txt_phone
             // 
+            this.txt_phone.Enabled = false;
             this.txt_phone.Location = new System.Drawing.Point(396, 17);
             this.txt_phone.Margin = new System.Windows.Forms.Padding(2);
             this.txt_phone.Name = "txt_phone";
@@ -146,6 +145,7 @@
             // 
             // txt_user
             // 
+            this.txt_user.Enabled = false;
             this.txt_user.Location = new System.Drawing.Point(140, 17);
             this.txt_user.Margin = new System.Windows.Forms.Padding(2);
             this.txt_user.Name = "txt_user";
@@ -182,27 +182,11 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "填写人（账号）：";
             // 
-            // suggestItem1
-            // 
-            this.suggestItem1.Location = new System.Drawing.Point(2, 2);
-            this.suggestItem1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.suggestItem1.Name = "suggestItem1";
-            this.suggestItem1.Size = new System.Drawing.Size(585, 120);
-            this.suggestItem1.TabIndex = 0;
-            // 
-            // suggestItem2
-            // 
-            this.suggestItem2.Location = new System.Drawing.Point(2, 126);
-            this.suggestItem2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.suggestItem2.Name = "suggestItem2";
-            this.suggestItem2.Size = new System.Drawing.Size(585, 120);
-            this.suggestItem2.TabIndex = 1;
-            // 
             // SuggestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 442);
+            this.ClientSize = new System.Drawing.Size(586, 510);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_title);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -210,7 +194,6 @@
             this.Text = "意见征询";
             this.Load += new System.EventHandler(this.SuggestForm_Load);
             this.panel1.ResumeLayout(false);
-            this.flp.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -223,8 +206,6 @@
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flp;
-        private SuggestItem suggestItem1;
-        private SuggestItem suggestItem2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txt_department;
