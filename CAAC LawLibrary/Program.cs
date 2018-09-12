@@ -28,7 +28,7 @@ namespace CAAC_LawLibrary
             //验证网络是否可用
             if (RemoteWorker.checkInternet())
             {
-                Global.user = new Entity.User() { Id = "02954944-57ab-4571-9b1e-0062ef04fef2" };//todo 替换真实user
+                Global.user = new Entity.User() { Id = "1" };//todo 替换真实user
                 //RemoteWorker.getSetResponse();
                 RemoteWorker.getLawResponse();
                 Application.Run(new Login());

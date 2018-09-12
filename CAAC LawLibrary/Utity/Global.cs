@@ -181,7 +181,11 @@ namespace CAAC_LawLibrary.Utity
             string result = "";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
-            req.ContentType = "application/x-www-form-urlencoded";
+            //req.ContentType = "application/x-www-form-urlencoded";
+            req.ContentType = "application/text";
+            req.Headers.Add("X-Appid", Global.Appid);
+            req.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
+            req.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
 
             #region 添加Post 参数
             byte[] data = Encoding.UTF8.GetBytes(content);

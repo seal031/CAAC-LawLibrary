@@ -21,6 +21,7 @@ namespace CAAC_LawLibrary
         public Law law;
         private List<Node> nodes;
         private List<Comment> commentList;
+        private List<NodeTag> tags;
         private DbHelper db = new DbHelper();
         public Form parentForm;
         private int commentShownCount = 0;
@@ -65,6 +66,9 @@ namespace CAAC_LawLibrary
                 string content = NodeWorker.buildFromNodeContext(NodeTree,nodes);
                 //绑定法规内容
                 wb.DocumentText = content;
+                //绑定关系
+                tags = NodeWorker.buildRelationFromNode(nodes);
+                bindTagsToDGW();
                 //远程获取评论
                 RemoteWorker.getOpinionList(law.Id);
                 //加载评论
@@ -163,6 +167,26 @@ namespace CAAC_LawLibrary
             XiudingLiShi xdls = new CAAC_LawLibrary.XiudingLiShi();
             xdls.setRtbText(law.xiudingling);
             xdls.Show(this);
+        }
+
+        private void bindTagsToDGW(string tagType = "")
+        {
+            if (tags != null)
+            {
+                var list = from t in tags
+                           where tagType == "" ? 1 == 1 : t.TagType == tagType
+                           select t;
+                foreach (NodeTag tag in list)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    int index = dgw.Rows.Add(row);
+                    dgw.Rows[index].Cells["tagType"].Value = tag.TagType;
+                    dgw.Rows[index].Cells["tagNode"].Value = tag.TagNode;
+                    dgw.Rows[index].Cells["tagContent"].Value = tag.TagContent;
+                    dgw.Rows[index].Cells["OuterHTML"].Value = tag.OuterHTML;
+                    dgw.Rows[index].Cells["tagType"].Style.BackColor = tag.color;
+                }
+            }
         }
 
         private void NodeTree_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)

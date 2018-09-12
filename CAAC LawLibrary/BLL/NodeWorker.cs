@@ -3,6 +3,7 @@ using DevComponents.AdvTree;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,97 @@ namespace CAAC_LawLibrary.BLL
             }
             return content;
         }
-        
+
+
+        public static List<NodeTag> buildRelationFromNode(List<CAAC_LawLibrary.Entity.Node> nodes)
+        {
+            List<NodeTag> tags = new List<NodeTag>();
+            foreach (CAAC_LawLibrary.Entity.Node node in nodes)
+            {
+                tags = tags.Concat(pickTag(node)).ToList();
+            }
+
+            return tags;
+        }
+
+        private static List<NodeTag> pickTag(CAAC_LawLibrary.Entity.Node node)
+        {
+            List<NodeTag> tags = new List<NodeTag>();
+            List<string> list = node.content.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            foreach (string part in list)
+            {
+                if (part.Contains("<s data-obj="))
+                {
+                    NodeTag tag = new NodeTag();
+                    string s = part.Substring(part.IndexOf("<s data-obj="));
+                    tag.TagContent = s.Substring(s.IndexOf(">") + 1);
+                    tag.OuterHTML = s;
+                    int sIndex=s.IndexOf("\"")+1;
+                    int eIndex=s.LastIndexOf("\"");
+                    string dataObject = string.Empty;
+                    if(eIndex>sIndex)
+                    {
+                       dataObject= s.Substring(sIndex, eIndex - sIndex);
+                        List<string> kv = dataObject.Split(new string[] {"-" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                        if (kv.Count > 1)
+                        {
+                            tag.TagType = kv[0];
+                            tag.TagNode = kv[1];
+                            tag.color = getColor(tag.TagType);
+                            tag.TagType = getTypeCN(tag.TagType);
+                        }
+                    }
+
+                    tags.Add(tag);
+                }
+            }
+            return tags;
+        }
+
+        private static Color getColor(string tagType)
+        {
+            switch (tagType)
+            {
+                case "define":
+                    return Color.Yellow;
+                case "key":
+                    return Color.Red;
+                case "class":
+                    return Color.Green;
+                case "":
+                    return Color.Blue;
+                default:
+                    return Color.White;
+            }
+        }
+        private static string getTypeCN(string tagType)
+        {
+            switch (tagType)
+            {
+                case "define":
+                    return "定";
+                case "key":
+                    return "关";
+                case "class":
+                    return "类";
+                case "":
+                    return "";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    public class NodeTag
+    {
+        public string TagType { get; set; }
+
+        public string TagNode { get; set; }
+
+        public string TagContent { get; set; }
+
+        public string OuterHTML { get; set; }
+
+        public Color color { get; set; }
     }
 }

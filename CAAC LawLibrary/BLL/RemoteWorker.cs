@@ -144,7 +144,8 @@ namespace CAAC_LawLibrary.BLL
             string result = string.Empty;
             try
             {
-                result= HttpWorker.PostJson(Global.OpinionCommitApi, opinion.ToJson());
+                //result= HttpWorker.PostJson(Global.OpinionCommitApi, opinion.ToJson());
+                result = HttpWorker.PostStr(Global.OpinionCommitApi, opinion.ToJson());
             }
             catch (Exception)
             {
