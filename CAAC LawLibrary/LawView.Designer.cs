@@ -52,14 +52,14 @@
             this.btn_item_comment = new DevComponents.DotNetBar.ButtonItem();
             this.navigationPanePanel1 = new DevComponents.DotNetBar.NavigationPanePanel();
             this.dgw = new System.Windows.Forms.DataGridView();
-            this.btn_item_relation = new DevComponents.DotNetBar.ButtonItem();
-            this.pn_main_document = new DevComponents.DotNetBar.PanelEx();
-            this.wb = new System.Windows.Forms.WebBrowser();
-            this.lawInfo1 = new CAAC_LawLibrary.UserControls.LawInfo();
             this.tagType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tagNode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tagContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OuterHTML = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_item_relation = new DevComponents.DotNetBar.ButtonItem();
+            this.pn_main_document = new DevComponents.DotNetBar.PanelEx();
+            this.wb = new System.Windows.Forms.WebBrowser();
+            this.lawInfo1 = new CAAC_LawLibrary.UserControls.LawInfo();
             this.pl_title.SuspendLayout();
             this.np_left.SuspendLayout();
             this.npp_tree.SuspendLayout();
@@ -365,9 +365,38 @@
             this.dgw.RowHeadersVisible = false;
             this.dgw.RowTemplate.Height = 23;
             this.dgw.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgw.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgw.ShowEditingIcon = false;
             this.dgw.Size = new System.Drawing.Size(210, 150);
             this.dgw.TabIndex = 0;
+            this.dgw.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgw_CellDoubleClick);
+            // 
+            // tagType
+            // 
+            this.tagType.HeaderText = "";
+            this.tagType.Name = "tagType";
+            this.tagType.ReadOnly = true;
+            this.tagType.Width = 20;
+            // 
+            // tagNode
+            // 
+            this.tagNode.HeaderText = "";
+            this.tagNode.Name = "tagNode";
+            this.tagNode.ReadOnly = true;
+            this.tagNode.Width = 50;
+            // 
+            // tagContent
+            // 
+            this.tagContent.HeaderText = "";
+            this.tagContent.Name = "tagContent";
+            this.tagContent.ReadOnly = true;
+            // 
+            // OuterHTML
+            // 
+            this.OuterHTML.HeaderText = "";
+            this.OuterHTML.Name = "OuterHTML";
+            this.OuterHTML.ReadOnly = true;
+            this.OuterHTML.Visible = false;
             // 
             // btn_item_relation
             // 
@@ -398,12 +427,15 @@
             // 
             // wb
             // 
+            this.wb.AllowNavigation = false;
+            this.wb.AllowWebBrowserDrop = false;
             this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wb.Location = new System.Drawing.Point(0, 0);
             this.wb.MinimumSize = new System.Drawing.Size(20, 20);
             this.wb.Name = "wb";
             this.wb.Size = new System.Drawing.Size(601, 735);
             this.wb.TabIndex = 0;
+            this.wb.WebBrowserShortcutsEnabled = false;
             // 
             // lawInfo1
             // 
@@ -413,33 +445,6 @@
             this.lawInfo1.Name = "lawInfo1";
             this.lawInfo1.Size = new System.Drawing.Size(208, 733);
             this.lawInfo1.TabIndex = 0;
-            // 
-            // tagType
-            // 
-            this.tagType.HeaderText = "";
-            this.tagType.Name = "tagType";
-            this.tagType.ReadOnly = true;
-            this.tagType.Width = 20;
-            // 
-            // tagNode
-            // 
-            this.tagNode.HeaderText = "";
-            this.tagNode.Name = "tagNode";
-            this.tagNode.ReadOnly = true;
-            this.tagNode.Width = 50;
-            // 
-            // tagContent
-            // 
-            this.tagContent.HeaderText = "";
-            this.tagContent.Name = "tagContent";
-            this.tagContent.ReadOnly = true;
-            // 
-            // OuterHTML
-            // 
-            this.OuterHTML.HeaderText = "";
-            this.OuterHTML.Name = "OuterHTML";
-            this.OuterHTML.ReadOnly = true;
-            this.OuterHTML.Visible = false;
             // 
             // LawView
             // 

@@ -66,6 +66,7 @@ namespace CAAC_LawLibrary
                 string content = NodeWorker.buildFromNodeContext(NodeTree,nodes);
                 //绑定法规内容
                 wb.DocumentText = content;
+                SetAutoWrap(true);
                 //绑定关系
                 tags = NodeWorker.buildRelationFromNode(nodes);
                 bindTagsToDGW();
@@ -219,7 +220,7 @@ namespace CAAC_LawLibrary
         /// 文字定位
         /// </summary>
         /// <param name="title"></param>
-        private void findLocation(string title)
+        private void findLocation(string title,bool isTag=false)
         {
             foreach (HtmlElement item in wb.Document.All)
             {
@@ -238,11 +239,23 @@ namespace CAAC_LawLibrary
 
                     string content = item.OuterHtml.ToLower();
                     content = ClearChar(content);
-                    if (title.IndexOf(content)==0)
+                    if (isTag)
                     {
-                        Point point = GetPoint(item);
-                        wb.Document.Window.ScrollTo(point.X, point.Y);//滚动条至指定位置
-                        //break;
+                        if (item.OuterHtml.ToLower().Contains(title))
+                        {
+                            Point point = GetPoint(item);
+                            wb.Document.Window.ScrollTo(0, point.Y);//滚动条至指定位置
+                                                                          //break;
+                        }
+                    }
+                    else
+                    {
+                        if (title.IndexOf(content) == 0)
+                        {
+                            Point point = GetPoint(item);
+                            wb.Document.Window.ScrollTo(point.X, point.Y);//滚动条至指定位置
+                                                                          //break;
+                        }
                     }
                 }
             }
@@ -275,5 +288,13 @@ namespace CAAC_LawLibrary
             SuggestForm suggest = new SuggestForm();
             suggest.Show(this);
         }
+
+        private void dgw_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string outerHTML = dgw.Rows[e.RowIndex].Cells["OuterHTML"].Value.ToString();
+            findLocation(outerHTML,true);
+        }
+
+        public void SetAutoWrap(bool value) { mshtml.HTMLDocument doc = this.wb.Document.DomDocument as mshtml.HTMLDocument; if (doc != null) { mshtml.HTMLBody body = doc.body as mshtml.HTMLBody; if (body != null) { body.noWrap = !value; } } }
     }
 }
