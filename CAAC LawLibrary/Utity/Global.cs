@@ -39,6 +39,7 @@ namespace CAAC_LawLibrary.Utity
         public static List<Code> zidingyi = new List<Code>();
         public static List<Code> weijie = new List<Code>();
         public static List<Code> allCode = new List<Code>();
+        public static List<DictionaryEntry> tag = new List<DictionaryEntry>();
 
         public static User user { get; set; }
 
@@ -46,6 +47,13 @@ namespace CAAC_LawLibrary.Utity
         {
             SortSource.Add(new DictionaryEntry(1,"时间倒序（默认）"));
             SortSource.Add(new DictionaryEntry(2, "首字母拼音排序"));
+
+            tag.Add(new DictionaryEntry("全","全部"));
+            tag.Add(new DictionaryEntry("定", "定义"));
+            tag.Add(new DictionaryEntry("类", "业务分类"));
+            tag.Add(new DictionaryEntry("键", "关键字"));
+            tag.Add(new DictionaryEntry("依", "依赖"));
+            tag.Add(new DictionaryEntry("罚", "罚则"));
 
             DbHelper db = new DbHelper();
             siju = db.getCode("org");
@@ -254,15 +262,21 @@ namespace CAAC_LawLibrary.Utity
             if (System.Configuration.ConfigurationManager.AppSettings[key] != null)
                 return System.Configuration.ConfigurationManager.AppSettings[key];
             else
-
                 return string.Empty;
         }
 
         public static void SetConfigValue(string key, string value)
         {
             Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            cfa.AppSettings.Settings[key].Value = value;
-            cfa.Save();
+            if (cfa.AppSettings.Settings.AllKeys.Contains(key))
+            {
+                cfa.AppSettings.Settings[key].Value = value;
+                cfa.Save();
+            }
+            else
+            {
+                cfa.AppSettings.Settings.Add(key, value);
+            }
             ConfigurationManager.RefreshSection("appSettings");
         }
     }

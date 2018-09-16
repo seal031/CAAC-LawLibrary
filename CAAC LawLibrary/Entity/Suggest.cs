@@ -18,5 +18,9 @@ namespace CAAC_LawLibrary.Entity
         public string userId { get; set; }
         public string suggest_content { get; set; }
         public string remark { get; set; }
+
+        public string suggest_date { get; set; }
+
+        public string isLocal { get; set; }
     }
 }

@@ -85,6 +85,12 @@
     <Compile Include="AddNewComment.Designer.cs">
       <DependentUpon>AddNewComment.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddNewSuggest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewSuggest.Designer.cs">
+      <DependentUpon>AddNewSuggest.cs</DependentUpon>
+    </Compile>
     <Compile Include="BLL\Entity\HttpEntity.cs" />
     <Compile Include="BLL\NodeWorker.cs" />
     <Compile Include="BLL\RemoteWorker.cs" />
@@ -201,6 +207,9 @@
     </Compile>
     <EmbeddedResource Include="AddNewComment.resx">
       <DependentUpon>AddNewComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewSuggest.resx">
+      <DependentUpon>AddNewSuggest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suggest.resx">
       <DependentUpon>Suggest.cs</DependentUpon>

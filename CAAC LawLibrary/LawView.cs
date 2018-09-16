@@ -29,6 +29,9 @@ namespace CAAC_LawLibrary
         public LawView()
         {
             InitializeComponent();
+            cbb_tag.DataSource = new BindingSource(Global.tag, null); ;
+            cbb_tag.DisplayMember = "Value";
+            cbb_tag.ValueMember = "Key";
             this.WindowState = FormWindowState.Maximized;//打开时最大化
             setFlpTopDownOnly(flp_comment);
         }
@@ -286,6 +289,7 @@ namespace CAAC_LawLibrary
         private void btn_suggest_Click(object sender, EventArgs e)
         {
             SuggestForm suggest = new SuggestForm();
+            suggest.LawId = law.Id;
             suggest.Show(this);
         }
 

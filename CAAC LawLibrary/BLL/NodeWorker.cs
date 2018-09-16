@@ -114,9 +114,9 @@ namespace CAAC_LawLibrary.BLL
                 case "define":
                     return Color.Yellow;
                 case "key":
-                    return Color.Red;
+                    return Color.Orange;
                 case "class":
-                    return Color.Green;
+                    return Color.Gray;
                 case "":
                     return Color.Blue;
                 default:
@@ -130,11 +130,11 @@ namespace CAAC_LawLibrary.BLL
                 case "define":
                     return "定";
                 case "key":
-                    return "关";
+                    return "键";
                 case "class":
                     return "类";
                 case "":
-                    return "";
+                    return "依";
                 default:
                     return "";
             }

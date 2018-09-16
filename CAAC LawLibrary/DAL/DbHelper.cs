@@ -446,7 +446,15 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
-                return context.Suggest.Where(s => s.lawId == lawId && s.userId == userId).ToList();
+                return context.Suggest.Where(s => s.lawId == lawId && s.userId == userId && s.isLocal!="1").ToList();
+            }
+        }
+
+        public List<Suggest> getLocalSuggests(string lawId, string userId)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                return context.Suggest.Where(s => s.lawId == lawId && s.userId == userId && s.isLocal == "1").ToList();
             }
         }
 

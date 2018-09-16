@@ -20,9 +20,30 @@ namespace CAAC_LawLibrary
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            if (cb_remindPwd.Checked)
+            {
+                string userId = cbb_user.Text.Trim();
+                string password = txt_password.Text.Trim();
+                ConfigWorker.SetConfigValue(userId, password);
+            }
             LibraryList listForm = new LibraryList();
             listForm.Show();
             this.Hide();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cbb_user_Leave(object sender, EventArgs e)
+        {
+            if (cb_remindPwd.Checked)
+            {
+                string userId = cbb_user.Text.Trim();
+                string password = ConfigWorker.GetConfigValue(userId);
+                txt_password.Text = password;
+            }
         }
     }
 }
