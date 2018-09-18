@@ -271,12 +271,12 @@ namespace CAAC_LawLibrary.Utity
             if (cfa.AppSettings.Settings.AllKeys.Contains(key))
             {
                 cfa.AppSettings.Settings[key].Value = value;
-                cfa.Save();
             }
             else
             {
                 cfa.AppSettings.Settings.Add(key, value);
             }
+            cfa.Save();
             ConfigurationManager.RefreshSection("appSettings");
         }
     }

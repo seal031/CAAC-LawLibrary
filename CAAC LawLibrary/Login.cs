@@ -38,11 +38,16 @@ namespace CAAC_LawLibrary
 
         private void cbb_user_Leave(object sender, EventArgs e)
         {
-            if (cb_remindPwd.Checked)
-            {
                 string userId = cbb_user.Text.Trim();
                 string password = ConfigWorker.GetConfigValue(userId);
                 txt_password.Text = password;
+            if (string.IsNullOrEmpty(password))
+            {
+                cb_remindPwd.Checked = false;
+            }
+            else
+            {
+                cb_remindPwd.Checked = true;
             }
         }
     }

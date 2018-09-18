@@ -184,6 +184,12 @@
     <Compile Include="UserControls\SuggestItem.Designer.cs">
       <DependentUpon>SuggestItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TagLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TagLabel.Designer.cs">
+      <DependentUpon>TagLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ViewHistoryFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\SuggestItem.resx">
       <DependentUpon>SuggestItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TagLabel.resx">
+      <DependentUpon>TagLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ViewHistoryFilter.resx">
       <DependentUpon>ViewHistoryFilter.cs</DependentUpon>
