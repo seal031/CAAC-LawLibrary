@@ -34,6 +34,13 @@ namespace CAAC_LawLibrary
             cbb_tag.ValueMember = "Key";
             this.WindowState = FormWindowState.Maximized;//打开时最大化
             setFlpTopDownOnly(flp_comment);
+            wb.DocumentCompleted += Wb_DocumentCompleted;
+        }
+
+        private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            //绑定小标签
+            addTagLabels();
         }
 
         /// <summary>
@@ -76,7 +83,10 @@ namespace CAAC_LawLibrary
                 //远程获取评论
                 RemoteWorker.getOpinionList(law.Id);
                 //加载评论
-                loadComment();
+                if (Global.online && string.IsNullOrEmpty(law.isLocal))
+                {
+                    loadComment();
+                }
                 //加载文档信息
                 lawInfo1.law = law;
                 lawInfo1.fillLawInfo();
@@ -219,6 +229,37 @@ namespace CAAC_LawLibrary
             }
         }
 
+        private void addTagLabels()
+        {
+            foreach (DevComponents.AdvTree.Node treeNode in NodeTree.Nodes)
+            {
+                if (treeNode.Tag != null)
+                {
+                    Node node = treeNode.Tag as Node;
+                    addTagLabel(node);
+                }
+            }
+        }
+        private void addTagLabel(Node node)
+        {
+            foreach (HtmlElement item in wb.Document.All)
+            {
+                if (item.InnerText != null)
+                {
+                    string content = item.OuterHtml.ToLower();
+                    content = ClearChar(content);
+                    if (item.OuterHtml.ToLower().Contains(node.content))
+                    {
+                        Point point = GetPointTail(item);
+                        TagLabel tagLabel = new TagLabel();
+                        wb.Controls.Add(tagLabel);
+                        tagLabel.Location = point;
+                        
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 文字定位
         /// </summary>
@@ -229,43 +270,45 @@ namespace CAAC_LawLibrary
             {
                 if (item.InnerText != null)
                 {
-                    //string content = item.InnerText;
-                    //title = HtmlCleaner.clean(title);
-                    //title = ClearChar(title);
-                    ////if (ClearChar(content) == title)
-                    //if (ClearChar(content).IndexOf(title) == 0)
-                    //{
-                    //    Point point = GetPoint(item);
-                    //    wb.Document.Window.ScrollTo(point.X, point.Y);//滚动条至指定位置
-                    //    break;
-                    //}
-
                     string content = item.OuterHtml.ToLower();
                     content = ClearChar(content);
                     if (isTag)
                     {
                         if (item.OuterHtml.ToLower().Contains(title))
                         {
-                            Point point = GetPoint(item);
+                            Point point = GetPointHead(item);
                             wb.Document.Window.ScrollTo(0, point.Y);//滚动条至指定位置
-                                                                          //break;
+                            //break;
                         }
                     }
                     else
                     {
                         if (title.IndexOf(content) == 0)
                         {
-                            Point point = GetPoint(item);
+                            Point point = GetPointHead(item);
                             wb.Document.Window.ScrollTo(point.X, point.Y);//滚动条至指定位置
-                                                                          //break;
+                            //break;
                         }
                     }
                 }
             }
         }
-        private Point GetPoint(HtmlElement el)
+        private Point GetPointHead(HtmlElement el)
         {
             Point pos = new Point(el.OffsetRectangle.Left, el.OffsetRectangle.Top);
+            //循环获取父级的坐标
+            HtmlElement tempEl = el.OffsetParent;
+            while (tempEl != null)
+            {
+                pos.X += tempEl.OffsetRectangle.Left;
+                pos.Y += tempEl.OffsetRectangle.Top;
+                tempEl = tempEl.OffsetParent;
+            }
+            return pos;
+        }
+        private Point GetPointTail(HtmlElement el)
+        {
+            Point pos = new Point(el.OffsetRectangle.Right, el.OffsetRectangle.Top);
             //循环获取父级的坐标
             HtmlElement tempEl = el.OffsetParent;
             while (tempEl != null)
@@ -299,6 +342,15 @@ namespace CAAC_LawLibrary
             findLocation(outerHTML,true);
         }
 
-        public void SetAutoWrap(bool value) { mshtml.HTMLDocument doc = this.wb.Document.DomDocument as mshtml.HTMLDocument; if (doc != null) { mshtml.HTMLBody body = doc.body as mshtml.HTMLBody; if (body != null) { body.noWrap = !value; } } }
+        public void SetAutoWrap(bool value)
+        {
+            mshtml.HTMLDocument doc = this.wb.Document.DomDocument as mshtml.HTMLDocument;
+            if (doc != null)
+            {
+                mshtml.HTMLBody body = doc.body as mshtml.HTMLBody;
+                if (body != null)
+                { body.noWrap = !value; }
+            }
+        }
     }
 }
