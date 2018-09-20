@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +26,7 @@ namespace CAAC_LawLibrary
         private DbHelper db = new DbHelper();
         public Form parentForm;
         private int commentShownCount = 0;
+        bool bindState = false;
 
         public LawView()
         {
@@ -32,6 +34,7 @@ namespace CAAC_LawLibrary
             cbb_tag.DataSource = new BindingSource(Global.tag, null); ;
             cbb_tag.DisplayMember = "Value";
             cbb_tag.ValueMember = "Key";
+            bindState = true;
             this.WindowState = FormWindowState.Maximized;//打开时最大化
             setFlpTopDownOnly(flp_comment);
             wb.DocumentCompleted += Wb_DocumentCompleted;
@@ -183,13 +186,14 @@ namespace CAAC_LawLibrary
             xdls.Show(this);
         }
 
-        private void bindTagsToDGW(string tagType = "")
+        private void bindTagsToDGW(string tagType = "全")
         {
             if (tags != null)
             {
                 var list = from t in tags
-                           where tagType == "" ? 1 == 1 : t.TagType == tagType
+                           where tagType == "全" ? 1 == 1 : t.TagType == tagType
                            select t;
+                dgw.Rows.Clear();
                 foreach (NodeTag tag in list)
                 {
                     DataGridViewRow row = new DataGridViewRow();
@@ -350,6 +354,15 @@ namespace CAAC_LawLibrary
                 mshtml.HTMLBody body = doc.body as mshtml.HTMLBody;
                 if (body != null)
                 { body.noWrap = !value; }
+            }
+        }
+
+        private void cbb_tag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bindState)
+            {
+                var selectedTag = (DictionaryEntry)(cbb_tag.SelectedItem);
+                bindTagsToDGW(tagType: selectedTag.Key.ToString());
             }
         }
     }
