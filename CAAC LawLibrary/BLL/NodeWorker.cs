@@ -15,14 +15,15 @@ namespace CAAC_LawLibrary.BLL
     {
         public static string buildFromNodeContext(AdvTree NodeTree,List<CAAC_LawLibrary.Entity.Node> nodes)
         {
-            string content = string.Empty;
+            StringBuilder contentBuilder = new StringBuilder();
+            contentBuilder.Append("<html><head></head><body>");
             DevComponents.AdvTree.Node perTreeNode=null;
             foreach (CAAC_LawLibrary.Entity.Node node in nodes)
             {
                 DevComponents.AdvTree.Node treeNode = new DevComponents.AdvTree.Node();
                 treeNode.Text = node.title;
                 treeNode.Tag = node;
-                content += node.content + Environment.NewLine; 
+                contentBuilder.Append(node.content+" <" + Environment.NewLine);
                 if (perTreeNode == null)//第一个节点
                 {
                     treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Folder;
@@ -58,6 +59,8 @@ namespace CAAC_LawLibrary.BLL
 
                 perTreeNode = treeNode;
             }
+            contentBuilder.Append("</body");
+            string content = contentBuilder.ToString();
             return content;
         }
 
