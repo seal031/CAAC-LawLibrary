@@ -122,3 +122,4 @@ C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibr
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.AddNewSuggest.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.AddNewSuggest.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.TagLabel.resources
+C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.TagLabel.resources

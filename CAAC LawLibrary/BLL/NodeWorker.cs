@@ -16,14 +16,39 @@ namespace CAAC_LawLibrary.BLL
         public static string buildFromNodeContext(AdvTree NodeTree,List<CAAC_LawLibrary.Entity.Node> nodes)
         {
             StringBuilder contentBuilder = new StringBuilder();
-            contentBuilder.Append("<html><head></head><body>");
+            contentBuilder.Append("<html><head><script>function btnClick(nodeId,tagLabelType){window.external.CallFunction(nodeId,tagLabelType);}</script></head><body>");
             DevComponents.AdvTree.Node perTreeNode=null;
             foreach (CAAC_LawLibrary.Entity.Node node in nodes)
             {
                 DevComponents.AdvTree.Node treeNode = new DevComponents.AdvTree.Node();
                 treeNode.Text = node.title;
                 treeNode.Tag = node;
-                contentBuilder.Append(node.content+" <" + Environment.NewLine);
+                string btnTag = getButtonHtml("征", node.Id);
+                btnTag += getButtonHtml("评", node.Id);
+                List<string> list = node.content.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                foreach (string part in list)
+                {
+                    if (part.Contains("<s data-obj="))
+                    {
+                        string s = part.Substring(part.IndexOf("<s data-obj="));
+                        //string stringToReplace = s.Substring(0,s.IndexOf(">") + 1);
+                        int sIndex = s.IndexOf("\"") + 1;
+                        int eIndex = s.LastIndexOf("\"");
+                        string dataObject = string.Empty;
+                        if (eIndex > sIndex)
+                        {
+                            dataObject = s.Substring(sIndex, eIndex - sIndex);
+                            List<string> kv = dataObject.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                            if (kv.Count > 1)
+                            {
+                                string buttonHtml = getButtonHtml(kv[0], node.Id);
+                                node.content = node.content.Replace(s, buttonHtml);
+                            }
+                        }
+                    }
+                }
+
+                contentBuilder.Append(node.title + btnTag + Environment.NewLine + node.content + Environment.NewLine);
                 if (perTreeNode == null)//第一个节点
                 {
                     treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Folder;
@@ -59,7 +84,7 @@ namespace CAAC_LawLibrary.BLL
 
                 perTreeNode = treeNode;
             }
-            contentBuilder.Append("</body");
+            contentBuilder.Append("</body>");
             string content = contentBuilder.ToString();
             return content;
         }
@@ -124,6 +149,26 @@ namespace CAAC_LawLibrary.BLL
                     return Color.Blue;
                 default:
                     return Color.White;
+            }
+        }
+        private static string getButtonHtml(string tagType,string nodeId)
+        {
+            switch (tagType)
+            {
+                case "define":
+                    return " <input type=\"button\" value=\"定\" style=\"background-color:#FFFF00;width:25px;height:25px\" onclick=btnClick(" + nodeId + ",'定')>";
+                case "key":
+                    return " <input type=\"button\" value=\"键\" style=\"background-color:#FFA500;width:25px;height:25px\" onclick=btnClick(" + nodeId + ",'键')>";
+                case "class":
+                    return " <input type=\"button\" value=\"类\" style=\"background-color:#808080;width:25px;height:25px\" onclick=btnClick(" + nodeId + ",'类')>";
+                case "":
+                    return " <input type=\"button\" value=\"定\" style=\"background-color:#0000FF;width:25px;height:25px\" onclick=btnClick(" + nodeId + ",'定')>";
+                case "评":
+                    return " <input type=\"button\" value=\"评\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnClick(" + nodeId + ",'评')>";
+                case "征":
+                    return " <input type=\"button\" value=\"征\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnClick(" + nodeId + ",'征')>";
+                default:
+                    return "";
             }
         }
         private static string getTypeCN(string tagType)

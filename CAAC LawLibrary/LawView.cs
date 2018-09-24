@@ -13,9 +13,13 @@ using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
 using CAAC_LawLibrary.UserControls;
 using CAAC_LawLibrary.Utity;
+using System.Security.Permissions;
+using System.Runtime.InteropServices;
 
 namespace CAAC_LawLibrary
 {
+    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+    [ComVisible(true)]//COM+组件可见
     public partial class LawView : Form
     {
         public string lawId = string.Empty;
@@ -38,12 +42,13 @@ namespace CAAC_LawLibrary
             this.WindowState = FormWindowState.Maximized;//打开时最大化
             setFlpTopDownOnly(flp_comment);
             wb.DocumentCompleted += Wb_DocumentCompleted;
+            wb.ObjectForScripting = this;
         }
 
         private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             //绑定小标签
-            addTagLabels();
+            //addTagLabels();
         }
 
         /// <summary>
@@ -74,15 +79,15 @@ namespace CAAC_LawLibrary
                 {
                     RemoteWorker.getBookContent(law.Id);
                 }
-                //绑定树结构
                 nodes = db.getNodeByLawId(law.Id);
+                //绑定关系
+                tags = NodeWorker.buildRelationFromNode(nodes);
+                bindTagsToDGW();
+                //绑定树结构
                 string content = NodeWorker.buildFromNodeContext(NodeTree,nodes);
                 //绑定法规内容
                 wb.DocumentText = content;
                 SetAutoWrap(true);
-                //绑定关系
-                tags = NodeWorker.buildRelationFromNode(nodes);
-                bindTagsToDGW();
                 //远程获取评论
                 RemoteWorker.getOpinionList(law.Id);
                 //加载评论
@@ -364,6 +369,19 @@ namespace CAAC_LawLibrary
                 var selectedTag = (DictionaryEntry)(cbb_tag.SelectedItem);
                 bindTagsToDGW(tagType: selectedTag.Key.ToString());
             }
+        }
+
+        public void CallFunction(params object[] paramList)
+        {
+            string nodeId = paramList[0].ToString();
+            string tagType = paramList[1].ToString();
+
+            bt.SetBalloonText(wb,nodeId);
+            bt.SetBalloonCaption(wb, tagType);
+
+            Point p = Control.MousePosition;
+            p.Offset(-bt.BalloonControl.TipOffset, bt.BalloonControl.TipLength + 4);
+            bt.BalloonControl.Location = p;
         }
     }
 }
