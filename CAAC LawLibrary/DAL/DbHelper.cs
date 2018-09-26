@@ -370,6 +370,7 @@ namespace CAAC_LawLibrary.DAL
                 var list = from vh in context.ViewHistory.Where(v => v.UserID == Global.user.Id)
                            from law in laws
                            where vh.LawID==law.Id && vh.UserID==law.userId
+                           orderby vh.ViewDate descending
                            select vh;
                 return list.ToList();
             }

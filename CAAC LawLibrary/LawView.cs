@@ -376,11 +376,46 @@ namespace CAAC_LawLibrary
             string nodeId = paramList[0].ToString();
             string tagType = paramList[1].ToString();
 
-            bt.SetBalloonText(wb,nodeId);
-            bt.SetBalloonCaption(wb, tagType);
+            switch (tagType)
+            {
+                case "征":
+                    AddNewSuggest suggest = new AddNewSuggest();
+                    suggest.lawId = lawId;
+                    suggest.nodeId = nodeId;
+                    suggest.ShowDialog(this);
+                    break;
+                case "评":
+                    AddNewComment comment = new AddNewComment();
+                    comment.nodeId = nodeId;
+                    comment.lawId = lawId;
+                    comment.ShowDialog(this);
+                    break;
+                case "定":
+                    
+                    break;
+                case "类":
+
+                    break;
+                case "键":
+
+                    break;
+                case "罚":
+
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        private void showBalloon(string caption, string text,string nodeId)
+        {
+            bt.SetBalloonText(wb, text);
+            bt.SetBalloonCaption(wb, caption);
 
             Point p = Control.MousePosition;
-            p.Offset(-bt.BalloonControl.TipOffset, bt.BalloonControl.TipLength + 4);
+            bt.ShowBalloon(wb);
+            p.Offset(-bt.BalloonControl.TipOffset, bt.BalloonControl.TipLength - 100);
             bt.BalloonControl.Location = p;
         }
     }

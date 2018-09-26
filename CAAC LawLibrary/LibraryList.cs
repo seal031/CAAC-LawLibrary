@@ -170,6 +170,7 @@ namespace CAAC_LawLibrary
             if (found == false)
             {
                 ViewHistoryListItem item = new ViewHistoryListItem();
+                item.parentForm = this;
                 item.viewHistory = history;
                 item.fillViewHistory();
                 flp_viewHistory.Controls.Add(item);
