@@ -75,7 +75,7 @@ namespace CAAC_LawLibrary
             if (law != null)
             {
                 //如果在线，且未下载到本地，则从远程获取章节信息，并入库
-                if (Global.online&&string.IsNullOrEmpty(law.isLocal))
+                if (Global.online && "0" == law.isLocal)
                 {
                     RemoteWorker.getBookContent(law.Id);
                 }
@@ -91,7 +91,7 @@ namespace CAAC_LawLibrary
                 //远程获取评论
                 RemoteWorker.getOpinionList(law.Id);
                 //加载评论
-                if (Global.online && string.IsNullOrEmpty(law.isLocal))
+                if (Global.online)// && string.IsNullOrEmpty(law.isLocal))
                 {
                     loadComment();
                 }
@@ -211,7 +211,7 @@ namespace CAAC_LawLibrary
                 }
             }
         }
-
+        //点击树定位
         private void NodeTree_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
         {
             DevComponents.AdvTree.Node clickedNode = e.Node;
@@ -237,49 +237,57 @@ namespace CAAC_LawLibrary
                 }
             }
         }
+        //点击右侧列表定位
+        private void dgw_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string outerHTML = dgw.Rows[e.RowIndex].Cells["OuterHTML"].Value.ToString();
+            findLocation(outerHTML, true);
+        }
 
-        private void addTagLabels()
-        {
-            foreach (DevComponents.AdvTree.Node treeNode in NodeTree.Nodes)
-            {
-                if (treeNode.Tag != null)
-                {
-                    Node node = treeNode.Tag as Node;
-                    addTagLabel(node);
-                }
-            }
-        }
-        private void addTagLabel(Node node)
-        {
-            foreach (HtmlElement item in wb.Document.All)
-            {
-                if (item.InnerText != null)
-                {
-                    string content = item.OuterHtml.ToLower();
-                    content = ClearChar(content);
-                    if (item.OuterHtml.ToLower().Contains(node.content))
-                    {
-                        Point point = GetPointTail(item);
-                        TagLabel tagLabel = new TagLabel();
-                        wb.Controls.Add(tagLabel);
-                        tagLabel.Location = point;
-                        
-                    }
-                }
-            }
-        }
+        //private void addTagLabels()
+        //{
+        //    foreach (DevComponents.AdvTree.Node treeNode in NodeTree.Nodes)
+        //    {
+        //        if (treeNode.Tag != null)
+        //        {
+        //            Node node = treeNode.Tag as Node;
+        //            addTagLabel(node);
+        //        }
+        //    }
+        //}
+        //private void addTagLabel(Node node)
+        //{
+        //    foreach (HtmlElement item in wb.Document.All)
+        //    {
+        //        if (item.InnerText != null)
+        //        {
+        //            string content = item.OuterHtml.ToLower();
+        //            content = ClearChar(content);
+        //            if (item.OuterHtml.ToLower().Contains(node.content))
+        //            {
+        //                Point point = GetPointTail(item);
+        //                TagLabel tagLabel = new TagLabel();
+        //                wb.Controls.Add(tagLabel);
+        //                tagLabel.Location = point;
+
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 文字定位
         /// </summary>
         /// <param name="title"></param>
+        /// <param name="isTag">是否来着右侧列表的定位</param>
         private void findLocation(string title,bool isTag=false)
         {
+            string content = string.Empty;
             foreach (HtmlElement item in wb.Document.All)
             {
                 if (item.InnerText != null)
                 {
-                    string content = item.OuterHtml.ToLower();
+                    content = item.OuterHtml.ToLower();
                     content = ClearChar(content);
                     if (isTag)
                     {
@@ -315,19 +323,19 @@ namespace CAAC_LawLibrary
             }
             return pos;
         }
-        private Point GetPointTail(HtmlElement el)
-        {
-            Point pos = new Point(el.OffsetRectangle.Right, el.OffsetRectangle.Top);
-            //循环获取父级的坐标
-            HtmlElement tempEl = el.OffsetParent;
-            while (tempEl != null)
-            {
-                pos.X += tempEl.OffsetRectangle.Left;
-                pos.Y += tempEl.OffsetRectangle.Top;
-                tempEl = tempEl.OffsetParent;
-            }
-            return pos;
-        }
+        //private Point GetPointTail(HtmlElement el)
+        //{
+        //    Point pos = new Point(el.OffsetRectangle.Right, el.OffsetRectangle.Top);
+        //    //循环获取父级的坐标
+        //    HtmlElement tempEl = el.OffsetParent;
+        //    while (tempEl != null)
+        //    {
+        //        pos.X += tempEl.OffsetRectangle.Left;
+        //        pos.Y += tempEl.OffsetRectangle.Top;
+        //        tempEl = tempEl.OffsetParent;
+        //    }
+        //    return pos;
+        //}
 
         private string ClearChar(string str)
         {
@@ -345,11 +353,6 @@ namespace CAAC_LawLibrary
             suggest.Show(this);
         }
 
-        private void dgw_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string outerHTML = dgw.Rows[e.RowIndex].Cells["OuterHTML"].Value.ToString();
-            findLocation(outerHTML,true);
-        }
 
         public void SetAutoWrap(bool value)
         {
@@ -391,16 +394,19 @@ namespace CAAC_LawLibrary
                     comment.ShowDialog(this);
                     break;
                 case "定":
-                    
+                    showBalloon("定义","",nodeId);
                     break;
                 case "类":
-
+                    showBalloon("业务分类", "", nodeId);
                     break;
                 case "键":
-
+                    showBalloon("自定义关键字", "", nodeId);
+                    break;
+                case "依":
+                    showBalloon("依赖", "", nodeId);
                     break;
                 case "罚":
-
+                    showBalloon("罚则", "", nodeId);
                     break;
                 default:
                     break;

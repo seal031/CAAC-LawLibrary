@@ -85,7 +85,6 @@ D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.xml
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.xml
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.xml
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.dll.config
-D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojAssemblyReference.cache
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestForm.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseFilter.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseListItem.resources
@@ -106,7 +105,6 @@ D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.CoreC
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.CopyComplete
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.exe
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.pdb
-D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.xml
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestForm.resources
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.LawInfo.resources
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.CommentItem.resources

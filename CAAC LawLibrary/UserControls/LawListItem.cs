@@ -135,5 +135,11 @@ namespace CAAC_LawLibrary
             ccb_version.ValueMember = "Key";
             bindState = true;
         }
+
+        private void ckb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckb.Checked) { isChecked = true; }
+            else { isChecked = false; }
+        }
     }
 }

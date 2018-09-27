@@ -70,7 +70,7 @@ namespace CAAC_LawLibrary.Entity
         /// </summary>
         public string userId { get; set; }
         /// <summary>
-        /// 下载进度
+        /// 下载进度，为null时表示未添加至下载任务
         /// </summary>
         public int? downloadPercent { get; set; }
         /// <summary>

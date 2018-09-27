@@ -235,6 +235,7 @@ namespace CAAC_LawLibrary.BLL.Entity
                 law.lastversion = list.lastversion;
                 law.userLabel = list.tag;//string.Join(",", list.tagList.Select(t => t.desc));
                 law.yewu = list.biz;//string.Join(",", list.bizList.Select(b => b.desc));
+                law.isLocal = "0";
                 laws.Add(law);
             }
             return laws;

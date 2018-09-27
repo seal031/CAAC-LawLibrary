@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAAC LawLibrary", "CAAC LawLibrary\CAAC LawLibrary.csproj", "{9C4EA409-07C4-4A5C-AC33-834896612117}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CAAC LawLibrary Setup", "CAAC LawLibrary Setup\CAAC LawLibrary Setup.vdproj", "{32BAEDC5-983A-4D12-AB7D-31F2BE26F8D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,13 @@ Global
 		{9C4EA409-07C4-4A5C-AC33-834896612117}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C4EA409-07C4-4A5C-AC33-834896612117}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C4EA409-07C4-4A5C-AC33-834896612117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32BAEDC5-983A-4D12-AB7D-31F2BE26F8D1}.Debug|Any CPU.ActiveCfg = Debug
+		{32BAEDC5-983A-4D12-AB7D-31F2BE26F8D1}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {747D9410-BBA2-4B1F-B897-4A8929090317}
 	EndGlobalSection
 EndGlobal

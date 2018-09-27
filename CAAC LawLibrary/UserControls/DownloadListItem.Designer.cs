@@ -46,6 +46,8 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.ckb);
+            this.panel2.Controls.SetChildIndex(this.lbl_effectiveDate, 0);
+            this.panel2.Controls.SetChildIndex(this.lbl_expiryDate, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_title, 0);
             this.panel2.Controls.SetChildIndex(this.lable1, 0);
             this.panel2.Controls.SetChildIndex(this.label2, 0);
@@ -56,28 +58,33 @@
             // ckb
             // 
             this.ckb.AutoSize = true;
-            this.ckb.Location = new System.Drawing.Point(18, 7);
+            this.ckb.Location = new System.Drawing.Point(14, 6);
+            this.ckb.Margin = new System.Windows.Forms.Padding(2);
             this.ckb.Name = "ckb";
-            this.ckb.Size = new System.Drawing.Size(18, 17);
+            this.ckb.Size = new System.Drawing.Size(15, 14);
             this.ckb.TabIndex = 7;
             this.ckb.UseVisualStyleBackColor = true;
+            this.ckb.CheckedChanged += new System.EventHandler(this.ckb_CheckedChanged);
             // 
             // lbl_delete
             // 
             this.lbl_delete.AutoSize = true;
-            this.lbl_delete.Location = new System.Drawing.Point(1254, 18);
+            this.lbl_delete.Location = new System.Drawing.Point(940, 14);
+            this.lbl_delete.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_delete.Name = "lbl_delete";
-            this.lbl_delete.Size = new System.Drawing.Size(67, 15);
+            this.lbl_delete.Size = new System.Drawing.Size(53, 12);
             this.lbl_delete.TabIndex = 4;
             this.lbl_delete.TabStop = true;
             this.lbl_delete.Text = "删除任务";
+            this.lbl_delete.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbl_delete_LinkClicked);
             // 
             // DownloadListItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DownloadListItem";
+            this.Load += new System.EventHandler(this.DownloadListItem_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

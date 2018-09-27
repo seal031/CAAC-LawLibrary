@@ -47,5 +47,9 @@ namespace CAAC_LawLibrary.Utity
         /// 排序方式
         /// </summary>
         public int sort { get; set; }
+        /// <summary>
+        /// 是否在下载任务中
+        /// </summary>
+        public int? downloadState { get; set; }
     }
 }

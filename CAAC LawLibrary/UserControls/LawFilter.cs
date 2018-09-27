@@ -27,21 +27,22 @@ namespace CAAC_LawLibrary
         private void ckb_showDownloaded_CheckedChanged(object sender, EventArgs e)
         {
             queryParam.downloaded = ckb_showDownloaded.Checked ? "1" : "0";
+            ((LibraryList)parentForm).loadLocalLawList();
         }
 
         private void 下载已选项到本地库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ((LibraryList)parentForm).downloadSelectedLawToLocal();
         }
 
         private void 从本地库移除已选项ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ((LibraryList)parentForm).removeSelectedLocalLaw();
         }
 
         private void 清空本地库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ((LibraryList)parentForm).clearLocal();
         }
 
         private void ckb_selectAll_CheckedChanged(object sender, EventArgs e)

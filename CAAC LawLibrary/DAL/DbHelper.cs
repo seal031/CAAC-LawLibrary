@@ -20,6 +20,8 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+
+
         public List<Law> getLaws(QueryParam param)
         {
             using (SqliteContext context = new SqliteContext())
@@ -30,8 +32,10 @@ namespace CAAC_LawLibrary.DAL
                             && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
                             && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
                             && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
+                            && (param.downloaded != "1" ? 1 == 1 : law.isLocal == param.downloaded)
+                            && (param.downloadState.HasValue ? law.downloadPercent == param.downloadState : 1==1)
                             select law).ToList();
-                return list.ToList() ;
+                return list.ToList();
             }
         }
 
@@ -48,7 +52,26 @@ namespace CAAC_LawLibrary.DAL
                     }
                     else
                     {
-                        old = law;
+                        old.name = law.name;
+                        old.buhao = law.buhao;
+                        old.digest = law.digest;
+                        old.effectiveDate = law.effectiveDate;
+                        old.expiryDate = law.expiryDate;
+                        old.keyword = law.keyword;
+                        old.lastversion = law.lastversion;
+                        old.linghao = law.linghao;
+                        old.siju = law.siju;
+                        old.status = law.status;
+                        old.title = law.title;
+                        old.userLabel = law.userLabel;
+                        old.version = law.version;
+                        old.weijie = law.weijie;
+                        old.xiudingling = law.xiudingling;
+                        old.yewu = law.yewu;
+                        old.yilai = law.yilai;
+                        old.zefa = law.zefa;
+                        old.downloadPercent = law.downloadPercent;
+                        old.downloadDate = law.downloadDate;
                     }
                     context.SaveChanges();
                     return true;
@@ -366,6 +389,7 @@ namespace CAAC_LawLibrary.DAL
                            && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
                            && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
                            && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
+                           && (param.downloaded != "1" ? 1 == 1 : law.isLocal == param.downloaded)
                            select law;
                 var list = from vh in context.ViewHistory.Where(v => v.UserID == Global.user.Id)
                            from law in laws

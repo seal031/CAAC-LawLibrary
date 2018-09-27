@@ -23,6 +23,8 @@ namespace CAAC_LawLibrary
         {
             InitializeComponent();
             lawFilter.parentForm = this;
+            viewHistoryFilter.parentForm = this;
+            downloadFilter.parentForm = this;
             setFlpTopDownOnly(flp_libraryList);
             setFlpTopDownOnly(flp_viewHistory);
             setFlpTopDownOnly(flp_downloadTask);
@@ -43,16 +45,6 @@ namespace CAAC_LawLibrary
             flp.AutoScroll = true;
         }
 
-        /// <summary>
-        /// 窗体关闭时退出程序
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LibraryList_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            System.Environment.Exit(0);
-        }
-
         private void LibraryList_Load(object sender, EventArgs e)
         {
             if (Global.online) { this.Text = "联网模式"; }
@@ -63,7 +55,7 @@ namespace CAAC_LawLibrary
         }
 
         #region 加载3个列表
-        private void loadLocalLawList()
+        public void loadLocalLawList()
         {
             removeFromFlp(flp_libraryList);
             List<Law> list = db.getLaws(lawFilter.queryParam);
@@ -93,7 +85,7 @@ namespace CAAC_LawLibrary
             }
         }
 
-        private void loadViewHistoryList()
+        public void loadViewHistoryList()
         {
             removeFromFlp(flp_viewHistory);
             List<ViewHistory> list = db.getViewHistory(viewHistoryFilter.queryParam);
@@ -107,7 +99,7 @@ namespace CAAC_LawLibrary
             }
         }
 
-        private void loadDownLoadList()
+        public void loadDownLoadList()
         {
             removeFromFlp(flp_downloadTask);
             List<Law> list = db.getLaws(downloadFilter.queryParam).Where(l=>l.downloadPercent!=null).ToList();
@@ -115,6 +107,7 @@ namespace CAAC_LawLibrary
             {
                 DownloadListItem item = new DownloadListItem();
                 item.law = law;
+                item.parentForm = this;
                 flp_downloadTask.Controls.Add(item);
             }
         }
@@ -128,19 +121,38 @@ namespace CAAC_LawLibrary
             }
         }
         #endregion
+
+        #region 法规列表使用
         /// <summary>
         /// 下载到本地库
         /// </summary>
         public void downloadSelectedLawToLocal()
         {
-
+            for (int i = 1; i < flp_libraryList.Controls.Count; i++)
+            {
+                var lawItem = flp_libraryList.Controls[i] as LawListItem;
+                if (lawItem.isChecked)
+                {
+                    Law law = lawItem.law;
+                    law.downloadPercent = 0;
+                    law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    db.saveLaw(lawItem.law);
+                }
+            }
         }
         /// <summary>
         /// 从本地库移除
         /// </summary>
         public void removeSelectedLocalLaw()
         {
-
+            for (int i = 1; i < flp_libraryList.Controls.Count; i++)
+            {
+                var lawItem = flp_libraryList.Controls[i] as LawListItem;
+                if (lawItem.isChecked)
+                {
+                    db.removeLawFromLocal(lawItem.law);
+                }
+            }
         }
         /// <summary>
         /// 清空本地库
@@ -149,7 +161,65 @@ namespace CAAC_LawLibrary
         {
             db.clearHistory();
         }
+        public void lawCheckBoxChange()
+        {
+            foreach (var item in flp_libraryList.Controls)
+            {
+                var lawItem = item as LawListItem;
+                if (lawItem == null) continue;
+                lawItem.checkChange();
+            }
+        }
+        #endregion
 
+        #region 下载列表使用
+        public void downloadCheckBoxChange()
+        {
+            foreach (var item in flp_downloadTask.Controls)
+            {
+                var downloadListItem = item as DownloadListItem;
+                if (downloadListItem == null) continue;
+                downloadListItem.checkChange();
+            }
+        }
+        public void updateLaw(Law law)
+        {
+            db.saveLaw(law);
+        }
+        /// <summary>
+        /// 筛选全部任务、下载中、已完成
+        /// </summary>
+        /// <param name="state"></param>
+        public void downloadPicker(string state)
+        {
+            if (state == "0")
+            {
+                foreach (Control item in flp_downloadTask.Controls)
+                {
+                    item.Show();
+                }
+            }
+            else
+            {
+                foreach (Control item in flp_downloadTask.Controls)
+                {
+                    if (item is DownloadListItem)
+                    {
+                        if (((DownloadListItem)item).downloadState == state)
+                        {
+                            item.Show();
+                        }
+                        else
+                        {
+                            item.Hide();
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region 阅读历史列表使用
         /// <summary>
         /// 将阅读历史主动加到阅读历史列表中，避免再次查库。加入时，如果列表中没有相同的法规，则新增，如果有，则将其提至第一条
         /// </summary>
@@ -177,16 +247,7 @@ namespace CAAC_LawLibrary
                 flp_viewHistory.Controls.SetChildIndex(item, 1);
             }
         }
-
-        public void lawCheckBoxChange()
-        {
-            foreach (var item in flp_libraryList.Controls)
-            {
-                var lawItem = item as LawListItem;
-                if (lawItem == null) continue;
-                lawItem.checkChange();
-            }
-        }
+        #endregion
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
@@ -200,5 +261,15 @@ namespace CAAC_LawLibrary
                 this.Close();
             }
         }
+        /// <summary>
+        /// 窗体关闭时退出程序
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LibraryList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
+
     }
 }

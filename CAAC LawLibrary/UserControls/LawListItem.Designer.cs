@@ -69,6 +69,7 @@
             this.ckb.Size = new System.Drawing.Size(15, 14);
             this.ckb.TabIndex = 6;
             this.ckb.UseVisualStyleBackColor = true;
+            this.ckb.CheckedChanged += new System.EventHandler(this.ckb_CheckedChanged);
             // 
             // ccb_version
             // 

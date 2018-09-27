@@ -33,6 +33,7 @@ namespace CAAC_LawLibrary.Utity
         public static string SetListApi= RemoteUrl + ConfigWorker.GetConfigValue("SetList");
 
         public static List<DictionaryEntry> SortSource = new List<DictionaryEntry>();
+        public static List<DictionaryEntry> DownloadState = new List<DictionaryEntry>();
         public static List<Code> siju = new List<Code>();
         public static List<Code> yewu = new List<Code>();
         public static List<Code> buhao = new List<Code>();
@@ -47,6 +48,10 @@ namespace CAAC_LawLibrary.Utity
         {
             SortSource.Add(new DictionaryEntry(1,"时间倒序（默认）"));
             SortSource.Add(new DictionaryEntry(2, "首字母拼音排序"));
+
+            DownloadState.Add(new DictionaryEntry(0, "全部任务"));
+            DownloadState.Add(new DictionaryEntry(1, "下载中"));
+            DownloadState.Add(new DictionaryEntry(2, "已完成"));
 
             tag.Add(new DictionaryEntry("全","全部"));
             tag.Add(new DictionaryEntry("定", "定义"));
