@@ -61,9 +61,9 @@ namespace CAAC_LawLibrary
 
         private void downloadWork()
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i <= 100; i++)
             {
-                Thread.Sleep(500);
+                Thread.Sleep(50);
                 downLoadValue = i;
                 setDownloadState();
             }
@@ -77,7 +77,7 @@ namespace CAAC_LawLibrary
             }
             else
             {
-                lbl_downloadState.Text = downLoadValue.ToString();
+                lbl_downloadState.Text = downLoadValue.ToString()+"%";
             }
         }
 
@@ -140,5 +140,6 @@ namespace CAAC_LawLibrary
             law.downloadPercent = null;
             ((LibraryList)parentForm).updateLaw(law);
         }
+        
     }
 }

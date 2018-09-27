@@ -16,15 +16,15 @@ namespace CAAC_LawLibrary.BLL
         public static string buildFromNodeContext(AdvTree NodeTree,List<CAAC_LawLibrary.Entity.Node> nodes)
         {
             StringBuilder contentBuilder = new StringBuilder();
-            contentBuilder.Append("<html><head><script>function btnclick(nodeId,tagLabelType){window.external.CallFunction(nodeId,tagLabelType);}</script></head><body>");
+            contentBuilder.Append("<html><head><script>function btnclick(nodeId,tagLabelType,nodeTitle){window.external.CallFunction(nodeId,tagLabelType,nodeTitle);}</script></head><body>");
             DevComponents.AdvTree.Node perTreeNode=null;
             foreach (CAAC_LawLibrary.Entity.Node node in nodes)
             {
                 DevComponents.AdvTree.Node treeNode = new DevComponents.AdvTree.Node();
                 treeNode.Text = node.title;
                 treeNode.Tag = node;
-                string btnTag = getButtonHtml("征", node.Id);
-                btnTag += getButtonHtml("评", node.Id);
+                string btnTag = getButtonHtml("征", node.Id, node.title);
+                btnTag += getButtonHtml("评", node.Id, node.title);
                 List<string> list = node.content.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (string part in list)
                 {
@@ -41,7 +41,7 @@ namespace CAAC_LawLibrary.BLL
                             List<string> kv = dataObject.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                             if (kv.Count > 1)
                             {
-                                string buttonHtml = getButtonHtml(kv[0], node.Id);
+                                string buttonHtml = getButtonHtml(kv[0], node.Id,node.title);
                                 node.content = node.content.Replace(s, buttonHtml);
                             }
                         }
@@ -124,7 +124,7 @@ namespace CAAC_LawLibrary.BLL
                             tag.TagNode = kv[1];
                             tag.color = getColor(tag.TagType);
                             tag.TagType = getTypeCN(tag.TagType);
-                            tag.OuterHTML = getButtonHtml(kv[0], node.Id);
+                            tag.OuterHTML = getButtonHtml(kv[0], node.Id,node.title);
                         }
                     }
 
@@ -150,22 +150,22 @@ namespace CAAC_LawLibrary.BLL
                     return Color.White;
             }
         }
-        private static string getButtonHtml(string tagType,string nodeId)
+        private static string getButtonHtml(string tagType,string nodeId,string nodeTitle)
         {
             switch (tagType)
             {
                 case "define":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'定')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=定>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'定','" + nodeTitle + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=定>";
                 case "key":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'键')\" style=\"height: 25px; width: 25px; background-color: #ffa500\" type=button value=键>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'键','" + nodeTitle + "')\" style=\"height: 25px; width: 25px; background-color: #ffa500\" type=button value=键>";
                 case "class":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'类')\" style=\"height: 25px; width: 25px; background-color: #808080\" type=button value=类>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'类','" + nodeTitle + "')\" style=\"height: 25px; width: 25px; background-color: #808080\" type=button value=类>";
                 case "":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'键')\" sstyle=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=键>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'键','" + nodeTitle + "')\" sstyle=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=键>";
                 case "评":
-                    return " <input type=\"button\" value=\"评\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'评')>";
+                    return " <input type=\"button\" value=\"评\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'评','" + nodeTitle + "')>";
                 case "征":
-                    return " <input type=\"button\" value=\"征\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'征')>";
+                    return " <input type=\"button\" value=\"征\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'征','" + nodeTitle + "')>";
                 default:
                     return "";
             }

@@ -23,5 +23,10 @@ namespace CAAC_LawLibrary
             queryParam.downloaded = ckb_showDownloaded.Checked ? "1" : "0";
             ((LibraryList)parentForm).loadViewHistoryList();
         }
+
+        private void btn_clearHistory_Click(object sender, EventArgs e)
+        {
+            ((LibraryList)parentForm).clearHistory();
+        }
     }
 }

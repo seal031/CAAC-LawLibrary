@@ -41,6 +41,7 @@ namespace CAAC_LawLibrary.Utity
         public static List<Code> weijie = new List<Code>();
         public static List<Code> allCode = new List<Code>();
         public static List<DictionaryEntry> tag = new List<DictionaryEntry>();
+        static DbHelper db = new DbHelper();
 
         public static User user { get; set; }
 
@@ -60,7 +61,6 @@ namespace CAAC_LawLibrary.Utity
             tag.Add(new DictionaryEntry("依", "依赖"));
             tag.Add(new DictionaryEntry("罚", "罚则"));
 
-            DbHelper db = new DbHelper();
             siju = db.getCode("org");
             siju.Insert(0, new Code() { Id = null, desc = "不限司局" });
             yewu = db.getCode("biz");
@@ -72,11 +72,14 @@ namespace CAAC_LawLibrary.Utity
             weijie = db.getCode("type");
             weijie.Insert(0, new Code() { Id = null, desc = "不限位阶范围" });
 
-            allCode = db.getCode();
         }
-
+        
         public static string GetCodeValueById(string Id)
         {
+            if (allCode.Count == 0)
+            {
+                allCode = db.getCode();
+            }
             if (Id.Contains(","))
             {
                 var idList = Id.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);

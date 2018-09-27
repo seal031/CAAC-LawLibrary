@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            CAAC_LawLibrary.Entity.Code code1 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code2 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code3 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code4 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code5 = new CAAC_LawLibrary.Entity.Code();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewHistoryFilter));
             this.ckb_showDownloaded = new System.Windows.Forms.CheckBox();
             this.btn_clearHistory = new System.Windows.Forms.Button();
@@ -37,26 +42,56 @@
             // cbb_buhao
             // 
             this.cbb_buhao.DisplayMember = "desc";
+            code1.desc = "不限部号范围";
+            code1.Id = null;
+            code1.order = 0;
+            code1.type = null;
+            this.cbb_buhao.Items.AddRange(new object[] {
+            code1});
             this.cbb_buhao.ValueMember = "Id";
             // 
             // cbb_siju
             // 
             this.cbb_siju.DisplayMember = "desc";
+            code2.desc = "不限司局";
+            code2.Id = null;
+            code2.order = 0;
+            code2.type = null;
+            this.cbb_siju.Items.AddRange(new object[] {
+            code2});
             this.cbb_siju.ValueMember = "Id";
             // 
             // cbb_weijie
             // 
             this.cbb_weijie.DisplayMember = "desc";
+            code3.desc = "不限位阶范围";
+            code3.Id = null;
+            code3.order = 0;
+            code3.type = null;
+            this.cbb_weijie.Items.AddRange(new object[] {
+            code3});
             this.cbb_weijie.ValueMember = "Id";
             // 
             // cbb_yewu
             // 
             this.cbb_yewu.DisplayMember = "desc";
+            code4.desc = "不限业务分类";
+            code4.Id = null;
+            code4.order = 0;
+            code4.type = null;
+            this.cbb_yewu.Items.AddRange(new object[] {
+            code4});
             this.cbb_yewu.ValueMember = "Id";
             // 
             // cbb_zidingyi
             // 
             this.cbb_zidingyi.DisplayMember = "desc";
+            code5.desc = "不限自定义标签";
+            code5.Id = null;
+            code5.order = 0;
+            code5.type = null;
+            this.cbb_zidingyi.Items.AddRange(new object[] {
+            code5});
             this.cbb_zidingyi.ValueMember = "Id";
             // 
             // cbb_sort
@@ -70,9 +105,10 @@
             // ckb_showDownloaded
             // 
             this.ckb_showDownloaded.AutoSize = true;
-            this.ckb_showDownloaded.Location = new System.Drawing.Point(25, 74);
+            this.ckb_showDownloaded.Location = new System.Drawing.Point(19, 59);
+            this.ckb_showDownloaded.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckb_showDownloaded.Name = "ckb_showDownloaded";
-            this.ckb_showDownloaded.Size = new System.Drawing.Size(119, 19);
+            this.ckb_showDownloaded.Size = new System.Drawing.Size(96, 16);
             this.ckb_showDownloaded.TabIndex = 9;
             this.ckb_showDownloaded.Text = "仅显示已下载";
             this.ckb_showDownloaded.UseVisualStyleBackColor = true;
@@ -80,16 +116,18 @@
             // 
             // btn_clearHistory
             // 
-            this.btn_clearHistory.Location = new System.Drawing.Point(1132, 72);
+            this.btn_clearHistory.Location = new System.Drawing.Point(849, 58);
+            this.btn_clearHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_clearHistory.Name = "btn_clearHistory";
-            this.btn_clearHistory.Size = new System.Drawing.Size(164, 30);
+            this.btn_clearHistory.Size = new System.Drawing.Size(123, 24);
             this.btn_clearHistory.TabIndex = 10;
             this.btn_clearHistory.Text = "清空历史";
             this.btn_clearHistory.UseVisualStyleBackColor = true;
+            this.btn_clearHistory.Click += new System.EventHandler(this.btn_clearHistory_Click);
             // 
             // ViewHistoryFilter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btn_clearHistory);
             this.Controls.Add(this.ckb_showDownloaded);

@@ -68,5 +68,18 @@ namespace CAAC_LawLibrary
                 }
             }
         }
+
+        private void lbl_downloadState_Click(object sender, EventArgs e)
+        {
+            if (lbl_downloadState.Text == "下载")
+            {
+                ((LibraryList)parentForm).downloadSelectedLawToLocal(law);
+                lbl_downloadState.Text = "下载中……";
+            }
+            if (lbl_downloadState.Text == "从本地库移除")
+            {
+                ((LibraryList)parentForm).removeSelectedLocalLaw(law);
+            }
+        }
     }
 }

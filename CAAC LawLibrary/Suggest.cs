@@ -28,7 +28,7 @@ namespace CAAC_LawLibrary
 
         private void SuggestForm_Load(object sender, EventArgs e)
         {
-            list = db.getSuggests(LawId, Global.user.Id);
+            list = db.getLocalSuggests(LawId, Global.user.Id);
             foreach (Suggest suggest in list)
             {
                 SuggestItem si = new CAAC_LawLibrary.SuggestItem();

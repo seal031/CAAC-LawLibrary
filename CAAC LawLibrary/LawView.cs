@@ -378,19 +378,22 @@ namespace CAAC_LawLibrary
         {
             string nodeId = paramList[0].ToString();
             string tagType = paramList[1].ToString();
+            string nodeTitle = paramList[2].ToString();
 
             switch (tagType)
             {
                 case "征":
                     AddNewSuggest suggest = new AddNewSuggest();
-                    suggest.lawId = lawId;
+                    suggest.lawId = law.Id;
                     suggest.nodeId = nodeId;
+                    suggest.lbl_title.Text = nodeTitle;
                     suggest.ShowDialog(this);
                     break;
                 case "评":
                     AddNewComment comment = new AddNewComment();
                     comment.nodeId = nodeId;
-                    comment.lawId = lawId;
+                    comment.lawId = law.Id;
+                    comment.lbl_title.Text = nodeTitle;
                     comment.ShowDialog(this);
                     break;
                 case "定":

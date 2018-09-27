@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CAAC_LawLibrary.DAL
 {
@@ -190,6 +191,22 @@ namespace CAAC_LawLibrary.DAL
                 catch (Exception)
                 {
                     return new List<Node>();
+                }
+            }
+        }
+
+        public Node getNodeById(string nodeId)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                try
+                {
+                    return context.Node.FirstOrDefault(n => n.Id==nodeId);
+
+                }
+                catch (Exception)
+                {
+                    return new Node();
                 }
             }
         }
@@ -482,6 +499,8 @@ namespace CAAC_LawLibrary.DAL
                 return context.Suggest.Where(s => s.lawId == lawId && s.userId == userId && s.isLocal == "1").ToList();
             }
         }
+
+
 
         public bool saveSuggest(Suggest suggest)
         {

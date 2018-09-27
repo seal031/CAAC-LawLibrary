@@ -189,8 +189,11 @@
             this.ClientSize = new System.Drawing.Size(784, 810);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_title);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "SuggestForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "意见征询";
             this.Load += new System.EventHandler(this.SuggestForm_Load);
             this.panel1.ResumeLayout(false);

@@ -40,19 +40,29 @@ namespace CAAC_LawLibrary
             suggest.suggest_content = rtb_suggest.Text.Trim();
             suggest.suggest_date = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
             suggest.userId = Global.user.Id;
+            bool commitResult;
             if (Global.online)//联网状态下直接提交，提交失败时保存在本地数据库
             {
-                saveSuggestLocal(suggest);//todo 待确认
+                commitResult=saveSuggestLocal(suggest);//todo 待确认
             }
             else//断网状态下直接保存在本地数据库
             {
-                saveSuggestLocal(suggest);
+                commitResult=saveSuggestLocal(suggest);
+            }
+            if (commitResult)
+            {
+                MessageBox.Show("提交成功");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("提交失败");
             }
         }
 
-        private void saveSuggestLocal(Suggest suggest)
+        private bool saveSuggestLocal(Suggest suggest)
         {
-            db.saveSuggest(suggest);
+            return db.saveSuggest(suggest);
         }
     }
 }

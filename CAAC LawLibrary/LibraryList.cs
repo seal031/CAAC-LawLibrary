@@ -55,6 +55,9 @@ namespace CAAC_LawLibrary
         }
 
         #region 加载3个列表
+        /// <summary>
+        /// 加载法规列表
+        /// </summary>
         public void loadLocalLawList()
         {
             removeFromFlp(flp_libraryList);
@@ -84,7 +87,9 @@ namespace CAAC_LawLibrary
                 }
             }
         }
-
+        /// <summary>
+        /// 加载阅读历史列表
+        /// </summary>
         public void loadViewHistoryList()
         {
             removeFromFlp(flp_viewHistory);
@@ -98,7 +103,9 @@ namespace CAAC_LawLibrary
                 flp_viewHistory.Controls.Add(item);
             }
         }
-
+        /// <summary>
+        /// 加载下载列表
+        /// </summary>
         public void loadDownLoadList()
         {
             removeFromFlp(flp_downloadTask);
@@ -124,7 +131,7 @@ namespace CAAC_LawLibrary
 
         #region 法规列表使用
         /// <summary>
-        /// 下载到本地库
+        /// 下载选中项到本地库
         /// </summary>
         public void downloadSelectedLawToLocal()
         {
@@ -133,15 +140,26 @@ namespace CAAC_LawLibrary
                 var lawItem = flp_libraryList.Controls[i] as LawListItem;
                 if (lawItem.isChecked)
                 {
+                    lawItem.lbl_downloadState.Text = "下载中……";
                     Law law = lawItem.law;
                     law.downloadPercent = 0;
                     law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
-                    db.saveLaw(lawItem.law);
+                    db.saveLaw(law);
                 }
             }
         }
         /// <summary>
-        /// 从本地库移除
+        /// 下载单项到本地库
+        /// </summary>
+        /// <param name="law"></param>
+        public void downloadSelectedLawToLocal(Law law)
+        {
+            law.downloadPercent = 0;
+            law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+            db.saveLaw(law);
+        }
+        /// <summary>
+        /// 从本地库移除选中项
         /// </summary>
         public void removeSelectedLocalLaw()
         {
@@ -149,9 +167,21 @@ namespace CAAC_LawLibrary
             {
                 var lawItem = flp_libraryList.Controls[i] as LawListItem;
                 if (lawItem.isChecked)
+                    lawItem.lbl_downloadState.Text = "下载";
                 {
                     db.removeLawFromLocal(lawItem.law);
                 }
+            }
+        }
+        /// <summary>
+        /// 从本地库移除单项
+        /// </summary>
+        /// <param name="law"></param>
+        public void removeSelectedLocalLaw(Law law)
+        {
+            if (MessageBox.Show("确认移除此项？", "从本地库移除后将无法离线浏览", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                db.removeLawFromLocal(law);
             }
         }
         /// <summary>
@@ -159,7 +189,11 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void clearLocal()
         {
-            db.clearHistory();
+            if (MessageBox.Show("确认清空本地库？", "从本地库移除后将无法离线浏览", MessageBoxButtons.YesNo,MessageBoxIcon.Warning)==DialogResult.Yes)
+            {
+                db.clearLocal();
+                loadLocalLawList();
+            }
         }
         public void lawCheckBoxChange()
         {
@@ -245,6 +279,17 @@ namespace CAAC_LawLibrary
                 item.fillViewHistory();
                 flp_viewHistory.Controls.Add(item);
                 flp_viewHistory.Controls.SetChildIndex(item, 1);
+            }
+        }
+        /// <summary>
+        /// 清空阅读历史
+        /// </summary>
+        public void clearHistory()
+        {
+            if (MessageBoxEx.Show("确认清空？", "清空阅读历史记录", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                db.clearHistory();
+                loadViewHistoryList();
             }
         }
         #endregion

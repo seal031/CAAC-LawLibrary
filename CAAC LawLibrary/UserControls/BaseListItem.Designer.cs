@@ -33,13 +33,13 @@
             this.lbl_downloadState = new System.Windows.Forms.Label();
             this.lbl_name = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbl_expiryDate = new System.Windows.Forms.Label();
+            this.lbl_effectiveDate = new System.Windows.Forms.Label();
             this.lbl_businessType = new System.Windows.Forms.Label();
             this.lbl_organization = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lable1 = new System.Windows.Forms.Label();
             this.lbl_title = new System.Windows.Forms.Label();
-            this.lbl_effectiveDate = new System.Windows.Forms.Label();
-            this.lbl_expiryDate = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +98,22 @@
             this.panel2.Size = new System.Drawing.Size(1000, 148);
             this.panel2.TabIndex = 1;
             // 
+            // lbl_expiryDate
+            // 
+            this.lbl_expiryDate.AutoSize = true;
+            this.lbl_expiryDate.Location = new System.Drawing.Point(431, 65);
+            this.lbl_expiryDate.Name = "lbl_expiryDate";
+            this.lbl_expiryDate.Size = new System.Drawing.Size(0, 12);
+            this.lbl_expiryDate.TabIndex = 7;
+            // 
+            // lbl_effectiveDate
+            // 
+            this.lbl_effectiveDate.AutoSize = true;
+            this.lbl_effectiveDate.Location = new System.Drawing.Point(110, 65);
+            this.lbl_effectiveDate.Name = "lbl_effectiveDate";
+            this.lbl_effectiveDate.Size = new System.Drawing.Size(0, 12);
+            this.lbl_effectiveDate.TabIndex = 6;
+            // 
             // lbl_businessType
             // 
             this.lbl_businessType.AutoSize = true;
@@ -142,22 +158,6 @@
             this.lbl_title.TabIndex = 1;
             this.lbl_title.Text = "label1";
             // 
-            // lbl_effectiveDate
-            // 
-            this.lbl_effectiveDate.AutoSize = true;
-            this.lbl_effectiveDate.Location = new System.Drawing.Point(110, 65);
-            this.lbl_effectiveDate.Name = "lbl_effectiveDate";
-            this.lbl_effectiveDate.Size = new System.Drawing.Size(0, 12);
-            this.lbl_effectiveDate.TabIndex = 6;
-            // 
-            // lbl_expiryDate
-            // 
-            this.lbl_expiryDate.AutoSize = true;
-            this.lbl_expiryDate.Location = new System.Drawing.Point(431, 65);
-            this.lbl_expiryDate.Name = "lbl_expiryDate";
-            this.lbl_expiryDate.Size = new System.Drawing.Size(0, 12);
-            this.lbl_expiryDate.TabIndex = 7;
-            // 
             // BaseListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -177,7 +177,6 @@
 
         #endregion
         protected System.Windows.Forms.Label lbl_state;
-        protected System.Windows.Forms.Label lbl_downloadState;
         protected System.Windows.Forms.Label lbl_name;
         protected System.Windows.Forms.Label lbl_title;
         protected System.Windows.Forms.Label label2;
@@ -188,5 +187,6 @@
         protected internal System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.Label lbl_effectiveDate;
         public System.Windows.Forms.Label lbl_expiryDate;
+        public System.Windows.Forms.Label lbl_downloadState;
     }
 }

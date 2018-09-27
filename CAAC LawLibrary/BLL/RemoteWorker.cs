@@ -32,8 +32,8 @@ namespace CAAC_LawLibrary.BLL
                 objPinOptions.DontFragment = true;
                 string data = "";
                 byte[] buffer = Encoding.UTF8.GetBytes(data);
-                int intTimeout = 1000*5;
-                PingReply objPinReply = objPingSender.Send(uri.Authority.Substring(0,uri.Authority.IndexOf(":")),intTimeout, buffer, objPinOptions);
+                int intTimeout = 1000 * 5;
+                PingReply objPinReply = objPingSender.Send(uri.Authority.Substring(0, uri.Authority.IndexOf(":")), intTimeout, buffer, objPinOptions);
                 string strInfo = objPinReply.Status.ToString();
                 if (strInfo == "Success")
                 {
@@ -47,32 +47,11 @@ namespace CAAC_LawLibrary.BLL
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.StackTrace);
                 MessageBoxEx.Show("请检查远程端口设置", "远程端口设置不正确", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-            //List<string> urlList = Global.RemoteUrl.Split(new string[] { "://", ":" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            //if (urlList.Count > 2)
-            //{ 
-            //    IPAddress ip = IPAddress.Parse(urlList[1]);
-            //    IPEndPoint point = new IPEndPoint(ip, int.Parse(urlList[2]));
-            //    try
-            //    {
-            //        TcpClient tcp = new TcpClient();
-            //        tcp.Connect(point);
-            //        Global.online = true;
-            //    }
-            //    catch (Exception)
-            //    {
-            //        Global.online = false;
-            //    }
-            //    return true;
-            //}
-            //else
-            //{
-            //    MessageBoxEx.Show("请检查远程端口设置","远程端口设置不正确",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            //    return false;
-            //}
         }
 
         /// <summary>

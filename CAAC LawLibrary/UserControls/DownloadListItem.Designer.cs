@@ -35,6 +35,10 @@
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lbl_downloadState
+            // 
+            this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lbl_delete);
