@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CAAC_LawLibrary.Utity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -54,7 +55,7 @@ namespace CAAC_LawLibrary.Entity
         /// </summary>
         public string expiryDate { get; set; }
         /// <summary>
-        /// 是否已下载到本地
+        /// 是否已下载到本地 0or1 not null
         /// </summary>
         public string isLocal { get; set; }
         /// <summary>
@@ -70,7 +71,7 @@ namespace CAAC_LawLibrary.Entity
         /// </summary>
         public string userId { get; set; }
         /// <summary>
-        /// 下载进度，为null时表示未添加至下载任务
+        /// 下载进度，isLocal=0&&downloadPercent=null时表示未添加至下载任务;isLocal=1&&downloadPercent=null表示已下载且下载任务已删除；不为null时表示正在下载;isLocal=1&&downloadPercent=100表示已下载完成
         /// </summary>
         public int? downloadPercent { get; set; }
         /// <summary>
@@ -101,5 +102,11 @@ namespace CAAC_LawLibrary.Entity
         /// 状态
         /// </summary>
         public int? status { get; set; }
+
+        [NotMapped]
+        public string pinyin
+        {
+            get { return ChineseToPinYin.ToPinYin(title); }
+        }
     }
 }

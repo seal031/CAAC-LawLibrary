@@ -19,7 +19,14 @@ namespace CAAC_LawLibrary
         public string downloadUrl;
         private int downLoadValue = 0;
         public Form parentForm;
-        public bool isChecked = false;
+        public bool isChecked
+        {
+            get { return ckb.Checked; }
+            set
+            {
+                ckb.Checked = value;
+            }
+        }
 
         delegate void setLableTextDelegate();
         setLableTextDelegate setLabelTextEvent;
@@ -36,6 +43,7 @@ namespace CAAC_LawLibrary
         public DownloadListItem()
         {
             InitializeComponent();
+            isChecked = false;
             bgw.WorkerSupportsCancellation = true;
             bgw.DoWork += Bgw_DoWork;
             lbl_downloadState.Click += Lbl_downloadState_Click;
@@ -81,23 +89,15 @@ namespace CAAC_LawLibrary
             }
         }
 
-        public void checkChange()
+        public void checkChange(bool value)
         {
-            isChecked = !isChecked;
-            if (isChecked)
-            {
-                ckb.Checked = true;
-            }
-            else
-            {
-                ckb.Checked = false;
-            }
+            ckb.Checked = value;
         }
 
         private void ckb_CheckedChanged(object sender, EventArgs e)
         {
-            if (ckb.Checked) { isChecked = true; }
-            else { isChecked = false; }
+            //if (ckb.Checked) { isChecked = true; }
+            //else { isChecked = false; }
         }
 
         private void DownloadListItem_Load(object sender, EventArgs e)

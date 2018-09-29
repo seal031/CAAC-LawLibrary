@@ -47,7 +47,7 @@ namespace CAAC_LawLibrary
 
         private void ckb_selectAll_CheckedChanged(object sender, EventArgs e)
         {
-            ((LibraryList)parentForm).lawCheckBoxChange();
+            ((LibraryList)parentForm).lawCheckBoxChange(ckb_selectAll.Checked);
         }
     }
 }

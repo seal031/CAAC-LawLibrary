@@ -43,7 +43,7 @@
             this.cbb_buhao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_buhao.FormattingEnabled = true;
             this.cbb_buhao.Location = new System.Drawing.Point(19, 16);
-            this.cbb_buhao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_buhao.Margin = new System.Windows.Forms.Padding(2);
             this.cbb_buhao.Name = "cbb_buhao";
             this.cbb_buhao.Size = new System.Drawing.Size(173, 20);
             this.cbb_buhao.TabIndex = 0;
@@ -54,7 +54,7 @@
             this.cbb_siju.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_siju.FormattingEnabled = true;
             this.cbb_siju.Location = new System.Drawing.Point(218, 16);
-            this.cbb_siju.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_siju.Margin = new System.Windows.Forms.Padding(2);
             this.cbb_siju.Name = "cbb_siju";
             this.cbb_siju.Size = new System.Drawing.Size(108, 20);
             this.cbb_siju.TabIndex = 1;
@@ -65,7 +65,7 @@
             this.cbb_weijie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_weijie.FormattingEnabled = true;
             this.cbb_weijie.Location = new System.Drawing.Point(350, 16);
-            this.cbb_weijie.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_weijie.Margin = new System.Windows.Forms.Padding(2);
             this.cbb_weijie.Name = "cbb_weijie";
             this.cbb_weijie.Size = new System.Drawing.Size(110, 20);
             this.cbb_weijie.TabIndex = 2;
@@ -76,7 +76,7 @@
             this.cbb_yewu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_yewu.FormattingEnabled = true;
             this.cbb_yewu.Location = new System.Drawing.Point(477, 16);
-            this.cbb_yewu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_yewu.Margin = new System.Windows.Forms.Padding(2);
             this.cbb_yewu.Name = "cbb_yewu";
             this.cbb_yewu.Size = new System.Drawing.Size(113, 20);
             this.cbb_yewu.TabIndex = 3;
@@ -87,7 +87,7 @@
             this.cbb_zidingyi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_zidingyi.FormattingEnabled = true;
             this.cbb_zidingyi.Location = new System.Drawing.Point(613, 16);
-            this.cbb_zidingyi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_zidingyi.Margin = new System.Windows.Forms.Padding(2);
             this.cbb_zidingyi.Name = "cbb_zidingyi";
             this.cbb_zidingyi.Size = new System.Drawing.Size(114, 20);
             this.cbb_zidingyi.TabIndex = 4;
@@ -98,15 +98,16 @@
             this.cbb_sort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_sort.FormattingEnabled = true;
             this.cbb_sort.Location = new System.Drawing.Point(849, 16);
-            this.cbb_sort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_sort.Margin = new System.Windows.Forms.Padding(2);
             this.cbb_sort.Name = "cbb_sort";
             this.cbb_sort.Size = new System.Drawing.Size(124, 20);
             this.cbb_sort.TabIndex = 5;
+            this.cbb_sort.SelectedIndexChanged += new System.EventHandler(this.cbb_sort_SelectedIndexChanged);
             // 
             // txt_keyword
             // 
             this.txt_keyword.Location = new System.Drawing.Point(350, 57);
-            this.txt_keyword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_keyword.Margin = new System.Windows.Forms.Padding(2);
             this.txt_keyword.Name = "txt_keyword";
             this.txt_keyword.Size = new System.Drawing.Size(247, 21);
             this.txt_keyword.TabIndex = 6;
@@ -114,7 +115,7 @@
             // btn_search
             // 
             this.btn_search.Location = new System.Drawing.Point(613, 57);
-            this.btn_search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_search.Margin = new System.Windows.Forms.Padding(2);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(56, 24);
             this.btn_search.TabIndex = 7;
@@ -133,7 +134,7 @@
             this.Controls.Add(this.cbb_weijie);
             this.Controls.Add(this.cbb_siju);
             this.Controls.Add(this.cbb_buhao);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BaseFilter";
             this.Size = new System.Drawing.Size(1000, 98);
             this.Load += new System.EventHandler(this.BaseFilter_Load);

@@ -163,7 +163,7 @@
         #endregion
 
         private System.Windows.Forms.CheckBox ckb_showDownloaded;
-        private System.Windows.Forms.CheckBox ckb_selectAll;
+        public System.Windows.Forms.CheckBox ckb_selectAll;
         private System.Windows.Forms.ContextMenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem 下载已选项到本地库ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 从本地库移除已选项ToolStripMenuItem;

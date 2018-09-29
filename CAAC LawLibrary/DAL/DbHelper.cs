@@ -34,9 +34,9 @@ namespace CAAC_LawLibrary.DAL
                             && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
                             && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
                             && (param.downloaded != "1" ? 1 == 1 : law.isLocal == param.downloaded)
-                            && (param.downloadState.HasValue ? law.downloadPercent == param.downloadState : 1==1)
+                            && (param.downloadState.HasValue ? law.downloadPercent == param.downloadState : 1 == 1)
                             select law).ToList();
-                return list.ToList();
+                return list.OrderBy(l => param.sort == 2 ? l.pinyin : l.effectiveDate).ToList();
             }
         }
 

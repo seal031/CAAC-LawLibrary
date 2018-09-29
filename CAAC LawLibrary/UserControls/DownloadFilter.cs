@@ -13,7 +13,6 @@ namespace CAAC_LawLibrary
 {
     public partial class DownloadFilter : BaseFilter
     {
-        public Form parentForm;
 
         private bool bindState = false;
         public DownloadFilter()
@@ -44,7 +43,27 @@ namespace CAAC_LawLibrary
 
         private void ckb_selectAll_CheckedChanged(object sender, EventArgs e)
         {
-            ((LibraryList)parentForm).downloadCheckBoxChange();
+            ((LibraryList)parentForm).downloadCheckBoxChange(ckb_selectAll.Checked);
+        }
+
+        private void 暂停已选任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((LibraryList)parentForm).stopSelectedTask();
+        }
+
+        private void 继续已选任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((LibraryList)parentForm).resumeSelectedTask();
+        }
+
+        private void 删除已选任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((LibraryList)parentForm).deleteSelectedTask();
+        }
+
+        private void 清空已完成任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((LibraryList)parentForm).clearDownloadedTask();
         }
     }
 }

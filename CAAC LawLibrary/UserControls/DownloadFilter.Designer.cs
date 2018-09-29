@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CAAC_LawLibrary.Entity.Code code1 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code2 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code3 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code4 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code5 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code16 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code17 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code18 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code19 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code20 = new CAAC_LawLibrary.Entity.Code();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadFilter));
             this.cbb_downloadState = new System.Windows.Forms.ComboBox();
             this.ckb_selectAll = new System.Windows.Forms.CheckBox();
@@ -49,56 +49,56 @@
             // cbb_buhao
             // 
             this.cbb_buhao.DisplayMember = "desc";
-            code1.desc = "不限部号范围";
-            code1.Id = null;
-            code1.order = 0;
-            code1.type = null;
+            code16.desc = "不限部号范围";
+            code16.Id = null;
+            code16.order = 0;
+            code16.type = null;
             this.cbb_buhao.Items.AddRange(new object[] {
-            code1});
+            code16});
             this.cbb_buhao.ValueMember = "Id";
             // 
             // cbb_siju
             // 
             this.cbb_siju.DisplayMember = "desc";
-            code2.desc = "不限司局";
-            code2.Id = null;
-            code2.order = 0;
-            code2.type = null;
+            code17.desc = "不限司局";
+            code17.Id = null;
+            code17.order = 0;
+            code17.type = null;
             this.cbb_siju.Items.AddRange(new object[] {
-            code2});
+            code17});
             this.cbb_siju.ValueMember = "Id";
             // 
             // cbb_weijie
             // 
             this.cbb_weijie.DisplayMember = "desc";
-            code3.desc = "不限位阶范围";
-            code3.Id = null;
-            code3.order = 0;
-            code3.type = null;
+            code18.desc = "不限位阶范围";
+            code18.Id = null;
+            code18.order = 0;
+            code18.type = null;
             this.cbb_weijie.Items.AddRange(new object[] {
-            code3});
+            code18});
             this.cbb_weijie.ValueMember = "Id";
             // 
             // cbb_yewu
             // 
             this.cbb_yewu.DisplayMember = "desc";
-            code4.desc = "不限业务分类";
-            code4.Id = null;
-            code4.order = 0;
-            code4.type = null;
+            code19.desc = "不限业务分类";
+            code19.Id = null;
+            code19.order = 0;
+            code19.type = null;
             this.cbb_yewu.Items.AddRange(new object[] {
-            code4});
+            code19});
             this.cbb_yewu.ValueMember = "Id";
             // 
             // cbb_zidingyi
             // 
             this.cbb_zidingyi.DisplayMember = "desc";
-            code5.desc = "不限自定义标签";
-            code5.Id = null;
-            code5.order = 0;
-            code5.type = null;
+            code20.desc = "不限自定义标签";
+            code20.Id = null;
+            code20.order = 0;
+            code20.type = null;
             this.cbb_zidingyi.Items.AddRange(new object[] {
-            code5});
+            code20});
             this.cbb_zidingyi.ValueMember = "Id";
             // 
             // cbb_sort
@@ -152,31 +152,35 @@
             this.删除已选任务ToolStripMenuItem,
             this.清空已完成任务ToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(161, 92);
+            this.menu.Size = new System.Drawing.Size(161, 114);
             // 
             // 暂停已选任务ToolStripMenuItem
             // 
             this.暂停已选任务ToolStripMenuItem.Name = "暂停已选任务ToolStripMenuItem";
             this.暂停已选任务ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.暂停已选任务ToolStripMenuItem.Text = "暂停已选任务";
+            this.暂停已选任务ToolStripMenuItem.Click += new System.EventHandler(this.暂停已选任务ToolStripMenuItem_Click);
             // 
             // 继续已选任务ToolStripMenuItem
             // 
             this.继续已选任务ToolStripMenuItem.Name = "继续已选任务ToolStripMenuItem";
             this.继续已选任务ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.继续已选任务ToolStripMenuItem.Text = "继续已选任务";
+            this.继续已选任务ToolStripMenuItem.Click += new System.EventHandler(this.继续已选任务ToolStripMenuItem_Click);
             // 
             // 删除已选任务ToolStripMenuItem
             // 
             this.删除已选任务ToolStripMenuItem.Name = "删除已选任务ToolStripMenuItem";
             this.删除已选任务ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.删除已选任务ToolStripMenuItem.Text = "删除已选任务";
+            this.删除已选任务ToolStripMenuItem.Click += new System.EventHandler(this.删除已选任务ToolStripMenuItem_Click);
             // 
             // 清空已完成任务ToolStripMenuItem
             // 
             this.清空已完成任务ToolStripMenuItem.Name = "清空已完成任务ToolStripMenuItem";
             this.清空已完成任务ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.清空已完成任务ToolStripMenuItem.Text = "清空已完成任务";
+            this.清空已完成任务ToolStripMenuItem.Click += new System.EventHandler(this.清空已完成任务ToolStripMenuItem_Click);
             // 
             // DownloadFilter
             // 
@@ -205,7 +209,7 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbb_downloadState;
-        private System.Windows.Forms.CheckBox ckb_selectAll;
+        public System.Windows.Forms.CheckBox ckb_selectAll;
         private System.Windows.Forms.Button btn_manageTask;
         private System.Windows.Forms.ContextMenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem 暂停已选任务ToolStripMenuItem;

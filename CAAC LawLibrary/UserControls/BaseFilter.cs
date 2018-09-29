@@ -19,6 +19,7 @@ namespace CAAC_LawLibrary
         protected internal QueryParam queryParam = new QueryParam();
         private DbHelper db = new DbHelper();
         private bool bindState = false;
+        public LibraryList parentForm;
 
         public delegate void selectedChanged();
         public event selectedChanged onSelectedChanged;
@@ -123,6 +124,15 @@ namespace CAAC_LawLibrary
             if (bindState)
             {
                 queryParam.zidingyi = (cbb_zidingyi.SelectedItem as Code).Id;
+                onSelectedChanged();
+            }
+        }
+
+        private void cbb_sort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bindState)
+            {
+                queryParam.sort = int.Parse(cbb_sort.SelectedValue.ToString());
                 onSelectedChanged();
             }
         }

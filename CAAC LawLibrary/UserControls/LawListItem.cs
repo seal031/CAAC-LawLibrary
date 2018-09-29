@@ -19,26 +19,27 @@ namespace CAAC_LawLibrary
         public Law law { get; set; }
         public List<Law> laws { get; set; }
         public Form parentForm;
-        public bool isChecked = false;
+        public bool isChecked
+        {
+            get { return ckb.Checked; }
+            set
+            {
+                ckb.Checked = value;
+            }
+        }
         private bool bindState = false;
 
         public LawListItem()
         {
             InitializeComponent();
+            isChecked = false;
             laws = new List<Law>();
         }
 
-        public void checkChange()
+        public void checkChange(bool value)
         {
-            isChecked = !isChecked;
-            if (isChecked)
-            {
-                ckb.Checked = true;
-            }
-            else
-            {
-                ckb.Checked = false;
-            }
+
+            ckb.Checked = value;
         }
 
         private void showInfo()

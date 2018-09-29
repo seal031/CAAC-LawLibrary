@@ -147,6 +147,7 @@ namespace CAAC_LawLibrary
                     db.saveLaw(law);
                 }
             }
+            reloadDownloadList();
         }
         /// <summary>
         /// 下载单项到本地库
@@ -156,7 +157,10 @@ namespace CAAC_LawLibrary
         {
             law.downloadPercent = 0;
             law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
-            db.saveLaw(law);
+            if (db.saveLaw(law))
+            {
+                reloadDownloadList();
+            }
         }
         /// <summary>
         /// 从本地库移除选中项
@@ -195,30 +199,50 @@ namespace CAAC_LawLibrary
                 loadLocalLawList();
             }
         }
-        public void lawCheckBoxChange()
+        public void lawCheckBoxChange(bool value)
         {
             foreach (var item in flp_libraryList.Controls)
             {
                 var lawItem = item as LawListItem;
                 if (lawItem == null) continue;
-                lawItem.checkChange();
+                lawItem.checkChange(value);
+            }
+        }
+
+        public void setLawStateText(Law law, string text)
+        {
+            foreach (Control c in flp_libraryList.Controls)
+            {
+                if (c is LawListItem)
+                {
+                    var item = c as LawListItem;
+                    if (item.law.Id == law.Id)
+                    {
+                        item.lbl_downloadState.Text = text;
+                        return;
+                    }
+                }
             }
         }
         #endregion
 
         #region 下载列表使用
-        public void downloadCheckBoxChange()
+        public void downloadCheckBoxChange(bool value)
         {
             foreach (var item in flp_downloadTask.Controls)
             {
                 var downloadListItem = item as DownloadListItem;
                 if (downloadListItem == null) continue;
-                downloadListItem.checkChange();
+                downloadListItem.checkChange(value);
             }
         }
         public void updateLaw(Law law)
         {
-            db.saveLaw(law);
+            if(db.saveLaw(law))
+            {
+                reloadDownloadList();
+                reloadLawList();
+            }
         }
         /// <summary>
         /// 筛选全部任务、下载中、已完成
@@ -249,6 +273,82 @@ namespace CAAC_LawLibrary
                         }
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// 停止已选任务
+        /// </summary>
+        public void stopSelectedTask()
+        {
+            //todo
+
+        }
+        /// <summary>
+        /// 恢复已选任务
+        /// </summary>
+        public void resumeSelectedTask()
+        {
+            //todo
+        }
+        /// <summary>
+        /// 删除已选任务
+        /// </summary>
+        public void deleteSelectedTask()
+        {
+            bool hasChecked = false;
+            foreach (Control c in flp_downloadTask.Controls)
+            {
+                if (c is DownloadListItem)
+                {
+                    DownloadListItem item = c as DownloadListItem;
+                    if (item.isChecked)
+                    {
+                        hasChecked = true;
+                        Law law = item.law;
+                        if (law.isLocal == "1")
+                        {
+                            law.downloadPercent = null;
+                        }
+                        else
+                        {
+                            law.isLocal = "0";
+                            law.downloadPercent = null;
+                        }
+                        db.saveLaw(law);
+                    }
+                }
+                if (hasChecked)
+                {
+                    reloadDownloadList();
+                    reloadLawList();
+                }
+            }
+        }
+        /// <summary>
+        /// 清除已完成任务
+        /// </summary>
+        public void clearDownloadedTask()
+        {
+            bool hasDownloaded = false;
+            foreach (Control c in flp_downloadTask.Controls)
+            {
+                if (c is DownloadListItem)
+                {
+                    DownloadListItem item = c as DownloadListItem;
+                    Law law = item.law;
+                    if (law.isLocal == "1" && law.downloadPercent == 100)
+                    {
+                        hasDownloaded = true;
+                        law.downloadPercent = null;
+                        db.saveLaw(law);
+                    }
+                }
+            }
+            if (hasDownloaded)
+            {
+                reloadDownloadList();
+                reloadLawList();
             }
         }
         #endregion
@@ -293,6 +393,27 @@ namespace CAAC_LawLibrary
             }
         }
         #endregion
+
+        /// <summary>
+        /// 刷新（法规列表+筛选条件）
+        /// </summary>
+        private void reloadLawList()
+        {
+            loadLocalLawList();
+            lawCheckBoxChange(lawFilter.ckb_selectAll.Checked); 
+        }
+        private void reloadHistoryList()
+        {
+            loadViewHistoryList();
+        }
+        /// <summary>
+        /// 刷新(下载列表+筛选条件)
+        /// </summary>
+        private void reloadDownloadList()
+        {
+            loadDownLoadList();
+            downloadCheckBoxChange(downloadFilter.ckb_selectAll.Checked);
+        }
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
