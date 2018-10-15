@@ -28,13 +28,15 @@ namespace CAAC_LawLibrary.DAL
             using (SqliteContext context = new SqliteContext())
             {
                 var list = (from law in context.Law
-                            where (param.buhao == null ? 1 == 1 : law.buhao == param.buhao)
+                            where law.userId == Global.user.Id
+                            && (param.buhao == null ? 1 == 1 : law.buhao == param.buhao)
                             && (param.siju == null ? 1 == 1 : law.siju == param.siju)
                             && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
                             && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
                             && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
                             && (param.downloaded != "1" ? 1 == 1 : law.isLocal == param.downloaded)
                             && (param.downloadState.HasValue ? law.downloadPercent == param.downloadState : 1 == 1)
+                            && (param.lastVersion.HasValue ? law.lastversion == param.lastVersion : 1 == 1)
                             select law).ToList();
                 return list.OrderBy(l => param.sort == 2 ? l.pinyin : l.effectiveDate).ToList();
             }
@@ -99,7 +101,7 @@ namespace CAAC_LawLibrary.DAL
                         //}
                         foreach (Law law in laws)
                         {
-                            var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id);
+                            var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == Global.user.Id);
                             if (currentLaw == null)//如果没有就新增
                             {
                                 law.userId = Global.user.Id;

@@ -55,6 +55,46 @@ namespace CAAC_LawLibrary.BLL
         }
 
         /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="password">密码</param>
+        public static bool getloginResponse(string username, string password)
+        {
+            string responseStr = HttpWorker.HttpGet(Global.LoginUrl, "yhm=" + username + "&mm=" + password);
+            LoginResponse response = TranslationWorker.ConvertStringToEntity<LoginResponse>(responseStr);
+            response.SetUserId();
+            if (response.code == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 获取登陆用户信息
+        /// </summary>
+        public static void getUserInfo()
+        {
+            string userInfoStr = HttpWorker.HttpGet(Global.WorkerInfoUrl, "usrid=" + Global.user.Id);
+            UserInfoResponse userInfo = TranslationWorker.ConvertStringToEntity<UserInfoResponse>(userInfoStr);
+            userInfo.setUserInfo();
+        }
+        /// <summary>
+        /// 获取评论用户信息
+        /// </summary>
+        /// <param name="userIdList">评论用户id列表</param>
+        /// <returns></returns>
+        public static List<User> getUserInfoList(List<string> userIdList)
+        {
+            string userInfoStr = HttpWorker.HttpGet(Global.WorkerInfoUrl, "usrid=" + string.Join(",", userIdList));
+            UserInfoResponse userInfo = TranslationWorker.ConvertStringToEntity<UserInfoResponse>(userInfoStr);
+            return userInfo.ConvertToUsers();
+        }
+
+        /// <summary>
         /// 获取设置列表
         /// </summary>
         public static void getSetResponse()
@@ -110,6 +150,17 @@ namespace CAAC_LawLibrary.BLL
             List<Node> nodes = nodeDtailResponse.ConvertToNodes();
             db.refreshNode(nodes,detailOnly:true);
             return nodes;
+        }
+        /// <summary>
+        /// 获取修订列表内容
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        public static string getHistory(string bookId)
+        {
+            string result = string.Empty;
+            string historyResult = HttpWorker.HttpGet(Global.HistoryApi, "bookId=" + bookId);
+            return result;
         }
 
         #region post

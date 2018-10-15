@@ -15,5 +15,9 @@ namespace CAAC_LawLibrary.Entity
         public string Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
+        public string Xm { get; set; }
+        public string Department { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
     }
 }

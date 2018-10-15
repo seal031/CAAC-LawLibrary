@@ -187,7 +187,24 @@ namespace CAAC_LawLibrary
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             XiudingLiShi xdls = new CAAC_LawLibrary.XiudingLiShi();
-            xdls.setRtbText(law.xiudingling);
+            string xiudingling = string.Empty;
+            //QueryParam param = new QueryParam() { lastVersion = law.lastversion};
+            //var effectiveDateList = db.getLaws(param).Select(l=>l.effectiveDate);
+            //for (int i = 0; i < effectiveDateList.Count(); i++)
+            //{
+            //    if (i == 0)
+            //    {
+            //        xiudingling = DateTime.Parse(effectiveDateList.ElementAt(i)).ToString("yyyy年MM月dd日") + "发布";
+            //    }
+            //    else
+            //    {
+            //        xiudingling += DateTime.Parse(effectiveDateList.ElementAt(i)).ToString("yyyy年MM月dd日") + "第" + Global.NumberToChinese(i.ToString()) + "次修订";
+            //    }
+            //    xiudingling += Environment.NewLine;
+            //}
+            xiudingling = RemoteWorker.getHistory(law.Id);
+            xdls.setRtbText(xiudingling);
+            //xdls.setRtbText(law.xiudingling);
             xdls.Show(this);
         }
 
@@ -410,6 +427,21 @@ namespace CAAC_LawLibrary
                     break;
                 case "罚":
                     showBalloon("罚则", "", nodeId);
+                    break;
+                case "政":
+                    showBalloon("行政处罚", "", nodeId);
+                    break;
+                case "律":
+                    showBalloon("纪律处分", "", nodeId);
+                    break;
+                case "手":
+                    showBalloon("行政手段", "", nodeId);
+                    break;
+                case "他":
+                    showBalloon("其他责任", "", nodeId);
+                    break;
+                case "信":
+                    showBalloon("信用手段", "", nodeId);
                     break;
                 default:
                     break;

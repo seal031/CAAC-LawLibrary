@@ -22,13 +22,14 @@ namespace CAAC_LawLibrary
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Global.user = new Entity.User();
 
             //验证网络是否可用
             if (RemoteWorker.checkInternet())
             {
                 //RemoteWorker.getSetResponse();
                 //RemoteWorker.getLawResponse();
-                Global.user = new Entity.User() { Id = "1" };//todo 替换真实user
+                //Global.user = new Entity.User() { Id = "1" };//todo 替换真实user
                 Application.Run(new Login());
             }
             //else

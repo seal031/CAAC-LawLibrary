@@ -22,15 +22,18 @@ namespace CAAC_LawLibrary.Utity
         public static string Appid = ConfigWorker.GetConfigValue("Appid");
         public static string Appkey = ConfigWorker.GetConfigValue("Appkey");
         public static string RemoteUrl = ConfigWorker.GetConfigValue("RemoteUrl");
+        public static string LoginUrl = ConfigWorker.GetConfigValue("LoginUrl");
+        public static string WorkerInfoUrl = ConfigWorker.GetConfigValue("WorkerInfoUrl");
         public static string ConsultCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("ConsultCommit");
-        public static string OpinionListApi= RemoteUrl + ConfigWorker.GetConfigValue("OpinionList");
-        public static string OpinionCommitApi= RemoteUrl + ConfigWorker.GetConfigValue("OpinionCommit");
-        public static string AllBooksApi= RemoteUrl + ConfigWorker.GetConfigValue("AllBooks");
-        public static string NodeDetailApi= RemoteUrl + ConfigWorker.GetConfigValue("NodeDetail");
-        public static string BookContentApi= RemoteUrl + ConfigWorker.GetConfigValue("BookContent");
-        public static string BookNodeCldApi= RemoteUrl + ConfigWorker.GetConfigValue("BookNodeCld");
-        public static string SearchApi= RemoteUrl + ConfigWorker.GetConfigValue("Search");
-        public static string SetListApi= RemoteUrl + ConfigWorker.GetConfigValue("SetList");
+        public static string OpinionListApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionList");
+        public static string OpinionCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionCommit");
+        public static string AllBooksApi = RemoteUrl + ConfigWorker.GetConfigValue("AllBooks");
+        public static string NodeDetailApi = RemoteUrl + ConfigWorker.GetConfigValue("NodeDetail");
+        public static string BookContentApi = RemoteUrl + ConfigWorker.GetConfigValue("BookContent");
+        public static string BookNodeCldApi = RemoteUrl + ConfigWorker.GetConfigValue("BookNodeCld");
+        public static string SearchApi = RemoteUrl + ConfigWorker.GetConfigValue("Search");
+        public static string SetListApi = RemoteUrl + ConfigWorker.GetConfigValue("SetList");
+        public static string HistoryApi = RemoteUrl + ConfigWorker.GetConfigValue("History");
 
         public static List<DictionaryEntry> SortSource = new List<DictionaryEntry>();
         public static List<DictionaryEntry> DownloadState = new List<DictionaryEntry>();
@@ -45,16 +48,16 @@ namespace CAAC_LawLibrary.Utity
 
         public static User user { get; set; }
 
-         static Global()
+        static Global()
         {
-            SortSource.Add(new DictionaryEntry(1,"时间倒序（默认）"));
+            SortSource.Add(new DictionaryEntry(1, "时间倒序（默认）"));
             SortSource.Add(new DictionaryEntry(2, "首字母拼音排序"));
 
             DownloadState.Add(new DictionaryEntry(0, "全部任务"));
             DownloadState.Add(new DictionaryEntry(1, "下载中"));
             DownloadState.Add(new DictionaryEntry(2, "已完成"));
 
-            tag.Add(new DictionaryEntry("全","全部"));
+            tag.Add(new DictionaryEntry("全", "全部"));
             tag.Add(new DictionaryEntry("定", "定义"));
             tag.Add(new DictionaryEntry("类", "业务分类"));
             tag.Add(new DictionaryEntry("键", "关键字"));
@@ -73,7 +76,7 @@ namespace CAAC_LawLibrary.Utity
             weijie.Insert(0, new Code() { Id = null, desc = "不限位阶范围" });
 
         }
-        
+
         public static string GetCodeValueById(string Id)
         {
             if (allCode.Count == 0)
@@ -83,7 +86,7 @@ namespace CAAC_LawLibrary.Utity
             if (Id.Contains(","))
             {
                 var idList = Id.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                var list = allCode.Where(c=>idList.Contains(c.Id)).Select(c=>c.desc);
+                var list = allCode.Where(c => idList.Contains(c.Id)).Select(c => c.desc);
                 return string.Join(",", list.ToList());
             }
             else
@@ -95,6 +98,27 @@ namespace CAAC_LawLibrary.Utity
                     return code.desc;
                 }
             }
+        }
+
+        /// <summary>
+        /// 数字转小写汉字，用于修订令
+        /// </summary>
+        /// <param name="numberStr"></param>
+        /// <returns></returns>
+        public static string NumberToChinese(string numberStr)
+        {
+            string numStr = "0123456789";
+            string chineseStr = "零一二三四五六七八九";
+            char[] c = numberStr.ToCharArray();
+            for (int i = 0; i < c.Length; i++)
+            {
+                int index = numStr.IndexOf(c[i]);
+                if (index != -1)
+                    c[i] = chineseStr.ToCharArray()[index];
+            }
+            numStr = null;
+            chineseStr = null;
+            return new string(c);
         }
     }
 

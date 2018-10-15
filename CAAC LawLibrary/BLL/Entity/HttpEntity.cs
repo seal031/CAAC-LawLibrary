@@ -6,9 +6,97 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CAAC_LawLibrary.BLL.Entity
 {
+    /// <summary>
+    /// 登陆响应对象
+    /// </summary>
+    public class LoginResponse:CommonResponse
+    {
+        public string code { get; set; }
+        public string success { get; set; }
+        public string msg { get; set; }
+        public new dataItem data { get; set; }
+
+        public class dataItem
+        {
+            public string jwt { get; set; }
+            public string usrid { get; set; }
+        }
+
+        public void SetUserId()
+        {
+            if (string.IsNullOrEmpty(code))
+            {
+                return;
+            }
+            else if (code == "0")
+            {
+                MessageBox.Show(msg);
+            }
+            else
+            {
+                Global.user.Id = data.usrid;
+            }
+        }
+    }
+
+    public class UserInfoResponse:CommonResponse
+    {
+        public new List<dataItem> data { get; set; }
+
+        public string code { get; set; }
+        public string msg { get; set; }
+        public string success { get; set; }
+
+        public UserInfoResponse()
+        {
+            data = new List<dataItem>();
+        }
+
+        public class dataItem
+        {
+            public string id { get; set; }
+            public string xm { get; set; }
+            public string sjjgmc { get; set; }
+            public string jgqc { get; set; }
+            public string sjhm { get; set; }
+            public string dzyx { get; set; }
+        }
+        /// <summary>
+        /// 设置当前登陆用户的信息
+        /// </summary>
+        public void setUserInfo()
+        {
+            if (data.Count > 0)
+            {
+                dataItem item = data[0];
+                Global.user.Xm = item.xm;
+                Global.user.Department = item.jgqc;
+                Global.user.Phone = item.sjhm;
+                Global.user.Email = item.dzyx;
+            }
+        }
+
+        public List<User> ConvertToUsers()
+        {
+            List<User> list = new List<User>();
+            foreach (dataItem item in data)
+            {
+                User user = new User();
+                user.Id = item.id;
+                user.Xm = item.xm;
+                user.Department = item.jgqc;
+                user.Phone = item.sjhm;
+                user.Email = item.dzyx;
+                list.Add(user);
+            }
+            return list;
+        }
+    }
+
     /// <summary>
     /// 提交征询post参数对象
     /// </summary>
@@ -221,6 +309,7 @@ namespace CAAC_LawLibrary.BLL.Entity
             foreach (listItem list in this.data.list)
             {
                 Law law = new Law();
+                law.userId = Global.user.Id;
                 law.Id = list.id.ToString();
                 law.title = list.title;
                 law.version = list.version;
@@ -517,6 +606,39 @@ namespace CAAC_LawLibrary.BLL.Entity
             return codes;
         }
     }
+
+    public class HistoryResponse : CommonResponse
+    {
+        public new dataItem data { get; set; }
+
+        public HistoryResponse()
+        {
+            data = new dataItem();
+        }
+
+        public class dataItem
+        {
+            public List<listItem> list { get; set; }
+            public dataItem()
+            {
+                list = new List<listItem>();
+            }
+        }
+
+        public class listItem
+        {
+            public string bookId { get; set; }
+            public string version { get; set; }
+        }
+
+        public string ConvertToString()
+        {
+            string result = string.Empty;
+            result = string.Join(Environment.NewLine, data.list.Select(d => d.version));
+            return result;
+        }
+    }
+
     /// <summary>
     /// 通用返回对象
     /// </summary>
