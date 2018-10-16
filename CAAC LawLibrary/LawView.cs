@@ -72,6 +72,7 @@ namespace CAAC_LawLibrary
 
         private void LawView_Load(object sender, EventArgs e)
         {
+            lbl_welcome.Text += Global.user.Xm;
             if (law != null)
             {
                 //如果在线，且未下载到本地，则从远程获取章节信息，并入库
@@ -133,9 +134,9 @@ namespace CAAC_LawLibrary
         //    }
         //}
 
-        private void loadComment()
+        public void loadComment(bool reload=false)
         {
-            if (commentList == null)
+            if (commentList == null||reload)
             {
                 commentList = db.getComment(new Utity.QueryParam() { lawId = law.Id });
             }
@@ -193,7 +194,24 @@ namespace CAAC_LawLibrary
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             XiudingLiShi xdls = new CAAC_LawLibrary.XiudingLiShi();
-            xdls.setRtbText(law.xiudingling);
+            string xiudingling = string.Empty;
+            //QueryParam param = new QueryParam() { lastVersion = law.lastversion};
+            //var effectiveDateList = db.getLaws(param).Select(l=>l.effectiveDate);
+            //for (int i = 0; i < effectiveDateList.Count(); i++)
+            //{
+            //    if (i == 0)
+            //    {
+            //        xiudingling = DateTime.Parse(effectiveDateList.ElementAt(i)).ToString("yyyy年MM月dd日") + "发布";
+            //    }
+            //    else
+            //    {
+            //        xiudingling += DateTime.Parse(effectiveDateList.ElementAt(i)).ToString("yyyy年MM月dd日") + "第" + Global.NumberToChinese(i.ToString()) + "次修订";
+            //    }
+            //    xiudingling += Environment.NewLine;
+            //}
+            xiudingling = RemoteWorker.getHistory(law.Id);
+            xdls.setRtbText(xiudingling);
+            //xdls.setRtbText(law.xiudingling);
             xdls.Show(this);
         }
 
@@ -389,11 +407,18 @@ namespace CAAC_LawLibrary
             switch (tagType)
             {
                 case "征":
-                    AddNewSuggest suggest = new AddNewSuggest();
-                    suggest.lawId = law.Id;
-                    suggest.nodeId = nodeId;
-                    suggest.lbl_title.Text = nodeTitle;
-                    suggest.ShowDialog(this);
+                    if (DateTime.Parse(law.effectiveDate) > DateTime.Now)
+                    {
+                        AddNewSuggest suggest = new AddNewSuggest();
+                        suggest.lawId = law.Id;
+                        suggest.nodeId = nodeId;
+                        suggest.lbl_title.Text = nodeTitle;
+                        suggest.ShowDialog(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("征询已截止，无法再提交征询意见");
+                    }
                     break;
                 case "评":
                     if (Global.online == false)
@@ -402,6 +427,7 @@ namespace CAAC_LawLibrary
                         break;
                     }
                     AddNewComment comment = new AddNewComment();
+                    comment.lawView = this;
                     comment.nodeId = nodeId;
                     comment.lawId = law.Id;
                     comment.lbl_title.Text = nodeTitle;
@@ -421,6 +447,21 @@ namespace CAAC_LawLibrary
                     break;
                 case "罚":
                     showBalloon("罚则", "", nodeId);
+                    break;
+                case "政":
+                    showBalloon("行政处罚", "", nodeId);
+                    break;
+                case "律":
+                    showBalloon("纪律处分", "", nodeId);
+                    break;
+                case "手":
+                    showBalloon("行政手段", "", nodeId);
+                    break;
+                case "他":
+                    showBalloon("其他责任", "", nodeId);
+                    break;
+                case "信":
+                    showBalloon("信用手段", "", nodeId);
                     break;
                 default:
                     break;

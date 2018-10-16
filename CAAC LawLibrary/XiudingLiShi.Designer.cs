@@ -38,9 +38,9 @@
             this.rtb.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtb.Enabled = false;
             this.rtb.Font = new System.Drawing.Font("华文楷体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rtb.Location = new System.Drawing.Point(0, 63);
+            this.rtb.Location = new System.Drawing.Point(0, 64);
             this.rtb.Name = "rtb";
-            this.rtb.Size = new System.Drawing.Size(442, 390);
+            this.rtb.Size = new System.Drawing.Size(476, 390);
             this.rtb.TabIndex = 0;
             this.rtb.Text = "";
             // 
@@ -52,7 +52,7 @@
             this.rtb_title.Font = new System.Drawing.Font("华文楷体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rtb_title.Location = new System.Drawing.Point(0, 0);
             this.rtb_title.Name = "rtb_title";
-            this.rtb_title.Size = new System.Drawing.Size(442, 65);
+            this.rtb_title.Size = new System.Drawing.Size(476, 65);
             this.rtb_title.TabIndex = 1;
             this.rtb_title.Text = "修订记录";
             // 
@@ -60,7 +60,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 453);
+            this.ClientSize = new System.Drawing.Size(476, 454);
             this.Controls.Add(this.rtb_title);
             this.Controls.Add(this.rtb);
             this.MaximizeBox = false;

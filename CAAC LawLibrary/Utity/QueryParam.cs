@@ -51,5 +51,10 @@ namespace CAAC_LawLibrary.Utity
         /// 是否在下载任务中
         /// </summary>
         public int? downloadState { get; set; }
+
+        /// <summary>
+        /// 最后版本，用于查找修订令
+        /// </summary>
+        public int? lastVersion { get; set; }
     }
 }

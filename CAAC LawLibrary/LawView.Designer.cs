@@ -84,16 +84,17 @@
             this.pl_title.Controls.Add(this.lbl_welcome);
             this.pl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.pl_title.Location = new System.Drawing.Point(0, 0);
+            this.pl_title.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pl_title.Name = "pl_title";
-            this.pl_title.Size = new System.Drawing.Size(1025, 39);
+            this.pl_title.Size = new System.Drawing.Size(1367, 49);
             this.pl_title.TabIndex = 1;
             // 
             // btn_suggest
             // 
-            this.btn_suggest.Location = new System.Drawing.Point(627, 9);
-            this.btn_suggest.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_suggest.Location = new System.Drawing.Point(836, 11);
+            this.btn_suggest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_suggest.Name = "btn_suggest";
-            this.btn_suggest.Size = new System.Drawing.Size(76, 24);
+            this.btn_suggest.Size = new System.Drawing.Size(101, 30);
             this.btn_suggest.TabIndex = 5;
             this.btn_suggest.Text = "意见征询";
             this.btn_suggest.UseVisualStyleBackColor = true;
@@ -101,28 +102,28 @@
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(459, 9);
-            this.btn_search.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_search.Location = new System.Drawing.Point(612, 11);
+            this.btn_search.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(56, 24);
+            this.btn_search.Size = new System.Drawing.Size(75, 30);
             this.btn_search.TabIndex = 4;
             this.btn_search.Text = "查找";
             this.btn_search.UseVisualStyleBackColor = true;
             // 
             // txt_keyword
             // 
-            this.txt_keyword.Location = new System.Drawing.Point(200, 10);
-            this.txt_keyword.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_keyword.Location = new System.Drawing.Point(267, 12);
+            this.txt_keyword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_keyword.Name = "txt_keyword";
-            this.txt_keyword.Size = new System.Drawing.Size(244, 21);
+            this.txt_keyword.Size = new System.Drawing.Size(324, 25);
             this.txt_keyword.TabIndex = 3;
             // 
             // btn_return
             // 
-            this.btn_return.Location = new System.Drawing.Point(19, 7);
-            this.btn_return.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_return.Location = new System.Drawing.Point(25, 9);
+            this.btn_return.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_return.Name = "btn_return";
-            this.btn_return.Size = new System.Drawing.Size(80, 24);
+            this.btn_return.Size = new System.Drawing.Size(107, 30);
             this.btn_return.TabIndex = 2;
             this.btn_return.Text = "返回库";
             this.btn_return.UseVisualStyleBackColor = true;
@@ -131,9 +132,10 @@
             // btn_logout
             // 
             this.btn_logout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_logout.Location = new System.Drawing.Point(938, 8);
+            this.btn_logout.Location = new System.Drawing.Point(1251, 10);
+            this.btn_logout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_logout.Name = "btn_logout";
-            this.btn_logout.Size = new System.Drawing.Size(75, 24);
+            this.btn_logout.Size = new System.Drawing.Size(100, 30);
             this.btn_logout.TabIndex = 1;
             this.btn_logout.Text = "退出";
             this.btn_logout.UseVisualStyleBackColor = true;
@@ -143,9 +145,10 @@
             // 
             this.lbl_welcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_welcome.AutoSize = true;
-            this.lbl_welcome.Location = new System.Drawing.Point(786, 13);
+            this.lbl_welcome.Location = new System.Drawing.Point(1048, 16);
+            this.lbl_welcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_welcome.Name = "lbl_welcome";
-            this.lbl_welcome.Size = new System.Drawing.Size(41, 12);
+            this.lbl_welcome.Size = new System.Drawing.Size(52, 15);
             this.lbl_welcome.TabIndex = 0;
             this.lbl_welcome.Text = "您好：";
             // 
@@ -153,18 +156,24 @@
             // 
             this.np_left.CanCollapse = true;
             this.np_left.ConfigureItemVisible = false;
+<<<<<<< HEAD
             this.np_left.Controls.Add(this.npp_tree);
+=======
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.np_left.Controls.Add(this.npp_docInfo);
+            this.np_left.Controls.Add(this.npp_tree);
             this.np_left.Dock = System.Windows.Forms.DockStyle.Left;
             this.np_left.ItemPaddingBottom = 2;
             this.np_left.ItemPaddingTop = 2;
             this.np_left.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btn_item_tree,
             this.btn_item_docInfo});
-            this.np_left.Location = new System.Drawing.Point(0, 39);
+            this.np_left.Location = new System.Drawing.Point(0, 49);
+            this.np_left.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.np_left.Name = "np_left";
+            this.np_left.NavigationBarHeight = 35;
             this.np_left.Padding = new System.Windows.Forms.Padding(1);
-            this.np_left.Size = new System.Drawing.Size(210, 735);
+            this.np_left.Size = new System.Drawing.Size(280, 919);
             this.np_left.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
             this.np_left.TabIndex = 2;
             // 
@@ -172,14 +181,24 @@
             // 
             this.np_left.TitlePanel.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
             this.np_left.TitlePanel.Location = new System.Drawing.Point(0, 0);
+<<<<<<< HEAD
             this.np_left.TitlePanel.Name = "panelTitle";
+=======
+            this.np_left.TitlePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.np_left.TitlePanel.Name = "panelTitle";
+            this.np_left.TitlePanel.Size = new System.Drawing.Size(267, 125);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.np_left.TitlePanel.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(135)))), ((int)(((byte)(214)))));
             this.np_left.TitlePanel.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(56)))), ((int)(((byte)(148)))));
             this.np_left.TitlePanel.Style.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
             this.np_left.TitlePanel.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
             this.np_left.TitlePanel.Style.ForeColor.Color = System.Drawing.Color.White;
             this.np_left.TitlePanel.TabIndex = 0;
+<<<<<<< HEAD
             this.np_left.TitlePanel.Text = "目录";
+=======
+            this.np_left.TitlePanel.Text = "文档信息";
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             // 
             // npp_tree
             // 
@@ -187,9 +206,14 @@
             this.npp_tree.Controls.Add(this.NodeTree);
             this.npp_tree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.npp_tree.Location = new System.Drawing.Point(1, 1);
+            this.npp_tree.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.npp_tree.Name = "npp_tree";
             this.npp_tree.ParentItem = this.btn_item_tree;
+<<<<<<< HEAD
             this.npp_tree.Size = new System.Drawing.Size(208, 701);
+=======
+            this.npp_tree.Size = new System.Drawing.Size(278, 917);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.npp_tree.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.npp_tree.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
             this.npp_tree.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
@@ -209,12 +233,16 @@
             this.NodeTree.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.NodeTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NodeTree.Location = new System.Drawing.Point(0, 0);
-            this.NodeTree.Margin = new System.Windows.Forms.Padding(2);
+            this.NodeTree.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NodeTree.Name = "NodeTree";
             this.NodeTree.NodesConnector = this.nodeConnector1;
             this.NodeTree.NodeStyle = this.elementStyle1;
             this.NodeTree.PathSeparator = ";";
+<<<<<<< HEAD
             this.NodeTree.Size = new System.Drawing.Size(208, 701);
+=======
+            this.NodeTree.Size = new System.Drawing.Size(278, 917);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.NodeTree.Styles.Add(this.elementStyle1);
             this.NodeTree.TabIndex = 0;
             this.NodeTree.NodeClick += new DevComponents.AdvTree.TreeNodeMouseEventHandler(this.NodeTree_NodeClick);
@@ -233,7 +261,6 @@
             // 
             // btn_item_tree
             // 
-            this.btn_item_tree.Checked = true;
             this.btn_item_tree.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_tree.Image")));
             this.btn_item_tree.ImageFixedSize = new System.Drawing.Size(16, 16);
             this.btn_item_tree.Name = "btn_item_tree";
@@ -247,9 +274,14 @@
             this.npp_docInfo.Controls.Add(this.lawInfo1);
             this.npp_docInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.npp_docInfo.Location = new System.Drawing.Point(1, 1);
+            this.npp_docInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.npp_docInfo.Name = "npp_docInfo";
             this.npp_docInfo.ParentItem = this.btn_item_docInfo;
+<<<<<<< HEAD
             this.npp_docInfo.Size = new System.Drawing.Size(208, 701);
+=======
+            this.npp_docInfo.Size = new System.Drawing.Size(278, 882);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.npp_docInfo.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.npp_docInfo.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
             this.npp_docInfo.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
@@ -260,10 +292,9 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(124, 102);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(165, 128);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(89, 12);
+            this.linkLabel1.Size = new System.Drawing.Size(112, 15);
             this.linkLabel1.TabIndex = 1;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "查看修订历史页";
@@ -273,13 +304,20 @@
             // 
             this.lawInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lawInfo1.Location = new System.Drawing.Point(0, 0);
+<<<<<<< HEAD
             this.lawInfo1.Margin = new System.Windows.Forms.Padding(4);
             this.lawInfo1.Name = "lawInfo1";
             this.lawInfo1.Size = new System.Drawing.Size(208, 701);
+=======
+            this.lawInfo1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.lawInfo1.Name = "lawInfo1";
+            this.lawInfo1.Size = new System.Drawing.Size(278, 882);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.lawInfo1.TabIndex = 0;
             // 
             // btn_item_docInfo
             // 
+            this.btn_item_docInfo.Checked = true;
             this.btn_item_docInfo.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_docInfo.Image")));
             this.btn_item_docInfo.ImageFixedSize = new System.Drawing.Size(16, 16);
             this.btn_item_docInfo.Name = "btn_item_docInfo";
@@ -290,6 +328,10 @@
             // 
             this.np_right.CanCollapse = true;
             this.np_right.ConfigureItemVisible = false;
+<<<<<<< HEAD
+=======
+            this.np_right.Controls.Add(this.navigationPanePanel1);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.np_right.Controls.Add(this.navigationPanePanel2);
             this.np_right.Controls.Add(this.navigationPanePanel1);
             this.np_right.Dock = System.Windows.Forms.DockStyle.Right;
@@ -298,10 +340,12 @@
             this.np_right.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btn_item_relation,
             this.btn_item_comment});
-            this.np_right.Location = new System.Drawing.Point(811, 39);
+            this.np_right.Location = new System.Drawing.Point(1082, 49);
+            this.np_right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.np_right.Name = "np_right";
+            this.np_right.NavigationBarHeight = 35;
             this.np_right.Padding = new System.Windows.Forms.Padding(1);
-            this.np_right.Size = new System.Drawing.Size(214, 735);
+            this.np_right.Size = new System.Drawing.Size(285, 919);
             this.np_right.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.np_right.TabIndex = 3;
             // 
@@ -309,14 +353,24 @@
             // 
             this.np_right.TitlePanel.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.np_right.TitlePanel.Location = new System.Drawing.Point(0, 0);
+<<<<<<< HEAD
             this.np_right.TitlePanel.Name = "panelTitle";
+=======
+            this.np_right.TitlePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.np_right.TitlePanel.Name = "panelTitle";
+            this.np_right.TitlePanel.Size = new System.Drawing.Size(267, 125);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.np_right.TitlePanel.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(135)))), ((int)(((byte)(214)))));
             this.np_right.TitlePanel.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(56)))), ((int)(((byte)(148)))));
             this.np_right.TitlePanel.Style.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
             this.np_right.TitlePanel.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
             this.np_right.TitlePanel.Style.ForeColor.Color = System.Drawing.Color.White;
             this.np_right.TitlePanel.TabIndex = 0;
+<<<<<<< HEAD
             this.np_right.TitlePanel.Text = "评论";
+=======
+            this.np_right.TitlePanel.Text = "关系";
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             // 
             // navigationPanePanel1
             // 
@@ -325,9 +379,10 @@
             this.navigationPanePanel1.Controls.Add(this.cbb_tag);
             this.navigationPanePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanePanel1.Location = new System.Drawing.Point(1, 1);
+            this.navigationPanePanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navigationPanePanel1.Name = "navigationPanePanel1";
             this.navigationPanePanel1.ParentItem = this.btn_item_relation;
-            this.navigationPanePanel1.Size = new System.Drawing.Size(212, 733);
+            this.navigationPanePanel1.Size = new System.Drawing.Size(283, 882);
             this.navigationPanePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.navigationPanePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
             this.navigationPanePanel1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
@@ -348,14 +403,15 @@
             this.tagContent,
             this.OuterHTML});
             this.dgw.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgw.Location = new System.Drawing.Point(0, 20);
+            this.dgw.Location = new System.Drawing.Point(0, 23);
+            this.dgw.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgw.Name = "dgw";
             this.dgw.RowHeadersVisible = false;
             this.dgw.RowTemplate.Height = 23;
             this.dgw.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgw.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgw.ShowEditingIcon = false;
-            this.dgw.Size = new System.Drawing.Size(212, 713);
+            this.dgw.Size = new System.Drawing.Size(283, 859);
             this.dgw.TabIndex = 0;
             this.dgw.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgw_CellDoubleClick);
             // 
@@ -393,8 +449,9 @@
             this.cbb_tag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_tag.FormattingEnabled = true;
             this.cbb_tag.Location = new System.Drawing.Point(0, 0);
+            this.cbb_tag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbb_tag.Name = "cbb_tag";
-            this.cbb_tag.Size = new System.Drawing.Size(212, 20);
+            this.cbb_tag.Size = new System.Drawing.Size(283, 23);
             this.cbb_tag.TabIndex = 0;
             this.cbb_tag.SelectedIndexChanged += new System.EventHandler(this.cbb_tag_SelectedIndexChanged);
             // 
@@ -413,9 +470,14 @@
             this.navigationPanePanel2.Controls.Add(this.flp_comment);
             this.navigationPanePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanePanel2.Location = new System.Drawing.Point(1, 1);
+            this.navigationPanePanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navigationPanePanel2.Name = "navigationPanePanel2";
             this.navigationPanePanel2.ParentItem = this.btn_item_comment;
+<<<<<<< HEAD
             this.navigationPanePanel2.Size = new System.Drawing.Size(212, 701);
+=======
+            this.navigationPanePanel2.Size = new System.Drawing.Size(283, 882);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.navigationPanePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.navigationPanePanel2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
             this.navigationPanePanel2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
@@ -427,10 +489,14 @@
             // 
             this.lbl_loadMore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_loadMore.Dock = System.Windows.Forms.DockStyle.Bottom;
+<<<<<<< HEAD
             this.lbl_loadMore.Location = new System.Drawing.Point(0, 671);
             this.lbl_loadMore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.lbl_loadMore.Location = new System.Drawing.Point(0, 844);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.lbl_loadMore.Name = "lbl_loadMore";
-            this.lbl_loadMore.Size = new System.Drawing.Size(212, 30);
+            this.lbl_loadMore.Size = new System.Drawing.Size(283, 38);
             this.lbl_loadMore.TabIndex = 2;
             this.lbl_loadMore.Text = "加载更多";
             this.lbl_loadMore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -441,9 +507,13 @@
             this.flp_comment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_comment.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flp_comment.Location = new System.Drawing.Point(0, 0);
-            this.flp_comment.Margin = new System.Windows.Forms.Padding(2);
+            this.flp_comment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flp_comment.Name = "flp_comment";
+<<<<<<< HEAD
             this.flp_comment.Size = new System.Drawing.Size(212, 701);
+=======
+            this.flp_comment.Size = new System.Drawing.Size(283, 882);
+>>>>>>> c7eab601f5537700c7b32f2a72de565f816c32ba
             this.flp_comment.TabIndex = 0;
             // 
             // btn_item_comment
@@ -462,9 +532,10 @@
             this.pn_main_document.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.pn_main_document.Controls.Add(this.wb);
             this.pn_main_document.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pn_main_document.Location = new System.Drawing.Point(210, 39);
+            this.pn_main_document.Location = new System.Drawing.Point(280, 49);
+            this.pn_main_document.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn_main_document.Name = "pn_main_document";
-            this.pn_main_document.Size = new System.Drawing.Size(601, 735);
+            this.pn_main_document.Size = new System.Drawing.Size(802, 919);
             this.pn_main_document.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pn_main_document.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.pn_main_document.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -480,9 +551,10 @@
             this.wb.AllowWebBrowserDrop = false;
             this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wb.Location = new System.Drawing.Point(0, 0);
-            this.wb.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.wb.MinimumSize = new System.Drawing.Size(27, 25);
             this.wb.Name = "wb";
-            this.wb.Size = new System.Drawing.Size(601, 735);
+            this.wb.Size = new System.Drawing.Size(802, 919);
             this.wb.TabIndex = 0;
             this.wb.WebBrowserShortcutsEnabled = false;
             // 
@@ -492,13 +564,14 @@
             // 
             // LawView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1025, 774);
+            this.ClientSize = new System.Drawing.Size(1367, 968);
             this.Controls.Add(this.pn_main_document);
             this.Controls.Add(this.np_right);
             this.Controls.Add(this.np_left);
             this.Controls.Add(this.pl_title);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LawView";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -22,15 +22,18 @@ namespace CAAC_LawLibrary.Utity
         public static string Appid = ConfigWorker.GetConfigValue("Appid");
         public static string Appkey = ConfigWorker.GetConfigValue("Appkey");
         public static string RemoteUrl = ConfigWorker.GetConfigValue("RemoteUrl");
+        public static string LoginUrl = ConfigWorker.GetConfigValue("LoginUrl");
+        public static string WorkerInfoUrl = ConfigWorker.GetConfigValue("WorkerInfoUrl");
         public static string ConsultCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("ConsultCommit");
-        public static string OpinionListApi= RemoteUrl + ConfigWorker.GetConfigValue("OpinionList");
-        public static string OpinionCommitApi= RemoteUrl + ConfigWorker.GetConfigValue("OpinionCommit");
-        public static string AllBooksApi= RemoteUrl + ConfigWorker.GetConfigValue("AllBooks");
-        public static string NodeDetailApi= RemoteUrl + ConfigWorker.GetConfigValue("NodeDetail");
-        public static string BookContentApi= RemoteUrl + ConfigWorker.GetConfigValue("BookContent");
-        public static string BookNodeCldApi= RemoteUrl + ConfigWorker.GetConfigValue("BookNodeCld");
-        public static string SearchApi= RemoteUrl + ConfigWorker.GetConfigValue("Search");
-        public static string SetListApi= RemoteUrl + ConfigWorker.GetConfigValue("SetList");
+        public static string OpinionListApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionList");
+        public static string OpinionCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionCommit");
+        public static string AllBooksApi = RemoteUrl + ConfigWorker.GetConfigValue("AllBooks");
+        public static string NodeDetailApi = RemoteUrl + ConfigWorker.GetConfigValue("NodeDetail");
+        public static string BookContentApi = RemoteUrl + ConfigWorker.GetConfigValue("BookContent");
+        public static string BookNodeCldApi = RemoteUrl + ConfigWorker.GetConfigValue("BookNodeCld");
+        public static string SearchApi = RemoteUrl + ConfigWorker.GetConfigValue("Search");
+        public static string SetListApi = RemoteUrl + ConfigWorker.GetConfigValue("SetList");
+        public static string HistoryApi = RemoteUrl + ConfigWorker.GetConfigValue("History");
 
         public static List<DictionaryEntry> SortSource = new List<DictionaryEntry>();
         public static List<DictionaryEntry> DownloadState = new List<DictionaryEntry>();
@@ -45,16 +48,16 @@ namespace CAAC_LawLibrary.Utity
 
         public static User user { get; set; }
 
-         static Global()
+        static Global()
         {
-            SortSource.Add(new DictionaryEntry(1,"时间倒序（默认）"));
+            SortSource.Add(new DictionaryEntry(1, "时间倒序（默认）"));
             SortSource.Add(new DictionaryEntry(2, "首字母拼音排序"));
 
             DownloadState.Add(new DictionaryEntry(0, "全部任务"));
             DownloadState.Add(new DictionaryEntry(1, "下载中"));
             DownloadState.Add(new DictionaryEntry(2, "已完成"));
 
-            tag.Add(new DictionaryEntry("全","全部"));
+            tag.Add(new DictionaryEntry("全", "全部"));
             tag.Add(new DictionaryEntry("定", "定义"));
             tag.Add(new DictionaryEntry("类", "业务分类"));
             tag.Add(new DictionaryEntry("键", "关键字"));
@@ -73,7 +76,7 @@ namespace CAAC_LawLibrary.Utity
             weijie.Insert(0, new Code() { Id = null, desc = "不限位阶范围" });
 
         }
-        
+
         public static string GetCodeValueById(string Id)
         {
             if (allCode.Count == 0)
@@ -83,7 +86,7 @@ namespace CAAC_LawLibrary.Utity
             if (Id.Contains(","))
             {
                 var idList = Id.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                var list = allCode.Where(c=>idList.Contains(c.Id)).Select(c=>c.desc);
+                var list = allCode.Where(c => idList.Contains(c.Id)).Select(c => c.desc);
                 return string.Join(",", list.ToList());
             }
             else
@@ -95,6 +98,27 @@ namespace CAAC_LawLibrary.Utity
                     return code.desc;
                 }
             }
+        }
+
+        /// <summary>
+        /// 数字转小写汉字，用于修订令
+        /// </summary>
+        /// <param name="numberStr"></param>
+        /// <returns></returns>
+        public static string NumberToChinese(string numberStr)
+        {
+            string numStr = "0123456789";
+            string chineseStr = "零一二三四五六七八九";
+            char[] c = numberStr.ToCharArray();
+            for (int i = 0; i < c.Length; i++)
+            {
+                int index = numStr.IndexOf(c[i]);
+                if (index != -1)
+                    c[i] = chineseStr.ToCharArray()[index];
+            }
+            numStr = null;
+            chineseStr = null;
+            return new string(c);
         }
     }
 
@@ -163,20 +187,19 @@ namespace CAAC_LawLibrary.Utity
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
             request.Method = "POST";
-            request.ContentType = "application/json";
-            request.ContentLength = Encoding.UTF8.GetByteCount(postDataStr);
+            request.ContentType = "text/html;charset=utf-8";
+            //request.ContentLength = Encoding.UTF8.GetByteCount(postDataStr);
             request.Headers.Add("X-Appid", Global.Appid);
             request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
             request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey+ UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
-            //request.CookieContainer = cookie;
+            
             Stream myRequestStream = request.GetRequestStream();
-            StreamWriter myStreamWriter = new StreamWriter(myRequestStream, Encoding.GetEncoding("gb2312"));
+            StreamWriter myStreamWriter = new StreamWriter(myRequestStream, Encoding.GetEncoding("utf-8"));
             myStreamWriter.Write(postDataStr);
             myStreamWriter.Close();
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            //response.Cookies = cookie.GetCookies(response.ResponseUri);
+            
             Stream myResponseStream = response.GetResponseStream();
             StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
             string retString = myStreamReader.ReadToEnd();
@@ -198,7 +221,7 @@ namespace CAAC_LawLibrary.Utity
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
             //req.ContentType = "application/x-www-form-urlencoded";
-            req.ContentType = "application/text";
+            req.ContentType = "application/json";
             req.Headers.Add("X-Appid", Global.Appid);
             req.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
             req.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
