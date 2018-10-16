@@ -139,6 +139,12 @@ namespace CAAC_LawLibrary
             {
                 commentList = db.getComment(new Utity.QueryParam() { lawId = law.Id });
             }
+            if (Global.online == false)
+            {
+                Label label = new Label() { Text = "离线状态下无法显示评论",AutoSize=false,Dock=DockStyle.Top };
+                flp_comment.Controls.Add(label);
+                return;
+            }
             int remainCommentCount = commentList.Count - commentShownCount;
             List<Comment> currentCommentList=null;
             if (remainCommentCount >= 5)
@@ -390,6 +396,11 @@ namespace CAAC_LawLibrary
                     suggest.ShowDialog(this);
                     break;
                 case "评":
+                    if (Global.online == false)
+                    {
+                        MessageBox.Show("离线状态下无法进行评论");
+                        break;
+                    }
                     AddNewComment comment = new AddNewComment();
                     comment.nodeId = nodeId;
                     comment.lawId = law.Id;
