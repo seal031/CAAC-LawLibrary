@@ -187,20 +187,19 @@ namespace CAAC_LawLibrary.Utity
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
             request.Method = "POST";
-            request.ContentType = "application/json";
-            request.ContentLength = Encoding.UTF8.GetByteCount(postDataStr);
+            request.ContentType = "text/html;charset=utf-8";
+            //request.ContentLength = Encoding.UTF8.GetByteCount(postDataStr);
             request.Headers.Add("X-Appid", Global.Appid);
             request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
             request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey+ UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
-            //request.CookieContainer = cookie;
+            
             Stream myRequestStream = request.GetRequestStream();
-            StreamWriter myStreamWriter = new StreamWriter(myRequestStream, Encoding.GetEncoding("gb2312"));
+            StreamWriter myStreamWriter = new StreamWriter(myRequestStream, Encoding.GetEncoding("utf-8"));
             myStreamWriter.Write(postDataStr);
             myStreamWriter.Close();
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            //response.Cookies = cookie.GetCookies(response.ResponseUri);
+            
             Stream myResponseStream = response.GetResponseStream();
             StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
             string retString = myStreamReader.ReadToEnd();
@@ -222,7 +221,7 @@ namespace CAAC_LawLibrary.Utity
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
             //req.ContentType = "application/x-www-form-urlencoded";
-            req.ContentType = "application/text";
+            req.ContentType = "application/json";
             req.Headers.Add("X-Appid", Global.Appid);
             req.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
             req.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));

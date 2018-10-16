@@ -12,17 +12,24 @@ namespace CAAC_LawLibrary.DAL
 {
     public class DbHelper
     {
-
+        /// <summary>
+        /// 通过法规id获取法规
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Law getLawById(string id)
         {
             using (SqliteContext context = new SqliteContext())
             {
-                return context.Law.FirstOrDefault(l => l.Id == id);
+                return context.Law.FirstOrDefault(l => l.Id == id && l.userId == Global.user.Id);
             }
         }
 
-
-
+        /// <summary>
+        /// 获取法规
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public List<Law> getLaws(QueryParam param)
         {
             using (SqliteContext context = new SqliteContext())
@@ -41,14 +48,18 @@ namespace CAAC_LawLibrary.DAL
                 return list.OrderBy(l => param.sort == 2 ? l.pinyin : l.effectiveDate).ToList();
             }
         }
-
+        /// <summary>
+        /// 保存法规
+        /// </summary>
+        /// <param name="law"></param>
+        /// <returns></returns>
         public bool saveLaw(Law law)
         {
             using (SqliteContext context = new SqliteContext())
             {
                 try
                 {
-                    var old = context.Law.FirstOrDefault(l => l.Id == law.Id);
+                    var old = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == Global.user.Id);
                     if (old == null)
                     {
                         context.Law.Add(law);
@@ -85,7 +96,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 刷新法规
+        /// </summary>
+        /// <param name="laws"></param>
+        /// <returns></returns>
         public bool refreshLaw(List<Law> laws)
         {
             using (SqliteContext context = new SqliteContext())
@@ -176,7 +191,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 通过法规id获取章节
+        /// </summary>
+        /// <param name="lawId"></param>
+        /// <returns></returns>
         public List<Node> getNodeByLawId(string lawId)
         {
             using (SqliteContext context = new SqliteContext())
@@ -196,7 +215,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 通过章节id获取章节
+        /// </summary>
+        /// <param name="nodeId"></param>
+        /// <returns></returns>
         public Node getNodeById(string nodeId)
         {
             using (SqliteContext context = new SqliteContext())
@@ -212,7 +235,12 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 通过法规id、章节级别获取章节
+        /// </summary>
+        /// <param name="lawId"></param>
+        /// <param name="nodeLevel"></param>
+        /// <returns></returns>
         public List<Node> getNodeByLawIdAndLevel(string lawId,int nodeLevel)
         {
             using (SqliteContext context = new SqliteContext())
@@ -232,7 +260,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 通过父节点获取章节
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public List<Node> getNodeByParentNode(Node node)
         {
             using (SqliteContext context = new SqliteContext())
@@ -247,7 +279,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 保存章节
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public bool saveNode(Node node)
         {
             using (SqliteContext context = new SqliteContext())
@@ -272,7 +308,13 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 刷新章节
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="parentNode"></param>
+        /// <param name="detailOnly"></param>
+        /// <returns></returns>
         public bool refreshNode(List<Node> nodes,Node parentNode=null,bool detailOnly=false)
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
@@ -316,7 +358,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 获取指定种类的设置
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public List<Code> getCode(string type)
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
@@ -331,7 +377,10 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 获取设置
+        /// </summary>
+        /// <returns></returns>
         public List<Code> getCode()
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
@@ -346,7 +395,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 保存设置
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public bool saveCode(Code code)
         {
             using (SqliteContext context = new SqliteContext())
@@ -371,7 +424,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 刷新设置
+        /// </summary>
+        /// <param name="codes"></param>
+        /// <returns></returns>
         public bool refreshCode(List<Code> codes)
         {
             using (SqliteContext context = new SqliteContext())
@@ -397,7 +454,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 获取浏览历史
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public List<ViewHistory> getViewHistory(QueryParam param)
         {
             using (SqliteContext context = new SqliteContext())
@@ -418,7 +479,11 @@ namespace CAAC_LawLibrary.DAL
                 return list.ToList();
             }
         }
-
+        /// <summary>
+        /// 保存浏览历史
+        /// </summary>
+        /// <param name="history"></param>
+        /// <returns></returns>
         public bool saveHistory(ViewHistory history)
         {
             using (SqliteContext context = new SqliteContext())
@@ -485,7 +550,12 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
-
+        /// <summary>
+        /// 查询征询（远程获取）
+        /// </summary>
+        /// <param name="lawId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public List<Suggest> getSuggests(string lawId,string userId)
         {
             using (SqliteContext context = new SqliteContext())
@@ -493,7 +563,12 @@ namespace CAAC_LawLibrary.DAL
                 return context.Suggest.Where(s => s.lawId == lawId && s.userId == userId && s.isLocal!="1").ToList();
             }
         }
-
+        /// <summary>
+        /// 查询征询（本地未提交）
+        /// </summary>
+        /// <param name="lawId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public List<Suggest> getLocalSuggests(string lawId, string userId)
         {
             using (SqliteContext context = new SqliteContext())
@@ -503,7 +578,11 @@ namespace CAAC_LawLibrary.DAL
         }
 
 
-
+        /// <summary>
+        /// 临时保存征询
+        /// </summary>
+        /// <param name="suggest"></param>
+        /// <returns></returns>
         public bool saveSuggest(Suggest suggest)
         {
             using (SqliteContext context = new SqliteContext())
@@ -528,7 +607,12 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 删除征询
+        /// </summary>
+        /// <param name="lawId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public bool deleteSuggest(string lawId,string userId)
         {
             using (SqliteContext context = new SqliteContext())
@@ -549,7 +633,11 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 刷新评论
+        /// </summary>
+        /// <param name="comments"></param>
+        /// <returns></returns>
         public bool refreshComment(List<Comment> comments)
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
@@ -586,17 +674,66 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
-
+        /// <summary>
+        /// 查询评论
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public List<Comment> getComment(QueryParam param)
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
             {
-                var list = from comment in context.Comment
+                var list = (from comment in context.Comment
+                           join user in context.User on comment.userId equals user.Id
                            where (param.lawId == null ? 1 == 1 : comment.lawId == param.lawId) &&
                            (param.nodeId == null ? 1 == 1 : comment.nodeId == param.nodeId)
                            orderby comment.comment_date
-                           select comment;
-                return list.ToList();
+                           select new 
+                           {
+                               comment_content = comment.comment_content,
+                               userName=user.Xm,
+                               department=user.Department,
+                               comment_date=comment.comment_date
+                           }).ToList().Select(x=>new Comment() {
+                               comment_content=x.comment_content,
+                               comment_date=x.comment_date,
+                               userName=x.userName,
+                               department=x.department
+                           });
+                List<Comment> resultList = list.ToList();
+                return resultList;
+            }
+        }
+
+        /// <summary>
+        /// 保存用户信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public bool saveUser(User user)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                try
+                {
+                    var tempUser = context.User.FirstOrDefault(u => u.Id == user.Id);
+                    if (tempUser == null)//不存在则新增
+                    {
+                        context.User.Add(user);
+                    }
+                    else//已存在则更新
+                    {
+                        tempUser.Xm = user.Xm;
+                        tempUser.Department = user.Department;
+                        tempUser.Phone = user.Phone;
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
         }
     }

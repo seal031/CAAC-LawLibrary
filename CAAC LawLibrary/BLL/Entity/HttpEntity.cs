@@ -42,7 +42,9 @@ namespace CAAC_LawLibrary.BLL.Entity
             }
         }
     }
-
+    /// <summary>
+    /// 用户信息响应对象
+    /// </summary>
     public class UserInfoResponse:CommonResponse
     {
         public new List<dataItem> data { get; set; }
@@ -171,7 +173,7 @@ namespace CAAC_LawLibrary.BLL.Entity
             public int id { get; set; }
             public string msg { get; set; }
             public int nodeId { get; set; }
-            public int userId { get; set; }
+            public string readerId { get; set; }
         }
 
         public List<Comment> ConverToComments()
@@ -183,7 +185,7 @@ namespace CAAC_LawLibrary.BLL.Entity
                 comment.Id = opinion.id.ToString();
                 comment.lawId = opinion.bookId;
                 comment.nodeId = opinion.nodeId.ToString();
-                comment.userId = opinion.userId.ToString();
+                comment.userId = opinion.readerId;
                 comment.comment_date = UTC.ConvertIntDatetime(opinion.createTime).ToString("yyyy-MM-dd HH:mm:ss");
                 comment.comment_content = opinion.msg;
                 comments.Add(comment);
@@ -646,7 +648,7 @@ namespace CAAC_LawLibrary.BLL.Entity
     {
         public string status { get; set; }
         public string errmsg { get; set; }
-        public string data { get; set; }
+        public object data { get; set; }
     }
 
     public class TranslationWorker

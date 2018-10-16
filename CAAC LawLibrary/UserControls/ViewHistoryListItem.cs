@@ -27,6 +27,11 @@ namespace CAAC_LawLibrary
 
         private void lbl_title_Click(object sender, EventArgs e)
         {
+            openLaw();
+        }
+
+        private void openLaw()
+        {
             LawView lv = new CAAC_LawLibrary.LawView();
             lv.law = law;
             lv.parentForm = parentForm;
@@ -80,6 +85,16 @@ namespace CAAC_LawLibrary
             {
                 ((LibraryList)parentForm).removeSelectedLocalLaw(law);
             }
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            openLaw();
         }
     }
 }

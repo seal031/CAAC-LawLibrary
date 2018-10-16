@@ -33,11 +33,6 @@
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lbl_downloadState
-            // 
-            this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_downloadState.Click += new System.EventHandler(this.lbl_downloadState_Click);
-            // 
             // lbl_title
             // 
             this.lbl_title.Click += new System.EventHandler(this.lbl_title_Click);
@@ -45,26 +40,35 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.lbl_version);
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             this.panel1.Controls.SetChildIndex(this.lbl_name, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_downloadState, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_state, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_version, 0);
             // 
+            // panel2
+            // 
+            this.panel2.Click += new System.EventHandler(this.panel2_Click);
+            // 
+            // lbl_downloadState
+            // 
+            this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_downloadState.Click += new System.EventHandler(this.lbl_downloadState_Click);
+            // 
             // lbl_version
             // 
             this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(933, 14);
-            this.lbl_version.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_version.Location = new System.Drawing.Point(1244, 18);
             this.lbl_version.Name = "lbl_version";
-            this.lbl_version.Size = new System.Drawing.Size(41, 12);
+            this.lbl_version.Size = new System.Drawing.Size(55, 15);
             this.lbl_version.TabIndex = 3;
             this.lbl_version.Text = "label1";
             // 
             // ViewHistoryListItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ViewHistoryListItem";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

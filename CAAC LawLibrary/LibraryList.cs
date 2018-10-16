@@ -49,6 +49,7 @@ namespace CAAC_LawLibrary
         {
             if (Global.online) { this.Text = "联网模式"; }
             else { this.Text = "离线模式"; }
+            lbl_welcome.Text += Global.user.Xm;
             loadLocalLawList();
             loadViewHistoryList();
             loadDownLoadList();

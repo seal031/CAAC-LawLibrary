@@ -47,10 +47,10 @@
             // lbl_user
             // 
             this.lbl_user.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbl_user.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_user.Location = new System.Drawing.Point(0, 170);
+            this.lbl_user.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_user.Location = new System.Drawing.Point(0, 150);
             this.lbl_user.Name = "lbl_user";
-            this.lbl_user.Size = new System.Drawing.Size(250, 30);
+            this.lbl_user.Size = new System.Drawing.Size(250, 50);
             this.lbl_user.TabIndex = 1;
             this.lbl_user.Text = "label2";
             // 
@@ -59,7 +59,7 @@
             this.lbl_content.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_content.Location = new System.Drawing.Point(0, 25);
             this.lbl_content.Name = "lbl_content";
-            this.lbl_content.Size = new System.Drawing.Size(250, 145);
+            this.lbl_content.Size = new System.Drawing.Size(250, 125);
             this.lbl_content.TabIndex = 2;
             this.lbl_content.Text = "label3";
             // 

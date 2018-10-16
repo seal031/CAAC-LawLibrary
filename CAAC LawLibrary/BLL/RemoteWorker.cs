@@ -123,6 +123,12 @@ namespace CAAC_LawLibrary.BLL
             string opinions = HttpWorker.HttpGet(Global.OpinionListApi, "bookId="+bookId);
             OpinionResponse opinionResponse = TranslationWorker.ConvertStringToEntity<OpinionResponse>(opinions);
             db.refreshComment(opinionResponse.ConverToComments());
+            //获取评论后获取评论人的信息
+            List<User> userList = getUserInfoList(opinionResponse.data.list.Select(d => d.readerId).ToList());
+            foreach (User user in userList)
+            {
+                db.saveUser(user);
+            }
         }
 
         /// <summary>
@@ -160,6 +166,8 @@ namespace CAAC_LawLibrary.BLL
         {
             string result = string.Empty;
             string historyResult = HttpWorker.HttpGet(Global.HistoryApi, "bookId=" + bookId);
+            HistoryResponse history = TranslationWorker.ConvertStringToEntity<HistoryResponse>(historyResult);
+            result = string.Join(Environment.NewLine, history.data.list.Select(l => l.version));
             return result;
         }
 
@@ -177,9 +185,9 @@ namespace CAAC_LawLibrary.BLL
                 //result= HttpWorker.PostJson(Global.OpinionCommitApi, opinion.ToJson());
                 result = HttpWorker.PostStr(Global.OpinionCommitApi, opinion.ToJson());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("提交评论失败，请重试");
+                MessageBox.Show("提交评论失败，请重试。原因："+ex.Message);
             }
             return result;
         }
@@ -193,12 +201,11 @@ namespace CAAC_LawLibrary.BLL
             string result = string.Empty;
             try
             {
-                result = HttpWorker.PostJson(Global.ConsultCommitApi, consult.ToJson());
-                MessageBox.Show("提交成功");
+                result = HttpWorker.PostStr(Global.ConsultCommitApi, consult.ToJson());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("提交征询意见失败，请重试");
+                MessageBox.Show("提交征询意见失败，请重试。原因："+ex.Message);
             }
             return result;
         }

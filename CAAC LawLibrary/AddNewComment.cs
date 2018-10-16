@@ -19,6 +19,7 @@ namespace CAAC_LawLibrary
         public string title;
         public string lawId;
         public string nodeId;
+        public LawView lawView;
 
         public AddNewComment()
         {
@@ -37,7 +38,23 @@ namespace CAAC_LawLibrary
             OpinionCommitRequest opinionRequest = new OpinionCommitRequest();
             opinionRequest.ConvertFromComment(newComment);
             //RemoteWorker
-            RemoteWorker.postOpinion(opinionRequest);
+            CommonResponse response = TranslationWorker.ConvertStringToEntity<CommonResponse>(RemoteWorker.postOpinion(opinionRequest));
+            if (response != null)
+            {
+                if (response.status.ToString() == "200")
+                {
+                    //如果提交成功，在法规正文界面刷新评论
+                    RemoteWorker.getOpinionList(lawView.law.Id);
+                    if (Global.online)// && string.IsNullOrEmpty(law.isLocal))
+                    {
+                        ((LawView)lawView).loadComment(reload:true);
+                    }
+                    if (MessageBox.Show("提交评论成功") == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+                }
+            }
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)

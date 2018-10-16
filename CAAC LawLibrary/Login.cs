@@ -1,5 +1,6 @@
 ﻿using CAAC_LawLibrary.BLL;
 using CAAC_LawLibrary.BLL.Entity;
+using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Utity;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace CAAC_LawLibrary
 {
     public partial class Login : Form
     {
+        DbHelper db = new DbHelper();
+
         public Login()
         {
             InitializeComponent();
@@ -22,8 +25,15 @@ namespace CAAC_LawLibrary
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            if (cbb_user.Text.Trim() == string.Empty || txt_password.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("用户名密码不能为空");
+                return;
+            }
             if (login(cbb_user.Text.Trim(), txt_password.Text.Trim()))
             {
+                Global.user.Name = cbb_user.Text.Trim();
+                Global.user.Password = txt_password.Text.Trim();
                 if (Global.online)//如果登陆成功且联网状态，获取用户信息、远程法规列表、设置列表
                 {
                     RemoteWorker.getUserInfo();
@@ -36,6 +46,7 @@ namespace CAAC_LawLibrary
                     string password = txt_password.Text.Trim();
                     ConfigWorker.SetConfigValue(userId, password);
                 }
+                db.saveUser(Global.user);
                 LibraryList listForm = new LibraryList();
                 listForm.Show();
                 this.Hide();

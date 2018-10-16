@@ -140,6 +140,24 @@ namespace CAAC_LawLibrary
             law.downloadPercent = null;
             ((LibraryList)parentForm).updateLaw(law);
         }
-        
+
+        private void openLaw()
+        {
+            LawView lv = new CAAC_LawLibrary.LawView();
+            lv.law = law;
+            lv.parentForm = parentForm;
+            lv.Show(this);
+            parentForm.Hide();
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
     }
 }

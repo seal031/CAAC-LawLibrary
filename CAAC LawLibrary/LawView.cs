@@ -72,6 +72,7 @@ namespace CAAC_LawLibrary
 
         private void LawView_Load(object sender, EventArgs e)
         {
+            lbl_welcome.Text += Global.user.Xm;
             if (law != null)
             {
                 //如果在线，且未下载到本地，则从远程获取章节信息，并入库
@@ -133,9 +134,9 @@ namespace CAAC_LawLibrary
         //    }
         //}
 
-        private void loadComment()
+        public void loadComment(bool reload=false)
         {
-            if (commentList == null)
+            if (commentList == null||reload)
             {
                 commentList = db.getComment(new Utity.QueryParam() { lawId = law.Id });
             }
@@ -400,14 +401,22 @@ namespace CAAC_LawLibrary
             switch (tagType)
             {
                 case "征":
-                    AddNewSuggest suggest = new AddNewSuggest();
-                    suggest.lawId = law.Id;
-                    suggest.nodeId = nodeId;
-                    suggest.lbl_title.Text = nodeTitle;
-                    suggest.ShowDialog(this);
+                    if (DateTime.Parse(law.effectiveDate) > DateTime.Now)
+                    {
+                        AddNewSuggest suggest = new AddNewSuggest();
+                        suggest.lawId = law.Id;
+                        suggest.nodeId = nodeId;
+                        suggest.lbl_title.Text = nodeTitle;
+                        suggest.ShowDialog(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("征询已截止，无法再提交征询意见");
+                    }
                     break;
                 case "评":
                     AddNewComment comment = new AddNewComment();
+                    comment.lawView = this;
                     comment.nodeId = nodeId;
                     comment.lawId = law.Id;
                     comment.lbl_title.Text = nodeTitle;
