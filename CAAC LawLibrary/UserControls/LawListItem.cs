@@ -16,7 +16,6 @@ namespace CAAC_LawLibrary
     public partial class LawListItem : BaseListItem
     {
         public string lawId { get; set; }
-        public Law law { get; set; }
         public List<Law> laws { get; set; }
         public Form parentForm;
         public bool isChecked
@@ -153,6 +152,7 @@ namespace CAAC_LawLibrary
             if (lbl_downloadState.Text == "从本地库移除")
             {
                 ((LibraryList)parentForm).removeSelectedLocalLaw(law);
+                lbl_downloadState.Text = "下载";
             }
         }
     }

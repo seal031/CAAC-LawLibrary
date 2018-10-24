@@ -105,7 +105,7 @@ namespace CAAC_LawLibrary.BLL
         }
 
         /// <summary>
-        /// 获取法规列表
+        /// 获取全部法规列表
         /// </summary>
         public static void getLawResponse()
         {
@@ -132,21 +132,34 @@ namespace CAAC_LawLibrary.BLL
         }
 
         /// <summary>
-        /// 获取法规整体目录
+        /// 获取某一法规的整体目录
         /// </summary>
         /// <param name="bookId"></param>
-        public static Tuple<List<Node>, List<Node>> getBookContent(string bookId)
+        //public static Tuple<List<Node>, List<Node>> getBookContent(string bookId)
+        //{
+        //    string bookContents = HttpWorker.HttpGet(Global.BookContentApi, "bookId=" + bookId);
+        //    BookContentResponse bookContentResponse = TranslationWorker.ConvertStringToEntity<BookContentResponse>(bookContents);
+        //    List<Node> nodes = bookContentResponse.ConvertToNodes();
+        //    db.refreshNode(nodes);
+        //    List<Node> details = getNodeDetail(nodes.Select(n => n.Id).ToList());
+        //    return new Tuple<List<Node>, List<Node>>(nodes, details);
+        //}
+
+        /// <summary>
+        /// 获取某一法规的整体目录
+        /// </summary>
+        /// <param name="bookId"></param>
+        public static List<Node> getBookContent(string bookId)
         {
             string bookContents = HttpWorker.HttpGet(Global.BookContentApi, "bookId=" + bookId);
             BookContentResponse bookContentResponse = TranslationWorker.ConvertStringToEntity<BookContentResponse>(bookContents);
             List<Node> nodes = bookContentResponse.ConvertToNodes();
             db.refreshNode(nodes);
-            List<Node> details = getNodeDetail(nodes.Select(n => n.Id).ToList());
-            return new Tuple<List<Node>, List<Node>>(nodes, details);
+            return nodes;
         }
 
         /// <summary>
-        /// 获取章节内容
+        /// 一次性获取多个章节内容
         /// </summary>
         /// <param name="nodeIdList"></param>
         public static List<Node> getNodeDetail(List<string> nodeIdList)
@@ -156,6 +169,17 @@ namespace CAAC_LawLibrary.BLL
             List<Node> nodes = nodeDtailResponse.ConvertToNodes();
             db.refreshNode(nodes,detailOnly:true);
             return nodes;
+        }
+        /// <summary>
+        /// 获取一个章节的内容
+        /// </summary>
+        /// <param name="nodeId"></param>
+        public static void getNodeDetail(string nodeId)
+        {
+            string nodeDetails = HttpWorker.HttpGet(Global.NodeDetailApi, "nodeIds=" + nodeId);
+            NodeDetailResponse nodeDtailResponse = TranslationWorker.ConvertStringToEntity<NodeDetailResponse>(nodeDetails);
+            List<Node> nodes = nodeDtailResponse.ConvertToNodes();
+            db.refreshNode(nodes, detailOnly: true);
         }
         /// <summary>
         /// 获取修订列表内容

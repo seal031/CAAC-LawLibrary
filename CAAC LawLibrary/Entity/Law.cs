@@ -102,11 +102,19 @@ namespace CAAC_LawLibrary.Entity
         /// 状态
         /// </summary>
         public int? status { get; set; }
+        /// <summary>
+        /// 办文机构
+        /// </summary>
+        public string banwendanwei { get; set; }
 
         [NotMapped]
         public string pinyin
         {
             get { return ChineseToPinYin.ToPinYin(title); }
         }
+        /// <summary>
+        /// 已下载的章节数量，用于重新打开程序后的继续下载
+        /// </summary>
+        public int? downloadNodeCount { get; set; }
     }
 }

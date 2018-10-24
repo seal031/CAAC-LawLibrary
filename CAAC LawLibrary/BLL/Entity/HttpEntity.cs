@@ -288,6 +288,18 @@ namespace CAAC_LawLibrary.BLL.Entity
             /// 业务分类对象
             /// </summary>
             public List<bizItem> bizList { get; set; }
+            /// <summary>
+            /// 办文单位
+            /// </summary>
+            public string release { get; set; }
+            /// <summary>
+            /// 责罚
+            /// </summary>
+            public string punish { get; set; }
+            /// <summary>
+            /// 依赖
+            /// </summary>
+            public string related { get; set; }
             public listItem()
             {
                 tagList = new List<tagItem>();
@@ -324,6 +336,9 @@ namespace CAAC_LawLibrary.BLL.Entity
                 law.siju = list.managerOrg;
                 law.status = list.status;
                 law.lastversion = list.lastversion;
+                law.zefa = list.punish;
+                law.yilai = list.related;
+                law.banwendanwei = list.release;
                 law.userLabel = list.tag;//string.Join(",", list.tagList.Select(t => t.desc));
                 law.yewu = list.biz;//string.Join(",", list.bizList.Select(b => b.desc));
                 law.isLocal = "0";
@@ -368,6 +383,10 @@ namespace CAAC_LawLibrary.BLL.Entity
             /// </summary>
             public string nodeNumber { get; set; }
             public string content { get; set; }
+            public string nodeClass { get; set; }
+            public string nodeRef { get; set; }
+            public string nodeDef { get; set; }
+            public string nodeKey { get; set; }
         }
 
         public List<Node> ConvertToNodes()
@@ -381,6 +400,10 @@ namespace CAAC_LawLibrary.BLL.Entity
                 node.title = item.title;
                 node.nodeNumber = item.nodeNumber;
                 node.content = item.content;
+                node.nodeClass = item.nodeClass;
+                node.nodeDef = item.nodeDef;
+                node.nodeKey = item.nodeKey;
+                node.nodeRef = item.nodeRef;
                 nodes.Add(node);
             }
             return nodes;

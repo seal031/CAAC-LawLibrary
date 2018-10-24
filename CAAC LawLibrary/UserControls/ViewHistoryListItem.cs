@@ -16,7 +16,6 @@ namespace CAAC_LawLibrary
     public partial class ViewHistoryListItem : BaseListItem
     {
         public ViewHistory viewHistory;
-        public Law law;
         public Form parentForm;
         public DbHelper db = new DbHelper();
 
@@ -84,6 +83,7 @@ namespace CAAC_LawLibrary
             if (lbl_downloadState.Text == "从本地库移除")
             {
                 ((LibraryList)parentForm).removeSelectedLocalLaw(law);
+                lbl_downloadState.Text = "下载";
             }
         }
 

@@ -86,6 +86,8 @@ namespace CAAC_LawLibrary.DAL
                         old.zefa = law.zefa;
                         old.downloadPercent = law.downloadPercent;
                         old.downloadDate = law.downloadDate;
+                        old.downloadNodeCount = law.downloadNodeCount;
+                        old.isLocal = law.isLocal;
                     }
                     context.SaveChanges();
                     return true;
@@ -158,7 +160,7 @@ namespace CAAC_LawLibrary.DAL
         }
 
         /// <summary>
-        /// 从本地库移除
+        /// 从本地库移除(islocal=0,downloadData=null)
         /// </summary>
         /// <param name="law"></param>
         /// <returns></returns>
@@ -170,15 +172,21 @@ namespace CAAC_LawLibrary.DAL
                 {
                     try
                     {
-                        law.downloadDate = null;
-                        law.downloadPercent = null;
-                        law.isLocal = "0";
-
-                        var list = context.Node.Where(n => n.lawId == law.Id && law.userId == Global.user.Id);
-                        foreach (var node in list)
+                        var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == law.userId);
+                        if (currentLaw != null)
                         {
-                            node.content = string.Empty;
+                            currentLaw.downloadDate = null;
+                            currentLaw.downloadPercent = null;
+                            currentLaw.isLocal = "0";
+                            currentLaw.downloadNodeCount = null;
                         }
+
+                        //不清空node内容，因为node是多用户共用的
+                        //var list = context.Node.Where(n => n.lawId == law.Id && law.userId == Global.user.Id);
+                        //foreach (var node in list)
+                        //{
+                        //    node.content = string.Empty;
+                        //}
                         context.SaveChanges();
                         dbContextTransaction.Commit();
                         return true;
@@ -335,6 +343,10 @@ namespace CAAC_LawLibrary.DAL
                                 if (detailOnly)
                                 {
                                     currentNode.content = node.content;
+                                    currentNode.nodeClass = node.nodeClass;
+                                    currentNode.nodeKey = node.nodeKey;
+                                    currentNode.nodeDef = node.nodeDef;
+                                    currentNode.nodeRef = node.nodeRef;
                                 }
                                 else
                                 {
@@ -343,6 +355,10 @@ namespace CAAC_LawLibrary.DAL
                                     currentNode.nodeNumber = node.nodeNumber;
                                     currentNode.nodeOrder = node.nodeOrder;
                                     currentNode.title = node.title;
+                                    currentNode.nodeClass = node.nodeClass;
+                                    currentNode.nodeKey = node.nodeKey;
+                                    currentNode.nodeDef = node.nodeDef;
+                                    currentNode.nodeRef = node.nodeRef;
                                 }
                                 if (parentNode != null) currentNode.parentNodeId = parentNode.Id;
                             }

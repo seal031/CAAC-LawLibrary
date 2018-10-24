@@ -15,6 +15,7 @@ using CAAC_LawLibrary.UserControls;
 using CAAC_LawLibrary.Utity;
 using System.Security.Permissions;
 using System.Runtime.InteropServices;
+using mshtml;
 
 namespace CAAC_LawLibrary
 {
@@ -72,13 +73,15 @@ namespace CAAC_LawLibrary
 
         private void LawView_Load(object sender, EventArgs e)
         {
+            this.Text += "-"+law.title + " " + law.version;
             lbl_welcome.Text += Global.user.Xm;
             if (law != null)
             {
                 //如果在线，且未下载到本地，则从远程获取章节信息，并入库
                 if (Global.online && "0" == law.isLocal)
                 {
-                    RemoteWorker.getBookContent(law.Id);
+                    List<Node> nodes = RemoteWorker.getBookContent(law.Id);//获取法规整体章节结构
+                    RemoteWorker.getNodeDetail(nodes.Select(n => n.Id).ToList());//再获取每个章节的内容
                 }
                 nodes = db.getNodeByLawId(law.Id);
                 //绑定关系
@@ -398,12 +401,21 @@ namespace CAAC_LawLibrary
             }
         }
 
+
+
         public void CallFunction(params object[] paramList)
         {
             string nodeId = paramList[0].ToString();
             string tagType = paramList[1].ToString();
-            string nodeTitle = paramList[2].ToString();
+            string selectedText = paramList[2].ToString();
+            string text = string.Empty;
+            if (paramList.Length > 3)
+            {
+                if(paramList[3]!=null)
+                    text = paramList[3].ToString();
+            }
 
+            List<string> list = new List<string>();
             switch (tagType)
             {
                 case "征":
@@ -412,7 +424,7 @@ namespace CAAC_LawLibrary
                         AddNewSuggest suggest = new AddNewSuggest();
                         suggest.lawId = law.Id;
                         suggest.nodeId = nodeId;
-                        suggest.lbl_title.Text = nodeTitle;
+                        suggest.lbl_title.Text = selectedText;
                         suggest.ShowDialog(this);
                     }
                     else
@@ -430,38 +442,77 @@ namespace CAAC_LawLibrary
                     comment.lawView = this;
                     comment.nodeId = nodeId;
                     comment.lawId = law.Id;
-                    comment.lbl_title.Text = nodeTitle;
+                    comment.lbl_title.Text = selectedText;
                     comment.ShowDialog(this);
                     break;
                 case "定":
-                    showBalloon("定义","",nodeId);
+                    foreach (string s in text.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        int id;
+                        if (int.TryParse(s, out id)) //text可能为逗号分隔的id，也有可能是逗号分隔的文本值
+                        {
+                            list.Add(Global.GetCodeValueById(s));
+                        }
+                        else
+                        {
+                            list.Add(s);
+                        }
+                    }
+                    showBalloon("定义",selectedText, string.Join(" ", list), nodeId);
                     break;
                 case "类":
-                    showBalloon("业务分类", "", nodeId);
+                    foreach (string s in text.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        int id;
+                        if (int.TryParse(s, out id)) //text可能为逗号分隔的id，也有可能是逗号分隔的文本值
+                        {
+                            list.Add(Global.GetCodeValueById(s));
+                        }
+                        else
+                        {
+                            list.Add(s);
+                        }
+                    }
+                    showBalloon("分类", selectedText, string.Join(" ", list), nodeId);
                     break;
                 case "键":
-                    showBalloon("自定义关键字", "", nodeId);
+                    foreach (string s in text.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        int id;
+                        if (int.TryParse(s, out id)) //text可能为逗号分隔的id，也有可能是逗号分隔的文本值
+                        {
+                            list.Add(Global.GetCodeValueById(s));
+                        }
+                        else
+                        {
+                            list.Add(s);
+                        }
+                    }
+                    showBalloon("关键字", selectedText, string.Join(" ", list), nodeId);
                     break;
                 case "依":
-                    showBalloon("依赖", "", nodeId);
+                    showBalloon("依赖", selectedText, "", nodeId);
                     break;
                 case "罚":
-                    showBalloon("罚则", "", nodeId);
+                    showBalloon("罚则", selectedText, "", nodeId);
+                    break;
+                case "引":
+                    showBalloon("引用", selectedText, "", nodeId);
                     break;
                 case "政":
-                    showBalloon("行政处罚", "", nodeId);
+                    showBalloon("行政处罚", selectedText, "", nodeId);
                     break;
                 case "律":
-                    showBalloon("纪律处分", "", nodeId);
+                    showBalloon("纪律处分", selectedText, "", nodeId);
                     break;
                 case "手":
-                    showBalloon("行政手段", "", nodeId);
+                    showBalloon("行政手段", selectedText, "", nodeId);
                     break;
                 case "他":
-                    showBalloon("其他责任", "", nodeId);
+                    showBalloon("其他责任", selectedText, "", nodeId);
                     break;
                 case "信":
-                    showBalloon("信用手段", "", nodeId);
+                    showBalloon("信用手段", selectedText, "", nodeId);
                     break;
                 default:
                     break;
@@ -469,9 +520,14 @@ namespace CAAC_LawLibrary
 
         }
 
-        private void showBalloon(string caption, string text,string nodeId)
+        private void showBalloon(string caption,string selectedText, string text,string nodeId)
         {
-            bt.SetBalloonText(wb, text);
+            text = "选中文字：" + selectedText + Environment.NewLine + caption + "：" + text;
+            if (caption == "引用")
+            {
+                bt.SetBalloonText(wb, "<input type=\"text\" onclick=\"alert(1)\" name=\"firstname\">");
+            }
+            //bt.SetBalloonText(wb, text);
             bt.SetBalloonCaption(wb, caption);
 
             Point p = Control.MousePosition;
@@ -479,5 +535,100 @@ namespace CAAC_LawLibrary
             p.Offset(-bt.BalloonControl.TipOffset, bt.BalloonControl.TipLength - 100);
             bt.BalloonControl.Location = p;
         }
+
+        int findIndex = 0;
+        int findCount = 0;
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            //searchWord(txt_keyword.Text.Trim(),-1);
+            findCount = getFindCount();
+            if (findCount > 0)
+            {
+                lbl_findCount.Visible = true;
+                btn_p.Visible = true;
+                btn_n.Visible = true;
+                btn_n.Enabled = true;
+                btn_p.Enabled = false;
+                lbl_findCount.Text = findIndex + "/" + findCount;
+            }
+            else
+            {
+                lbl_findCount.Visible = false;
+                btn_p.Visible = false;
+                btn_n.Visible = false;
+            }
+        }
+
+        private int getFindCount()
+        {
+            string str = wb.Document.Body.InnerText;
+            string substring = txt_keyword.Text.Trim();
+            if (str.Contains(substring))
+            {
+                string strReplaced = str.Replace(substring, "");
+                return (str.Length - strReplaced.Length) / substring.Length;
+            }
+            MessageBox.Show("未找到相关文字");
+            return 0;
+        }
+
+        private void searchWord(string keyword,int findIndex)
+        {
+            IHTMLTxtRange searchRange = null;
+            IHTMLDocument2 document = (IHTMLDocument2)wb.Document.DomDocument; 
+            if (keyword == "") return;  
+            if (document.selection.type.ToLower() != "none")
+            {
+                searchRange = (IHTMLTxtRange) document.selection.createRange();
+                searchRange.collapse(true);
+                searchRange.moveStart("character", 1);
+            }
+            else
+            {
+                IHTMLBodyElement body = (IHTMLBodyElement) document.body;
+                searchRange = (IHTMLTxtRange) body.createTextRange();
+            } 
+            if (searchRange.findText(keyword, findIndex, 0))// 如果找到了，就选取（高亮显示）该关键字；否则弹出消息。 
+            {
+                searchRange.select();
+            }
+            else
+            {
+                MessageBox.Show("已搜索到文档结尾。");
+            } 
+        }
+
+        private void btn_n_Click(object sender, EventArgs e)
+        {
+            searchWord(txt_keyword.Text.Trim(), 1);
+            btn_p.Enabled = true;
+            if (findIndex == findCount)
+            {
+                btn_n.Enabled = false;
+            }
+            else
+            {
+                findIndex++;
+                btn_n.Enabled = true;
+            }
+            lbl_findCount.Text = findIndex + "/" + findCount;
+        }
+
+        private void btn_p_Click(object sender, EventArgs e)
+        {
+            btn_n.Enabled = true;
+            searchWord(txt_keyword.Text.Trim(), -1);
+            if (findIndex == 1)
+            {
+                btn_p.Enabled = false;
+            }
+            else
+            {
+                findIndex--;
+                btn_p.Enabled = true;
+            }
+            lbl_findCount.Text = findIndex + "/" + findCount;
+        }
+        
     }
 }

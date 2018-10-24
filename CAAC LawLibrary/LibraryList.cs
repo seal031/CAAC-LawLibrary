@@ -136,6 +136,8 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void downloadSelectedLawToLocal()
         {
+            List<Law> laws = new List<Law>();
+            //修改数据库的law状态，使其在刷新下载列表时可以被显示
             for (int i = 1; i < flp_libraryList.Controls.Count; i++)
             {
                 var lawItem = flp_libraryList.Controls[i] as LawListItem;
@@ -146,9 +148,13 @@ namespace CAAC_LawLibrary
                     law.downloadPercent = 0;
                     law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
                     db.saveLaw(law);
+                    laws.Add(law);
                 }
             }
+            //刷新下载列表
             reloadDownloadList();
+            //调用选中项在下载列表中对应项的下载方法
+            startDownloadLaw(laws);
         }
         /// <summary>
         /// 下载单项到本地库
@@ -156,11 +162,15 @@ namespace CAAC_LawLibrary
         /// <param name="law"></param>
         public void downloadSelectedLawToLocal(Law law)
         {
+            //修改数据库的law状态，使其在刷新下载列表时可以被显示
             law.downloadPercent = 0;
             law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
             if (db.saveLaw(law))
             {
+                //刷新下载列表
                 reloadDownloadList();
+                //调用选中项在下载列表中对应项的下载方法
+                startDownloadLaw(new List<Law>() { law });
             }
         }
         /// <summary>
@@ -168,13 +178,16 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void removeSelectedLocalLaw()
         {
-            for (int i = 1; i < flp_libraryList.Controls.Count; i++)
+            if (MessageBox.Show("确认移除选中项？", "从本地库移除后将无法离线浏览", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                var lawItem = flp_libraryList.Controls[i] as LawListItem;
-                if (lawItem.isChecked)
-                    lawItem.lbl_downloadState.Text = "下载";
+                for (int i = 1; i < flp_libraryList.Controls.Count; i++)
                 {
-                    db.removeLawFromLocal(lawItem.law);
+                    var lawItem = flp_libraryList.Controls[i] as LawListItem;
+                    if (lawItem.isChecked)
+                        lawItem.lbl_downloadState.Text = "下载";
+                    {
+                        db.removeLawFromLocal(lawItem.law);
+                    }
                 }
             }
         }
@@ -209,17 +222,34 @@ namespace CAAC_LawLibrary
                 lawItem.checkChange(value);
             }
         }
-
-        public void setLawStateText(Law law, string text)
+        /// <summary>
+        /// 设置列表项下载状态文字（法规、阅读历史、下载共用）
+        /// </summary>
+        /// <param name="law"></param>
+        /// <param name="text"></param>
+        public void setLawStateText(Type type, Law law, string text)
         {
-            foreach (Control c in flp_libraryList.Controls)
+            var controlsHost = new Control();
+            if (type == typeof(LawListItem))
             {
-                if (c is LawListItem)
+                controlsHost = flp_libraryList;
+            }
+            else if (type == typeof(ViewHistoryListItem))
+            {
+                controlsHost = flp_viewHistory;
+            }
+            else if (type == typeof(DownloadListItem))
+            {
+                controlsHost = flp_downloadTask;
+            }
+            foreach (Control c in controlsHost.Controls)
+            {
+                if (c is BaseListItem)
                 {
-                    var item = c as LawListItem;
+                    var item = c as BaseListItem;
                     if (item.law.Id == law.Id)
                     {
-                        item.lbl_downloadState.Text = text;
+                        item.setDownloadState(text);
                         return;
                     }
                 }
@@ -282,15 +312,34 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void stopSelectedTask()
         {
-            //todo
-
+            foreach (Control c in flp_downloadTask.Controls)
+            {
+                if (c is DownloadListItem)
+                {
+                    DownloadListItem item = c as DownloadListItem;
+                    if (item.isChecked)
+                    {
+                        item.stopWork();
+                    }
+                }
+            }
         }
         /// <summary>
         /// 恢复已选任务
         /// </summary>
         public void resumeSelectedTask()
         {
-            //todo
+            foreach (Control c in flp_downloadTask.Controls)
+            {
+                if (c is DownloadListItem)
+                {
+                    DownloadListItem item = c as DownloadListItem;
+                    if (item.isChecked)
+                    {
+                        item.continueWork();
+                    }
+                }
+            }
         }
         /// <summary>
         /// 删除已选任务
@@ -310,11 +359,13 @@ namespace CAAC_LawLibrary
                         if (law.isLocal == "1")
                         {
                             law.downloadPercent = null;
+                            law.downloadNodeCount = null;
                         }
                         else
                         {
                             law.isLocal = "0";
                             law.downloadPercent = null;
+                            law.downloadNodeCount = null;
                         }
                         db.saveLaw(law);
                     }
@@ -350,6 +401,24 @@ namespace CAAC_LawLibrary
             {
                 reloadDownloadList();
                 reloadLawList();
+            }
+        }
+        /// <summary>
+        /// 供法规、阅读历史列表点击下载后，调用下载列表中相应对象的下载方法，通过law去下载列表中进行查找
+        /// </summary>
+        /// <param name="laws"></param>
+        public void startDownloadLaw(List<Law> laws)
+        {
+            foreach (Control c in flp_downloadTask.Controls)
+            {
+                if (c is DownloadListItem)
+                {
+                    var item = c as DownloadListItem;
+                    if (laws.FirstOrDefault(l => l.Id == item.law.Id)!=null)
+                    {
+                        item.continueWork();
+                    }
+                }
             }
         }
         #endregion
