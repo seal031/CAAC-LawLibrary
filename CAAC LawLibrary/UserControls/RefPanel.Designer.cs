@@ -46,6 +46,7 @@
             this.lbl_close.Size = new System.Drawing.Size(20, 23);
             this.lbl_close.TabIndex = 0;
             this.lbl_close.Text = "X";
+            this.lbl_close.Click += new System.EventHandler(this.lbl_close_Click);
             // 
             // label1
             // 
@@ -114,6 +115,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.ll_zefa);
             this.Controls.Add(this.lbl_zefa);
             this.Controls.Add(this.ll_yilai);
@@ -122,7 +124,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_close);
             this.Name = "RefPanel";
-            this.Size = new System.Drawing.Size(407, 408);
+            this.Size = new System.Drawing.Size(407, 278);
             this.ResumeLayout(false);
             this.PerformLayout();
 

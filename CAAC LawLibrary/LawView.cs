@@ -32,6 +32,7 @@ namespace CAAC_LawLibrary
         public Form parentForm;
         private int commentShownCount = 0;
         bool bindState = false;
+        RefPanel refPanel = new UserControls.RefPanel();
 
         public LawView()
         {
@@ -497,7 +498,7 @@ namespace CAAC_LawLibrary
                     showBalloon("罚则", selectedText, "", nodeId);
                     break;
                 case "引":
-                    showBalloon("引用", selectedText, "", nodeId);
+                    showBalloon("引用", selectedText, text, nodeId);
                     break;
                 case "政":
                     showBalloon("行政处罚", selectedText, "", nodeId);
@@ -520,12 +521,21 @@ namespace CAAC_LawLibrary
 
         }
 
-        private void showBalloon(string caption,string selectedText, string text,string nodeId)
+        private void showBalloon(string caption,string selectedText, string _text,string nodeId)
         {
-            text = "选中文字：" + selectedText + Environment.NewLine + caption + "：" + text;
+            string text = "选中文字：" + selectedText + Environment.NewLine + caption + "：" + _text;
             if (caption == "引用")
             {
-                bt.SetBalloonText(wb, "<input type=\"text\" onclick=\"alert(1)\" name=\"firstname\">");
+                //bt.SetBalloonText(wb, "<input type=\"text\" onclick=\"alert(1)\" name=\"firstname\">");
+                refPanel.setDb(db);
+                refPanel.setParentForm(this);
+                refPanel.setText(_text);
+                wb.Controls.Add(refPanel);
+                Point p1 = Control.MousePosition;
+                p1.Offset(-lawInfo1.Width, -pl_title.Height);
+                refPanel.Location = p1;
+                refPanel.Show();
+                return;
             }
             //bt.SetBalloonText(wb, text);
             bt.SetBalloonCaption(wb, caption);
