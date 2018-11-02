@@ -573,6 +573,10 @@ namespace CAAC_LawLibrary
         {
             string str = wb.Document.Body.InnerText;
             string substring = txt_keyword.Text.Trim();
+            if (string.IsNullOrEmpty(substring))
+            {
+                return 0;
+            }
             if (str.Contains(substring))
             {
                 string strReplaced = str.Replace(substring, "");
