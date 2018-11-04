@@ -25,6 +25,7 @@ namespace CAAC_LawLibrary
     {
         public string lawId = string.Empty;
         public Law law;
+        public List<Law> laws;
         private List<Node> nodes;
         private List<Comment> commentList;
         private List<NodeTag> tags;
@@ -102,7 +103,10 @@ namespace CAAC_LawLibrary
                 }
                 //加载文档信息
                 lawInfo1.law = law;
+                lawInfo1.parentForm = this.parentForm;
+                lawInfo1.fillLawVersion(laws);
                 lawInfo1.fillLawInfo();
+                lawInfo1.bindState = true;
                 //写入阅读历史
                 ViewHistory history = new ViewHistory()
                 {
@@ -537,7 +541,7 @@ namespace CAAC_LawLibrary
                 refPanel.Show();
                 return;
             }
-            //bt.SetBalloonText(wb, text);
+            bt.SetBalloonText(wb, text);
             bt.SetBalloonCaption(wb, caption);
 
             Point p = Control.MousePosition;

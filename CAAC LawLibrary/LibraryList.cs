@@ -55,6 +55,38 @@ namespace CAAC_LawLibrary
             loadDownLoadList();
         }
 
+        public void LoadRemoteSearchLaw(List<string> lawIdList)
+        {
+            tbc.SelectedIndex = 0;
+            removeFromFlp(flp_libraryList);
+            List<Law> list = new List<Law>();
+            foreach (string lawId in lawIdList)
+            {
+                Law law = db.getLawById(lawId);
+                if (law != null)
+                {
+                    list.Add(law);
+                }
+            }
+            List<string> addedLastVersion = new List<string>();//已经添加过的法规id
+            foreach (Law law in list)
+            {
+                if (addedLastVersion.Contains(law.lastversion.ToString())) { continue; }
+                else
+                {
+                    addedLastVersion.Add(law.lastversion.ToString());
+                    LawListItem item = new LawListItem();
+                    //查找同一部法规的全部版本（包括本身）
+                    var allVersionList = list.Where(l => l.lastversion == law.lastversion).OrderByDescending(l => l.version);
+                    item.law = law;
+                    item.laws = allVersionList.ToList();
+                    item.parentForm = this;
+                    item.addVerionDropDown();
+                    flp_libraryList.Controls.Add(item);
+                }
+            }
+        }
+
         #region 加载3个列表
         /// <summary>
         /// 加载法规列表
@@ -72,10 +104,10 @@ namespace CAAC_LawLibrary
                     addedLastVersion.Add(law.lastversion.ToString());
                     LawListItem item = new LawListItem();
                     //查找同一部法规的全部版本（包括本身）
-                    var allVersionList = list.Where(l => l.lastversion == law.lastversion).OrderByDescending(l => l.Id);
+                    var allVersionList = list.Where(l => l.lastversion == law.lastversion).OrderByDescending(l => l.version);
                     if (allVersionList.Count() > 1)
                     {
-                        item.law = allVersionList.Last();//如果有多个版本，取最新版本
+                        item.law = allVersionList.First();//如果有多个版本，取最新版本
                     }
                     else
                     {

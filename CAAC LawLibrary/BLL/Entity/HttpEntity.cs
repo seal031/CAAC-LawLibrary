@@ -555,7 +555,7 @@ namespace CAAC_LawLibrary.BLL.Entity
             /// <summary>
             /// 章节版本
             /// </summary>
-            public int nodeVersion { get; set; }
+            public int? nodeVersion { get; set; }
             /// <summary>
             /// 章节类型：章、节
             /// </summary>
@@ -563,7 +563,7 @@ namespace CAAC_LawLibrary.BLL.Entity
             /// <summary>
             /// 预览
             /// </summary>
-            public string preview { get; set; }
+            //public string preview { get; set; }
             /// <summary>
             /// id路径，如"1,3,345"
             /// </summary>
@@ -626,6 +626,21 @@ namespace CAAC_LawLibrary.BLL.Entity
                 code.desc = item.desc;
                 code.order = item.order;
                 code.type = item.type;
+                if (string.IsNullOrEmpty(item.value) == false)
+                {
+                    List<string> valueStrList = item.value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                    int minValue, maxValue;
+                    if (valueStrList.Count > 0)
+                    {
+                        if (int.TryParse(valueStrList[0], out minValue))
+                        { code.valueMin = minValue; }
+                    }
+                    if (valueStrList.Count > 1)
+                    {
+                        if (int.TryParse(valueStrList[1], out maxValue))
+                        { code.valueMax = maxValue; }
+                    }
+                }
                 codes.Add(code);
             }
             return codes;
@@ -663,6 +678,7 @@ namespace CAAC_LawLibrary.BLL.Entity
             return result;
         }
     }
+
 
     /// <summary>
     /// 通用返回对象

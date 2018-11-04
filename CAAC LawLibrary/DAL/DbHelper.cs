@@ -34,18 +34,48 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
+                int? buhaoMin=0, buhaoMax=99999;
+                if (param.buhao != null)
+                {
+                    var buhao = context.Code.FirstOrDefault(c => c.Id == param.buhao);
+                    if (buhao != null)
+                    {
+                        buhaoMin = buhao.valueMin;
+                        buhaoMax = buhao.valueMax;
+                    }
+                }
                 var list = (from law in context.Law
                             where law.userId == Global.user.Id
-                            && (param.buhao == null ? 1 == 1 : law.buhao == param.buhao)
                             && (param.siju == null ? 1 == 1 : law.siju == param.siju)
                             && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
                             && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
+                            && (param.zidingyi == null ? 1 == 1 : law.userLabel.Contains(param.zidingyi))
                             && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
                             && (param.downloaded != "1" ? 1 == 1 : law.isLocal == param.downloaded)
                             && (param.downloadState.HasValue ? law.downloadPercent == param.downloadState : 1 == 1)
                             && (param.lastVersion.HasValue ? law.lastversion == param.lastVersion : 1 == 1)
                             select law).ToList();
-                return list.OrderBy(l => param.sort == 2 ? l.pinyin : l.effectiveDate).ToList();
+                List<Law> returnList=new List<Law>();
+                if (param.buhao != null)
+                {
+                    foreach (Law law in list)
+                    {
+                        string buhaoStr = law.buhao;
+                        if (string.IsNullOrEmpty(buhaoStr)==false)
+                        {
+                            int buhao = int.Parse(buhaoStr.Split(new string[] { "*"},StringSplitOptions.RemoveEmptyEntries)[1]);
+                            if (buhao >= buhaoMin && buhao <= buhaoMax)
+                            {
+                                returnList.Add(law);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    returnList = list;
+                }
+                return returnList.OrderBy(l => param.sort == 2 ? l.pinyin : l.effectiveDate).ToList();
             }
         }
         /// <summary>
@@ -453,10 +483,21 @@ namespace CAAC_LawLibrary.DAL
                 {
                     try
                     {
-                        context.Code.RemoveRange(context.Code);
                         foreach (Code code in codes)
                         {
-                            context.Code.Add(code);
+                            var currentCode = context.Code.FirstOrDefault(c => c.Id == code.Id);
+                            if (currentCode == null)
+                            {
+                                context.Code.Add(code);
+                            }
+                            else
+                            {
+                                currentCode.desc = code.desc;
+                                currentCode.order = code.order;
+                                currentCode.type = code.type;
+                                currentCode.valueMax = code.valueMax;
+                                currentCode.valueMin = code.valueMin;
+                            }
                         }
                         context.SaveChanges();
                         transaction.Commit();

@@ -12,8 +12,6 @@ namespace CAAC_LawLibrary
 {
     public partial class LawFilter : BaseFilter
     {
-        public Form parentForm;
-
         public LawFilter()
         {
             InitializeComponent();

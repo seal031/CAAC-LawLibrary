@@ -195,6 +195,23 @@ namespace CAAC_LawLibrary.BLL
             return result;
         }
 
+
+        public static List<string> getSearch(string keyword)
+        {
+            string result = string.Empty;
+            result = HttpWorker.HttpGet(Global.SearchApi, "bookName=" + keyword);
+            SearchResponse response = TranslationWorker.ConvertStringToEntity<SearchResponse>(result);
+            List<string> lawIdList = new List<string>();
+            if (response != null)
+            {
+                if (response.status == "200")
+                {
+                    lawIdList = response.data.list.Select(l => l.id.ToString()).ToList();
+                }
+            }
+            return lawIdList;
+        }
+
         #region post
         /// <summary>
         /// 提交评论

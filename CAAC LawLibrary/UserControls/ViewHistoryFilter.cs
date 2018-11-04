@@ -12,7 +12,6 @@ namespace CAAC_LawLibrary
 {
     public partial class ViewHistoryFilter : BaseFilter
     {
-        public Form parentForm;
         public ViewHistoryFilter()
         {
             InitializeComponent();

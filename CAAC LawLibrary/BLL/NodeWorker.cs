@@ -21,7 +21,7 @@ namespace CAAC_LawLibrary.BLL
             foreach (CAAC_LawLibrary.Entity.Node node in nodes)
             {
                 DevComponents.AdvTree.Node treeNode = new DevComponents.AdvTree.Node();
-                treeNode.Text = node.title;
+                treeNode.Text = node.nodeNumber == string.Empty ? node.title : node.nodeNumber + "." + node.title;
                 treeNode.Tag = node;
                 //添加标题关系
                 string nodeClass = string.Empty;
@@ -70,7 +70,18 @@ namespace CAAC_LawLibrary.BLL
                     }
                 }
 
-                contentBuilder.Append(node.title+nodeClass+nodeDef+nodeKey+nodeRef + btnTag + Environment.NewLine + node.content + Environment.NewLine);
+                if (node.nodeNumber == string.Empty && node.title == string.Empty)//如果标题和标题号都为空，就直接显示正文
+                {
+                    contentBuilder.Append(node.content);
+                }
+                else
+                {
+                    contentBuilder.Append("<p>");
+                    contentBuilder.Append((node.nodeNumber == string.Empty ? node.title : node.nodeNumber + "." + node.title) + nodeClass + nodeDef + nodeKey + nodeRef + btnTag + Environment.NewLine + node.content + Environment.NewLine);
+                    contentBuilder.Append("</p>");
+                }
+
+
                 if (perTreeNode == null)//第一个节点
                 {
                     treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Folder;
@@ -95,10 +106,12 @@ namespace CAAC_LawLibrary.BLL
                         //如果当前节点和上一节点nodeLevel相同，说明是上一节点的兄弟节点，此时将当前节点加入上一节点的父节点
                         else if (node.nodeLevel == (perTreeNode.Tag as CAAC_LawLibrary.Entity.Node).nodeLevel)
                         {
+                            treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Document;
                             perTreeNode.Parent.Nodes.Add(treeNode);
                         }
                         else
                         {
+                            treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Document;
                             perTreeNode.Parent.Parent.Nodes.Add(treeNode);
                         }
                     }
@@ -124,6 +137,48 @@ namespace CAAC_LawLibrary.BLL
         private static List<NodeTag> pickTag(CAAC_LawLibrary.Entity.Node node)
         {
             List<NodeTag> tags = new List<NodeTag>();
+            //标题中的标签
+            if (string.IsNullOrEmpty(node.nodeClass) == false)
+            {
+                NodeTag tag = new NodeTag();
+                tag.color = getColor("class");
+                tag.TagType = getTypeCN("class");
+                tag.TagNode = node.Id;
+                tag.TagContent = node.nodeClass;
+                tag.OuterHTML= getButtonHtml("class", node.Id, node.nodeClass, node.Id);
+                tags.Add(tag);
+            }
+            if (string.IsNullOrEmpty(node.nodeDef) == false)
+            {
+                NodeTag tag = new NodeTag();
+                tag.color = getColor("define");
+                tag.TagType = getTypeCN("define");
+                tag.TagNode = node.Id;
+                tag.TagContent = node.title;
+                tag.OuterHTML = getButtonHtml("define", node.Id, node.nodeDef, node.Id);
+                tags.Add(tag);
+            }
+            if (string.IsNullOrEmpty(node.nodeKey) == false)
+            {
+                NodeTag tag = new NodeTag();
+                tag.color = getColor("key");
+                tag.TagType = getTypeCN("key");
+                tag.TagNode = node.Id;
+                tag.TagContent = node.title;
+                tag.OuterHTML = getButtonHtml("key", node.Id, node.nodeKey, node.Id);
+                tags.Add(tag);
+            }
+            if (string.IsNullOrEmpty(node.nodeRef) == false)
+            {
+                NodeTag tag = new NodeTag();
+                tag.color = getColor("ref");
+                tag.TagType = getTypeCN("ref");
+                tag.TagNode = node.Id;
+                tag.TagContent = node.title;
+                tag.OuterHTML = getButtonHtml("ref", node.Id, node.nodeRef, node.Id);
+                tags.Add(tag);
+            }
+            //正文中的标签
             List<string> list = node.content.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
             foreach (string part in list)
             {

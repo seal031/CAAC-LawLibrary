@@ -119,6 +119,7 @@ namespace CAAC_LawLibrary
         {
             LawView lv = new CAAC_LawLibrary.LawView();
             lv.law = law;
+            lv.laws = laws;
             lv.parentForm = parentForm;
             lv.Show(this);
             parentForm.Hide();

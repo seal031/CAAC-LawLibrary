@@ -11,6 +11,7 @@ using CAAC_LawLibrary.Utity;
 using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
 using System.Collections;
+using CAAC_LawLibrary.BLL;
 
 namespace CAAC_LawLibrary
 {
@@ -134,6 +135,19 @@ namespace CAAC_LawLibrary
             {
                 queryParam.sort = int.Parse(cbb_sort.SelectedValue.ToString());
                 onSelectedChanged();
+            }
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            if (txt_keyword.Text.Trim() != string.Empty)
+            {
+                List<string> lawIdList = RemoteWorker.getSearch(txt_keyword.Text.Trim());
+                ((LibraryList)parentForm).LoadRemoteSearchLaw(lawIdList);
+            }
+            else
+            {
+                ((LibraryList)parentForm).loadLocalLawList();//如果搜索内容为空，则显示全部法规
             }
         }
     }

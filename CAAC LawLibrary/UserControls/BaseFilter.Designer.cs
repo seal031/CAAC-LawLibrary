@@ -121,6 +121,7 @@
             this.btn_search.TabIndex = 7;
             this.btn_search.Text = "搜索";
             this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // BaseFilter
             // 

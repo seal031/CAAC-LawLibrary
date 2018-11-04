@@ -16,5 +16,7 @@ namespace CAAC_LawLibrary.Entity
         public string type { get; set; }
         public string desc { get; set; }
         public int order { get; set; }
+        public int? valueMin { get; set; }
+        public int? valueMax { get; set; }
     }
 }
