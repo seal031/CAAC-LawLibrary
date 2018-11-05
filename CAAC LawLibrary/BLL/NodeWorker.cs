@@ -1,4 +1,6 @@
-﻿using CAAC_LawLibrary.Entity;
+﻿using CAAC_LawLibrary.DAL;
+using CAAC_LawLibrary.Entity;
+using CAAC_LawLibrary.Utity;
 using DevComponents.AdvTree;
 using Newtonsoft.Json;
 using System;
@@ -13,6 +15,8 @@ namespace CAAC_LawLibrary.BLL
 {
     public class NodeWorker
     {
+        static DbHelper db = new DbHelper();
+
         public static string buildFromNodeContext(AdvTree NodeTree,List<CAAC_LawLibrary.Entity.Node> nodes)
         {
             StringBuilder contentBuilder = new StringBuilder();
@@ -143,7 +147,7 @@ namespace CAAC_LawLibrary.BLL
                 NodeTag tag = new NodeTag();
                 tag.color = getColor("class");
                 tag.TagType = getTypeCN("class");
-                tag.TagNode = node.Id;
+                tag.TagNode = node.title;
                 tag.TagContent = node.nodeClass;
                 tag.OuterHTML= getButtonHtml("class", node.Id, node.nodeClass, node.Id);
                 tags.Add(tag);
@@ -153,8 +157,8 @@ namespace CAAC_LawLibrary.BLL
                 NodeTag tag = new NodeTag();
                 tag.color = getColor("define");
                 tag.TagType = getTypeCN("define");
-                tag.TagNode = node.Id;
-                tag.TagContent = node.title;
+                tag.TagNode = node.title;
+                tag.TagContent = node.nodeDef;
                 tag.OuterHTML = getButtonHtml("define", node.Id, node.nodeDef, node.Id);
                 tags.Add(tag);
             }
@@ -163,8 +167,8 @@ namespace CAAC_LawLibrary.BLL
                 NodeTag tag = new NodeTag();
                 tag.color = getColor("key");
                 tag.TagType = getTypeCN("key");
-                tag.TagNode = node.Id;
-                tag.TagContent = node.title;
+                tag.TagNode = node.title;
+                tag.TagContent = node.nodeKey;
                 tag.OuterHTML = getButtonHtml("key", node.Id, node.nodeKey, node.Id);
                 tags.Add(tag);
             }
@@ -173,8 +177,23 @@ namespace CAAC_LawLibrary.BLL
                 NodeTag tag = new NodeTag();
                 tag.color = getColor("ref");
                 tag.TagType = getTypeCN("ref");
-                tag.TagNode = node.Id;
-                tag.TagContent = node.title;
+                tag.TagNode = node.title;
+                //tag.TagContent = node.nodeRef;
+                List<string> tagContentList = new List<string>();
+                foreach (string str in node.nodeRef.Split(new string[] { ";"}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    List<string> idsList = str.Split(new string[] { "@" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                    if (idsList.Count > 0)
+                    {
+                        string lawId = idsList[0];
+                        Law law = db.getLawById(lawId);
+                        if (law != null)
+                        {
+                            tagContentList.Add(law.title);
+                        }
+                    }
+                }
+                tag.TagContent = string.Join(Environment.NewLine, tagContentList);
                 tag.OuterHTML = getButtonHtml("ref", node.Id, node.nodeRef, node.Id);
                 tags.Add(tag);
             }
@@ -187,7 +206,7 @@ namespace CAAC_LawLibrary.BLL
                     NodeTag tag = new NodeTag();
                     string s = part.Substring(part.IndexOf("<s data-obj="));
                     string selectedText = s.Substring(s.IndexOf(">") + 1);
-                    tag.TagContent = s.Substring(s.IndexOf(">") + 1);
+                    //tag.TagContent = s.Substring(s.IndexOf(">") + 1);
                     //tag.OuterHTML = s;
                     int sIndex=s.IndexOf("\"")+1;
                     int eIndex=s.LastIndexOf("\"");
@@ -199,9 +218,51 @@ namespace CAAC_LawLibrary.BLL
                         if (kv.Count > 1)
                         {
                             tag.TagType = kv[0];
-                            tag.TagNode = kv[1];
+                            tag.TagNode = selectedText;
                             tag.color = getColor(tag.TagType);
                             tag.TagType = getTypeCN(tag.TagType);
+                            if (kv[0] == "ref")
+                            {
+                                List<string> list1 = new List<string>();
+                                foreach (string partStr in kv[1].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+                                {
+                                    foreach (string subpartStr in partStr.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                                    {
+                                        string lawId = string.Empty;
+                                        if (subpartStr.Contains("@"))
+                                        {
+                                            lawId = subpartStr.Substring(0, subpartStr.IndexOf("@"));
+                                        }
+                                        else
+                                        {
+                                            lawId = subpartStr;
+                                        }
+                                        Law law = db.getLawById(lawId);
+                                        if (law != null)
+                                        {
+                                            list1.Add(law.title);
+                                        }
+                                    }
+                                }
+                                tag.TagContent = string.Join(",", list1);
+                            }
+                            else
+                            {
+                                List<string> list2 = new List<string>();
+                                foreach (string s1 in kv[1].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                                {
+                                    int id;
+                                    if (int.TryParse(s1, out id)) //text可能为逗号分隔的id，也有可能是逗号分隔的文本值
+                                    {
+                                        list2.Add(Global.GetCodeValueById(s1));
+                                    }
+                                    else
+                                    {
+                                        list2.Add(s1);
+                                    }
+                                }
+                                tag.TagContent = string.Join(",",list2);
+                            }
                             tag.OuterHTML = getButtonHtml(kv[0], node.Id,selectedText,kv[1]);
                         }
                     }
