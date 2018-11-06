@@ -1,0 +1,26 @@
+body{ padding: 60px; font-family:"Î¢ÈíÑÅºÚ"; }
+p{ font-size: 1.6em; line-height: 1.5em;}
+.level0{ font-size:3em; text-align:center; font-weight:bold; line-height:2em;}
+.level1{ font-size:2.5em; font-weight:bold; line-height:1.5em;}
+.level2{ font-size:2.2em; font-weight:bold; line-height:1.5em;}
+.level3{ font-size:2em; font-weight:bold; line-height:1.5em;}
+table{ border-collapse: collapse; border: 1px solid #555; width: 100% !important;}
+table thead th { line-height: 1.8em; font-weight:bold; padding:0.5em 1em; text-align:center;}
+table tbody td{ line-height:1.8em;  padding:0.5em 1em;}
+.ping{background-color: #c2eec7;border: 1px solid #a9cbac;width:2.2em;height: 2.2em;border-radius: 1.2em; font-size:0.5em;}
+.zheng{background-color: #aee5ff;border: 1px solid #6fbecf;width: 2.2em;height: 2.2em;border-radius: 1.2em; font-size:0.5em;}
+.ping_out{background-color: #aae1b0;border: 1px solid #9ec9a1;width: 2.2em;height: 2.2em;border-radius: 1.2em; font-size:0.5em;}
+.zheng_out{background-color: #a3d8f2;border: 1px solid #5daed5;width: 2.2em;height: 2.2em;border-radius: 1.2em; font-size:0.5em;}
+
+.lei{background-color: #0095ff;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5; font-size:0.6em; border: 1px solid #0a8aea;color: #fff;width: 2.2em;height: 2.2em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+.ding{background-color: #ffa500;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5; font-size:0.6em;border: 1px solid #e19301;color: #fff;width: 2.2em;height: 2.2em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+.jian{background-color: #2db670;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5; font-size:0.6em;border: 1px solid #17a25e;color: #fff;width: 2.2em;height: 2.2em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+.yin{background-color: #e889e0;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5; font-size:0.6em;border: 1px solid #cb67c3;color: #fff;width: 2.2em;height: 2.2em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+.yin_out {background-color: #e889e0;border: 1px solid #cb67c3;color: #fff; font-size:0.7em;font-weight: bold;width: 2.5em;height: 2.5em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+.lei_out {background-color: #0095ff;border: 1px solid #0a8aea;color: #fff; font-size:0.7em;font-weight: bold;width: 2.5em;height: 2.5em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+.ding_out {background-color: #ffa500;border: 1px solid #e19301;color: #fff; font-size:0.7em;font-weight: bold;width: 2.5em;height: 2.5em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+.jian_out {background-color: #2db670;border: 1px solid #17a25e;color: #fff; font-size:0.7em;font-weight: bold;width: 2.5em;height: 2.5em;border-top-right-radius: 1.2em;border-bottom-left-radius: 1.2em;border-top-left-radius: 1.2em; position: absolute;margin-top: -1em;margin-left: -1.6em;}
+
+
+   
+   

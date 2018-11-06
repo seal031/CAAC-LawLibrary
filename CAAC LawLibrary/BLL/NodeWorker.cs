@@ -20,7 +20,10 @@ namespace CAAC_LawLibrary.BLL
         public static string buildFromNodeContext(AdvTree NodeTree,List<CAAC_LawLibrary.Entity.Node> nodes)
         {
             StringBuilder contentBuilder = new StringBuilder();
-            contentBuilder.Append("<html><head><script>function btnclick(nodeId,tagLabelType,selectedText,text){window.external.CallFunction(nodeId,tagLabelType,selectedText,text);}</script></head><body>");
+            contentBuilder.Append("<html><head>");
+            contentBuilder.Append("<script>function btnclick(nodeId,tagLabelType,selectedText,text){window.external.CallFunction(nodeId,tagLabelType,selectedText,text);}</script>");
+            contentBuilder.Append("<link rel=\"stylesheet\" href=\"" + Environment.CurrentDirectory + "\\CSS\\mystyle.css\">");
+            contentBuilder.Append("</head><body>");
             DevComponents.AdvTree.Node perTreeNode=null;
             foreach (CAAC_LawLibrary.Entity.Node node in nodes)
             {
@@ -80,7 +83,7 @@ namespace CAAC_LawLibrary.BLL
                 }
                 else
                 {
-                    contentBuilder.Append("<p>");
+                    contentBuilder.Append("<p style=\"text - align: center; \" "+getStyle(node.nodeLevel)+">");//按照节点级别添加样式
                     contentBuilder.Append((node.nodeNumber == string.Empty ? node.title : node.nodeNumber + "." + node.title) + nodeClass + nodeDef + nodeKey + nodeRef + btnTag + Environment.NewLine + node.content + Environment.NewLine);
                     contentBuilder.Append("</p>");
                 }
@@ -289,22 +292,34 @@ namespace CAAC_LawLibrary.BLL
                     return Color.White;
             }
         }
+        /// <summary>
+        /// 根据标签类型返回HTML代码（供页面正文显示）
+        /// </summary>
+        /// <param name="tagType"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="selectedText"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private static string getButtonHtml(string tagType,string nodeId,string selectedText,string text)
         {
             switch (tagType)
             {//todo
                 case "define":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'定','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=定>";
+                    //return " <input onclick=\"btnclick(" + nodeId + ",'定','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=定>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'定','" + selectedText + "','" + text + "')\" " + getStyle("def") + " type=button value=定>";
                 case "key":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'键','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffa500\" type=button value=键>";
+                    //return " <input onclick=\"btnclick(" + nodeId + ",'键','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffa500\" type=button value=键>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'键','" + selectedText + "','" + text + "')\" " + getStyle(tagType) + " type=button value=键>";
                 case "class":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'类','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #808080\" type=button value=类>";
+                    //return " <input onclick=\"btnclick(" + nodeId + ",'类','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #808080\" type=button value=类>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'类','" + selectedText + "','" + text + "')\" " + getStyle(tagType) + " type=button value=类>";
                 case "y":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'依','" + selectedText + "','" + text + "')\" sstyle=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=依>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'依','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=依>";
                 case "f":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'罚','" + selectedText + "','" + text + "')\" sstyle=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=罚>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'罚','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=罚>";
                 case "ref":
-                    return " <input onclick=\"btnclick(" + nodeId + ",'引','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=引>";
+                    //return " <input onclick=\"btnclick(" + nodeId + ",'引','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=引>";
+                    return " <input onclick=\"btnclick(" + nodeId + ",'引','" + selectedText + "','" + text + "')\" " + getStyle(tagType) + " type=button value=引>";
                 case "z":
                     return " <input onclick=\"btnclick(" + nodeId + ",'政','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=政>";
                 case "l":
@@ -316,13 +331,20 @@ namespace CAAC_LawLibrary.BLL
                 case "x":
                     return " <input onclick=\"btnclick(" + nodeId + ",'信','" + selectedText + "','" + text + "')\" sstyle=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=信>";
                 case "评":
-                    return " <input type=\"button\" value=\"评\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'评','" + text + "')>";
+                    //return " <input type=\"button\" value=\"评\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'评','" + text + "')>";
+                    return " <input type=\"button\" value=\"评\" " + getStyle(tagType) + " onclick=btnclick(" + nodeId + ",'评','" + text + "')>";
                 case "征":
-                    return " <input type=\"button\" value=\"征\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'征','" + text + "')>";
+                    //return " <input type=\"button\" value=\"征\" style=\"background-color:#FFFFFF;width:25px;height:25px\" onclick=btnclick(" + nodeId + ",'征','" + text + "')>";
+                    return " <input type=\"button\" value=\"征\" " + getStyle(tagType) + " onclick=btnclick(" + nodeId + ",'征','" + text + "')>";
                 default:
                     return "";
             }
         }
+        /// <summary>
+        /// 根据标签类型返回相应文字（供右侧关系列表显示）
+        /// </summary>
+        /// <param name="tagType"></param>
+        /// <returns></returns>
         private static string getTypeCN(string tagType)
         {
             switch (tagType)
@@ -351,8 +373,65 @@ namespace CAAC_LawLibrary.BLL
                     return "";
             }
         }
+
+        private static string getStyle(int nodeLevel)
+        {
+            string styleName = string.Empty;
+            styleName = "level" + nodeLevel;
+            return "class=\"" + styleName + "\"";
+        }
+        private static string getStyle(string type)
+        {
+            string styleName = string.Empty;
+            switch (type)
+            {
+                case "评":
+                    styleName = "ping";
+                    break;
+                case "征":
+                    styleName = "zheng";
+                    break;
+                case "def":
+                    styleName = "ding";
+                    break;
+                case "class":
+                    styleName = "lei";
+                    break;
+                case "key":
+                    styleName = "jian";
+                    break;
+                case "ref":
+                    styleName = "yin";
+                    break;
+                case "y":
+
+                    break;
+                case "f":
+
+                    break;
+                case "z":
+
+                    break;
+                case "l":
+
+                    break;
+                case "s":
+
+                    break;
+                case "t":
+
+                    break;
+                case "x":
+
+                    break;
+            }
+            return "class=\"" + styleName + "\"" + " onmousemove=\"this.className = '" + styleName + "_out'\" onmouseout=\"this.className = '" + styleName + "'\"";
+        }
     }
 
+    /// <summary>
+    /// 右侧的关系标签对象
+    /// </summary>
     public class NodeTag
     {
         public string TagType { get; set; }

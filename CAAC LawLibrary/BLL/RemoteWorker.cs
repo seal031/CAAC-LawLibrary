@@ -47,9 +47,10 @@ namespace CAAC_LawLibrary.BLL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                MessageBox.Show(ex.StackTrace);
-                MessageBoxEx.Show("请检查远程端口设置", "远程端口设置不正确", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.StackTrace);
+                //MessageBoxEx.Show("请检查远程端口设置", "远程端口设置不正确", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Global.online = false;
                 return false;
             }
         }

@@ -75,7 +75,10 @@ namespace CAAC_LawLibrary
 
         public bool login(string username, string password)
         {
-            return RemoteWorker.getloginResponse(username, password);
+            if (Global.online)
+                return RemoteWorker.getloginResponse(username, password);
+            else
+                return db.login(username, password);
         }
     }
 }

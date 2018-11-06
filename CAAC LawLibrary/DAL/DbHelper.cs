@@ -793,5 +793,18 @@ namespace CAAC_LawLibrary.DAL
                 }
             }
         }
+
+        public bool login(string username, string password)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                var user = context.User.FirstOrDefault(u => u.Name == username && u.Password == password);
+                if (user == null)
+                    return false;
+                else
+                    Global.user = user;
+                    return true;
+            }
+        }
     }
 }
