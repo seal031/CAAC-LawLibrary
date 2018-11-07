@@ -48,12 +48,26 @@ namespace CAAC_LawLibrary
 
         private void 暂停已选任务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ((LibraryList)parentForm).stopSelectedTask();
+            if (Global.online)
+            {
+                ((LibraryList)parentForm).stopSelectedTask();
+            }
+            else
+            {
+                MessageBox.Show("离线状态下无法进行下载操作");
+            }
         }
 
         private void 继续已选任务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ((LibraryList)parentForm).resumeSelectedTask();
+            if (Global.online)
+            {
+                ((LibraryList)parentForm).resumeSelectedTask();
+            }
+            else
+            {
+                MessageBox.Show("离线状态下无法进行下载操作");
+            }
         }
 
         private void 删除已选任务ToolStripMenuItem_Click(object sender, EventArgs e)

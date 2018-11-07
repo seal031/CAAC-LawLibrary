@@ -30,5 +30,7 @@ namespace CAAC_LawLibrary
         public DbSet<Node> Node { get; set; }
 
         public DbSet<Comment> Comment { get; set; }
+
+        public DbSet<UpdateHistory> UpdateHistory { get; set; }
     }
 }

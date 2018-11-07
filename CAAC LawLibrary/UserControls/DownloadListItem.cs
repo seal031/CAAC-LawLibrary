@@ -97,10 +97,10 @@ namespace CAAC_LawLibrary
         }
         public void continueWork()
         {
-            if (bgw.IsBusy == false)
-            {
-                bgw.RunWorkerAsync();
-            }
+                if (bgw.IsBusy == false)
+                {
+                    bgw.RunWorkerAsync();
+                }
         }
 
         private void downloadWork()

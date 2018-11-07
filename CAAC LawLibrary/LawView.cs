@@ -94,11 +94,11 @@ namespace CAAC_LawLibrary
                 //绑定法规内容
                 wb.DocumentText = content;
                 SetAutoWrap(true);
-                //远程获取评论
-                RemoteWorker.getOpinionList(law.Id);
-                //加载评论
                 if (Global.online)// && string.IsNullOrEmpty(law.isLocal))
                 {
+                    //远程获取评论
+                    RemoteWorker.getOpinionList(law.Id);
+                    //加载评论
                     loadComment();
                 }
                 //加载文档信息

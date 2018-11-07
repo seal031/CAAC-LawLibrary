@@ -1,4 +1,5 @@
-﻿using CAAC_LawLibrary.Entity;
+﻿using CAAC_LawLibrary.BLL;
+using CAAC_LawLibrary.Entity;
 using CAAC_LawLibrary.Utity;
 using System;
 using System.Collections.Generic;
@@ -137,54 +138,68 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
-                using (DbContextTransaction transaction = context.Database.BeginTransaction())
+                try
                 {
-                    try
+                    //context.Law.RemoveRange(context.Law);
+                    //foreach (Law law in laws)
+                    //{
+                    //    context.Law.Add(law);
+                    //}
+                    foreach (Law law in laws)
                     {
-                        //context.Law.RemoveRange(context.Law);
-                        //foreach (Law law in laws)
-                        //{
-                        //    context.Law.Add(law);
-                        //}
-                        foreach (Law law in laws)
+                        var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == Global.user.Id);
+                        if (currentLaw == null)//如果没有就新增
                         {
-                            var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == Global.user.Id);
-                            if (currentLaw == null)//如果没有就新增
+                            law.userId = Global.user.Id;
+                            //如果是更新版本的法规（且法规旧版本已下载至本地），将更新信息保存至自动更新历史记录表，同时自动下载新版本法规内容
+                            var oldLaw = context.Law.FirstOrDefault(l => l.lastversion == law.lastversion && l.isLocal == "1");
+                            if (oldLaw != null)
                             {
-                                law.userId = Global.user.Id;
-                                context.Law.Add(law);
+                                List<Node> nodes = RemoteWorker.getBookContent(law.Id);
+                                RemoteWorker.getNodeDetail(nodes.Select(n => n.Id).ToList());
+                                law.isLocal = "1";
+                                law.downloadPercent = 100;
+                                law.downloadNodeCount = nodes.Count;
+                                law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                                UpdateHistory updateHistory = new UpdateHistory();
+                                updateHistory.LawId = law.Id;
+                                updateHistory.LawTitle = law.title;
+                                updateHistory.UpdateDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                updateHistory.UserId = Global.user.Id;
+                                updateHistory.Version = law.version;
+                                updateHistory.Id = law.Id;
+                                addUpdateHistory(updateHistory);
                             }
-                            else//如果有就更新，但不更新是否下载到本地、下载时间、下载进度、用户id等本地信息。
-                            {
-                                currentLaw.name = law.name;
-                                currentLaw.buhao = law.buhao;
-                                currentLaw.digest = law.digest;
-                                currentLaw.effectiveDate = law.effectiveDate;
-                                currentLaw.expiryDate = law.expiryDate;
-                                currentLaw.keyword = law.keyword;
-                                currentLaw.lastversion = law.lastversion;
-                                currentLaw.linghao = law.linghao;
-                                currentLaw.siju = law.siju;
-                                currentLaw.status = law.status;
-                                currentLaw.title = law.title;
-                                currentLaw.userLabel = law.userLabel;
-                                currentLaw.version = law.version;
-                                currentLaw.weijie = law.weijie;
-                                currentLaw.xiudingling = law.xiudingling;
-                                currentLaw.yewu = law.yewu;
-                                currentLaw.yilai = law.yilai;
-                                currentLaw.zefa = law.zefa;
-                            }
+                            context.Law.Add(law);
                         }
-                        context.SaveChanges();
-                        transaction.Commit();
-                        return true;
+                        else//如果有就更新，但不更新是否下载到本地、下载时间、下载进度、用户id等本地信息。
+                        {
+                            currentLaw.name = law.name;
+                            currentLaw.buhao = law.buhao;
+                            currentLaw.digest = law.digest;
+                            currentLaw.effectiveDate = law.effectiveDate;
+                            currentLaw.expiryDate = law.expiryDate;
+                            currentLaw.keyword = law.keyword;
+                            currentLaw.lastversion = law.lastversion;
+                            currentLaw.linghao = law.linghao;
+                            currentLaw.siju = law.siju;
+                            currentLaw.status = law.status;
+                            currentLaw.title = law.title;
+                            currentLaw.userLabel = law.userLabel;
+                            currentLaw.version = law.version;
+                            currentLaw.weijie = law.weijie;
+                            currentLaw.xiudingling = law.xiudingling;
+                            currentLaw.yewu = law.yewu;
+                            currentLaw.yilai = law.yilai;
+                            currentLaw.zefa = law.zefa;
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        return false;
-                    }
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
                 }
             }
         }
@@ -794,6 +809,38 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        public List<UpdateHistory> getUpdateHistorys()
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                var list = context.UpdateHistory.Where(u => u.UserId == Global.user.Id).OrderByDescending(u=>u.UpdateDate);
+                return list.ToList();
+            }
+        }
+
+        public bool addUpdateHistory(UpdateHistory updateHistory)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                try
+                {
+                    context.UpdateHistory.Add(updateHistory);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 离线登陆验证
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool login(string username, string password)
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
@@ -804,6 +851,28 @@ namespace CAAC_LawLibrary.DAL
                 else
                     Global.user = user;
                     return true;
+            }
+        }
+
+        /// <summary>
+        /// 离线搜索
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public List<string> offLineSearch(QueryParam param,string keyword)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                List<Law> allLaws = getLaws(param);
+                var laws = from l in allLaws
+                           from n in context.Node
+                           where n.lawId == l.Id
+                           && l.isLocal == "1"
+                           && l.userId==Global.user.Id
+                           && (l.title.Contains(keyword) || n.title.Contains(keyword) || n.content.Contains(keyword))
+                           select l.Id;
+                List<string> returnList = laws.Distinct().ToList();
+                return returnList;
             }
         }
     }

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CAAC_LawLibrary</RootNamespace>
-    <AssemblyName>CAAC LawLibrary</AssemblyName>
+    <AssemblyName>民航法规库单机版</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -115,6 +115,7 @@
     <Compile Include="Entity\Comment.cs" />
     <Compile Include="Entity\Node.cs" />
     <Compile Include="Entity\Suggest.cs" />
+    <Compile Include="Entity\UpdateHistory.cs" />
     <Compile Include="Suggest.cs">
       <SubType>Form</SubType>
     </Compile>

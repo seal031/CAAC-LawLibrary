@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CAAC_LawLibrary.Utity;
 
 namespace CAAC_LawLibrary
 {
@@ -30,7 +31,14 @@ namespace CAAC_LawLibrary
 
         private void 下载已选项到本地库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ((LibraryList)parentForm).downloadSelectedLawToLocal();
+            if (Global.online)
+            {
+                ((LibraryList)parentForm).downloadSelectedLawToLocal();
+            }
+            else
+            {
+                MessageBox.Show("离线状态下无法进行下载操作");
+            }
         }
 
         private void 从本地库移除已选项ToolStripMenuItem_Click(object sender, EventArgs e)

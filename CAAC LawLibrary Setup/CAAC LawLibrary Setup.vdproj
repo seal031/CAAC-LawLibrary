@@ -15,13 +15,25 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_250553FD12C74851A9B0197A77652888"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_37C6E7D3D15194ABBD02FA6D40EB5274"
-        "OwnerKey" = "8:_856EF01873D540A6901D912D709C23A5"
+        "OwnerKey" = "8:_F1D2DA0B3A3E4C8E80CF58D92219D147"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_3BEC8619DC77487E8426BFA5BBF8400C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_526B0EA6A37F4E1AA171E7886394B5B4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,20 +45,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6D031C37529641CDA63C41CA9D09C8B3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_707237C49A234CC9044FA6EB6F2EA517"
-        "OwnerKey" = "8:_856EF01873D540A6901D912D709C23A5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_856EF01873D540A6901D912D709C23A5"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F1D2DA0B3A3E4C8E80CF58D92219D147"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,18 +58,24 @@
         "Entry"
         {
         "MsmKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
-        "OwnerKey" = "8:_856EF01873D540A6901D912D709C23A5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
         "OwnerKey" = "8:_92C8CA1AF81E49BB84ED3B61CBA3F961"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
+        "OwnerKey" = "8:_F1D2DA0B3A3E4C8E80CF58D92219D147"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D7CF681ABBB043FB85693F055B5C890F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F1D2DA0B3A3E4C8E80CF58D92219D147"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -82,13 +88,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_856EF01873D540A6901D912D709C23A5"
+        "OwnerKey" = "8:_92C8CA1AF81E49BB84ED3B61CBA3F961"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_92C8CA1AF81E49BB84ED3B61CBA3F961"
+        "OwnerKey" = "8:_F1D2DA0B3A3E4C8E80CF58D92219D147"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,13 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
+        "OwnerKey" = "8:_707237C49A234CC9044FA6EB6F2EA517"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_707237C49A234CC9044FA6EB6F2EA517"
+        "OwnerKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -216,6 +222,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_250553FD12C74851A9B0197A77652888"
+            {
+            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\民航法规库单机版.exe.config"
+            "TargetName" = "8:民航法规库单机版.exe.config"
+            "Tag" = "8:"
+            "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_37C6E7D3D15194ABBD02FA6D40EB5274"
             {
             "AssemblyRegister" = "3:1"
@@ -278,6 +304,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_526B0EA6A37F4E1AA171E7886394B5B4"
+            {
+            "SourcePath" = "8:..\\CAAC LawLibrary\\CSS\\mystyle.css"
+            "TargetName" = "8:mystyle.css"
+            "Tag" = "8:"
+            "Folder" = "8:_F09B6FED982A485C99D421B0161EBE8C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_60B0BF94B1694BEA8C9AB56FB9F1B8F3"
             {
             "AssemblyRegister" = "3:1"
@@ -302,26 +348,6 @@
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
             "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6D031C37529641CDA63C41CA9D09C8B3"
-            {
-            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\CAAC LawLibrary.exe.Config"
-            "TargetName" = "8:CAAC LawLibrary.exe.Config"
-            "Tag" = "8:"
-            "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:TRUE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
@@ -358,37 +384,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_856EF01873D540A6901D912D709C23A5"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CAAC LawLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_856EF01873D540A6901D912D709C23A5"
-                    {
-                    "Name" = "8:CAAC LawLibrary.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\CAAC LawLibrary.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_92C8CA1AF81E49BB84ED3B61CBA3F961"
@@ -473,6 +468,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F1D2DA0B3A3E4C8E80CF58D92219D147"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:民航法规库单机版, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F1D2DA0B3A3E4C8E80CF58D92219D147"
+                    {
+                    "Name" = "8:民航法规库单机版.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\民航法规库单机版.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F6F9F49C49E5446E858F741DD8E527CD"
             {
             "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\db.sqlite"
@@ -509,6 +535,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F09B6FED982A485C99D421B0161EBE8C"
+                    {
+                    "Name" = "8:CSS"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_E9C7F1DAF291423CBB9682A79551170E"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_6D4A1FAFC1E04DEEBDA22071DC006C7A"
@@ -550,7 +587,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:民航法规库单机版"
         "ProductCode" = "8:{8ED75EF2-839D-4B24-99F6-CE4A75BC2474}"
-        "PackageCode" = "8:{64211841-C216-4C5A-AE01-D725CFFA32F3}"
+        "PackageCode" = "8:{625B55CC-5885-4F74-A434-1EFAFA82C5CF}"
         "UpgradeCode" = "8:{A4EBE806-0FCD-42FC-BCF1-6EED10A5A9D7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -620,7 +657,7 @@
                                                 {
                                                     "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_8435D18EBE4844D3BC09B5A31FC1D492"
                                                     {
-                                                    "Name" = "8:MAIN"
+                                                    "Name" = "8:Main"
                                                     "Condition" = "8:"
                                                     "AlwaysCreate" = "11:FALSE"
                                                     "DeleteAtUninstall" = "11:FALSE"
@@ -840,15 +877,15 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9F79AF2BEFBB4CE1923BDBE45D0FFB41"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F3D4D6BCB33140FC89650E70C12213B0"
             {
-            "Name" = "8:民航法规库单机版.exe"
+            "Name" = "8:民航法规库单机版快捷方式.exe"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_856EF01873D540A6901D912D709C23A5"
+            "Target" = "8:_F1D2DA0B3A3E4C8E80CF58D92219D147"
             "Folder" = "8:_6D4A1FAFC1E04DEEBDA22071DC006C7A"
             "WorkingFolder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
             "Icon" = "8:"

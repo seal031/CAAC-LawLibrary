@@ -148,13 +148,17 @@ namespace CAAC_LawLibrary
             if (lbl_downloadState.Text == "下载")
             {
                 ((LibraryList)parentForm).downloadSelectedLawToLocal(law);
-                lbl_downloadState.Text = "下载中……";
+                if (Global.online)
+                {
+                    lbl_downloadState.Text = "下载中……";
+                }
             }
             if (lbl_downloadState.Text == "从本地库移除")
             {
                 ((LibraryList)parentForm).removeSelectedLocalLaw(law);
                 lbl_downloadState.Text = "下载";
             }
+
         }
     }
 }

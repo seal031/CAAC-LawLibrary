@@ -142,8 +142,16 @@ namespace CAAC_LawLibrary
         {
             if (txt_keyword.Text.Trim() != string.Empty)
             {
-                List<string> lawIdList = RemoteWorker.getSearch(txt_keyword.Text.Trim());
-                ((LibraryList)parentForm).LoadRemoteSearchLaw(lawIdList);
+                if (Global.online)
+                {
+                    List<string> lawIdList = RemoteWorker.getSearch(txt_keyword.Text.Trim());
+                    ((LibraryList)parentForm).LoadSearchResultLaw(lawIdList);
+                }
+                else
+                {
+                    List<string> lawIdList = db.offLineSearch(queryParam, txt_keyword.Text.Trim());
+                    ((LibraryList)parentForm).LoadSearchResultLaw(lawIdList);
+                }
             }
             else
             {

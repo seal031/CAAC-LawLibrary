@@ -53,9 +53,10 @@ namespace CAAC_LawLibrary
             loadLocalLawList();
             loadViewHistoryList();
             loadDownLoadList();
+            loadUpdateHistoryList();
         }
 
-        public void LoadRemoteSearchLaw(List<string> lawIdList)
+        public void LoadSearchResultLaw(List<string> lawIdList)
         {
             tbc.SelectedIndex = 0;
             removeFromFlp(flp_libraryList);
@@ -87,7 +88,7 @@ namespace CAAC_LawLibrary
             }
         }
 
-        #region 加载3个列表
+        #region 加载4个列表
         /// <summary>
         /// 加载法规列表
         /// </summary>
@@ -151,6 +152,19 @@ namespace CAAC_LawLibrary
                 flp_downloadTask.Controls.Add(item);
             }
         }
+        /// <summary>
+        /// 加载自动更新列表
+        /// </summary>
+        public void loadUpdateHistoryList()
+        {
+            dgv_updateHistory.Rows.Clear();
+            List<UpdateHistory> list = db.getUpdateHistorys();
+            dgv_updateHistory.DataSource = list;
+            //foreach (UpdateHistory updateHistory in list)
+            //{
+            //    DataGridViewRow dgvr = 
+            //}
+        }
 
         private void removeFromFlp(FlowLayoutPanel flp)
         {
@@ -168,25 +182,32 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void downloadSelectedLawToLocal()
         {
-            List<Law> laws = new List<Law>();
-            //修改数据库的law状态，使其在刷新下载列表时可以被显示
-            for (int i = 1; i < flp_libraryList.Controls.Count; i++)
+            if (Global.online)
             {
-                var lawItem = flp_libraryList.Controls[i] as LawListItem;
-                if (lawItem.isChecked)
+                List<Law> laws = new List<Law>();
+                //修改数据库的law状态，使其在刷新下载列表时可以被显示
+                for (int i = 1; i < flp_libraryList.Controls.Count; i++)
                 {
-                    lawItem.lbl_downloadState.Text = "下载中……";
-                    Law law = lawItem.law;
-                    law.downloadPercent = 0;
-                    law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
-                    db.saveLaw(law);
-                    laws.Add(law);
+                    var lawItem = flp_libraryList.Controls[i] as LawListItem;
+                    if (lawItem.isChecked)
+                    {
+                        lawItem.lbl_downloadState.Text = "下载中……";
+                        Law law = lawItem.law;
+                        law.downloadPercent = 0;
+                        law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                        db.saveLaw(law);
+                        laws.Add(law);
+                    }
                 }
+                //刷新下载列表
+                reloadDownloadList();
+                //调用选中项在下载列表中对应项的下载方法
+                startDownloadLaw(laws);
             }
-            //刷新下载列表
-            reloadDownloadList();
-            //调用选中项在下载列表中对应项的下载方法
-            startDownloadLaw(laws);
+            else
+            {
+                MessageBox.Show("离线状态下无法进行下载操作");
+            }
         }
         /// <summary>
         /// 下载单项到本地库
@@ -194,15 +215,22 @@ namespace CAAC_LawLibrary
         /// <param name="law"></param>
         public void downloadSelectedLawToLocal(Law law)
         {
-            //修改数据库的law状态，使其在刷新下载列表时可以被显示
-            law.downloadPercent = 0;
-            law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
-            if (db.saveLaw(law))
+            if (Global.online)
             {
-                //刷新下载列表
-                reloadDownloadList();
-                //调用选中项在下载列表中对应项的下载方法
-                startDownloadLaw(new List<Law>() { law });
+                //修改数据库的law状态，使其在刷新下载列表时可以被显示
+                law.downloadPercent = 0;
+                law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                if (db.saveLaw(law))
+                {
+                    //刷新下载列表
+                    reloadDownloadList();
+                    //调用选中项在下载列表中对应项的下载方法
+                    startDownloadLaw(new List<Law>() { law });
+                }
+            }
+            else
+            {
+                MessageBox.Show("离线状态下无法进行下载操作");
             }
         }
         /// <summary>
@@ -261,28 +289,31 @@ namespace CAAC_LawLibrary
         /// <param name="text"></param>
         public void setLawStateText(Type type, Law law, string text)
         {
-            var controlsHost = new Control();
-            if (type == typeof(LawListItem))
+            if (Global.online)
             {
-                controlsHost = flp_libraryList;
-            }
-            else if (type == typeof(ViewHistoryListItem))
-            {
-                controlsHost = flp_viewHistory;
-            }
-            else if (type == typeof(DownloadListItem))
-            {
-                controlsHost = flp_downloadTask;
-            }
-            foreach (Control c in controlsHost.Controls)
-            {
-                if (c is BaseListItem)
+                var controlsHost = new Control();
+                if (type == typeof(LawListItem))
                 {
-                    var item = c as BaseListItem;
-                    if (item.law.Id == law.Id)
+                    controlsHost = flp_libraryList;
+                }
+                else if (type == typeof(ViewHistoryListItem))
+                {
+                    controlsHost = flp_viewHistory;
+                }
+                else if (type == typeof(DownloadListItem))
+                {
+                    controlsHost = flp_downloadTask;
+                }
+                foreach (Control c in controlsHost.Controls)
+                {
+                    if (c is BaseListItem)
                     {
-                        item.setDownloadState(text);
-                        return;
+                        var item = c as BaseListItem;
+                        if (item.law.Id == law.Id)
+                        {
+                            item.setDownloadState(text);
+                            return;
+                        }
                     }
                 }
             }
@@ -496,6 +527,13 @@ namespace CAAC_LawLibrary
         }
         #endregion
 
+        #region 自动更新历史列表使用
+        public void getUpdateHistoryList()
+        {
+
+        }
+        #endregion
+
         /// <summary>
         /// 刷新（法规列表+筛选条件）
         /// </summary>
@@ -536,8 +574,11 @@ namespace CAAC_LawLibrary
         /// <param name="e"></param>
         private void LibraryList_FormClosed(object sender, FormClosedEventArgs e)
         {
-            System.Environment.Exit(0);
+            try
+            {
+                System.Environment.Exit(0);
+            }
+            catch { }
         }
-
     }
 }
