@@ -192,11 +192,13 @@ namespace CAAC_LawLibrary
                     if (lawItem.isChecked)
                     {
                         lawItem.lbl_downloadState.Text = "下载中……";
-                        Law law = lawItem.law;
-                        law.downloadPercent = 0;
-                        law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
-                        db.saveLaw(law);
-                        laws.Add(law);
+                        foreach (Law l in lawItem.laws)
+                        {
+                            l.downloadPercent = 0;
+                            l.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                            db.saveLaw(l);
+                        }
+                        laws.AddRange(lawItem.laws);
                     }
                 }
                 //刷新下载列表
@@ -210,23 +212,26 @@ namespace CAAC_LawLibrary
             }
         }
         /// <summary>
-        /// 下载单项到本地库
+        /// 下载单项到本地库（法规列表使用）
         /// </summary>
         /// <param name="law"></param>
-        public void downloadSelectedLawToLocal(Law law)
+        public void downloadSelectedLawToLocal(List<Law> laws)
         {
             if (Global.online)
             {
-                //修改数据库的law状态，使其在刷新下载列表时可以被显示
-                law.downloadPercent = 0;
-                law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
-                if (db.saveLaw(law))
+                foreach (Law law in laws)
                 {
-                    //刷新下载列表
-                    reloadDownloadList();
-                    //调用选中项在下载列表中对应项的下载方法
-                    startDownloadLaw(new List<Law>() { law });
+                    //修改数据库的law状态，使其在刷新下载列表时可以被显示
+                    law.downloadPercent = 0;
+                    law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    if (db.saveLaw(law))
+                    {
+                    }
                 }
+                //刷新下载列表
+                reloadDownloadList();
+                //调用选中项在下载列表中对应项的下载方法
+                startDownloadLaw(laws);
             }
             else
             {
@@ -523,6 +528,30 @@ namespace CAAC_LawLibrary
             {
                 db.clearHistory();
                 loadViewHistoryList();
+            }
+        }
+        /// <summary>
+        /// 下载单项到本地库（阅读历史列表使用）
+        /// </summary>
+        /// <param name="law"></param>
+        public void downloadSelectedLawToLocal(Law law)
+        {
+            if (Global.online)
+            {
+                //修改数据库的law状态，使其在刷新下载列表时可以被显示
+                law.downloadPercent = 0;
+                law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                if (db.saveLaw(law))
+                {
+                    //刷新下载列表
+                    reloadDownloadList();
+                    //调用选中项在下载列表中对应项的下载方法
+                    startDownloadLaw(new List<Law>() { law });
+                }
+            }
+            else
+            {
+                MessageBox.Show("离线状态下无法进行下载操作");
             }
         }
         #endregion

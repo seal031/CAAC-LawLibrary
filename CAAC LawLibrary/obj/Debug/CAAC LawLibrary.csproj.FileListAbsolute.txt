@@ -125,3 +125,4 @@ E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单�
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单机版.pdb
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航法规库单机版.exe
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航法规库单机版.pdb
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache

@@ -147,7 +147,7 @@ namespace CAAC_LawLibrary
         {
             if (lbl_downloadState.Text == "下载")
             {
-                ((LibraryList)parentForm).downloadSelectedLawToLocal(law);
+                ((LibraryList)parentForm).downloadSelectedLawToLocal(laws);
                 if (Global.online)
                 {
                     lbl_downloadState.Text = "下载中……";

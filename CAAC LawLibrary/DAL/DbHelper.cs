@@ -217,13 +217,17 @@ namespace CAAC_LawLibrary.DAL
                 {
                     try
                     {
-                        var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == law.userId);
-                        if (currentLaw != null)
+                        //var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == law.userId);
+                        var laws = context.Law.Where(l => l.lastversion == law.lastversion && l.userId == law.userId);
+                        foreach (Law currentLaw in laws)
                         {
-                            currentLaw.downloadDate = null;
-                            currentLaw.downloadPercent = null;
-                            currentLaw.isLocal = "0";
-                            currentLaw.downloadNodeCount = null;
+                            if (currentLaw != null)
+                            {
+                                currentLaw.downloadDate = null;
+                                currentLaw.downloadPercent = null;
+                                currentLaw.isLocal = "0";
+                                currentLaw.downloadNodeCount = null;
+                            }
                         }
 
                         //不清空node内容，因为node是多用户共用的
