@@ -124,4 +124,49 @@
   <data name="Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="title" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\title.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="下载管理" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\下载管理.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="下载管理a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\下载管理a.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="关系" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\关系.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="帮助" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\帮助.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="帮助a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\帮助a.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="文档信息" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\文档信息.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="更新历史" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\更新历史.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="更新历史a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\更新历史a.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="法规库" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\法规库.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="法规库a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\法规库a.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="目录" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\目录.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="评论" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\评论.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="阅读历史" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\阅读历史.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="阅读历史a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ICO\阅读历史a.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -337,6 +337,21 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="CSS\mystyle.css" />
+    <None Include="ICO\阅读历史a.ico" />
+    <None Include="ICO\阅读历史.ico" />
+    <None Include="ICO\下载管理a.ico" />
+    <None Include="ICO\下载管理.ico" />
+    <None Include="ICO\文档信息.ico" />
+    <None Include="ICO\评论.ico" />
+    <None Include="ICO\目录.ico" />
+    <None Include="ICO\关系.ico" />
+    <None Include="ICO\更新历史a.ico" />
+    <None Include="ICO\更新历史.ico" />
+    <None Include="ICO\法规库a.ico" />
+    <None Include="ICO\法规库.ico" />
+    <None Include="ICO\帮助a.ico" />
+    <None Include="ICO\帮助.ico" />
+    <None Include="ICO\title.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets')" />

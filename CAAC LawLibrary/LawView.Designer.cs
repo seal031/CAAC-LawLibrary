@@ -282,7 +282,7 @@
             this.npp_tree.Margin = new System.Windows.Forms.Padding(4);
             this.npp_tree.Name = "npp_tree";
             this.npp_tree.ParentItem = this.btn_item_tree;
-            this.npp_tree.Size = new System.Drawing.Size(278, 882);
+            this.npp_tree.Size = new System.Drawing.Size(278, 917);
             this.npp_tree.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.npp_tree.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
             this.npp_tree.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
@@ -307,7 +307,7 @@
             this.NodeTree.NodesConnector = this.nodeConnector1;
             this.NodeTree.NodeStyle = this.elementStyle1;
             this.NodeTree.PathSeparator = ";";
-            this.NodeTree.Size = new System.Drawing.Size(278, 882);
+            this.NodeTree.Size = new System.Drawing.Size(278, 917);
             this.NodeTree.Styles.Add(this.elementStyle1);
             this.NodeTree.TabIndex = 0;
             this.NodeTree.NodeClick += new DevComponents.AdvTree.TreeNodeMouseEventHandler(this.NodeTree_NodeClick);
@@ -427,7 +427,7 @@
             this.navigationPanePanel1.Margin = new System.Windows.Forms.Padding(4);
             this.navigationPanePanel1.Name = "navigationPanePanel1";
             this.navigationPanePanel1.ParentItem = this.btn_item_relation;
-            this.navigationPanePanel1.Size = new System.Drawing.Size(283, 882);
+            this.navigationPanePanel1.Size = new System.Drawing.Size(283, 917);
             this.navigationPanePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.navigationPanePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
             this.navigationPanePanel1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
@@ -456,7 +456,7 @@
             this.dgw.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgw.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgw.ShowEditingIcon = false;
-            this.dgw.Size = new System.Drawing.Size(283, 859);
+            this.dgw.Size = new System.Drawing.Size(283, 894);
             this.dgw.TabIndex = 0;
             this.dgw.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgw_CellDoubleClick);
             // 
@@ -507,6 +507,7 @@
             this.btn_item_relation.Name = "btn_item_relation";
             this.btn_item_relation.OptionGroup = "navBar";
             this.btn_item_relation.Text = "关系";
+            this.btn_item_relation.Click += new System.EventHandler(this.btn_item_relation_Click);
             // 
             // pn_main_document
             // 

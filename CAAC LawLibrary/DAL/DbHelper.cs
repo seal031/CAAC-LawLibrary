@@ -799,6 +799,10 @@ namespace CAAC_LawLibrary.DAL
                     }
                     else//已存在则更新
                     {
+                        if(string.IsNullOrEmpty(tempUser.Name))
+                            tempUser.Name = user.Name;
+                        if (string.IsNullOrEmpty(tempUser.Password))
+                            tempUser.Password = user.Password;
                         tempUser.Xm = user.Xm;
                         tempUser.Department = user.Department;
                         tempUser.Phone = user.Phone;

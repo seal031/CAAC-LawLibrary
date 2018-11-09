@@ -647,6 +647,10 @@ namespace CAAC_LawLibrary
             }
             lbl_findCount.Text = findIndex + "/" + findCount;
         }
-        
+
+        private void btn_item_relation_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

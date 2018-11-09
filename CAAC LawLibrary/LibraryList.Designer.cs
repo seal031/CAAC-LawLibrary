@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibraryList));
             this.pl_title = new System.Windows.Forms.Panel();
             this.btn_logout = new System.Windows.Forms.Button();
             this.lbl_welcome = new System.Windows.Forms.Label();
             this.pl_main = new System.Windows.Forms.Panel();
-            this.tbc = new System.Windows.Forms.TabControl();
-            this.tp_libraryList = new System.Windows.Forms.TabPage();
-            this.flp_libraryList = new System.Windows.Forms.FlowLayoutPanel();
-            this.lawFilter = new CAAC_LawLibrary.LawFilter();
-            this.tp_viewHistory = new System.Windows.Forms.TabPage();
+            this.tbc = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabItem4 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.flp_lawLibrary = new System.Windows.Forms.FlowLayoutPanel();
             this.flp_viewHistory = new System.Windows.Forms.FlowLayoutPanel();
-            this.viewHistoryFilter = new CAAC_LawLibrary.ViewHistoryFilter();
-            this.tp_downloadTask = new System.Windows.Forms.TabPage();
             this.flp_downloadTask = new System.Windows.Forms.FlowLayoutPanel();
-            this.downloadFilter = new CAAC_LawLibrary.DownloadFilter();
-            this.tp_updateHistory = new System.Windows.Forms.TabPage();
             this.dgv_updateHistory = new System.Windows.Forms.DataGridView();
             this.LawId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LawTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,16 +52,20 @@
             this.UpdateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lawFilter = new CAAC_LawLibrary.LawFilter();
+            this.viewHistoryFilter = new CAAC_LawLibrary.ViewHistoryFilter();
+            this.downloadFilter = new CAAC_LawLibrary.DownloadFilter();
             this.pl_title.SuspendLayout();
             this.pl_main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbc)).BeginInit();
             this.tbc.SuspendLayout();
-            this.tp_libraryList.SuspendLayout();
-            this.flp_libraryList.SuspendLayout();
-            this.tp_viewHistory.SuspendLayout();
+            this.superTabControlPanel1.SuspendLayout();
+            this.superTabControlPanel2.SuspendLayout();
+            this.superTabControlPanel3.SuspendLayout();
+            this.superTabControlPanel4.SuspendLayout();
+            this.flp_lawLibrary.SuspendLayout();
             this.flp_viewHistory.SuspendLayout();
-            this.tp_downloadTask.SuspendLayout();
             this.flp_downloadTask.SuspendLayout();
-            this.tp_updateHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_updateHistory)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,122 +116,142 @@
             // 
             // tbc
             // 
-            this.tbc.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tbc.Controls.Add(this.tp_libraryList);
-            this.tbc.Controls.Add(this.tp_viewHistory);
-            this.tbc.Controls.Add(this.tp_downloadTask);
-            this.tbc.Controls.Add(this.tp_updateHistory);
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tbc.ControlBox.CloseBox.Name = "";
+            // 
+            // 
+            // 
+            this.tbc.ControlBox.MenuBox.Name = "";
+            this.tbc.ControlBox.Name = "";
+            this.tbc.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.tbc.ControlBox.MenuBox,
+            this.tbc.ControlBox.CloseBox});
+            this.tbc.Controls.Add(this.superTabControlPanel1);
+            this.tbc.Controls.Add(this.superTabControlPanel2);
+            this.tbc.Controls.Add(this.superTabControlPanel3);
+            this.tbc.Controls.Add(this.superTabControlPanel4);
             this.tbc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbc.ItemSize = new System.Drawing.Size(100, 30);
             this.tbc.Location = new System.Drawing.Point(0, 0);
-            this.tbc.Margin = new System.Windows.Forms.Padding(4);
             this.tbc.Name = "tbc";
-            this.tbc.SelectedIndex = 0;
+            this.tbc.ReorderTabsEnabled = true;
+            this.tbc.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.tbc.SelectedTabIndex = 0;
             this.tbc.Size = new System.Drawing.Size(1379, 919);
+            this.tbc.TabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbc.TabIndex = 0;
+            this.tbc.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.superTabItem1,
+            this.superTabItem2,
+            this.superTabItem3,
+            this.superTabItem4});
+            this.tbc.Text = "superTabControl1";
             // 
-            // tp_libraryList
+            // superTabItem1
             // 
-            this.tp_libraryList.Controls.Add(this.flp_libraryList);
-            this.tp_libraryList.Location = new System.Drawing.Point(4, 34);
-            this.tp_libraryList.Margin = new System.Windows.Forms.Padding(4);
-            this.tp_libraryList.Name = "tp_libraryList";
-            this.tp_libraryList.Padding = new System.Windows.Forms.Padding(4);
-            this.tp_libraryList.Size = new System.Drawing.Size(1371, 881);
-            this.tp_libraryList.TabIndex = 0;
-            this.tp_libraryList.Text = "法规库目录";
-            this.tp_libraryList.UseVisualStyleBackColor = true;
+            this.superTabItem1.AttachedControl = this.superTabControlPanel1;
+            this.superTabItem1.GlobalItem = false;
+            this.superTabItem1.Icon = ((System.Drawing.Icon)(resources.GetObject("superTabItem1.Icon")));
+            this.superTabItem1.Name = "superTabItem1";
+            this.superTabItem1.Text = "法规库列表";
             // 
-            // flp_libraryList
+            // superTabControlPanel1
             // 
-            this.flp_libraryList.Controls.Add(this.lawFilter);
-            this.flp_libraryList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_libraryList.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_libraryList.Location = new System.Drawing.Point(4, 4);
-            this.flp_libraryList.Margin = new System.Windows.Forms.Padding(4);
-            this.flp_libraryList.Name = "flp_libraryList";
-            this.flp_libraryList.Size = new System.Drawing.Size(1363, 873);
-            this.flp_libraryList.TabIndex = 0;
+            this.superTabControlPanel1.Controls.Add(this.flp_lawLibrary);
+            this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel1.Location = new System.Drawing.Point(0, 46);
+            this.superTabControlPanel1.Name = "superTabControlPanel1";
+            this.superTabControlPanel1.Size = new System.Drawing.Size(1379, 873);
+            this.superTabControlPanel1.TabIndex = 1;
+            this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
-            // lawFilter
+            // superTabItem2
             // 
-            this.lawFilter.Location = new System.Drawing.Point(3, 2);
-            this.lawFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lawFilter.Name = "lawFilter";
-            this.lawFilter.Size = new System.Drawing.Size(1333, 129);
-            this.lawFilter.TabIndex = 0;
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Icon = ((System.Drawing.Icon)(resources.GetObject("superTabItem2.Icon")));
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "阅读历史";
             // 
-            // tp_viewHistory
+            // superTabControlPanel2
             // 
-            this.tp_viewHistory.Controls.Add(this.flp_viewHistory);
-            this.tp_viewHistory.Location = new System.Drawing.Point(4, 34);
-            this.tp_viewHistory.Margin = new System.Windows.Forms.Padding(4);
-            this.tp_viewHistory.Name = "tp_viewHistory";
-            this.tp_viewHistory.Padding = new System.Windows.Forms.Padding(4);
-            this.tp_viewHistory.Size = new System.Drawing.Size(1371, 881);
-            this.tp_viewHistory.TabIndex = 1;
-            this.tp_viewHistory.Text = "阅读历史";
-            this.tp_viewHistory.UseVisualStyleBackColor = true;
+            this.superTabControlPanel2.Controls.Add(this.flp_viewHistory);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 46);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(1379, 873);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // superTabItem3
+            // 
+            this.superTabItem3.AttachedControl = this.superTabControlPanel3;
+            this.superTabItem3.GlobalItem = false;
+            this.superTabItem3.Icon = ((System.Drawing.Icon)(resources.GetObject("superTabItem3.Icon")));
+            this.superTabItem3.Name = "superTabItem3";
+            this.superTabItem3.Text = "下载任务管理";
+            // 
+            // superTabControlPanel3
+            // 
+            this.superTabControlPanel3.Controls.Add(this.flp_downloadTask);
+            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 46);
+            this.superTabControlPanel3.Name = "superTabControlPanel3";
+            this.superTabControlPanel3.Size = new System.Drawing.Size(1379, 873);
+            this.superTabControlPanel3.TabIndex = 0;
+            this.superTabControlPanel3.TabItem = this.superTabItem3;
+            // 
+            // superTabItem4
+            // 
+            this.superTabItem4.AttachedControl = this.superTabControlPanel4;
+            this.superTabItem4.GlobalItem = false;
+            this.superTabItem4.Icon = ((System.Drawing.Icon)(resources.GetObject("superTabItem4.Icon")));
+            this.superTabItem4.Name = "superTabItem4";
+            this.superTabItem4.Text = "自动更新历史";
+            // 
+            // superTabControlPanel4
+            // 
+            this.superTabControlPanel4.Controls.Add(this.dgv_updateHistory);
+            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 46);
+            this.superTabControlPanel4.Name = "superTabControlPanel4";
+            this.superTabControlPanel4.Size = new System.Drawing.Size(1379, 873);
+            this.superTabControlPanel4.TabIndex = 0;
+            this.superTabControlPanel4.TabItem = this.superTabItem4;
+            // 
+            // flp_lawLibrary
+            // 
+            this.flp_lawLibrary.Controls.Add(this.lawFilter);
+            this.flp_lawLibrary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_lawLibrary.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp_lawLibrary.Location = new System.Drawing.Point(0, 0);
+            this.flp_lawLibrary.Name = "flp_lawLibrary";
+            this.flp_lawLibrary.Size = new System.Drawing.Size(1379, 873);
+            this.flp_lawLibrary.TabIndex = 0;
             // 
             // flp_viewHistory
             // 
             this.flp_viewHistory.Controls.Add(this.viewHistoryFilter);
             this.flp_viewHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_viewHistory.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_viewHistory.Location = new System.Drawing.Point(4, 4);
-            this.flp_viewHistory.Margin = new System.Windows.Forms.Padding(4);
+            this.flp_viewHistory.Location = new System.Drawing.Point(0, 0);
             this.flp_viewHistory.Name = "flp_viewHistory";
-            this.flp_viewHistory.Size = new System.Drawing.Size(1363, 873);
-            this.flp_viewHistory.TabIndex = 1;
-            // 
-            // viewHistoryFilter
-            // 
-            this.viewHistoryFilter.Location = new System.Drawing.Point(3, 2);
-            this.viewHistoryFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.viewHistoryFilter.Name = "viewHistoryFilter";
-            this.viewHistoryFilter.Size = new System.Drawing.Size(1333, 122);
-            this.viewHistoryFilter.TabIndex = 0;
-            // 
-            // tp_downloadTask
-            // 
-            this.tp_downloadTask.Controls.Add(this.flp_downloadTask);
-            this.tp_downloadTask.Location = new System.Drawing.Point(4, 34);
-            this.tp_downloadTask.Margin = new System.Windows.Forms.Padding(4);
-            this.tp_downloadTask.Name = "tp_downloadTask";
-            this.tp_downloadTask.Padding = new System.Windows.Forms.Padding(4);
-            this.tp_downloadTask.Size = new System.Drawing.Size(1371, 881);
-            this.tp_downloadTask.TabIndex = 2;
-            this.tp_downloadTask.Text = "下载任务管理";
-            this.tp_downloadTask.UseVisualStyleBackColor = true;
+            this.flp_viewHistory.Size = new System.Drawing.Size(1379, 873);
+            this.flp_viewHistory.TabIndex = 0;
             // 
             // flp_downloadTask
             // 
             this.flp_downloadTask.Controls.Add(this.downloadFilter);
             this.flp_downloadTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp_downloadTask.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_downloadTask.Location = new System.Drawing.Point(4, 4);
-            this.flp_downloadTask.Margin = new System.Windows.Forms.Padding(4);
+            this.flp_downloadTask.Location = new System.Drawing.Point(0, 0);
             this.flp_downloadTask.Name = "flp_downloadTask";
-            this.flp_downloadTask.Size = new System.Drawing.Size(1363, 873);
-            this.flp_downloadTask.TabIndex = 1;
-            // 
-            // downloadFilter
-            // 
-            this.downloadFilter.Location = new System.Drawing.Point(3, 2);
-            this.downloadFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.downloadFilter.Name = "downloadFilter";
-            this.downloadFilter.Size = new System.Drawing.Size(1333, 122);
-            this.downloadFilter.TabIndex = 0;
-            // 
-            // tp_updateHistory
-            // 
-            this.tp_updateHistory.Controls.Add(this.dgv_updateHistory);
-            this.tp_updateHistory.Location = new System.Drawing.Point(4, 34);
-            this.tp_updateHistory.Name = "tp_updateHistory";
-            this.tp_updateHistory.Size = new System.Drawing.Size(1371, 881);
-            this.tp_updateHistory.TabIndex = 3;
-            this.tp_updateHistory.Text = "自动更新历史";
-            this.tp_updateHistory.UseVisualStyleBackColor = true;
+            this.flp_downloadTask.Size = new System.Drawing.Size(1379, 873);
+            this.flp_downloadTask.TabIndex = 0;
             // 
             // dgv_updateHistory
             // 
@@ -245,8 +271,8 @@
             this.dgv_updateHistory.ReadOnly = true;
             this.dgv_updateHistory.RowHeadersVisible = false;
             this.dgv_updateHistory.RowTemplate.Height = 27;
-            this.dgv_updateHistory.Size = new System.Drawing.Size(1371, 881);
-            this.dgv_updateHistory.TabIndex = 0;
+            this.dgv_updateHistory.Size = new System.Drawing.Size(1379, 873);
+            this.dgv_updateHistory.TabIndex = 2;
             // 
             // LawId
             // 
@@ -295,6 +321,30 @@
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
             // 
+            // lawFilter
+            // 
+            this.lawFilter.Location = new System.Drawing.Point(3, 2);
+            this.lawFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lawFilter.Name = "lawFilter";
+            this.lawFilter.Size = new System.Drawing.Size(1373, 122);
+            this.lawFilter.TabIndex = 0;
+            // 
+            // viewHistoryFilter
+            // 
+            this.viewHistoryFilter.Location = new System.Drawing.Point(3, 2);
+            this.viewHistoryFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.viewHistoryFilter.Name = "viewHistoryFilter";
+            this.viewHistoryFilter.Size = new System.Drawing.Size(1373, 122);
+            this.viewHistoryFilter.TabIndex = 0;
+            // 
+            // downloadFilter
+            // 
+            this.downloadFilter.Location = new System.Drawing.Point(3, 2);
+            this.downloadFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.downloadFilter.Name = "downloadFilter";
+            this.downloadFilter.Size = new System.Drawing.Size(1373, 122);
+            this.downloadFilter.TabIndex = 0;
+            // 
             // LibraryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -304,6 +354,7 @@
             this.Controls.Add(this.pl_main);
             this.Controls.Add(this.pl_title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "LibraryList";
@@ -313,14 +364,15 @@
             this.pl_title.ResumeLayout(false);
             this.pl_title.PerformLayout();
             this.pl_main.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbc)).EndInit();
             this.tbc.ResumeLayout(false);
-            this.tp_libraryList.ResumeLayout(false);
-            this.flp_libraryList.ResumeLayout(false);
-            this.tp_viewHistory.ResumeLayout(false);
+            this.superTabControlPanel1.ResumeLayout(false);
+            this.superTabControlPanel2.ResumeLayout(false);
+            this.superTabControlPanel3.ResumeLayout(false);
+            this.superTabControlPanel4.ResumeLayout(false);
+            this.flp_lawLibrary.ResumeLayout(false);
             this.flp_viewHistory.ResumeLayout(false);
-            this.tp_downloadTask.ResumeLayout(false);
             this.flp_downloadTask.ResumeLayout(false);
-            this.tp_updateHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_updateHistory)).EndInit();
             this.ResumeLayout(false);
 
@@ -332,17 +384,21 @@
         private System.Windows.Forms.Button btn_logout;
         private System.Windows.Forms.Label lbl_welcome;
         private System.Windows.Forms.Panel pl_main;
-        private System.Windows.Forms.TabControl tbc;
-        private System.Windows.Forms.TabPage tp_libraryList;
-        private System.Windows.Forms.TabPage tp_viewHistory;
-        private System.Windows.Forms.TabPage tp_downloadTask;
-        private System.Windows.Forms.FlowLayoutPanel flp_libraryList;
+        private DevComponents.DotNetBar.SuperTabControl tbc;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flp_lawLibrary;
+        private DevComponents.DotNetBar.SuperTabItem superTabItem1;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel4;
+        private DevComponents.DotNetBar.SuperTabItem superTabItem4;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel3;
+        private DevComponents.DotNetBar.SuperTabItem superTabItem3;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel2;
+        private DevComponents.DotNetBar.SuperTabItem superTabItem2;
         private System.Windows.Forms.FlowLayoutPanel flp_viewHistory;
         private System.Windows.Forms.FlowLayoutPanel flp_downloadTask;
         private LawFilter lawFilter;
         private ViewHistoryFilter viewHistoryFilter;
         private DownloadFilter downloadFilter;
-        private System.Windows.Forms.TabPage tp_updateHistory;
         private System.Windows.Forms.DataGridView dgv_updateHistory;
         private System.Windows.Forms.DataGridViewTextBoxColumn LawId;
         private System.Windows.Forms.DataGridViewTextBoxColumn LawTitle;

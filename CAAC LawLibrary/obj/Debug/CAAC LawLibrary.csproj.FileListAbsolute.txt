@@ -10,31 +10,6 @@ c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibr
 c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.xml
 c:\users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LibraryList.resources
 C:\Users\seal\documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseListItem.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.dll
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.dll
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.dll
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.dll
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.EF6.dll
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.Linq.dll
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.xml
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.xml
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.xml
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.xml
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseListItem.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.DownloadListItem.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LawView.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LibraryList.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Login.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Properties.Resources.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.GenerateResource.Cache
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.ViewHistoryListItem.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LawListItem.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\Newtonsoft.Json.dll
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseFilter.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LawFilter.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.DownloadFilter.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.ViewHistoryFilter.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestItem.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\CAAC LawLibrary.exe.config
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\CAAC LawLibrary.exe
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\CAAC LawLibrary.pdb
@@ -68,10 +43,6 @@ D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.CoreC
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.CopyComplete
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.exe
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.pdb
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestForm.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.LawInfo.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.CommentItem.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.XiudingLiShi.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.AddNewComment.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.CommentItem.resources
 D:\GitHub\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.XiudingLiShi.resources
@@ -114,15 +85,43 @@ C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibr
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.GenerateResource.Cache
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.exe
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.pdb
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.AddNewComment.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.AddNewSuggest.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.TagLabel.resources
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.RefPanel.resources
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.RefPanel.resources
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单机版.exe.config
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单机版.exe
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单机版.pdb
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\Newtonsoft.Json.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.EF6.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.Linq.dll
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.xml
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.xml
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.xml
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\System.Data.SQLite.xml
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.AddNewComment.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.AddNewSuggest.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestForm.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseFilter.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.BaseListItem.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.CommentItem.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.DownloadFilter.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.DownloadListItem.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LawFilter.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.LawInfo.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LawListItem.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LawView.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.LibraryList.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Login.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.Properties.Resources.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.RefPanel.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.SuggestItem.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.TagLabel.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.ViewHistoryFilter.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.ViewHistoryListItem.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.XiudingLiShi.resources
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.GenerateResource.Cache
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航法规库单机版.exe
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航法规库单机版.pdb
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache

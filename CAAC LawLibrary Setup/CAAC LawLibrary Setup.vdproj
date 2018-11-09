@@ -57,8 +57,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
-        "OwnerKey" = "8:_92C8CA1AF81E49BB84ED3B61CBA3F961"
+        "MsmKey" = "8:_A01216E1DF834620B1BD840E713A8F7E"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,13 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_707237C49A234CC9044FA6EB6F2EA517"
+        "OwnerKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
+        "OwnerKey" = "8:_707237C49A234CC9044FA6EB6F2EA517"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -401,6 +401,26 @@
                 }
             "SourcePath" = "8:..\\packages\\System.Data.SQLite.EF6.1.0.108.0\\lib\\net45\\System.Data.SQLite.EF6.dll"
             "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A01216E1DF834620B1BD840E713A8F7E"
+            {
+            "SourcePath" = "8:..\\CAAC LawLibrary\\ICO\\法规库desktop.ico"
+            "TargetName" = "8:法规库desktop.ico"
             "Tag" = "8:"
             "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
             "Condition" = "8:"
@@ -888,7 +908,7 @@
             "Target" = "8:_F1D2DA0B3A3E4C8E80CF58D92219D147"
             "Folder" = "8:_6D4A1FAFC1E04DEEBDA22071DC006C7A"
             "WorkingFolder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
-            "Icon" = "8:"
+            "Icon" = "8:_A01216E1DF834620B1BD840E713A8F7E"
             "Feature" = "8:"
             }
         }

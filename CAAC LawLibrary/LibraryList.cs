@@ -25,7 +25,7 @@ namespace CAAC_LawLibrary
             lawFilter.parentForm = this;
             viewHistoryFilter.parentForm = this;
             downloadFilter.parentForm = this;
-            setFlpTopDownOnly(flp_libraryList);
+            setFlpTopDownOnly(flp_lawLibrary);
             setFlpTopDownOnly(flp_viewHistory);
             setFlpTopDownOnly(flp_downloadTask);
             lawFilter.onSelectedChanged += loadLocalLawList;
@@ -58,8 +58,9 @@ namespace CAAC_LawLibrary
 
         public void LoadSearchResultLaw(List<string> lawIdList)
         {
-            tbc.SelectedIndex = 0;
-            removeFromFlp(flp_libraryList);
+            //tbc.SelectedIndex = 0;
+            tbc.SelectedTabIndex = 0;
+            removeFromFlp(flp_lawLibrary);
             List<Law> list = new List<Law>();
             foreach (string lawId in lawIdList)
             {
@@ -83,7 +84,7 @@ namespace CAAC_LawLibrary
                     item.laws = allVersionList.ToList();
                     item.parentForm = this;
                     item.addVerionDropDown();
-                    flp_libraryList.Controls.Add(item);
+                    flp_lawLibrary.Controls.Add(item);
                 }
             }
         }
@@ -94,7 +95,7 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void loadLocalLawList()
         {
-            removeFromFlp(flp_libraryList);
+            removeFromFlp(flp_lawLibrary);
             List<Law> list = db.getLaws(lawFilter.queryParam);
             List<string> addedLastVersion = new List<string>();//已经添加过的法规id
             foreach (Law law in list)
@@ -117,7 +118,7 @@ namespace CAAC_LawLibrary
                     item.laws = allVersionList.ToList();
                     item.parentForm = this;
                     item.addVerionDropDown();
-                    flp_libraryList.Controls.Add(item); 
+                    flp_lawLibrary.Controls.Add(item); 
                 }
             }
         }
@@ -186,9 +187,9 @@ namespace CAAC_LawLibrary
             {
                 List<Law> laws = new List<Law>();
                 //修改数据库的law状态，使其在刷新下载列表时可以被显示
-                for (int i = 1; i < flp_libraryList.Controls.Count; i++)
+                for (int i = 1; i < flp_lawLibrary.Controls.Count; i++)
                 {
-                    var lawItem = flp_libraryList.Controls[i] as LawListItem;
+                    var lawItem = flp_lawLibrary.Controls[i] as LawListItem;
                     if (lawItem.isChecked)
                     {
                         lawItem.lbl_downloadState.Text = "下载中……";
@@ -245,9 +246,9 @@ namespace CAAC_LawLibrary
         {
             if (MessageBox.Show("确认移除选中项？", "从本地库移除后将无法离线浏览", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                for (int i = 1; i < flp_libraryList.Controls.Count; i++)
+                for (int i = 1; i < flp_lawLibrary.Controls.Count; i++)
                 {
-                    var lawItem = flp_libraryList.Controls[i] as LawListItem;
+                    var lawItem = flp_lawLibrary.Controls[i] as LawListItem;
                     if (lawItem.isChecked)
                         lawItem.lbl_downloadState.Text = "下载";
                     {
@@ -280,7 +281,7 @@ namespace CAAC_LawLibrary
         }
         public void lawCheckBoxChange(bool value)
         {
-            foreach (var item in flp_libraryList.Controls)
+            foreach (var item in flp_lawLibrary.Controls)
             {
                 var lawItem = item as LawListItem;
                 if (lawItem == null) continue;
@@ -299,7 +300,7 @@ namespace CAAC_LawLibrary
                 var controlsHost = new Control();
                 if (type == typeof(LawListItem))
                 {
-                    controlsHost = flp_libraryList;
+                    controlsHost = flp_lawLibrary;
                 }
                 else if (type == typeof(ViewHistoryListItem))
                 {
