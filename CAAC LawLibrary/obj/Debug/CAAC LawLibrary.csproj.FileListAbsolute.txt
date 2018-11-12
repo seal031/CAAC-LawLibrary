@@ -87,9 +87,6 @@ C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibr
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.pdb
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.UserControls.RefPanel.resources
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单机版.exe.config
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单机版.exe
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航法规库单机版.pdb
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\DevComponents.DotNetBar2.dll
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.dll
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\EntityFramework.SqlServer.dll
@@ -123,5 +120,9 @@ E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.View
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.ViewHistoryListItem.resources
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC_LawLibrary.XiudingLiShi.resources
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csproj.GenerateResource.Cache
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航法规库单机版.exe
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航法规库单机版.pdb
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规库单机版客户端.exe.config
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规库单机版客户端.exe
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规库单机版客户端.pdb
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航智能法规库单机版客户端.exe
+E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航智能法规库单机版客户端.pdb
