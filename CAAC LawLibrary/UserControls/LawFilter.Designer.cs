@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            CAAC_LawLibrary.Entity.Code code1 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code2 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code3 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code4 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code5 = new CAAC_LawLibrary.Entity.Code();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LawFilter));
             this.ckb_showDownloaded = new System.Windows.Forms.CheckBox();
             this.ckb_selectAll = new System.Windows.Forms.CheckBox();
@@ -37,32 +42,73 @@
             this.从本地库移除已选项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空本地库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_manageLocal = new System.Windows.Forms.Button();
+            this.btn_refresh = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbb_buhao
             // 
             this.cbb_buhao.DisplayMember = "desc";
+            code1.desc = "不限部号范围";
+            code1.Id = null;
+            code1.order = 0;
+            code1.type = null;
+            code1.valueMax = null;
+            code1.valueMin = null;
+            this.cbb_buhao.Items.AddRange(new object[] {
+            code1});
             this.cbb_buhao.ValueMember = "Id";
             // 
             // cbb_siju
             // 
             this.cbb_siju.DisplayMember = "desc";
+            code2.desc = "不限司局";
+            code2.Id = null;
+            code2.order = 0;
+            code2.type = null;
+            code2.valueMax = null;
+            code2.valueMin = null;
+            this.cbb_siju.Items.AddRange(new object[] {
+            code2});
             this.cbb_siju.ValueMember = "Id";
             // 
             // cbb_weijie
             // 
             this.cbb_weijie.DisplayMember = "desc";
+            code3.desc = "不限位阶范围";
+            code3.Id = null;
+            code3.order = 0;
+            code3.type = null;
+            code3.valueMax = null;
+            code3.valueMin = null;
+            this.cbb_weijie.Items.AddRange(new object[] {
+            code3});
             this.cbb_weijie.ValueMember = "Id";
             // 
             // cbb_yewu
             // 
             this.cbb_yewu.DisplayMember = "desc";
+            code4.desc = "不限业务分类";
+            code4.Id = null;
+            code4.order = 0;
+            code4.type = null;
+            code4.valueMax = null;
+            code4.valueMin = null;
+            this.cbb_yewu.Items.AddRange(new object[] {
+            code4});
             this.cbb_yewu.ValueMember = "Id";
             // 
             // cbb_zidingyi
             // 
             this.cbb_zidingyi.DisplayMember = "desc";
+            code5.desc = "不限自定义标签";
+            code5.Id = null;
+            code5.order = 0;
+            code5.type = null;
+            code5.valueMax = null;
+            code5.valueMin = null;
+            this.cbb_zidingyi.Items.AddRange(new object[] {
+            code5});
             this.cbb_zidingyi.ValueMember = "Id";
             // 
             // cbb_sort
@@ -76,22 +122,22 @@
             // ckb_showDownloaded
             // 
             this.ckb_showDownloaded.AutoSize = true;
-            this.ckb_showDownloaded.Location = new System.Drawing.Point(25, 76);
+            this.ckb_showDownloaded.Location = new System.Drawing.Point(120, 57);
             this.ckb_showDownloaded.Name = "ckb_showDownloaded";
-            this.ckb_showDownloaded.Size = new System.Drawing.Size(119, 19);
+            this.ckb_showDownloaded.Size = new System.Drawing.Size(134, 19);
             this.ckb_showDownloaded.TabIndex = 8;
-            this.ckb_showDownloaded.Text = "仅显示已下载";
+            this.ckb_showDownloaded.Text = "只显示离线法规";
             this.ckb_showDownloaded.UseVisualStyleBackColor = true;
             this.ckb_showDownloaded.CheckedChanged += new System.EventHandler(this.ckb_showDownloaded_CheckedChanged);
             // 
             // ckb_selectAll
             // 
             this.ckb_selectAll.AutoSize = true;
-            this.ckb_selectAll.Location = new System.Drawing.Point(193, 76);
+            this.ckb_selectAll.Location = new System.Drawing.Point(25, 57);
             this.ckb_selectAll.Name = "ckb_selectAll";
-            this.ckb_selectAll.Size = new System.Drawing.Size(89, 19);
+            this.ckb_selectAll.Size = new System.Drawing.Size(59, 19);
             this.ckb_selectAll.TabIndex = 9;
-            this.ckb_selectAll.Text = "本页全选";
+            this.ckb_selectAll.Text = "全选";
             this.ckb_selectAll.UseVisualStyleBackColor = true;
             this.ckb_selectAll.CheckedChanged += new System.EventHandler(this.ckb_selectAll_CheckedChanged);
             // 
@@ -129,7 +175,7 @@
             // 
             // btn_manageLocal
             // 
-            this.btn_manageLocal.Location = new System.Drawing.Point(1132, 70);
+            this.btn_manageLocal.Location = new System.Drawing.Point(1132, 50);
             this.btn_manageLocal.Name = "btn_manageLocal";
             this.btn_manageLocal.Size = new System.Drawing.Size(164, 30);
             this.btn_manageLocal.TabIndex = 10;
@@ -137,10 +183,21 @@
             this.btn_manageLocal.UseVisualStyleBackColor = true;
             this.btn_manageLocal.Click += new System.EventHandler(this.btn_manageLocal_Click);
             // 
+            // btn_refresh
+            // 
+            this.btn_refresh.Location = new System.Drawing.Point(1036, 50);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(90, 30);
+            this.btn_refresh.TabIndex = 11;
+            this.btn_refresh.Text = "手动更新";
+            this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            // 
             // LawFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.btn_manageLocal);
             this.Controls.Add(this.ckb_selectAll);
             this.Controls.Add(this.ckb_showDownloaded);
@@ -154,6 +211,7 @@
             this.Controls.SetChildIndex(this.ckb_showDownloaded, 0);
             this.Controls.SetChildIndex(this.ckb_selectAll, 0);
             this.Controls.SetChildIndex(this.btn_manageLocal, 0);
+            this.Controls.SetChildIndex(this.btn_refresh, 0);
             this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -169,5 +227,6 @@
         private System.Windows.Forms.ToolStripMenuItem 从本地库移除已选项ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清空本地库ToolStripMenuItem;
         private System.Windows.Forms.Button btn_manageLocal;
+        private System.Windows.Forms.Button btn_refresh;
     }
 }

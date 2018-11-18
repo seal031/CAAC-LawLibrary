@@ -75,7 +75,8 @@ namespace CAAC_LawLibrary
 
         private void LawView_Load(object sender, EventArgs e)
         {
-            this.Text += "-"+law.title + " " + law.version;
+            //this.Text += "-"+law.title + " " + law.version;
+            lbl_title.Text= law.title + " " + law.version;
             lbl_welcome.Text += Global.user.Xm;
             if (law != null)
             {
@@ -170,6 +171,7 @@ namespace CAAC_LawLibrary
             {
                 CommentItem ci = new UserControls.CommentItem();
                 ci.comment = comment;
+                ci.lawView = this;
                 ci.fillContent();
                 flp_comment.Controls.Add(ci);
             }
@@ -424,7 +426,7 @@ namespace CAAC_LawLibrary
             switch (tagType)
             {
                 case "征":
-                    if (DateTime.Parse(law.effectiveDate) > DateTime.Now)
+                    if (DateTime.Parse(law.expiryDate) > DateTime.Now)
                     {
                         AddNewSuggest suggest = new AddNewSuggest();
                         suggest.lawId = law.Id;

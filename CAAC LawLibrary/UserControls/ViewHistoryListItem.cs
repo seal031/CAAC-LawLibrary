@@ -46,16 +46,16 @@ namespace CAAC_LawLibrary
                 if (laws.Count > 0)
                 {
                     law = laws[0];
-                    lbl_title.Text = law.digest; ;
-                    lbl_state.Text = law.status == 1 ? "有效" : "失效";
-                    lbl_name.Text = law.title;
+                    lbl_title.Text = law.title; ;
+                    lbl_state.Text = DateTime.Parse(law.expiryDate) > DateTime.Now ? "有效" : "失效";
+                    lbl_name.Text = law.digest;
                     lbl_businessType.Text = Global.GetCodeValueById(law.yewu);
-                    lbl_effectiveDate.Text = law.effectiveDate;
-                    lbl_expiryDate.Text = law.expiryDate;
+                    lbl_effectiveDate.Text = DateTime.Parse(law.effectiveDate).ToString("yyyy-MM-dd") + "至" + DateTime.Parse(law.expiryDate).ToString("yyyy-MM-dd");
+                    //lbl_expiryDate.Text = law.expiryDate;
                     lbl_organization.Text = Global.GetCodeValueById(law.siju);
                     if (law.isLocal == "1")
                     {
-                        lbl_downloadState.Text = "从本地库移除";
+                        lbl_downloadState.Text = "移除";
                     }
                     else
                     {
@@ -83,7 +83,7 @@ namespace CAAC_LawLibrary
                     lbl_downloadState.Text = "下载中……";
                 }
             }
-            if (lbl_downloadState.Text == "从本地库移除")
+            if (lbl_downloadState.Text == "移除")
             {
                 ((LibraryList)parentForm).removeSelectedLocalLaw(law);
                 lbl_downloadState.Text = "下载";

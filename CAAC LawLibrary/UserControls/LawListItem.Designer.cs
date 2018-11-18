@@ -34,40 +34,35 @@
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lbl_downloadState
-            // 
-            this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_downloadState.Click += new System.EventHandler(this.lbl_downloadState_Click);
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ckb);
             this.panel1.Controls.Add(this.ccb_version);
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
+            this.panel1.Controls.SetChildIndex(this.lbl_title, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_name, 0);
-            this.panel1.Controls.SetChildIndex(this.lbl_downloadState, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_state, 0);
             this.panel1.Controls.SetChildIndex(this.ccb_version, 0);
+            this.panel1.Controls.SetChildIndex(this.ckb, 0);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.ckb);
             this.panel2.Click += new System.EventHandler(this.panel2_Click);
-            this.panel2.Controls.SetChildIndex(this.lbl_effectiveDate, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_expiryDate, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_title, 0);
-            this.panel2.Controls.SetChildIndex(this.lable1, 0);
-            this.panel2.Controls.SetChildIndex(this.label2, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_organization, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_businessType, 0);
-            this.panel2.Controls.SetChildIndex(this.ckb, 0);
+            // 
+            // lbl_downloadState
+            // 
+            this.lbl_downloadState.AutoEllipsis = true;
+            this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_downloadState.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lbl_downloadState.Click += new System.EventHandler(this.lbl_downloadState_Click);
             // 
             // ckb
             // 
             this.ckb.AutoSize = true;
-            this.ckb.Location = new System.Drawing.Point(14, 6);
-            this.ckb.Margin = new System.Windows.Forms.Padding(2);
+            this.ckb.Location = new System.Drawing.Point(21, 15);
+            this.ckb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ckb.Name = "ckb";
-            this.ckb.Size = new System.Drawing.Size(15, 14);
+            this.ckb.Size = new System.Drawing.Size(18, 17);
             this.ckb.TabIndex = 6;
             this.ckb.UseVisualStyleBackColor = true;
             this.ckb.CheckedChanged += new System.EventHandler(this.ckb_CheckedChanged);
@@ -76,18 +71,18 @@
             // 
             this.ccb_version.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ccb_version.FormattingEnabled = true;
-            this.ccb_version.Location = new System.Drawing.Point(898, 12);
-            this.ccb_version.Margin = new System.Windows.Forms.Padding(2);
+            this.ccb_version.Location = new System.Drawing.Point(1269, 14);
+            this.ccb_version.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ccb_version.Name = "ccb_version";
-            this.ccb_version.Size = new System.Drawing.Size(92, 20);
+            this.ccb_version.Size = new System.Drawing.Size(53, 23);
             this.ccb_version.TabIndex = 3;
             this.ccb_version.SelectedIndexChanged += new System.EventHandler(this.ccb_version_SelectedIndexChanged);
             // 
             // LawListItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LawListItem";
             this.Load += new System.EventHandler(this.LawListItem_Load);
             this.Click += new System.EventHandler(this.LawListItem_Click);

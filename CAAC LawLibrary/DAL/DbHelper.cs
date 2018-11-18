@@ -35,7 +35,7 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
-                int? buhaoMin=0, buhaoMax=99999;
+                int? buhaoMin = 0, buhaoMax = 99999;
                 if (param.buhao != null)
                 {
                     var buhao = context.Code.FirstOrDefault(c => c.Id == param.buhao);
@@ -56,15 +56,15 @@ namespace CAAC_LawLibrary.DAL
                             && (param.downloadState.HasValue ? law.downloadPercent == param.downloadState : 1 == 1)
                             && (param.lastVersion.HasValue ? law.lastversion == param.lastVersion : 1 == 1)
                             select law).ToList();
-                List<Law> returnList=new List<Law>();
+                List<Law> returnList = new List<Law>();
                 if (param.buhao != null)
                 {
                     foreach (Law law in list)
                     {
                         string buhaoStr = law.buhao;
-                        if (string.IsNullOrEmpty(buhaoStr)==false)
+                        if (string.IsNullOrEmpty(buhaoStr) == false)
                         {
-                            int buhao = int.Parse(buhaoStr.Split(new string[] { "*"},StringSplitOptions.RemoveEmptyEntries)[1]);
+                            int buhao = int.Parse(buhaoStr.Split(new string[] { "*" }, StringSplitOptions.RemoveEmptyEntries)[1]);
                             if (buhao >= buhaoMin && buhao <= buhaoMax)
                             {
                                 returnList.Add(law);
@@ -140,11 +140,7 @@ namespace CAAC_LawLibrary.DAL
             {
                 try
                 {
-                    //context.Law.RemoveRange(context.Law);
-                    //foreach (Law law in laws)
-                    //{
-                    //    context.Law.Add(law);
-                    //}
+                    int updateLawCount = 0;
                     foreach (Law law in laws)
                     {
                         var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == Global.user.Id);
@@ -152,7 +148,7 @@ namespace CAAC_LawLibrary.DAL
                         {
                             law.userId = Global.user.Id;
                             //如果是更新版本的法规（且法规旧版本已下载至本地），将更新信息保存至自动更新历史记录表，同时自动下载新版本法规内容
-                            var oldLaw = context.Law.FirstOrDefault(l => l.lastversion == law.lastversion && l.isLocal == "1");
+                            var oldLaw = context.Law.FirstOrDefault(l => l.lastversion == law.lastversion && l.isLocal == "1" && l.userId == Global.user.Id);
                             if (oldLaw != null)
                             {
                                 List<Node> nodes = RemoteWorker.getBookContent(law.Id);
@@ -167,12 +163,13 @@ namespace CAAC_LawLibrary.DAL
                                 updateHistory.UpdateDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                                 updateHistory.UserId = Global.user.Id;
                                 updateHistory.Version = law.version;
-                                updateHistory.Id = law.Id;
+                                updateHistory.Id = Guid.NewGuid().ToString();
                                 addUpdateHistory(updateHistory);
+                                updateLawCount++;
                             }
                             context.Law.Add(law);
                         }
-                        else//如果有就更新，但不更新是否下载到本地、下载时间、下载进度、用户id等本地信息。
+                        else//如果有就更新基本信息，但不更新是否下载到本地、下载时间、下载进度、用户id等本地信息。
                         {
                             currentLaw.name = law.name;
                             currentLaw.buhao = law.buhao;
@@ -195,6 +192,7 @@ namespace CAAC_LawLibrary.DAL
                         }
                     }
                     context.SaveChanges();
+                    MessageBox.Show("新版法规自动更新完成，本次共更新了"+updateLawCount.ToString()+"个法规的新版本");
                     return true;
                 }
                 catch (Exception ex)
@@ -760,22 +758,27 @@ namespace CAAC_LawLibrary.DAL
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
             {
                 var list = (from comment in context.Comment
-                           join user in context.User on comment.userId equals user.Id
-                           where (param.lawId == null ? 1 == 1 : comment.lawId == param.lawId) &&
-                           (param.nodeId == null ? 1 == 1 : comment.nodeId == param.nodeId)
-                           orderby comment.comment_date
-                           select new 
-                           {
-                               comment_content = comment.comment_content,
-                               userName=user.Xm,
-                               department=user.Department,
-                               comment_date=comment.comment_date
-                           }).ToList().Select(x=>new Comment() {
-                               comment_content=x.comment_content,
-                               comment_date=x.comment_date,
-                               userName=x.userName,
-                               department=x.department
-                           });
+                            join user in context.User on comment.userId equals user.Id
+                            where (param.lawId == null ? 1 == 1 : comment.lawId == param.lawId) &&
+                            (param.nodeId == null ? 1 == 1 : comment.nodeId == param.nodeId)
+                            orderby comment.comment_date
+                            select new
+                            {
+                                comment_content = comment.comment_content,
+                                userName = user.Xm,
+                                department = user.Department,
+                                comment_date = comment.comment_date,
+                                nodeId = comment.nodeId,
+                                lawId = comment.lawId
+                            }).ToList().Select(x => new Comment()
+                            {
+                                comment_content = x.comment_content,
+                                comment_date = x.comment_date,
+                                userName = x.userName,
+                                department = x.department,
+                                nodeId = x.nodeId,
+                                lawId = x.lawId
+                            });
                 List<Comment> resultList = list.ToList();
                 return resultList;
             }

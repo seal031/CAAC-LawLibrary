@@ -15,6 +15,7 @@ namespace CAAC_LawLibrary.UserControls
     public partial class CommentItem : UserControl
     {
         public Comment comment;
+        public LawView lawView;
 
         public CommentItem()
         {
@@ -39,6 +40,7 @@ namespace CAAC_LawLibrary.UserControls
                 AddNewComment addComment = new CAAC_LawLibrary.AddNewComment();
                 addComment.lawId = comment.lawId;
                 addComment.nodeId = comment.nodeId;
+                addComment.lawView = lawView;
                 addComment.Show(this);
             }
         }

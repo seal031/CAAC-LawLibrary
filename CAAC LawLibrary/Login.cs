@@ -55,7 +55,8 @@ namespace CAAC_LawLibrary
 
         private void Login_Load(object sender, EventArgs e)
         {
-            
+            List<string> userNames = ConfigWorker.GetUserInfoConfig();
+            cbb_user.DataSource = userNames;
         }
 
         private void cbb_user_Leave(object sender, EventArgs e)

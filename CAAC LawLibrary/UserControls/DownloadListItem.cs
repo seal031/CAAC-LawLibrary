@@ -131,8 +131,8 @@ namespace CAAC_LawLibrary
             law.isLocal = "1";
             db.saveLaw(law);
             //下载完成后，法规列表、阅读历史列表显示为“从本地库移除”
-            ((LibraryList)parentForm).setLawStateText(typeof(LawListItem), law, "从本地库移除");
-            ((LibraryList)parentForm).setLawStateText(typeof(ViewHistoryListItem), law, "从本地库移除");
+            ((LibraryList)parentForm).setLawStateText(typeof(LawListItem), law, "移除");
+            ((LibraryList)parentForm).setLawStateText(typeof(ViewHistoryListItem), law, "移除");
         }
 
 
@@ -155,11 +155,11 @@ namespace CAAC_LawLibrary
         {
             if (law != null)
             {
-                lbl_title.Text = law.digest; ;
-                lbl_state.Text = law.status == 1 ? "有效" : "失效";
-                lbl_name.Text = law.title;
+                lbl_title.Text = law.title + "  " + law.version;
+                lbl_state.Text = DateTime.Parse(law.expiryDate)>DateTime.Now ? "有效" : "失效";
+                lbl_name.Text = law.digest;
                 lbl_businessType.Text = Global.GetCodeValueById(law.yewu);
-                lbl_effectiveDate.Text = law.effectiveDate;
+                lbl_effectiveDate.Text = law.effectiveDate + "至" + law.expiryDate;
                 lbl_expiryDate.Text = law.expiryDate;
                 lbl_organization.Text = Global.GetCodeValueById(law.siju);
                 lbl_state.Text = "下载日期："+law.downloadDate;

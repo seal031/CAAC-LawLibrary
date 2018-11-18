@@ -334,7 +334,9 @@
   <ItemGroup>
     <None Include="Resources\Folder.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Image\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\mystyle.css" />
     <None Include="ICO\阅读历史a.ico" />

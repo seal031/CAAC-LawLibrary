@@ -129,7 +129,7 @@ namespace CAAC_LawLibrary
             }
         }
 
-        private void cbb_sort_SelectedIndexChanged(object sender, EventArgs e)
+        protected void cbb_sort_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bindState)
             {

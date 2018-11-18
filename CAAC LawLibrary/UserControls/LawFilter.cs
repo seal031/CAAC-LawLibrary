@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CAAC_LawLibrary.Utity;
+using CAAC_LawLibrary.BLL;
 
 namespace CAAC_LawLibrary
 {
@@ -54,6 +55,12 @@ namespace CAAC_LawLibrary
         private void ckb_selectAll_CheckedChanged(object sender, EventArgs e)
         {
             ((LibraryList)parentForm).lawCheckBoxChange(ckb_selectAll.Checked);
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            RemoteWorker.getLawResponse();
+            ((LibraryList)parentForm).loadUpdateHistoryList();
         }
     }
 }

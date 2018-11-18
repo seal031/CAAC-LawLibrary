@@ -39,8 +39,8 @@
             // 
             this.panel1.Controls.Add(this.lbl_delete);
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
+            this.panel1.Controls.SetChildIndex(this.lbl_title, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_name, 0);
-            this.panel1.Controls.SetChildIndex(this.lbl_downloadState, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_state, 0);
             this.panel1.Controls.SetChildIndex(this.lbl_delete, 0);
             // 
@@ -48,9 +48,9 @@
             // 
             this.panel2.Controls.Add(this.ckb);
             this.panel2.Click += new System.EventHandler(this.panel2_Click);
+            this.panel2.Controls.SetChildIndex(this.lbl_downloadState, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_effectiveDate, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_expiryDate, 0);
-            this.panel2.Controls.SetChildIndex(this.lbl_title, 0);
             this.panel2.Controls.SetChildIndex(this.lable1, 0);
             this.panel2.Controls.SetChildIndex(this.label2, 0);
             this.panel2.Controls.SetChildIndex(this.lbl_organization, 0);
@@ -75,7 +75,7 @@
             // lbl_delete
             // 
             this.lbl_delete.AutoSize = true;
-            this.lbl_delete.Location = new System.Drawing.Point(1253, 18);
+            this.lbl_delete.Location = new System.Drawing.Point(1258, 18);
             this.lbl_delete.Name = "lbl_delete";
             this.lbl_delete.Size = new System.Drawing.Size(67, 15);
             this.lbl_delete.TabIndex = 4;

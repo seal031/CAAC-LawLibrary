@@ -24,5 +24,9 @@ namespace CAAC_LawLibrary.Entity
         public string nodeRef { get; set; }
         public string nodeDef { get; set; }
         public string nodeKey { get; set; }
+        /// <summary>
+        /// 离线内容，img的地址替换为本地地址
+        /// </summary>
+        public string offlineContent { get; set; }
     }
 }

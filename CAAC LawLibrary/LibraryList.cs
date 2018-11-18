@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,7 @@ namespace CAAC_LawLibrary
             lawFilter.onSelectedChanged += loadLocalLawList;
             viewHistoryFilter.onSelectedChanged += loadViewHistoryList;
             downloadFilter.onSelectedChanged += loadDownLoadList;
+            downloadFilter.onDownloadSelectedChanged += loadDownLoadList;
         }
         
 
@@ -145,6 +147,15 @@ namespace CAAC_LawLibrary
         {
             removeFromFlp(flp_downloadTask);
             List<Law> list = db.getLaws(downloadFilter.queryParam).Where(l=>l.downloadPercent!=null).ToList();
+            if (downloadFilter.cbb_sort.SelectedValue == null)//默认状态下按下载日期排序
+            {
+                list = list.OrderByDescending(l => l.downloadDate).ToList();
+                
+            }
+            else if (downloadFilter.cbb_sort.SelectedValue.ToString() == "1")//选1时按下载日期排序
+            {
+                list = list.OrderByDescending(l => l.downloadDate).ToList();
+            }
             foreach (Law law in list)
             {
                 DownloadListItem item = new DownloadListItem();
@@ -158,7 +169,7 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void loadUpdateHistoryList()
         {
-            dgv_updateHistory.Rows.Clear();
+            //dgv_updateHistory.DataSource = null;
             List<UpdateHistory> list = db.getUpdateHistorys();
             dgv_updateHistory.DataSource = list;
             //foreach (UpdateHistory updateHistory in list)
@@ -253,6 +264,7 @@ namespace CAAC_LawLibrary
                         lawItem.lbl_downloadState.Text = "下载";
                     {
                         db.removeLawFromLocal(lawItem.law);
+                        clearLocalImg(lawItem.law);
                     }
                 }
             }
@@ -266,6 +278,7 @@ namespace CAAC_LawLibrary
             if (MessageBox.Show("确认移除此项？", "从本地库移除后将无法离线浏览", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 db.removeLawFromLocal(law);
+                clearLocalImg(law);
             }
         }
         /// <summary>
@@ -275,10 +288,50 @@ namespace CAAC_LawLibrary
         {
             if (MessageBox.Show("确认清空本地库？", "从本地库移除后将无法离线浏览", MessageBoxButtons.YesNo,MessageBoxIcon.Warning)==DialogResult.Yes)
             {
+                List<Law> laws = db.getLaws(new QueryParam());
+                foreach (Law law in laws)
+                {
+                    clearLocalImg(law);
+                }
                 db.clearLocal();
                 loadLocalLawList();
             }
         }
+        /// <summary>
+        /// 清除某法规的本地图片
+        /// </summary>
+        /// <param name="law"></param>
+        private void clearLocalImg(Law law)
+        {
+            try
+            {
+                string path = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id + law.Id);
+                if (!Directory.Exists(path))
+                {
+                    return;
+                }
+                DirectoryInfo dir = new DirectoryInfo(path);
+                FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                foreach (FileSystemInfo i in fileinfo)
+                {
+                    if (i is DirectoryInfo)            //判断是否文件夹
+                    {
+                        DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                        subdir.Delete(true);          //删除子目录和文件
+                    }
+                    else
+                    {
+                        File.Delete(i.FullName);      //删除指定文件
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+
         public void lawCheckBoxChange(bool value)
         {
             foreach (var item in flp_lawLibrary.Controls)

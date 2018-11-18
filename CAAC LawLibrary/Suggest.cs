@@ -46,7 +46,7 @@ namespace CAAC_LawLibrary
             if (law != null)
             {
                 lbl_title.Text += law.title + " | " + law.version + " | " + law.effectiveDate.Replace(" 00:00:00","") + " | " + law.expiryDate.Replace(" 00:00:00", "");
-                if (DateTime.Parse(law.effectiveDate) > DateTime.Now)
+                if (DateTime.Parse(law.expiryDate) > DateTime.Now)
                 {
                     lbl_title.Text += " | 征询中";
                     btn_submit.Enabled = true;
@@ -74,16 +74,23 @@ namespace CAAC_LawLibrary
             CommonResponse response = TranslationWorker.ConvertStringToEntity<CommonResponse>(reslut);
             if (response != null)
             {
-                if (response.status.ToString() == "200")
+                if (response.status != null)
                 {
-                    if (MessageBox.Show("提交征询意见成功") == DialogResult.OK)
+                    if (response.status.ToString() == "200")
                     {
-                        this.Close();
+                        if (MessageBox.Show("提交征询意见成功") == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("提交征询意见失败。原因：" + response.errmsg);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("提交征询意见失败。原因："+response.errmsg);
+                    MessageBox.Show("提交征询意见失败。原因：" + response.errmsg);
                 }
             }
         }

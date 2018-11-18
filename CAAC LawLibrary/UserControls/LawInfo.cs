@@ -82,17 +82,23 @@ namespace CAAC_LawLibrary.UserControls
                 if (s.Contains("@"))//如果含@，是法规@章节，显示章节标题
                 {
                     Node node = db.getNodeById(s.Substring(s.IndexOf("@")+1));
-                    if (!string.IsNullOrEmpty(node.Id))
+                    if (node != null)
                     {
-                        list.Add(node.title);
+                        if (!string.IsNullOrEmpty(node.Id))
+                        {
+                            list.Add(node.title);
+                        }
                     }
                 }
                 else//如果不含@，是法规，显示法规标题
                 {
                     Law law = db.getLawById(s);
-                    if (!string.IsNullOrEmpty(law.Id))
+                    if (law != null)
                     {
-                        list.Add(law.title);
+                        if (!string.IsNullOrEmpty(law.Id))
+                        {
+                            list.Add(law.title);
+                        }
                     }
                 }
             }

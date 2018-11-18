@@ -75,6 +75,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A1016B328F4097C94194A5A8EA4AE0D8"
+        "OwnerKey" = "8:_92C8CA1AF81E49BB84ED3B61CBA3F961"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D7CF681ABBB043FB85693F055B5C890F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -605,7 +611,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:民航法规库单机版"
+        "ProductName" = "8:民航智能法规库单机版客户端"
         "ProductCode" = "8:{8ED75EF2-839D-4B24-99F6-CE4A75BC2474}"
         "PackageCode" = "8:{A51ED7A1-C21A-46BC-92B3-AB41125E506A}"
         "UpgradeCode" = "8:{A4EBE806-0FCD-42FC-BCF1-6EED10A5A9D7}"
@@ -618,7 +624,7 @@
         "Manufacturer" = "8:中软国际"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:民航法规库单机版"
+        "Title" = "8:民航智能法规库单机版客户端"
         "Subject" = "8:"
         "ARPCONTACT" = "8:中软国际"
         "Keywords" = "8:"

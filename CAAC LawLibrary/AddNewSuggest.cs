@@ -38,7 +38,7 @@ namespace CAAC_LawLibrary
             suggest.nodeId = nodeId;
             suggest.remark = rtb_remark.Text.Trim();
             suggest.suggest_content = rtb_suggest.Text.Trim();
-            suggest.suggest_date = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            suggest.suggest_date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             suggest.userId = Global.user.Id;
             bool commitResult;
             if (Global.online)//联网状态下直接提交，提交失败时保存在本地数据库

@@ -164,23 +164,38 @@ namespace CAAC_LawLibrary.Utity
 
         public static string HttpGet(string Url, string postDataStr)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
-            request.Timeout = 1000 * 30;
-            request.ReadWriteTimeout = 1000 * 30;
-            request.Method = "GET";
-            request.ContentType = "text/html;charset=UTF-8";
-            request.Headers.Add("X-Appid", Global.Appid);
-            request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
-            request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
+                request.Timeout = 1000 * 30;
+                request.ReadWriteTimeout = 1000 * 30;
+                request.Method = "GET";
+                request.ContentType = "text/html;charset=UTF-8";
+                request.Headers.Add("X-Appid", Global.Appid);
+                request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
+                request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream myResponseStream = response.GetResponseStream();
-            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
-            string retString = myStreamReader.ReadToEnd();
-            myStreamReader.Close();
-            myResponseStream.Close();
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream myResponseStream = response.GetResponseStream();
+                StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                string retString = myStreamReader.ReadToEnd();
+                myStreamReader.Close();
+                myResponseStream.Close();
 
-            return retString;
+                return retString;
+            }
+            catch (WebException we)
+            {
+                MessageBox.Show("获取数据超时"+we.Message);
+                Global.online = false;
+                return "error";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("获取数据失败"+ex.Message);
+                Global.online = false;
+                return "error";
+            }
         }
 
         public static string PostJson(string Url, string postDataStr)
@@ -217,33 +232,48 @@ namespace CAAC_LawLibrary.Utity
         /// <returns></returns>
         public static string PostStr(string url, string content)
         {
-            string result = "";
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.Method = "POST";
-            //req.ContentType = "application/x-www-form-urlencoded";
-            req.ContentType = "application/json";
-            req.Headers.Add("X-Appid", Global.Appid);
-            req.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
-            req.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
-
-            #region 添加Post 参数
-            byte[] data = Encoding.UTF8.GetBytes(content);
-            req.ContentLength = data.Length;
-            using (Stream reqStream = req.GetRequestStream())
+            try
             {
-                reqStream.Write(data, 0, data.Length);
-                reqStream.Close();
-            }
-            #endregion
+                string result = "";
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                req.Method = "POST";
+                //req.ContentType = "application/x-www-form-urlencoded";
+                req.ContentType = "application/json";
+                req.Headers.Add("X-Appid", Global.Appid);
+                req.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
+                req.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
 
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            Stream stream = resp.GetResponseStream();
-            //获取响应内容
-            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-            {
-                result = reader.ReadToEnd();
+                #region 添加Post 参数
+                byte[] data = Encoding.UTF8.GetBytes(content);
+                req.ContentLength = data.Length;
+                using (Stream reqStream = req.GetRequestStream())
+                {
+                    reqStream.Write(data, 0, data.Length);
+                    reqStream.Close();
+                }
+                #endregion
+
+                HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+                Stream stream = resp.GetResponseStream();
+                //获取响应内容
+                using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                {
+                    result = reader.ReadToEnd();
+                }
+                return result;
             }
-            return result;
+            catch (WebException we)
+            {
+                MessageBox.Show("提交数据超时" + we.Message);
+                Global.online = false;
+                return "error";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("提交数据失败" + ex.Message);
+                Global.online = false;
+                return "error";
+            }
         }
 
         /// <summary>
@@ -284,6 +314,61 @@ namespace CAAC_LawLibrary.Utity
             }
             return result;
         }
+        /// <summary>
+        /// 保存文件到本地，路径为/IMAGE/用户ID/法规id/文件名
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="lawId"></param>
+        /// <returns></returns>
+        public static bool SaveImg(string url,string lawId)
+        {
+            try
+            {
+                WebClient wc = new WebClient();
+                string fileName = getFileNameFromUri(url);
+                string path = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id + lawId);
+                checkDir(path);
+                wc.DownloadFile(url, Path.Combine(path, fileName));
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 检查指定目录是否存在,如不存在则创建
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static bool checkDir(string path)
+        {
+            try
+            {
+                if (!Directory.Exists(path))//如果不存在就创建file文件夹　　             　　              
+                    Directory.CreateDirectory(path);//创建该文件夹　　            
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static string getFileNameFromUri(string uri)
+        {
+            string str = string.Empty;
+            int pos1 = uri.LastIndexOf('/');
+            int pos2 = uri.LastIndexOf('\\');
+            int pos = Math.Max(pos1, pos2);
+            if (pos < 0)
+                str = uri;
+            else
+                str = uri.Substring(pos + 1);
+            return str;
+        }
     }
 
     public class ConfigWorker
@@ -309,6 +394,24 @@ namespace CAAC_LawLibrary.Utity
             }
             cfa.Save();
             ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        public static List<string> GetUserInfoConfig()
+        {
+            List<string> list = new List<string>();
+            string[] arrayKeys= ConfigurationManager.AppSettings.AllKeys;
+            for (int i = arrayKeys.Length - 1; i >= 0; i--)
+            {
+                if (arrayKeys[i] == "ClientSettingsProvider.ServiceUri")//以此项为分界，之后的都是用户登录记录。添加系统配置项时要加到此项前面去
+                {
+                    break;
+                }
+                else
+                {
+                    list.Add(arrayKeys[i]);
+                }
+            }
+            return list;
         }
     }
 
@@ -338,13 +441,48 @@ namespace CAAC_LawLibrary.Utity
     {
         private static string reg = @"[<].*?[>]";
         private static string regEx_space = "\\s*|\t|\r|\n";
+        private static string reg_Image = @"<img.*?src=""(?<src>[^""]*)""[^>]*>";
 
         public static string clean(string content)
         {
             return Regex.Replace(Regex.Replace(content, reg, ""), regEx_space, "");
         }
-    }
+        /// <summary>
+        /// 将正文内容中的图片网络地址替换为本地地址
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static string ChangeImageUrlToLocalPath(string content,string lawId)
+        {
+            List<string> urls = GetImageUrl(content);
+            foreach (string url in urls)
+            {
+                string fileName = HttpWorker.getFileNameFromUri(url);
+                string localPath = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id + lawId, fileName);
+                content = content.Replace(url,localPath);
+            }
+            return content;
+        }
 
+
+        /// <summary>
+        /// 从html中提取所有img的url
+        /// </summary>
+        /// <param name="conent"></param>
+        /// <returns></returns>
+        public static List<string> GetImageUrl(string content)
+        {
+            List<string> list = new List<string>();
+            Regex reg = new Regex(reg_Image, RegexOptions.IgnoreCase);
+            MatchCollection mc = reg.Matches(content);
+            foreach (Match m in mc)
+            {
+                list.Add(m.Groups["src"].Value);
+            }
+            return list;
+        }
+    }
+    
     public static class ChineseToPinYin
     {
         private static readonly Dictionary<int, string> CodeCollections = new Dictionary<int, string> {

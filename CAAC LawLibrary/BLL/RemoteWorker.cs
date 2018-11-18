@@ -180,6 +180,15 @@ namespace CAAC_LawLibrary.BLL
             string nodeDetails = HttpWorker.HttpGet(Global.NodeDetailApi, "nodeIds=" + nodeId);
             NodeDetailResponse nodeDtailResponse = TranslationWorker.ConvertStringToEntity<NodeDetailResponse>(nodeDetails);
             List<Node> nodes = nodeDtailResponse.ConvertToNodes();
+            foreach (Node node in nodes)//下载图片到本地，并生成离线内容
+            {
+                List<string> urls = HtmlCleaner.GetImageUrl(node.content);
+                foreach (string url in urls)
+                {
+                    HttpWorker.SaveImg(url, node.lawId);
+                }
+                node.offlineContent = HtmlCleaner.ChangeImageUrlToLocalPath(node.content,node.lawId);
+            }
             db.refreshNode(nodes, detailOnly: true);
         }
         /// <summary>
@@ -253,4 +262,7 @@ namespace CAAC_LawLibrary.BLL
         }
         #endregion
     }
+
+
+
 }

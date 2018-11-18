@@ -48,6 +48,10 @@ namespace CAAC_LawLibrary.Utity
         /// </summary>
         public int sort { get; set; }
         /// <summary>
+        /// 下载任务的排序方式
+        /// </summary>
+        public int sortDownload { get; set; }
+        /// <summary>
         /// 是否在下载任务中
         /// </summary>
         public int? downloadState { get; set; }

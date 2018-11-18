@@ -15,6 +15,7 @@ namespace CAAC_LawLibrary
     {
 
         private bool bindState = false;
+        public event selectedChanged onDownloadSelectedChanged;
         public DownloadFilter()
         {
             InitializeComponent();
