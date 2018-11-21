@@ -326,7 +326,7 @@ namespace CAAC_LawLibrary.Utity
             {
                 WebClient wc = new WebClient();
                 string fileName = getFileNameFromUri(url);
-                string path = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id + lawId);
+                string path = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id , lawId);
                 checkDir(path);
                 wc.DownloadFile(url, Path.Combine(path, fileName));
 
@@ -458,7 +458,7 @@ namespace CAAC_LawLibrary.Utity
             foreach (string url in urls)
             {
                 string fileName = HttpWorker.getFileNameFromUri(url);
-                string localPath = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id + lawId, fileName);
+                string localPath = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id ,lawId, fileName);
                 content = content.Replace(url,localPath);
             }
             return content;

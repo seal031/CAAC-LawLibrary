@@ -77,7 +77,7 @@ namespace CAAC_LawLibrary.UserControls
         {
             LawView lv = new LawView();
             lv.law = ll.Tag as Law;
-            lv.lawId = (ll.Tag as Law).Id;
+            lv.lawId = (ll.Tag as Law).lawId;
             lv.parentForm = form.parentForm;
             lv.Show();
         }

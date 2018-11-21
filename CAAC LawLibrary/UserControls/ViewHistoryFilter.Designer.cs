@@ -46,6 +46,8 @@
             code1.Id = null;
             code1.order = 0;
             code1.type = null;
+            code1.valueMax = null;
+            code1.valueMin = null;
             this.cbb_buhao.Items.AddRange(new object[] {
             code1});
             this.cbb_buhao.ValueMember = "Id";
@@ -57,6 +59,8 @@
             code2.Id = null;
             code2.order = 0;
             code2.type = null;
+            code2.valueMax = null;
+            code2.valueMin = null;
             this.cbb_siju.Items.AddRange(new object[] {
             code2});
             this.cbb_siju.ValueMember = "Id";
@@ -68,6 +72,8 @@
             code3.Id = null;
             code3.order = 0;
             code3.type = null;
+            code3.valueMax = null;
+            code3.valueMin = null;
             this.cbb_weijie.Items.AddRange(new object[] {
             code3});
             this.cbb_weijie.ValueMember = "Id";
@@ -79,6 +85,8 @@
             code4.Id = null;
             code4.order = 0;
             code4.type = null;
+            code4.valueMax = null;
+            code4.valueMin = null;
             this.cbb_yewu.Items.AddRange(new object[] {
             code4});
             this.cbb_yewu.ValueMember = "Id";
@@ -90,6 +98,8 @@
             code5.Id = null;
             code5.order = 0;
             code5.type = null;
+            code5.valueMax = null;
+            code5.valueMin = null;
             this.cbb_zidingyi.Items.AddRange(new object[] {
             code5});
             this.cbb_zidingyi.ValueMember = "Id";
@@ -105,21 +115,23 @@
             // ckb_showDownloaded
             // 
             this.ckb_showDownloaded.AutoSize = true;
-            this.ckb_showDownloaded.Location = new System.Drawing.Point(19, 59);
-            this.ckb_showDownloaded.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ckb_showDownloaded.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckb_showDownloaded.Location = new System.Drawing.Point(25, 53);
+            this.ckb_showDownloaded.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ckb_showDownloaded.Name = "ckb_showDownloaded";
-            this.ckb_showDownloaded.Size = new System.Drawing.Size(96, 16);
+            this.ckb_showDownloaded.Size = new System.Drawing.Size(136, 24);
             this.ckb_showDownloaded.TabIndex = 9;
-            this.ckb_showDownloaded.Text = "仅显示已下载";
+            this.ckb_showDownloaded.Text = "只显示离线法规";
             this.ckb_showDownloaded.UseVisualStyleBackColor = true;
             this.ckb_showDownloaded.CheckedChanged += new System.EventHandler(this.ckb_showDownloaded_CheckedChanged);
             // 
             // btn_clearHistory
             // 
-            this.btn_clearHistory.Location = new System.Drawing.Point(849, 58);
-            this.btn_clearHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_clearHistory.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_clearHistory.Location = new System.Drawing.Point(1154, 51);
+            this.btn_clearHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_clearHistory.Name = "btn_clearHistory";
-            this.btn_clearHistory.Size = new System.Drawing.Size(123, 24);
+            this.btn_clearHistory.Size = new System.Drawing.Size(164, 30);
             this.btn_clearHistory.TabIndex = 10;
             this.btn_clearHistory.Text = "清空历史";
             this.btn_clearHistory.UseVisualStyleBackColor = true;
@@ -127,11 +139,13 @@
             // 
             // ViewHistoryFilter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btn_clearHistory);
             this.Controls.Add(this.ckb_showDownloaded);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "ViewHistoryFilter";
+            this.Size = new System.Drawing.Size(1333, 92);
             this.Controls.SetChildIndex(this.cbb_buhao, 0);
             this.Controls.SetChildIndex(this.cbb_siju, 0);
             this.Controls.SetChildIndex(this.cbb_weijie, 0);

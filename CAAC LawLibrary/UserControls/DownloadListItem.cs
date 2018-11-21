@@ -105,7 +105,7 @@ namespace CAAC_LawLibrary
 
         private void downloadWork()
         {
-            List<Node> nodes = RemoteWorker.getBookContent(law.Id);
+            List<Node> nodes = RemoteWorker.getBookContent(law.lawId);
             int startIndex = law.downloadNodeCount.HasValue ? (int)law.downloadNodeCount+1 : 1;
             for (int i = startIndex; i <= nodes.Count; i++)
             {

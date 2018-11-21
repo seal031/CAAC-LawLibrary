@@ -49,6 +49,7 @@
             // lbl_title
             // 
             this.lbl_title.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_title.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_title.Location = new System.Drawing.Point(0, 0);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(1045, 61);
@@ -119,6 +120,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
@@ -131,7 +133,7 @@
             this.txt_department.Location = new System.Drawing.Point(187, 54);
             this.txt_department.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_department.Name = "txt_department";
-            this.txt_department.Size = new System.Drawing.Size(795, 25);
+            this.txt_department.Size = new System.Drawing.Size(795, 27);
             this.txt_department.TabIndex = 11;
             // 
             // txt_phone
@@ -140,7 +142,7 @@
             this.txt_phone.Location = new System.Drawing.Point(685, 21);
             this.txt_phone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_phone.Name = "txt_phone";
-            this.txt_phone.Size = new System.Drawing.Size(295, 25);
+            this.txt_phone.Size = new System.Drawing.Size(295, 27);
             this.txt_phone.TabIndex = 10;
             // 
             // txt_user
@@ -149,7 +151,7 @@
             this.txt_user.Location = new System.Drawing.Point(187, 21);
             this.txt_user.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_user.Name = "txt_user";
-            this.txt_user.Size = new System.Drawing.Size(276, 25);
+            this.txt_user.Size = new System.Drawing.Size(276, 27);
             this.txt_user.TabIndex = 9;
             // 
             // label3
@@ -157,7 +159,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(577, 25);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 15);
+            this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "填写人电话：";
             // 
@@ -166,7 +168,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(53, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 15);
+            this.label2.Size = new System.Drawing.Size(129, 20);
             this.label2.TabIndex = 7;
             this.label2.Text = "填写人所在单位：";
             // 
@@ -175,7 +177,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(53, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 15);
+            this.label1.Size = new System.Drawing.Size(129, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "填写人（账号）：";
             // 

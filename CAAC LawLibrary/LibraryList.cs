@@ -267,6 +267,7 @@ namespace CAAC_LawLibrary
                         clearLocalImg(lawItem.law);
                     }
                 }
+                loadDownLoadList();
             }
         }
         /// <summary>
@@ -279,6 +280,7 @@ namespace CAAC_LawLibrary
             {
                 db.removeLawFromLocal(law);
                 clearLocalImg(law);
+                loadDownLoadList();
             }
         }
         /// <summary>
@@ -305,7 +307,7 @@ namespace CAAC_LawLibrary
         {
             try
             {
-                string path = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id + law.Id);
+                string path = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id,law.lawId);
                 if (!Directory.Exists(path))
                 {
                     return;
@@ -368,7 +370,7 @@ namespace CAAC_LawLibrary
                     if (c is BaseListItem)
                     {
                         var item = c as BaseListItem;
-                        if (item.law.Id == law.Id)
+                        if (item.law.lawId == law.lawId)
                         {
                             item.setDownloadState(text);
                             return;
@@ -536,7 +538,7 @@ namespace CAAC_LawLibrary
                 if (c is DownloadListItem)
                 {
                     var item = c as DownloadListItem;
-                    if (laws.FirstOrDefault(l => l.Id == item.law.Id)!=null)
+                    if (laws.FirstOrDefault(l => l.lawId == item.law.lawId)!=null)
                     {
                         item.continueWork();
                     }

@@ -30,8 +30,9 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_state = new System.Windows.Forms.Label();
-            this.lbl_downloadState = new System.Windows.Forms.Label();
             this.lbl_name = new System.Windows.Forms.Label();
+            this.lbl_title = new System.Windows.Forms.Label();
+            this.lbl_downloadState = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_expiryDate = new System.Windows.Forms.Label();
             this.lbl_effectiveDate = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.lbl_organization = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lable1 = new System.Windows.Forms.Label();
-            this.lbl_title = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -52,40 +52,53 @@
             this.panel1.Controls.Add(this.lbl_title);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1333, 50);
             this.panel1.TabIndex = 0;
             // 
             // lbl_state
             // 
-            this.lbl_state.AutoSize = true;
-            this.lbl_state.Location = new System.Drawing.Point(1210, 18);
+            this.lbl_state.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_state.Location = new System.Drawing.Point(1154, 18);
             this.lbl_state.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_state.Name = "lbl_state";
-            this.lbl_state.Size = new System.Drawing.Size(37, 15);
+            this.lbl_state.Size = new System.Drawing.Size(175, 15);
             this.lbl_state.TabIndex = 2;
             this.lbl_state.Text = "状态";
-            // 
-            // lbl_downloadState
-            // 
-            this.lbl_downloadState.AutoSize = true;
-            this.lbl_downloadState.Location = new System.Drawing.Point(1262, 15);
-            this.lbl_downloadState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_downloadState.Name = "lbl_downloadState";
-            this.lbl_downloadState.Size = new System.Drawing.Size(67, 15);
-            this.lbl_downloadState.TabIndex = 1;
-            this.lbl_downloadState.Text = "下载状态";
+            this.lbl_state.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbl_name
             // 
             this.lbl_name.AutoSize = true;
+            this.lbl_name.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_name.Location = new System.Drawing.Point(916, 18);
             this.lbl_name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(37, 15);
+            this.lbl_name.Size = new System.Drawing.Size(39, 20);
             this.lbl_name.TabIndex = 0;
             this.lbl_name.Text = "名字";
+            // 
+            // lbl_title
+            // 
+            this.lbl_title.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_title.Location = new System.Drawing.Point(46, 9);
+            this.lbl_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_title.Name = "lbl_title";
+            this.lbl_title.Size = new System.Drawing.Size(846, 32);
+            this.lbl_title.TabIndex = 1;
+            this.lbl_title.Text = "标题";
+            // 
+            // lbl_downloadState
+            // 
+            this.lbl_downloadState.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_downloadState.Location = new System.Drawing.Point(1220, 15);
+            this.lbl_downloadState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_downloadState.Name = "lbl_downloadState";
+            this.lbl_downloadState.Size = new System.Drawing.Size(109, 15);
+            this.lbl_downloadState.TabIndex = 1;
+            this.lbl_downloadState.Text = "下载状态";
+            this.lbl_downloadState.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel2
             // 
@@ -98,9 +111,9 @@
             this.panel2.Controls.Add(this.lable1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 50);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1333, 50);
+            this.panel2.Size = new System.Drawing.Size(1333, 45);
             this.panel2.TabIndex = 1;
             // 
             // lbl_expiryDate
@@ -116,40 +129,44 @@
             // lbl_effectiveDate
             // 
             this.lbl_effectiveDate.AutoSize = true;
+            this.lbl_effectiveDate.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_effectiveDate.Location = new System.Drawing.Point(117, 16);
             this.lbl_effectiveDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_effectiveDate.Name = "lbl_effectiveDate";
-            this.lbl_effectiveDate.Size = new System.Drawing.Size(55, 15);
+            this.lbl_effectiveDate.Size = new System.Drawing.Size(45, 20);
             this.lbl_effectiveDate.TabIndex = 6;
             this.lbl_effectiveDate.Text = "------";
             // 
             // lbl_businessType
             // 
             this.lbl_businessType.AutoSize = true;
+            this.lbl_businessType.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_businessType.Location = new System.Drawing.Point(678, 15);
             this.lbl_businessType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_businessType.Name = "lbl_businessType";
-            this.lbl_businessType.Size = new System.Drawing.Size(67, 15);
+            this.lbl_businessType.Size = new System.Drawing.Size(69, 20);
             this.lbl_businessType.TabIndex = 5;
             this.lbl_businessType.Text = "业务类型";
             // 
             // lbl_organization
             // 
             this.lbl_organization.AutoSize = true;
+            this.lbl_organization.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_organization.Location = new System.Drawing.Point(362, 15);
             this.lbl_organization.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_organization.Name = "lbl_organization";
-            this.lbl_organization.Size = new System.Drawing.Size(37, 15);
+            this.lbl_organization.Size = new System.Drawing.Size(39, 20);
             this.lbl_organization.TabIndex = 4;
             this.lbl_organization.Text = "单位";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(233, 15);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 15);
+            this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "失效日期：";
             this.label2.Visible = false;
@@ -157,22 +174,13 @@
             // lable1
             // 
             this.lable1.AutoSize = true;
+            this.lable1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lable1.Location = new System.Drawing.Point(37, 15);
             this.lable1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lable1.Name = "lable1";
-            this.lable1.Size = new System.Drawing.Size(82, 15);
+            this.lable1.Size = new System.Drawing.Size(84, 20);
             this.lable1.TabIndex = 2;
             this.lable1.Text = "生效日期：";
-            // 
-            // lbl_title
-            // 
-            this.lbl_title.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_title.Location = new System.Drawing.Point(46, 9);
-            this.lbl_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(846, 32);
-            this.lbl_title.TabIndex = 1;
-            this.lbl_title.Text = "标题";
             // 
             // BaseListItem
             // 
@@ -181,9 +189,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BaseListItem";
-            this.Size = new System.Drawing.Size(1333, 100);
+            this.Size = new System.Drawing.Size(1333, 95);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

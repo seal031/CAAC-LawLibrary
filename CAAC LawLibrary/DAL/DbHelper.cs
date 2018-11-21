@@ -22,7 +22,7 @@ namespace CAAC_LawLibrary.DAL
         {
             using (SqliteContext context = new SqliteContext())
             {
-                return context.Law.FirstOrDefault(l => l.Id == id && l.userId == Global.user.Id);
+                return context.Law.FirstOrDefault(l => l.lawId == id && l.userId == Global.user.Id);
             }
         }
 
@@ -51,7 +51,7 @@ namespace CAAC_LawLibrary.DAL
                             && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
                             && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
                             && (param.zidingyi == null ? 1 == 1 : law.userLabel.Contains(param.zidingyi))
-                            && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
+                            && (param.lawId == null ? 1 == 1 : law.lawId == param.lawId)
                             && (param.downloaded != "1" ? 1 == 1 : law.isLocal == param.downloaded)
                             && (param.downloadState.HasValue ? law.downloadPercent == param.downloadState : 1 == 1)
                             && (param.lastVersion.HasValue ? law.lastversion == param.lastVersion : 1 == 1)
@@ -90,7 +90,7 @@ namespace CAAC_LawLibrary.DAL
             {
                 try
                 {
-                    var old = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == Global.user.Id);
+                    var old = context.Law.FirstOrDefault(l => l.lawId == law.lawId && l.userId == Global.user.Id);
                     if (old == null)
                     {
                         context.Law.Add(law);
@@ -143,7 +143,7 @@ namespace CAAC_LawLibrary.DAL
                     int updateLawCount = 0;
                     foreach (Law law in laws)
                     {
-                        var currentLaw = context.Law.FirstOrDefault(l => l.Id == law.Id && l.userId == Global.user.Id);
+                        var currentLaw = context.Law.FirstOrDefault(l => l.lawId == law.lawId && l.userId == Global.user.Id);
                         if (currentLaw == null)//如果没有就新增
                         {
                             law.userId = Global.user.Id;
@@ -151,14 +151,14 @@ namespace CAAC_LawLibrary.DAL
                             var oldLaw = context.Law.FirstOrDefault(l => l.lastversion == law.lastversion && l.isLocal == "1" && l.userId == Global.user.Id);
                             if (oldLaw != null)
                             {
-                                List<Node> nodes = RemoteWorker.getBookContent(law.Id);
+                                List<Node> nodes = RemoteWorker.getBookContent(law.lawId);
                                 RemoteWorker.getNodeDetail(nodes.Select(n => n.Id).ToList());
                                 law.isLocal = "1";
                                 law.downloadPercent = 100;
                                 law.downloadNodeCount = nodes.Count;
                                 law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
                                 UpdateHistory updateHistory = new UpdateHistory();
-                                updateHistory.LawId = law.Id;
+                                updateHistory.LawId = law.lawId;
                                 updateHistory.LawTitle = law.title;
                                 updateHistory.UpdateDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                                 updateHistory.UserId = Global.user.Id;
@@ -257,11 +257,11 @@ namespace CAAC_LawLibrary.DAL
             {
                 try
                 {
-                    var law = context.Law.FirstOrDefault(l => l.Id == lawId && l.userId == Global.user.Id);
+                    var law = context.Law.FirstOrDefault(l => l.lawId == lawId && l.userId == Global.user.Id);
                     if (law == null) return new List<Node>();
                     else
                     {
-                        return context.Node.Where(n => n.lawId == law.Id).OrderBy(n => n.nodeOrder).ToList();
+                        return context.Node.Where(n => n.lawId == law.lawId).OrderBy(n => n.nodeOrder).ToList();
                     }
                 }
                 catch (Exception)
@@ -302,11 +302,11 @@ namespace CAAC_LawLibrary.DAL
             {
                 try
                 {
-                    var law = context.Law.FirstOrDefault(l => l.Id == lawId && l.userId == Global.user.Id);
+                    var law = context.Law.FirstOrDefault(l => l.lawId == lawId && l.userId == Global.user.Id);
                     if (law == null) return new List<Node>();
                     else
                     {
-                        return context.Node.Where(n => n.lawId == law.Id && n.nodeLevel == nodeLevel).OrderBy(n => n.nodeOrder).ThenBy(n => n.nodeOrder).ToList();
+                        return context.Node.Where(n => n.lawId == law.lawId && n.nodeLevel == nodeLevel).OrderBy(n => n.nodeOrder).ThenBy(n => n.nodeOrder).ToList();
                     }
                 }
                 catch (Exception)
@@ -390,6 +390,10 @@ namespace CAAC_LawLibrary.DAL
                                 if (detailOnly)
                                 {
                                     currentNode.content = node.content;
+                                    if (string.IsNullOrEmpty(currentNode.offlineContent))
+                                    {
+                                        currentNode.offlineContent = node.offlineContent;
+                                    }
                                     currentNode.nodeClass = node.nodeClass;
                                     currentNode.nodeKey = node.nodeKey;
                                     currentNode.nodeDef = node.nodeDef;
@@ -542,12 +546,12 @@ namespace CAAC_LawLibrary.DAL
                            && (param.siju == null ? 1 == 1 : law.siju == param.siju)
                            && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
                            && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
-                           && (param.lawId == null ? 1 == 1 : law.Id == param.lawId)
+                           && (param.lawId == null ? 1 == 1 : law.lawId == param.lawId)
                            && (param.downloaded != "1" ? 1 == 1 : law.isLocal == param.downloaded)
                            select law;
                 var list = from vh in context.ViewHistory.Where(v => v.UserID == Global.user.Id)
                            from law in laws
-                           where vh.LawID==law.Id && vh.UserID==law.userId
+                           where vh.LawID==law.lawId && vh.UserID==law.userId
                            orderby vh.ViewDate descending
                            select vh;
                 return list.ToList();
@@ -877,11 +881,11 @@ namespace CAAC_LawLibrary.DAL
                 List<Law> allLaws = getLaws(param);
                 var laws = from l in allLaws
                            from n in context.Node
-                           where n.lawId == l.Id
+                           where n.lawId == l.lawId
                            && l.isLocal == "1"
                            && l.userId==Global.user.Id
                            && (l.title.Contains(keyword) || n.title.Contains(keyword) || n.content.Contains(keyword))
-                           select l.Id;
+                           select l.lawId;
                 List<string> returnList = laws.Distinct().ToList();
                 return returnList;
             }

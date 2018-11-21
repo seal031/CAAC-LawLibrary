@@ -33,6 +33,11 @@
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lbl_state
+            // 
+            this.lbl_state.AutoSize = true;
+            this.lbl_state.Size = new System.Drawing.Size(39, 20);
+            // 
             // lbl_title
             // 
             this.lbl_title.Click += new System.EventHandler(this.lbl_title_Click);
@@ -52,15 +57,18 @@
             // 
             // lbl_downloadState
             // 
+            this.lbl_downloadState.AutoSize = true;
             this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_downloadState.Size = new System.Drawing.Size(69, 20);
             this.lbl_downloadState.Click += new System.EventHandler(this.lbl_downloadState_Click);
             // 
             // lbl_version
             // 
             this.lbl_version.AutoSize = true;
+            this.lbl_version.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_version.Location = new System.Drawing.Point(1271, 18);
             this.lbl_version.Name = "lbl_version";
-            this.lbl_version.Size = new System.Drawing.Size(55, 15);
+            this.lbl_version.Size = new System.Drawing.Size(53, 20);
             this.lbl_version.TabIndex = 3;
             this.lbl_version.Text = "label1";
             // 

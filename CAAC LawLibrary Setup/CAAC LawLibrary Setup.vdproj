@@ -561,6 +561,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_17084C62D764447EB24F7480E38DD9EE"
+                    {
+                    "Name" = "8:Image"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_237130F7521D44C1BDC5830AC3623075"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_F09B6FED982A485C99D421B0161EBE8C"
                     {
                     "Name" = "8:CSS"
@@ -613,7 +624,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:民航智能法规库单机版客户端"
         "ProductCode" = "8:{8ED75EF2-839D-4B24-99F6-CE4A75BC2474}"
-        "PackageCode" = "8:{A51ED7A1-C21A-46BC-92B3-AB41125E506A}"
+        "PackageCode" = "8:{03C00109-39DD-475C-91F2-D10D15BBC2D0}"
         "UpgradeCode" = "8:{A4EBE806-0FCD-42FC-BCF1-6EED10A5A9D7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

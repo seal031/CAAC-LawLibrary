@@ -34,6 +34,11 @@
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lbl_state
+            // 
+            this.lbl_state.AutoSize = true;
+            this.lbl_state.Size = new System.Drawing.Size(39, 20);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.ckb);
@@ -52,8 +57,10 @@
             // lbl_downloadState
             // 
             this.lbl_downloadState.AutoEllipsis = true;
+            this.lbl_downloadState.AutoSize = true;
             this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_downloadState.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lbl_downloadState.Size = new System.Drawing.Size(69, 20);
             this.lbl_downloadState.Click += new System.EventHandler(this.lbl_downloadState_Click);
             // 
             // ckb
@@ -70,11 +77,12 @@
             // ccb_version
             // 
             this.ccb_version.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ccb_version.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ccb_version.FormattingEnabled = true;
             this.ccb_version.Location = new System.Drawing.Point(1269, 14);
             this.ccb_version.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ccb_version.Name = "ccb_version";
-            this.ccb_version.Size = new System.Drawing.Size(53, 23);
+            this.ccb_version.Size = new System.Drawing.Size(53, 28);
             this.ccb_version.TabIndex = 3;
             this.ccb_version.SelectedIndexChanged += new System.EventHandler(this.ccb_version_SelectedIndexChanged);
             // 

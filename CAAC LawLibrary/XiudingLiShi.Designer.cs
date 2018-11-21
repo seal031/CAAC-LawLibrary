@@ -37,7 +37,7 @@
             this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtb.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtb.Enabled = false;
-            this.rtb.Font = new System.Drawing.Font("华文楷体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rtb.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rtb.Location = new System.Drawing.Point(0, 64);
             this.rtb.Name = "rtb";
             this.rtb.Size = new System.Drawing.Size(476, 390);
@@ -49,7 +49,7 @@
             this.rtb_title.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtb_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.rtb_title.Enabled = false;
-            this.rtb_title.Font = new System.Drawing.Font("华文楷体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rtb_title.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rtb_title.Location = new System.Drawing.Point(0, 0);
             this.rtb_title.Name = "rtb_title";
             this.rtb_title.Size = new System.Drawing.Size(476, 65);

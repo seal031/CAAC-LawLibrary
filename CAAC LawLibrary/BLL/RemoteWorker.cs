@@ -33,7 +33,7 @@ namespace CAAC_LawLibrary.BLL
                 string data = "";
                 byte[] buffer = Encoding.UTF8.GetBytes(data);
                 int intTimeout = 1000 * 5;
-                PingReply objPinReply = objPingSender.Send(uri.Authority.Substring(0, uri.Authority.IndexOf(":")), intTimeout, buffer, objPinOptions);
+                PingReply objPinReply = objPingSender.Send(uri.Authority, intTimeout, buffer, objPinOptions);
                 string strInfo = objPinReply.Status.ToString();
                 if (strInfo == "Success")
                 {
@@ -152,11 +152,19 @@ namespace CAAC_LawLibrary.BLL
         /// <param name="bookId"></param>
         public static List<Node> getBookContent(string bookId)
         {
-            string bookContents = HttpWorker.HttpGet(Global.BookContentApi, "bookId=" + bookId);
-            BookContentResponse bookContentResponse = TranslationWorker.ConvertStringToEntity<BookContentResponse>(bookContents);
-            List<Node> nodes = bookContentResponse.ConvertToNodes();
-            db.refreshNode(nodes);
-            return nodes;
+            try
+            {
+                string bookContents = HttpWorker.HttpGet(Global.BookContentApi, "bookId=" + bookId);
+                BookContentResponse bookContentResponse = TranslationWorker.ConvertStringToEntity<BookContentResponse>(bookContents);
+                List<Node> nodes = bookContentResponse.ConvertToNodes();
+                db.refreshNode(nodes);
+                return nodes;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("操作超时");
+                return new List<Node>();
+            }
         }
 
         /// <summary>
@@ -165,11 +173,19 @@ namespace CAAC_LawLibrary.BLL
         /// <param name="nodeIdList"></param>
         public static List<Node> getNodeDetail(List<string> nodeIdList)
         {
-            string nodeDetails = HttpWorker.HttpGet(Global.NodeDetailApi, "nodeIds=" + string.Join(",", nodeIdList));
-            NodeDetailResponse nodeDtailResponse = TranslationWorker.ConvertStringToEntity<NodeDetailResponse>(nodeDetails);
-            List<Node> nodes = nodeDtailResponse.ConvertToNodes();
-            db.refreshNode(nodes,detailOnly:true);
-            return nodes;
+            try
+            {
+                string nodeDetails = HttpWorker.HttpGet(Global.NodeDetailApi, "nodeIds=" + string.Join(",", nodeIdList));
+                NodeDetailResponse nodeDtailResponse = TranslationWorker.ConvertStringToEntity<NodeDetailResponse>(nodeDetails);
+                List<Node> nodes = nodeDtailResponse.ConvertToNodes();
+                db.refreshNode(nodes, detailOnly: true);
+                return nodes;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("操作超时");
+                return new List<Node>();
+            }
         }
         /// <summary>
         /// 获取一个章节的内容

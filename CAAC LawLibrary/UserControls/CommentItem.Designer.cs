@@ -37,17 +37,17 @@
             // lbl_node
             // 
             this.lbl_node.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbl_node.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_node.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_node.Location = new System.Drawing.Point(0, 0);
             this.lbl_node.Name = "lbl_node";
-            this.lbl_node.Size = new System.Drawing.Size(250, 25);
+            this.lbl_node.Size = new System.Drawing.Size(250, 22);
             this.lbl_node.TabIndex = 0;
             this.lbl_node.Text = "label1";
             // 
             // lbl_user
             // 
             this.lbl_user.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbl_user.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_user.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_user.Location = new System.Drawing.Point(0, 150);
             this.lbl_user.Name = "lbl_user";
             this.lbl_user.Size = new System.Drawing.Size(250, 50);
@@ -57,9 +57,10 @@
             // lbl_content
             // 
             this.lbl_content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_content.Location = new System.Drawing.Point(0, 25);
+            this.lbl_content.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_content.Location = new System.Drawing.Point(0, 22);
             this.lbl_content.Name = "lbl_content";
-            this.lbl_content.Size = new System.Drawing.Size(250, 125);
+            this.lbl_content.Size = new System.Drawing.Size(250, 128);
             this.lbl_content.TabIndex = 2;
             this.lbl_content.Text = "label3";
             // 

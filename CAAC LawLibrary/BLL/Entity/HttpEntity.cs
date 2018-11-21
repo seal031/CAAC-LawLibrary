@@ -323,8 +323,9 @@ namespace CAAC_LawLibrary.BLL.Entity
             foreach (listItem list in this.data.list)
             {
                 Law law = new Law();
+                law.Id = Guid.NewGuid().ToString();
                 law.userId = Global.user.Id;
-                law.Id = list.id.ToString();
+                law.lawId = list.id.ToString();
                 law.title = list.title;
                 law.version = list.version;
                 law.digest = list.abs;
@@ -400,6 +401,7 @@ namespace CAAC_LawLibrary.BLL.Entity
                 node.title = item.title;
                 node.nodeNumber = item.nodeNumber;
                 node.content = item.content;
+                node.offlineContent = string.Empty;
                 node.nodeClass = item.nodeClass;
                 node.nodeDef = item.nodeDef;
                 node.nodeKey = item.nodeKey;

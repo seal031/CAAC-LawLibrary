@@ -83,10 +83,10 @@ namespace CAAC_LawLibrary
                 //如果在线，且未下载到本地，则从远程获取章节信息，并入库
                 if (Global.online && "0" == law.isLocal)
                 {
-                    List<Node> nodes = RemoteWorker.getBookContent(law.Id);//获取法规整体章节结构
+                    List<Node> nodes = RemoteWorker.getBookContent(law.lawId);//获取法规整体章节结构
                     RemoteWorker.getNodeDetail(nodes.Select(n => n.Id).ToList());//再获取每个章节的内容
                 }
-                nodes = db.getNodeByLawId(law.Id);
+                nodes = db.getNodeByLawId(law.lawId);
                 //绑定关系
                 tags = NodeWorker.buildRelationFromNode(nodes);
                 bindTagsToDGW();
@@ -98,7 +98,7 @@ namespace CAAC_LawLibrary
                 if (Global.online)// && string.IsNullOrEmpty(law.isLocal))
                 {
                     //远程获取评论
-                    RemoteWorker.getOpinionList(law.Id);
+                    RemoteWorker.getOpinionList(law.lawId);
                     //加载评论
                     loadComment();
                 }
@@ -111,8 +111,8 @@ namespace CAAC_LawLibrary
                 //写入阅读历史
                 ViewHistory history = new ViewHistory()
                 {
-                    Id = law.Id,
-                    LawID = law.Id,
+                    Id = law.lawId,
+                    LawID = law.lawId,
                     UserID = Global.user.Id,
                     ViewDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 };
@@ -147,7 +147,7 @@ namespace CAAC_LawLibrary
         {
             if (commentList == null||reload)
             {
-                commentList = db.getComment(new Utity.QueryParam() { lawId = law.Id });
+                commentList = db.getComment(new Utity.QueryParam() { lawId = law.lawId });
             }
             if (Global.online == false)
             {
@@ -219,7 +219,7 @@ namespace CAAC_LawLibrary
             //    }
             //    xiudingling += Environment.NewLine;
             //}
-            xiudingling = RemoteWorker.getHistory(law.Id);
+            xiudingling = RemoteWorker.getHistory(law.lawId);
             xdls.setRtbText(xiudingling);
             //xdls.setRtbText(law.xiudingling);
             xdls.Show(this);
@@ -253,7 +253,7 @@ namespace CAAC_LawLibrary
             if (node != null)
             {
                 //如果当前节点内容不为空，直接定位
-                if (node.content != string.Empty)
+                if (string.IsNullOrEmpty(node.content) ==false)
                 {
                     findLocation(node.content);
                 }
@@ -262,7 +262,7 @@ namespace CAAC_LawLibrary
                     foreach (DevComponents.AdvTree.Node subTreeNode in clickedNode.Nodes)
                     {
                         Node subNode = subTreeNode.Tag as Node;
-                        if (subNode.content != string.Empty)
+                        if (string.IsNullOrEmpty(node.content) == false)
                         {
                             findLocation(subNode.content);
                             break;
@@ -383,7 +383,7 @@ namespace CAAC_LawLibrary
         private void btn_suggest_Click(object sender, EventArgs e)
         {
             SuggestForm suggest = new SuggestForm();
-            suggest.LawId = law.Id;
+            suggest.LawId = law.lawId;
             suggest.Show(this);
         }
 
@@ -429,7 +429,7 @@ namespace CAAC_LawLibrary
                     if (DateTime.Parse(law.expiryDate) > DateTime.Now)
                     {
                         AddNewSuggest suggest = new AddNewSuggest();
-                        suggest.lawId = law.Id;
+                        suggest.lawId = law.lawId;
                         suggest.nodeId = nodeId;
                         suggest.lbl_title.Text = selectedText;
                         suggest.ShowDialog(this);
@@ -448,7 +448,7 @@ namespace CAAC_LawLibrary
                     AddNewComment comment = new AddNewComment();
                     comment.lawView = this;
                     comment.nodeId = nodeId;
-                    comment.lawId = law.Id;
+                    comment.lawId = law.lawId;
                     comment.lbl_title.Text = selectedText;
                     comment.ShowDialog(this);
                     break;

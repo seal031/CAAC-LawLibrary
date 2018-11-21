@@ -12,11 +12,15 @@ namespace CAAC_LawLibrary.Entity
     [Table("Law")]
     public class Law:BaseEntity
     {
+        [Key]
         /// <summary>
         /// 主键
         /// </summary>
-        [Key]
         public string Id { get; set; }
+        /// <summary>
+        /// 法规id
+        /// </summary>
+        public string lawId { get; set; }
         /// <summary>
         /// 法规版本
         /// </summary>

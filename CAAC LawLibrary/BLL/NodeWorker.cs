@@ -53,7 +53,8 @@ namespace CAAC_LawLibrary.BLL
                 }
                 string btnTag = getButtonHtml("征", node.Id,"", node.title);
                 btnTag += getButtonHtml("评", node.Id,"", node.title);
-                List<string> list = node.content.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                string realContent = Global.online ? node.content : node.offlineContent.ToString();
+                List<string> list = realContent.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (string part in list)
                 {
                     if (part.Contains("<s data-obj="))
@@ -71,7 +72,7 @@ namespace CAAC_LawLibrary.BLL
                             if (kv.Count > 1)
                             {
                                 string buttonHtml = getButtonHtml(kv[0], node.Id,selectedText,kv[1]);
-                                node.content = node.content.Replace(s, buttonHtml);
+                                realContent = realContent.Replace(s, buttonHtml);
                             }
                         }
                     }
@@ -79,12 +80,12 @@ namespace CAAC_LawLibrary.BLL
 
                 if (node.nodeNumber == string.Empty && node.title == string.Empty)//如果标题和标题号都为空，就直接显示正文
                 {
-                    contentBuilder.Append(node.content);
+                    contentBuilder.Append(realContent);
                 }
                 else
                 {
                     contentBuilder.Append("<p style=\"text - align: center; \" "+getStyle(node.nodeLevel)+">");//按照节点级别添加样式
-                    contentBuilder.Append((node.nodeNumber == string.Empty ? node.title : node.nodeNumber + "." + node.title) + nodeClass + nodeDef + nodeKey + nodeRef + btnTag + Environment.NewLine + node.content + Environment.NewLine);
+                    contentBuilder.Append((node.nodeNumber == string.Empty ? node.title : node.nodeNumber + "." + node.title) + nodeClass + nodeDef + nodeKey + nodeRef + btnTag + Environment.NewLine + realContent + Environment.NewLine);
                     contentBuilder.Append("</p>");
                 }
 
@@ -201,7 +202,7 @@ namespace CAAC_LawLibrary.BLL
                 tags.Add(tag);
             }
             //正文中的标签
-            List<string> list = node.content.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> list = (Global.online? node.content:node.offlineContent.ToString()).Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
             foreach (string part in list)
             {
                 if (part.Contains("<s data-obj="))

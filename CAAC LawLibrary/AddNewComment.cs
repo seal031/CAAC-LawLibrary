@@ -44,7 +44,7 @@ namespace CAAC_LawLibrary
                 if (response.status.ToString() == "200")
                 {
                     //如果提交成功，在法规正文界面刷新评论
-                    RemoteWorker.getOpinionList(lawView.law.Id);
+                    RemoteWorker.getOpinionList(lawView.law.lawId);
                     if (Global.online)// && string.IsNullOrEmpty(law.isLocal))
                     {
                         ((LawView)lawView).loadComment(reload:true);

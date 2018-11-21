@@ -62,12 +62,12 @@ namespace CAAC_LawLibrary.UserControls
             {
                 foreach (Law law in _laws)
                 {
-                    ccb_banben.Items.Add(new DictionaryEntry { Value = law.version, Key = law.Id });
+                    ccb_banben.Items.Add(new DictionaryEntry { Value = law.version, Key = law.lawId });
                 }
             }
             else
             {
-                ccb_banben.Items.Add(new DictionaryEntry { Value=law.version,Key=law.Id });
+                ccb_banben.Items.Add(new DictionaryEntry { Value=law.version,Key=law.lawId });
             }
             ccb_banben.SelectedIndex = 0;
             ccb_banben.DisplayMember = "Value";
@@ -95,7 +95,7 @@ namespace CAAC_LawLibrary.UserControls
                     Law law = db.getLawById(s);
                     if (law != null)
                     {
-                        if (!string.IsNullOrEmpty(law.Id))
+                        if (!string.IsNullOrEmpty(law.lawId))
                         {
                             list.Add(law.title);
                         }

@@ -93,7 +93,7 @@ namespace CAAC_LawLibrary
                     MessageBox.Show("所选版本无效");
                     return;
                 }
-                Law selectedLaw = laws.FirstOrDefault(l => l.Id == selectedItem.Key.ToString());
+                Law selectedLaw = laws.FirstOrDefault(l => l.lawId == selectedItem.Key.ToString());
                 if (selectedLaw != null)
                 {
                     openLaw(selectedLaw);
@@ -129,7 +129,7 @@ namespace CAAC_LawLibrary
         {
             foreach (Law law in laws)
             {
-                ccb_version.Items.Add(new DictionaryEntry { Value = law.version, Key = law.Id });
+                ccb_version.Items.Add(new DictionaryEntry { Value = law.version, Key = law.lawId });
             }
             ccb_version.SelectedIndex = 0;
             ccb_version.DisplayMember = "Value";

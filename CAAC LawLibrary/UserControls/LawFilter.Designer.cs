@@ -117,14 +117,16 @@
             this.cbb_sort.Items.AddRange(new object[] {
             ((object)(resources.GetObject("cbb_sort.Items"))),
             ((object)(resources.GetObject("cbb_sort.Items1")))});
+            this.cbb_sort.Location = new System.Drawing.Point(1154, 20);
             this.cbb_sort.ValueMember = "Key";
             // 
             // ckb_showDownloaded
             // 
             this.ckb_showDownloaded.AutoSize = true;
+            this.ckb_showDownloaded.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ckb_showDownloaded.Location = new System.Drawing.Point(120, 57);
             this.ckb_showDownloaded.Name = "ckb_showDownloaded";
-            this.ckb_showDownloaded.Size = new System.Drawing.Size(134, 19);
+            this.ckb_showDownloaded.Size = new System.Drawing.Size(136, 24);
             this.ckb_showDownloaded.TabIndex = 8;
             this.ckb_showDownloaded.Text = "只显示离线法规";
             this.ckb_showDownloaded.UseVisualStyleBackColor = true;
@@ -133,9 +135,10 @@
             // ckb_selectAll
             // 
             this.ckb_selectAll.AutoSize = true;
+            this.ckb_selectAll.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ckb_selectAll.Location = new System.Drawing.Point(25, 57);
             this.ckb_selectAll.Name = "ckb_selectAll";
-            this.ckb_selectAll.Size = new System.Drawing.Size(59, 19);
+            this.ckb_selectAll.Size = new System.Drawing.Size(61, 24);
             this.ckb_selectAll.TabIndex = 9;
             this.ckb_selectAll.Text = "全选";
             this.ckb_selectAll.UseVisualStyleBackColor = true;
@@ -175,7 +178,8 @@
             // 
             // btn_manageLocal
             // 
-            this.btn_manageLocal.Location = new System.Drawing.Point(1132, 50);
+            this.btn_manageLocal.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_manageLocal.Location = new System.Drawing.Point(1154, 53);
             this.btn_manageLocal.Name = "btn_manageLocal";
             this.btn_manageLocal.Size = new System.Drawing.Size(164, 30);
             this.btn_manageLocal.TabIndex = 10;
@@ -185,7 +189,8 @@
             // 
             // btn_refresh
             // 
-            this.btn_refresh.Location = new System.Drawing.Point(1036, 50);
+            this.btn_refresh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_refresh.Location = new System.Drawing.Point(1058, 52);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(90, 30);
             this.btn_refresh.TabIndex = 11;
