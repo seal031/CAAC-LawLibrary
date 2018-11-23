@@ -38,9 +38,21 @@
             this.lbl_state.AutoSize = true;
             this.lbl_state.Size = new System.Drawing.Size(39, 20);
             // 
+            // lbl_name
+            // 
+            this.lbl_name.Click += new System.EventHandler(this.lbl_name_Click);
+            // 
             // lbl_title
             // 
             this.lbl_title.Click += new System.EventHandler(this.lbl_title_Click);
+            // 
+            // lable1
+            // 
+            this.lable1.Click += new System.EventHandler(this.lable1_Click);
+            // 
+            // lbl_businessType
+            // 
+            this.lbl_businessType.Click += new System.EventHandler(this.lbl_businessType_Click);
             // 
             // panel1
             // 

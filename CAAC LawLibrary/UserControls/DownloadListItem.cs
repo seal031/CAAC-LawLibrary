@@ -212,6 +212,30 @@ namespace CAAC_LawLibrary
         {
             openLaw();
         }
-        
+
+        private void lbl_title_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
+
+        private void lbl_name_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
+
+        private void lable1_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
+
+        private void lbl_businessType_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
+
+        private void lbl_organization_Click(object sender, EventArgs e)
+        {
+            openLaw();
+        }
     }
 }
