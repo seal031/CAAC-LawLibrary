@@ -59,6 +59,11 @@ namespace CAAC_LawLibrary
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+            if (Global.online == false)
+            {
+                MessageBox.Show("离线状态无法手动更新");
+                return;
+            }
             RemoteWorker.getLawResponse();
             ((LibraryList)parentForm).loadUpdateHistoryList();
         }

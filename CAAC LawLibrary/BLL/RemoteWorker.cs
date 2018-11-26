@@ -63,6 +63,10 @@ namespace CAAC_LawLibrary.BLL
         public static bool getloginResponse(string username, string password)
         {
             string responseStr = HttpWorker.HttpGet(Global.LoginUrl, "yhm=" + username + "&mm=" + password);
+            if (responseStr == "error")
+            {
+                return false;
+            }
             LoginResponse response = TranslationWorker.ConvertStringToEntity<LoginResponse>(responseStr);
             response.SetUserId();
             if (response.code == "1")
