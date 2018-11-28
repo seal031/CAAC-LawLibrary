@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CAAC_LawLibrary.BLL;
+﻿using CAAC_LawLibrary.BLL;
 using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
 using CAAC_LawLibrary.UserControls;
 using CAAC_LawLibrary.Utity;
-using System.Security.Permissions;
-using System.Runtime.InteropServices;
 using mshtml;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Permissions;
+using System.Windows.Forms;
 
 namespace CAAC_LawLibrary
 {
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     [ComVisible(true)]//COM+组件可见
-    public partial class LawView : Form
+    public partial class LawView : Form, IMessageFilter
     {
         public string lawId = string.Empty;
         public Law law;
@@ -35,6 +32,11 @@ namespace CAAC_LawLibrary
         bool bindState = false;
         RefPanel refPanel = new UserControls.RefPanel();
 
+        [DllImport("user32.dll")]
+        private static extern IntPtr WindowFromPoint(Point pt);
+        [DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+
         public LawView()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace CAAC_LawLibrary
             setFlpTopDownOnly(flp_comment);
             wb.DocumentCompleted += Wb_DocumentCompleted;
             wb.ObjectForScripting = this;
+            Application.AddMessageFilter(this);
         }
 
         private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -67,14 +70,31 @@ namespace CAAC_LawLibrary
 
         private void LawView_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //mh.UnHook();
             if (parentForm != null)
             {
                 parentForm.Show();
+                parentForm.WindowState = FormWindowState.Minimized;
+                parentForm.WindowState = FormWindowState.Normal;
             }
+        }
+        /// <summary>
+        /// 处理win32消息的具体方法
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg == 522)
+                bt.CloseBalloon();
+            return false;
         }
 
         private void LawView_Load(object sender, EventArgs e)
         {
+            //mh = new Utity.MouseHook();
+            //mh.SetHook();
+            //mh.MouseMoveEvent += Mh_MouseMoveEvent;
             //this.Text += "-"+law.title + " " + law.version;
             lbl_title.Text= law.title + " " + law.version;
             lbl_welcome.Text += Global.user.Xm;
@@ -121,6 +141,11 @@ namespace CAAC_LawLibrary
                     ((LibraryList)parentForm).addHistory(history);
                 }
             }
+        }
+        
+        private void Mh_MouseMoveEvent(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show("");  
         }
 
         //private void loadRemoteNodes()
@@ -653,6 +678,11 @@ namespace CAAC_LawLibrary
         private void btn_item_relation_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LawView_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("");
         }
     }
 }

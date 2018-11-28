@@ -36,6 +36,7 @@
             this.cbb_sort = new System.Windows.Forms.ComboBox();
             this.txt_keyword = new System.Windows.Forms.TextBox();
             this.btn_search = new System.Windows.Forms.Button();
+            this.cbb_banwendanwei = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cbb_buhao
@@ -43,7 +44,7 @@
             this.cbb_buhao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_buhao.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbb_buhao.FormattingEnabled = true;
-            this.cbb_buhao.Location = new System.Drawing.Point(25, 20);
+            this.cbb_buhao.Location = new System.Drawing.Point(14, 20);
             this.cbb_buhao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbb_buhao.Name = "cbb_buhao";
             this.cbb_buhao.Size = new System.Drawing.Size(229, 28);
@@ -55,7 +56,7 @@
             this.cbb_siju.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_siju.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbb_siju.FormattingEnabled = true;
-            this.cbb_siju.Location = new System.Drawing.Point(291, 20);
+            this.cbb_siju.Location = new System.Drawing.Point(268, 20);
             this.cbb_siju.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbb_siju.Name = "cbb_siju";
             this.cbb_siju.Size = new System.Drawing.Size(143, 28);
@@ -67,7 +68,7 @@
             this.cbb_weijie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_weijie.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbb_weijie.FormattingEnabled = true;
-            this.cbb_weijie.Location = new System.Drawing.Point(467, 20);
+            this.cbb_weijie.Location = new System.Drawing.Point(597, 20);
             this.cbb_weijie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbb_weijie.Name = "cbb_weijie";
             this.cbb_weijie.Size = new System.Drawing.Size(145, 28);
@@ -79,7 +80,7 @@
             this.cbb_yewu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_yewu.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbb_yewu.FormattingEnabled = true;
-            this.cbb_yewu.Location = new System.Drawing.Point(636, 20);
+            this.cbb_yewu.Location = new System.Drawing.Point(765, 20);
             this.cbb_yewu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbb_yewu.Name = "cbb_yewu";
             this.cbb_yewu.Size = new System.Drawing.Size(149, 28);
@@ -91,7 +92,7 @@
             this.cbb_zidingyi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_zidingyi.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbb_zidingyi.FormattingEnabled = true;
-            this.cbb_zidingyi.Location = new System.Drawing.Point(817, 20);
+            this.cbb_zidingyi.Location = new System.Drawing.Point(936, 20);
             this.cbb_zidingyi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbb_zidingyi.Name = "cbb_zidingyi";
             this.cbb_zidingyi.Size = new System.Drawing.Size(151, 28);
@@ -131,10 +132,23 @@
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
+            // cbb_banwendanwei
+            // 
+            this.cbb_banwendanwei.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_banwendanwei.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbb_banwendanwei.FormattingEnabled = true;
+            this.cbb_banwendanwei.Location = new System.Drawing.Point(432, 20);
+            this.cbb_banwendanwei.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbb_banwendanwei.Name = "cbb_banwendanwei";
+            this.cbb_banwendanwei.Size = new System.Drawing.Size(143, 28);
+            this.cbb_banwendanwei.TabIndex = 8;
+            this.cbb_banwendanwei.SelectedIndexChanged += new System.EventHandler(this.cbb_banwendanwei_SelectedIndexChanged);
+            // 
             // BaseFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbb_banwendanwei);
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.txt_keyword);
             this.Controls.Add(this.cbb_sort);
@@ -162,5 +176,6 @@
         private System.Windows.Forms.TextBox txt_keyword;
         private System.Windows.Forms.Button btn_search;
         public System.Windows.Forms.ComboBox cbb_sort;
+        protected System.Windows.Forms.ComboBox cbb_banwendanwei;
     }
 }

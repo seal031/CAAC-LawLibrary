@@ -221,6 +221,7 @@
     </Compile>
     <Compile Include="Utity\Enums.cs" />
     <Compile Include="Utity\Global.cs" />
+    <Compile Include="Utity\NetStateChecker.cs" />
     <Compile Include="Utity\QueryParam.cs" />
     <Compile Include="UserControls\ViewHistoryListItem.cs">
       <SubType>UserControl</SubType>
@@ -228,6 +229,7 @@
     <Compile Include="UserControls\ViewHistoryListItem.Designer.cs">
       <DependentUpon>ViewHistoryListItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utity\Win32Api.cs" />
     <Compile Include="XiudingLiShi.cs">
       <SubType>Form</SubType>
     </Compile>

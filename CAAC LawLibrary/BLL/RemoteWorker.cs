@@ -105,6 +105,10 @@ namespace CAAC_LawLibrary.BLL
         public static void getSetResponse()
         {
             string sets = HttpWorker.HttpGet(Global.SetListApi, "");
+            if (sets == "error")
+            {
+                return;
+            }
             SetListResponse setListResponse = TranslationWorker.ConvertStringToEntity<SetListResponse>(sets);
             db.refreshCode(setListResponse.ConvertToCodes());
         }
@@ -115,6 +119,10 @@ namespace CAAC_LawLibrary.BLL
         public static void getLawResponse()
         {
             string laws = HttpWorker.HttpGet(Global.AllBooksApi, "beginTime=" + UTC.ConvertDateTimeInt(new DateTime(2010, 01, 01)).ToString());
+            if (laws == "error")
+            {
+                return;
+            }
             AllBooksResponse allBookResponse = TranslationWorker.ConvertStringToEntity<AllBooksResponse>(laws);
             db.refreshLaw(allBookResponse.ConvertToLaws());
         }
@@ -126,6 +134,10 @@ namespace CAAC_LawLibrary.BLL
         public static void getOpinionList(string bookId)
         {
             string opinions = HttpWorker.HttpGet(Global.OpinionListApi, "bookId="+bookId);
+            if (opinions == "error")
+            {
+                return;
+            }
             OpinionResponse opinionResponse = TranslationWorker.ConvertStringToEntity<OpinionResponse>(opinions);
             db.refreshComment(opinionResponse.ConverToComments());
             //获取评论后获取评论人的信息
@@ -175,20 +187,32 @@ namespace CAAC_LawLibrary.BLL
         /// 一次性获取多个章节内容
         /// </summary>
         /// <param name="nodeIdList"></param>
-        public static List<Node> getNodeDetail(List<string> nodeIdList)
+        public static bool getNodeDetail(List<string> nodeIdList, bool downloadImage = false)
         {
             try
             {
                 string nodeDetails = HttpWorker.HttpGet(Global.NodeDetailApi, "nodeIds=" + string.Join(",", nodeIdList));
                 NodeDetailResponse nodeDtailResponse = TranslationWorker.ConvertStringToEntity<NodeDetailResponse>(nodeDetails);
                 List<Node> nodes = nodeDtailResponse.ConvertToNodes();
+                if (downloadImage)
+                {
+                    foreach (Node node in nodes)//下载图片到本地，并生成离线内容
+                    {
+                        List<string> urls = HtmlCleaner.GetImageUrl(node.content);
+                        foreach (string url in urls)
+                        {
+                            HttpWorker.SaveImg(url, node.lawId);
+                        }
+                        node.offlineContent = HtmlCleaner.ChangeImageUrlToLocalPath(node.content, node.lawId);
+                    }
+                }
                 db.refreshNode(nodes, detailOnly: true);
-                return nodes;
+                return true;
             }
             catch (Exception)
             {
                 MessageBox.Show("操作超时");
-                return new List<Node>();
+                return false;
             }
         }
         /// <summary>
@@ -198,6 +222,10 @@ namespace CAAC_LawLibrary.BLL
         public static void getNodeDetail(string nodeId)
         {
             string nodeDetails = HttpWorker.HttpGet(Global.NodeDetailApi, "nodeIds=" + nodeId);
+            if (nodeDetails == "error")
+            {
+                return;
+            }
             NodeDetailResponse nodeDtailResponse = TranslationWorker.ConvertStringToEntity<NodeDetailResponse>(nodeDetails);
             List<Node> nodes = nodeDtailResponse.ConvertToNodes();
             foreach (Node node in nodes)//下载图片到本地，并生成离线内容
@@ -220,16 +248,28 @@ namespace CAAC_LawLibrary.BLL
         {
             string result = string.Empty;
             string historyResult = HttpWorker.HttpGet(Global.HistoryApi, "bookId=" + bookId);
+            if (historyResult == "error")
+            {
+                return result;
+            }
             HistoryResponse history = TranslationWorker.ConvertStringToEntity<HistoryResponse>(historyResult);
             result = string.Join(Environment.NewLine, history.data.list.Select(l => l.version));
             return result;
         }
 
-
+        /// <summary>
+        /// 获取搜索结果
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         public static List<string> getSearch(string keyword)
         {
             string result = string.Empty;
             result = HttpWorker.HttpGet(Global.SearchApi, "bookName=" + keyword);
+            if (result == "error")
+            {
+                return new List<string>();
+            }
             SearchResponse response = TranslationWorker.ConvertStringToEntity<SearchResponse>(result);
             List<string> lawIdList = new List<string>();
             if (response != null)
@@ -237,6 +277,28 @@ namespace CAAC_LawLibrary.BLL
                 if (response.status == "200")
                 {
                     lawIdList = response.data.list.Select(l => l.id.ToString()).ToList();
+                }
+            }
+            return lawIdList;
+        }
+        /// <summary>
+        /// 获取预下载法规id
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> getPreloadLaw()
+        {
+            string result = HttpWorker.HttpGet(Global.WorkerRulesUrl, "usrid=" + Global.user.Id);
+            if (result == "error")
+            {
+                return new List<string>();
+            }
+            WorkerRulesResponse response = TranslationWorker.ConvertStringToEntity<WorkerRulesResponse>(result);
+            List<string> lawIdList = new List<string>();
+            if (response != null)
+            {
+                if (response.status == "200")
+                {
+                    lawIdList = response.data.Select(l => l.jcyjid).ToList();
                 }
             }
             return lawIdList;

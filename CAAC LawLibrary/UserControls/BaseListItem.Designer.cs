@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_state = new System.Windows.Forms.Label();
             this.lbl_name = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.lbl_organization = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lable1 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -213,5 +215,6 @@
         public System.Windows.Forms.Label lbl_effectiveDate;
         public System.Windows.Forms.Label lbl_expiryDate;
         public System.Windows.Forms.Label lbl_downloadState;
+        public System.Windows.Forms.ToolTip toolTip1;
     }
 }

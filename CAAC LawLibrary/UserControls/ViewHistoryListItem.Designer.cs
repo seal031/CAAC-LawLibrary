@@ -71,6 +71,7 @@
             // 
             this.lbl_downloadState.AutoSize = true;
             this.lbl_downloadState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_downloadState.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbl_downloadState.Size = new System.Drawing.Size(69, 20);
             this.lbl_downloadState.Click += new System.EventHandler(this.lbl_downloadState_Click);
             // 

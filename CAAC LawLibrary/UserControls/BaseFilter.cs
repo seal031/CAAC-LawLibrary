@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CAAC_LawLibrary.Utity;
+﻿using CAAC_LawLibrary.BLL;
 using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
-using System.Collections;
-using CAAC_LawLibrary.BLL;
+using CAAC_LawLibrary.Utity;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CAAC_LawLibrary
 {
@@ -43,6 +36,7 @@ namespace CAAC_LawLibrary
         {
             bindYewu();
             bindSiju();
+            bindBanwendanwei();
             bindBuhao();
             bindWeijie();
             bindZidingyi();
@@ -68,6 +62,13 @@ namespace CAAC_LawLibrary
             cbb_siju.DataSource = new BindingSource(Global.siju, null);
             cbb_siju.DisplayMember = "desc";
             cbb_siju.ValueMember = "Id";
+        }
+
+        private void bindBanwendanwei()
+        {
+            cbb_banwendanwei.DataSource = new BindingSource(Global.banwendanwei, null);
+            cbb_banwendanwei.DisplayMember = "desc";
+            cbb_banwendanwei.ValueMember = "Id";
         }
 
         private void bindWeijie()
@@ -98,6 +99,14 @@ namespace CAAC_LawLibrary
             if (bindState)
             {
                 queryParam.siju = (cbb_siju.SelectedItem as Code).Id;
+                onSelectedChanged();
+            }
+        }
+        private void cbb_banwendanwei_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bindState)
+            {
+                queryParam.banwendanwei = (cbb_banwendanwei.SelectedItem as Code).desc;//办文单位用value筛选
                 onSelectedChanged();
             }
         }
@@ -158,5 +167,6 @@ namespace CAAC_LawLibrary
                 ((LibraryList)parentForm).loadLocalLawList();//如果搜索内容为空，则显示全部法规
             }
         }
+
     }
 }

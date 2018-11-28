@@ -20,6 +20,10 @@ namespace CAAC_LawLibrary.Utity
         /// </summary>
         public string siju { get; set; }
         /// <summary>
+        /// 办文单位
+        /// </summary>
+        public string banwendanwei { get; set; }
+        /// <summary>
         /// 位阶
         /// </summary>
         public string weijie { get; set; }

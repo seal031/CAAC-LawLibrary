@@ -24,6 +24,7 @@ namespace CAAC_LawLibrary.Utity
         public static string RemoteUrl = ConfigWorker.GetConfigValue("RemoteUrl");
         public static string LoginUrl = ConfigWorker.GetConfigValue("LoginUrl");
         public static string WorkerInfoUrl = ConfigWorker.GetConfigValue("WorkerInfoUrl");
+        public static string WorkerRulesUrl = ConfigWorker.GetConfigValue("WorkerRules");
         public static string ConsultCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("ConsultCommit");
         public static string OpinionListApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionList");
         public static string OpinionCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionCommit");
@@ -38,6 +39,7 @@ namespace CAAC_LawLibrary.Utity
         public static List<DictionaryEntry> SortSource = new List<DictionaryEntry>();
         public static List<DictionaryEntry> DownloadState = new List<DictionaryEntry>();
         public static List<Code> siju = new List<Code>();
+        public static List<Code> banwendanwei = new List<Code>();
         public static List<Code> yewu = new List<Code>();
         public static List<Code> buhao = new List<Code>();
         public static List<Code> zidingyi = new List<Code>();
@@ -66,6 +68,8 @@ namespace CAAC_LawLibrary.Utity
 
             siju = db.getCode("org");
             siju.Insert(0, new Code() { Id = null, desc = "不限司局" });
+            banwendanwei = db.getCode("release");
+            banwendanwei.Insert(0, new Code() { Id = null, desc = "不限办文单位" });
             yewu = db.getCode("biz");
             yewu.Insert(0, new Code() { Id = null, desc = "不限业务分类" });
             buhao = db.getCode("buhao");
@@ -186,13 +190,13 @@ namespace CAAC_LawLibrary.Utity
             }
             catch (WebException we)
             {
-                MessageBox.Show("获取数据超时"+we.Message);
+                MessageBox.Show("获取数据超时："+we.Message);
                 Global.online = false;
                 return "error";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("获取数据失败"+ex.Message);
+                MessageBox.Show("获取数据失败："+ex.Message);
                 Global.online = false;
                 return "error";
             }
@@ -458,7 +462,7 @@ namespace CAAC_LawLibrary.Utity
             foreach (string url in urls)
             {
                 string fileName = HttpWorker.getFileNameFromUri(url);
-                string localPath = Path.Combine(Environment.CurrentDirectory, "Image", Global.user.Id ,lawId, fileName);
+                string localPath = Path.Combine(Environment.CurrentDirectory, "Image", "CurrentLoginUser" ,lawId, fileName);
                 content = content.Replace(url,localPath);
             }
             return content;

@@ -18,7 +18,7 @@ namespace CAAC_LawLibrary
     public partial class LibraryList : Form
     {
         DbHelper db = new DbHelper();
-
+        
 
         public LibraryList()
         {
@@ -169,13 +169,8 @@ namespace CAAC_LawLibrary
         /// </summary>
         public void loadUpdateHistoryList()
         {
-            //dgv_updateHistory.DataSource = null;
             List<UpdateHistory> list = db.getUpdateHistorys();
             dgv_updateHistory.DataSource = list;
-            //foreach (UpdateHistory updateHistory in list)
-            //{
-            //    DataGridViewRow dgvr = 
-            //}
         }
 
         private void removeFromFlp(FlowLayoutPanel flp)

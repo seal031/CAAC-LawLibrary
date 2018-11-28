@@ -51,9 +51,9 @@ namespace CAAC_LawLibrary.BLL
                 {
                     nodeRef = getButtonHtml("ref", node.Id, node.title, node.nodeRef);
                 }
-                string btnTag = getButtonHtml("征", node.Id,"", node.title);
-                btnTag += getButtonHtml("评", node.Id,"", node.title);
-                string realContent = Global.online ? node.content : node.offlineContent.ToString();
+                string btnTag = getButtonHtml("征", node.Id,"", convertGTLT(node.title));
+                btnTag += getButtonHtml("评", node.Id,"", convertGTLT(node.title));
+                string realContent = Global.online ? node.content : node.offlineContent.Replace("CurrentLoginUser", Global.user.Id);//将离线内容中的CurrentLoginUser替换为当前用户id，用于加载离线图片
                 List<string> list = realContent.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (string part in list)
                 {
@@ -85,7 +85,7 @@ namespace CAAC_LawLibrary.BLL
                 else
                 {
                     contentBuilder.Append("<p style=\"text - align: center; \" "+getStyle(node.nodeLevel)+">");//按照节点级别添加样式
-                    contentBuilder.Append((node.nodeNumber == string.Empty ? node.title : node.nodeNumber + "." + node.title) + nodeClass + nodeDef + nodeKey + nodeRef + btnTag + Environment.NewLine + realContent + Environment.NewLine);
+                    contentBuilder.Append((node.nodeNumber == string.Empty ? convertGTLT(node.title) : node.nodeNumber + "." + convertGTLT(node.title)) + nodeClass + nodeDef + nodeKey + nodeRef + btnTag + Environment.NewLine + realContent + Environment.NewLine);
                     contentBuilder.Append("</p>");
                 }
 
@@ -130,6 +130,11 @@ namespace CAAC_LawLibrary.BLL
             contentBuilder.Append("</body>");
             string content = contentBuilder.ToString();
             return content;
+        }
+
+        public static string convertGTLT(string str)
+        {
+            return str.Replace(">", "&gt").Replace("<", "&lt");
         }
 
         public static List<NodeTag> buildRelationFromNode(List<CAAC_LawLibrary.Entity.Node> nodes)

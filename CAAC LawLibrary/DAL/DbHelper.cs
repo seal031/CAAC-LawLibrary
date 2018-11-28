@@ -48,6 +48,7 @@ namespace CAAC_LawLibrary.DAL
                 var list = (from law in context.Law
                             where law.userId == Global.user.Id
                             && (param.siju == null ? 1 == 1 : law.siju == param.siju)
+                            && ((param.banwendanwei == "不限办文单位"||param.banwendanwei==null) ? 1 == 1 : law.banwendanwei == param.banwendanwei)
                             && (param.weijie == null ? 1 == 1 : law.weijie == param.weijie)
                             && (param.yewu == null ? 1 == 1 : law.yewu == param.yewu)
                             && (param.zidingyi == null ? 1 == 1 : law.userLabel.Contains(param.zidingyi))
@@ -788,6 +789,21 @@ namespace CAAC_LawLibrary.DAL
             }
         }
 
+        public User getUserById(string id)
+        {
+            using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
+            {
+                try
+                {
+                    return context.User.FirstOrDefault(u => u.Id == id);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
         /// <summary>
         /// 保存用户信息
         /// </summary>
@@ -813,6 +829,14 @@ namespace CAAC_LawLibrary.DAL
                         tempUser.Xm = user.Xm;
                         tempUser.Department = user.Department;
                         tempUser.Phone = user.Phone;
+                        if (user.Preload == "1")
+                        {
+                            tempUser.Preload = "1";
+                        }
+                        else
+                        {
+                            tempUser.Preload = "0";
+                        }
                     }
                     context.SaveChanges();
                     return true;
@@ -882,9 +906,8 @@ namespace CAAC_LawLibrary.DAL
                 var laws = from l in allLaws
                            from n in context.Node
                            where n.lawId == l.lawId
-                           && l.isLocal == "1"
+                           && ((l.isLocal == "1" &&(n.title.Contains(keyword) || n.content.Contains(keyword)))|| l.title.Contains(keyword))
                            && l.userId==Global.user.Id
-                           && (l.title.Contains(keyword) || n.title.Contains(keyword) || n.content.Contains(keyword))
                            select l.lawId;
                 List<string> returnList = laws.Distinct().ToList();
                 return returnList;

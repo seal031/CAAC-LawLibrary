@@ -26,6 +26,8 @@ namespace CAAC_LawLibrary
 
             //验证网络是否可用
             RemoteWorker.checkInternet();
+            //启动网络状态监测
+            NetStateChecker ns = new Utity.NetStateChecker();
             Application.Run(new Login());
         }
     }

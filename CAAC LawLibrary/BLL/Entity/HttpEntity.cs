@@ -682,6 +682,25 @@ namespace CAAC_LawLibrary.BLL.Entity
     }
 
 
+    public class WorkerRulesResponse : CommonResponse
+    {
+        public string code { get; set; }
+
+        public new List<dataItem> data { get; set; }
+
+        public WorkerRulesResponse()
+        {
+            data = new List<dataItem>();
+        }
+
+        public class dataItem
+        {
+            public string jcyjid { get; set; }
+            public string jcyjmc { get; set; }
+        }
+    }
+
+
     /// <summary>
     /// 通用返回对象
     /// </summary>

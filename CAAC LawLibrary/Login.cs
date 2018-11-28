@@ -1,6 +1,7 @@
 ﻿using CAAC_LawLibrary.BLL;
 using CAAC_LawLibrary.BLL.Entity;
 using CAAC_LawLibrary.DAL;
+using CAAC_LawLibrary.Entity;
 using CAAC_LawLibrary.Utity;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,12 @@ namespace CAAC_LawLibrary
             {
                 Global.user.Name = cbb_user.Text.Trim();
                 Global.user.Password = txt_password.Text.Trim();
-                if (Global.online)//如果登陆成功且联网状态，获取用户信息、远程法规列表、设置列表
+                if (Global.online)//如果登陆成功且联网状态，获取用户信息、检查用户是否首次登陆（首次登陆要预下载法规）、远程法规列表、设置列表
                 {
                     RemoteWorker.getUserInfo();
                     RemoteWorker.getSetResponse();
                     RemoteWorker.getLawResponse();
+                    checkUserPreload();
                 }
                 if (cb_remindPwd.Checked)
                 {
@@ -50,6 +52,33 @@ namespace CAAC_LawLibrary
                 LibraryList listForm = new LibraryList();
                 listForm.Show();
                 this.Hide();
+            }
+        }
+
+        private void checkUserPreload()
+        {
+            User user = db.getUserById(Global.user.Id);
+            if (user != null)
+            {
+                if (user.Preload != "1")
+                {
+                    List<string> lawIds= RemoteWorker.getPreloadLaw();//获取预下载的法规id列表
+                    lawIds = new List<string>() { "1041","1061"};
+                    foreach (string lawId in lawIds)
+                    {
+                        List<Node> nodes = RemoteWorker.getBookContent(lawId);//依次下载法规及内容，下载完成后，更新法规的下载状态
+                        if (RemoteWorker.getNodeDetail(nodes.Select(n => n.Id).ToList(),downloadImage:true))
+                        {
+                            Law law = db.getLawById(lawId);
+                            law.isLocal = "1";
+                            law.downloadPercent = 100;
+                            law.downloadDate = DateTime.Now.ToString("yyyy-MM-dd");
+                            law.downloadNodeCount = nodes.Count;
+                            db.saveLaw(law);
+                        }
+                    }
+                    Global.user.Preload = "1";
+                }
             }
         }
 

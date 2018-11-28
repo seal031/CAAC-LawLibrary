@@ -45,7 +45,8 @@ namespace CAAC_LawLibrary
         {
             if (law != null)
             {
-                lbl_title.Text = law.title; ;
+                lbl_title.Text = law.title;
+                toolTip1.SetToolTip(lbl_title, lbl_title.Text);
                 lbl_state.Text = DateTime.Parse(law.expiryDate) > DateTime.Now ? "有效" : "失效";
                 lbl_name.Text = law.digest;
                 lbl_businessType.Text = Global.GetCodeValueById(law.yewu);
