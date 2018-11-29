@@ -53,7 +53,7 @@ namespace CAAC_LawLibrary.BLL
                 }
                 string btnTag = getButtonHtml("征", node.Id,"", convertGTLT(node.title));
                 btnTag += getButtonHtml("评", node.Id,"", convertGTLT(node.title));
-                string realContent = Global.online ? node.content : node.offlineContent.Replace("CurrentLoginUser", Global.user.Id);//将离线内容中的CurrentLoginUser替换为当前用户id，用于加载离线图片
+                string realContent = Global.online ? node.content : node.offlineContent.Replace("CurrentLoginUser", Global.user.Id).Replace("CurrentApplicationPath", Environment.CurrentDirectory);//将离线内容中的CurrentApplicationPath替换为应用程序执行路径，CurrentLoginUser替换为当前用户id，用于加载离线图片
                 List<string> list = realContent.Split(new string[] { "</s>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (string part in list)
                 {

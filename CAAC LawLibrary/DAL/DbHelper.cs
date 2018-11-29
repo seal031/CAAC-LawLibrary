@@ -898,7 +898,7 @@ namespace CAAC_LawLibrary.DAL
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public List<string> offLineSearch(QueryParam param,string keyword)
+        public List<string> offLineSearch(QueryParam param, string keyword)
         {
             using (SqliteContext context = new CAAC_LawLibrary.SqliteContext())
             {
@@ -906,8 +906,8 @@ namespace CAAC_LawLibrary.DAL
                 var laws = from l in allLaws
                            from n in context.Node
                            where n.lawId == l.lawId
-                           && ((l.isLocal == "1" &&(n.title.Contains(keyword) || n.content.Contains(keyword)))|| l.title.Contains(keyword))
-                           && l.userId==Global.user.Id
+                           && ((l.isLocal == "1" && (l.title.Contains(keyword) || n.title.Contains(keyword) || n.content.Contains(keyword))) || l.title.Contains(keyword))
+                           && l.userId == Global.user.Id
                            select l.lawId;
                 List<string> returnList = laws.Distinct().ToList();
                 return returnList;

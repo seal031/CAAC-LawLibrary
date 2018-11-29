@@ -462,7 +462,7 @@ namespace CAAC_LawLibrary.Utity
             foreach (string url in urls)
             {
                 string fileName = HttpWorker.getFileNameFromUri(url);
-                string localPath = Path.Combine(Environment.CurrentDirectory, "Image", "CurrentLoginUser" ,lawId, fileName);
+                string localPath = Path.Combine("CurrentApplicationPath", "Image", "CurrentLoginUser" ,lawId, fileName);
                 content = content.Replace(url,localPath);
             }
             return content;
