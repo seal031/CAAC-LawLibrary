@@ -142,7 +142,7 @@ namespace CAAC_LawLibrary.DAL
                 try
                 {
                     int updateLawCount = 0;
-                    foreach (Law law in laws)
+                    foreach (Law law in laws.OrderBy(l=>l.lawId))
                     {
                         var currentLaw = context.Law.FirstOrDefault(l => l.lawId == law.lawId && l.userId == Global.user.Id);
                         if (currentLaw == null)//如果没有就新增
@@ -191,8 +191,9 @@ namespace CAAC_LawLibrary.DAL
                             currentLaw.yilai = law.yilai;
                             currentLaw.zefa = law.zefa;
                         }
+                        context.SaveChanges();
                     }
-                    context.SaveChanges();
+                    //context.SaveChanges();
                     MessageBox.Show("新版法规自动更新完成，本次共更新了"+updateLawCount.ToString()+"个法规的新版本");
                     return true;
                 }
