@@ -287,11 +287,15 @@ namespace CAAC_LawLibrary
                     foreach (DevComponents.AdvTree.Node subTreeNode in clickedNode.Nodes)
                     {
                         Node subNode = subTreeNode.Tag as Node;
-                        if (string.IsNullOrEmpty(node.content) == false)
+                        if (string.IsNullOrEmpty(subNode.content) == false)
                         {
                             findLocation(subNode.content);
-                            break;
                         }
+                        else
+                        {
+                            findLocation(subNode.title);
+                        }
+                        break;
                     }
                 }
             }
@@ -350,19 +354,19 @@ namespace CAAC_LawLibrary
                     content = ClearChar(content);
                     if (isTag)
                     {
-                        if (item.OuterHtml.ToLower().Contains(title))
+                        if (item.OuterHtml.ToLower().Contains(title)||content.Contains(ClearChar(title).ToLower()))
                         {
                             Point point = GetPointHead(item);
-                            wb.Document.Window.ScrollTo(0, point.Y);//滚动条至指定位置
+                            wb.Document.Window.ScrollTo(0, point.Y-15);//滚动条至指定位置
                             //break;
                         }
                     }
                     else
                     {
-                        if (title.IndexOf(content) == 0)
+                        if (title.IndexOf(content) == 0||content.Contains(title))
                         {
                             Point point = GetPointHead(item);
-                            wb.Document.Window.ScrollTo(point.X, point.Y);//滚动条至指定位置
+                            wb.Document.Window.ScrollTo(point.X, point.Y-15);//滚动条至指定位置
                             //break;
                         }
                     }
@@ -402,6 +406,8 @@ namespace CAAC_LawLibrary
             str = str.Replace("\r", null);
             str = str.Replace("&nbsp;", null);
             str = str.Replace(" ", null);
+            str = str.Replace("'", null);
+            str = str.Replace("\"", null);
             return str;
         }
 

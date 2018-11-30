@@ -158,7 +158,7 @@ namespace CAAC_LawLibrary.BLL
                 tag.TagType = getTypeCN("class");
                 tag.TagNode = node.title;
                 tag.TagContent = node.nodeClass;
-                tag.OuterHTML= getButtonHtml("class", node.Id, node.nodeClass, node.Id);
+                tag.OuterHTML= getButtonHtml("class", node.Id, node.title, node.nodeClass);
                 tags.Add(tag);
             }
             if (string.IsNullOrEmpty(node.nodeDef) == false)
@@ -168,7 +168,7 @@ namespace CAAC_LawLibrary.BLL
                 tag.TagType = getTypeCN("define");
                 tag.TagNode = node.title;
                 tag.TagContent = node.nodeDef;
-                tag.OuterHTML = getButtonHtml("define", node.Id, node.nodeDef, node.Id);
+                tag.OuterHTML = getButtonHtml("define", node.Id, node.title, node.nodeDef);
                 tags.Add(tag);
             }
             if (string.IsNullOrEmpty(node.nodeKey) == false)
@@ -178,7 +178,7 @@ namespace CAAC_LawLibrary.BLL
                 tag.TagType = getTypeCN("key");
                 tag.TagNode = node.title;
                 tag.TagContent = node.nodeKey;
-                tag.OuterHTML = getButtonHtml("key", node.Id, node.nodeKey, node.Id);
+                tag.OuterHTML = getButtonHtml("key", node.Id, node.title, node.nodeKey);
                 tags.Add(tag);
             }
             if (string.IsNullOrEmpty(node.nodeRef) == false)
@@ -203,7 +203,7 @@ namespace CAAC_LawLibrary.BLL
                     }
                 }
                 tag.TagContent = string.Join(Environment.NewLine, tagContentList);
-                tag.OuterHTML = getButtonHtml("ref", node.Id, node.nodeRef, node.Id);
+                tag.OuterHTML = getButtonHtml("ref", node.Id, node.title, node.nodeRef);
                 tags.Add(tag);
             }
             //正文中的标签
@@ -431,7 +431,7 @@ namespace CAAC_LawLibrary.BLL
 
                     break;
             }
-            return "class=\"" + styleName + "\"" + " onmousemove=\"this.className = '" + styleName + "_out'\" onmouseout=\"this.className = '" + styleName + "'\"";
+            return "onmousemove=\"this.className = '" + styleName + "_out'\" onmouseout=\"this.className = '" + styleName + "'\"" + " class=\"" + styleName + "\"";
         }
     }
 
