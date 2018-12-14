@@ -135,7 +135,7 @@ namespace CAAC_LawLibrary.DAL
         /// </summary>
         /// <param name="laws"></param>
         /// <returns></returns>
-        public bool refreshLaw(List<Law> laws)
+        public bool refreshLaw(List<Law> laws,out int autoUpdateCount)
         {
             using (SqliteContext context = new SqliteContext())
             {
@@ -149,8 +149,8 @@ namespace CAAC_LawLibrary.DAL
                         {
                             law.userId = Global.user.Id;
                             //如果是更新版本的法规（且法规旧版本已下载至本地），将更新信息保存至自动更新历史记录表，同时自动下载新版本法规内容
-                            var oldLaw = context.Law.FirstOrDefault(l => l.lastversion == law.lastversion && l.isLocal == "1" && l.userId == Global.user.Id);
-                            if (oldLaw != null)
+                            var oldDownloadedLaw = context.Law.FirstOrDefault(l => l.lastversion == law.lastversion && l.isLocal == "1" && l.userId == Global.user.Id);
+                            if (oldDownloadedLaw != null)
                             {
                                 List<Node> nodes = RemoteWorker.getBookContent(law.lawId);
                                 RemoteWorker.getNodeDetail(nodes.Select(n => n.Id).ToList());
@@ -167,6 +167,15 @@ namespace CAAC_LawLibrary.DAL
                                 updateHistory.Id = Guid.NewGuid().ToString();
                                 addUpdateHistory(updateHistory);
                                 updateLawCount++;
+                            }
+                            else
+                            {
+                                //如果是更新版本的法规（且法规旧版本未下载至本地），只更新法规列表界面的版本
+                                var oldUndownloadLaw = context.Law.FirstOrDefault(l => l.lastversion == law.lastversion && l.userId == Global.user.Id);
+                                if (oldUndownloadLaw != null)
+                                {
+                                    updateLawCount++;
+                                }
                             }
                             context.Law.Add(law);
                         }
@@ -194,11 +203,13 @@ namespace CAAC_LawLibrary.DAL
                         context.SaveChanges();
                     }
                     //context.SaveChanges();
+                    autoUpdateCount = updateLawCount;
                     MessageBox.Show("新版法规自动更新完成，本次共更新了"+updateLawCount.ToString()+"个法规的新版本");
                     return true;
                 }
                 catch (Exception ex)
                 {
+                    autoUpdateCount = -1;
                     return false;
                 }
             }

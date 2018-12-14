@@ -116,6 +116,11 @@ namespace CAAC_LawLibrary.Entity
         {
             get { return ChineseToPinYin.ToPinYin(title); }
         }
+        [NotMapped]
+        public int? versionNumber
+        {
+            get { return int.Parse(version.Replace("R", "")); }
+        }
         /// <summary>
         /// 已下载的章节数量，用于重新打开程序后的继续下载
         /// </summary>

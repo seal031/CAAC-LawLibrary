@@ -64,7 +64,11 @@ namespace CAAC_LawLibrary
                 MessageBox.Show("离线状态无法手动更新");
                 return;
             }
-            RemoteWorker.getLawResponse();
+            int autoUpdateCount = RemoteWorker.getLawResponse();
+            if (autoUpdateCount > 0)//如果手动刷新更新的法规数量大于0，则重新加载法规列表，将新版本添加到版本下拉中
+            {
+                ((LibraryList)parentForm).loadLocalLawList();
+            }
             ((LibraryList)parentForm).loadUpdateHistoryList();
         }
     }

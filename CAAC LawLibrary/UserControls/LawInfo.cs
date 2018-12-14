@@ -39,7 +39,7 @@ namespace CAAC_LawLibrary.UserControls
                 lbl_name.Text = law.name;
                 lbl_guanlijigou.Text = Global.GetCodeValueById(law.siju);
                 ccb_banben.Text = law.version;
-                lbl_banwendanwei.Text = law.banwendanwei;
+                lbl_banwendanwei.Text = Global.GetCodeValueById(law.banwendanwei); //law.banwendanwei;
                 lbl_buhao.Text = law.buhao;
                 lbl_guanjianzi.Text = law.keyword;
                 lbl_leixing.Text = Global.GetCodeValueById(law.yewu);
@@ -60,7 +60,7 @@ namespace CAAC_LawLibrary.UserControls
             laws = _laws;
             if (_laws != null)
             {
-                foreach (Law law in _laws)
+                foreach (Law law in _laws.OrderByDescending(l=>l.versionNumber))
                 {
                     ccb_banben.Items.Add(new DictionaryEntry { Value = law.version, Key = law.lawId });
                 }

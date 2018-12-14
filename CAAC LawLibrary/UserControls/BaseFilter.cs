@@ -106,7 +106,7 @@ namespace CAAC_LawLibrary
         {
             if (bindState)
             {
-                queryParam.banwendanwei = (cbb_banwendanwei.SelectedItem as Code).desc;//办文单位用value筛选
+                queryParam.banwendanwei = (cbb_banwendanwei.SelectedItem as Code).Id;
                 onSelectedChanged();
             }
         }

@@ -116,15 +116,17 @@ namespace CAAC_LawLibrary.BLL
         /// <summary>
         /// 获取全部法规列表
         /// </summary>
-        public static void getLawResponse()
+        public static int getLawResponse()
         {
             string laws = HttpWorker.HttpGet(Global.AllBooksApi, "beginTime=" + UTC.ConvertDateTimeInt(new DateTime(2010, 01, 01)).ToString());
             if (laws == "error")
             {
-                return;
+                return -1;
             }
             AllBooksResponse allBookResponse = TranslationWorker.ConvertStringToEntity<AllBooksResponse>(laws);
-            db.refreshLaw(allBookResponse.ConvertToLaws());
+            int autoUpdateCount = 0;
+            db.refreshLaw(allBookResponse.ConvertToLaws(),out autoUpdateCount);
+            return autoUpdateCount;
         }
 
         /// <summary>

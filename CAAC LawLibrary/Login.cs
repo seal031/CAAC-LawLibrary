@@ -63,7 +63,7 @@ namespace CAAC_LawLibrary
                 if (user.Preload != "1")
                 {
                     List<string> lawIds= RemoteWorker.getPreloadLaw();//获取预下载的法规id列表
-                    lawIds = new List<string>() { "1041","1061"};
+                    lawIds = new List<string>() { };//todo 预下载接口还未完成，可用后删除此行代码
                     foreach (string lawId in lawIds)
                     {
                         List<Node> nodes = RemoteWorker.getBookContent(lawId);//依次下载法规及内容，下载完成后，更新法规的下载状态
