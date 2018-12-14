@@ -529,28 +529,34 @@ namespace CAAC_LawLibrary
                     showBalloon("关键字", selectedText, string.Join(" ", list), nodeId);
                     break;
                 case "依":
-                    showBalloon("依赖", selectedText, "", nodeId);
+                    showBalloon("依赖", selectedText, text, nodeId);
                     break;
                 case "罚":
-                    showBalloon("罚则", selectedText, "", nodeId);
+                    showBalloon("罚则", selectedText, text, nodeId);
                     break;
                 case "引":
                     showBalloon("引用", selectedText, text, nodeId);
                     break;
                 case "政":
-                    showBalloon("行政处罚", selectedText, "", nodeId);
+                    showBalloon("行政处罚", selectedText, text, nodeId);
                     break;
                 case "律":
-                    showBalloon("纪律处分", selectedText, "", nodeId);
+                    showBalloon("纪律处分", selectedText, text, nodeId);
                     break;
                 case "手":
-                    showBalloon("行政手段", selectedText, "", nodeId);
+                    showBalloon("行政手段", selectedText, text, nodeId);
                     break;
                 case "他":
-                    showBalloon("其他责任", selectedText, "", nodeId);
+                    showBalloon("其他责任", selectedText, text, nodeId);
                     break;
                 case "信":
-                    showBalloon("信用手段", selectedText, "", nodeId);
+                    showBalloon("信用手段", selectedText, text, nodeId);
+                    break;
+                case "许":
+                    showBalloon("许可手段", selectedText, text, nodeId);
+                    break;
+                case "强":
+                    showBalloon("行政强制", selectedText, text, nodeId);
                     break;
                 default:
                     break;
@@ -561,7 +567,7 @@ namespace CAAC_LawLibrary
         private void showBalloon(string caption,string selectedText, string _text,string nodeId)
         {
             string text = "选中文字：" + selectedText + Environment.NewLine + caption + "：" + _text;
-            if (caption == "引用")
+            if (caption == "引用"|| caption == "依赖" || caption == "罚则" || caption == "行政处罚" || caption == "纪律处分" || caption == "行政手段" || caption == "其他责任" || caption == "信用手段" || caption == "许可手段" || caption == "行政强制")
             {
                 //bt.SetBalloonText(wb, "<input type=\"text\" onclick=\"alert(1)\" name=\"firstname\">");
                 refPanel.setDb(db);

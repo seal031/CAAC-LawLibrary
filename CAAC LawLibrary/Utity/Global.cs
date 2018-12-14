@@ -65,6 +65,13 @@ namespace CAAC_LawLibrary.Utity
             tag.Add(new DictionaryEntry("键", "关键字"));
             tag.Add(new DictionaryEntry("依", "依赖"));
             tag.Add(new DictionaryEntry("罚", "罚则"));
+            tag.Add(new DictionaryEntry("政", "行政罚则"));
+            tag.Add(new DictionaryEntry("律", "纪律处分"));
+            tag.Add(new DictionaryEntry("手", "行政手段"));
+            tag.Add(new DictionaryEntry("他", "其他责任"));
+            tag.Add(new DictionaryEntry("信", "信用手段"));
+            tag.Add(new DictionaryEntry("许", "许可手段"));
+            tag.Add(new DictionaryEntry("强", "行政强制"));
 
             siju = db.getCode("org");
             siju.Insert(0, new Code() { Id = null, desc = "不限司局" });

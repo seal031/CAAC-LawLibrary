@@ -267,7 +267,7 @@ namespace CAAC_LawLibrary.BLL
         public static List<string> getSearch(string keyword)
         {
             string result = string.Empty;
-            result = HttpWorker.HttpGet(Global.SearchApi, "bookName=" + keyword);
+            result = HttpWorker.HttpGet(Global.SearchApi, "key1=" + keyword);
             if (result == "error")
             {
                 return new List<string>();
@@ -278,7 +278,7 @@ namespace CAAC_LawLibrary.BLL
             {
                 if (response.status == "200")
                 {
-                    lawIdList = response.data.list.Select(l => l.id.ToString()).ToList();
+                    lawIdList = response.data.list.Select(l => l.bookId).ToList();
                 }
             }
             return lawIdList;

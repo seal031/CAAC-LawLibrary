@@ -550,30 +550,11 @@ namespace CAAC_LawLibrary.BLL.Entity
         }
         public class listItem
         {
-            public int id { get; set; }
-            public int type { get; set; }
+            public string bookId { get; set; }
+            public string buhao { get; set; }
             public string title { get; set; }
-            public string nodeNumber { get; set; }
-            /// <summary>
-            /// 章节版本
-            /// </summary>
-            public int? nodeVersion { get; set; }
-            /// <summary>
-            /// 章节类型：章、节
-            /// </summary>
-            public string nodeType { get; set; }
-            /// <summary>
-            /// 预览
-            /// </summary>
-            //public string preview { get; set; }
-            /// <summary>
-            /// id路径，如"1,3,345"
-            /// </summary>
-            public string idPath { get; set; }
-            /// <summary>
-            /// 描述路径，如"航空法,第一章,第三节"
-            /// </summary>
-            public string namePath { get; set; }
+            public string linghao { get; set; }
+            public string version { get; set; }
         }
     }
     /// <summary>
