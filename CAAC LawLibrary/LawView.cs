@@ -572,7 +572,9 @@ namespace CAAC_LawLibrary
                 //bt.SetBalloonText(wb, "<input type=\"text\" onclick=\"alert(1)\" name=\"firstname\">");
                 refPanel.setDb(db);
                 refPanel.setParentForm(this);
-                refPanel.setText(_text);
+                //refPanel.setText(_text);
+                refPanel.setSelectedText(selectedText);
+                refPanel.buildLabels(_text);
                 wb.Controls.Add(refPanel);
                 Point p1 = Control.MousePosition;
                 p1.Offset(-lawInfo1.Width, -pl_title.Height);

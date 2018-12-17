@@ -531,13 +531,24 @@ namespace CAAC_LawLibrary.BLL
             public string url { get; set; }
         }
 
-        public static NodeContentTag strToNodeContentTag(string str)
+        public NodeContentTag strToNodeContentTag(string str)
         {
-            NodeContentTag nct = new NodeContentTag();
+            //string typeStr = string.Empty;
+            //if (str.Contains("_"))
+            //{
+            //    typeStr = str.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[0];
+            //    str = str.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[1];
+            //}
             foreach (string part in str.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries))
             {
-
-                foreach (string bookStr in part.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries))
+                string typeStr = string.Empty;
+                string partStr = part;
+                if (part.Contains("_"))
+                {
+                    typeStr = part.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                    partStr= part.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                }
+                foreach (string bookStr in partStr.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     string bookId = string.Empty;
                     string nodeId = string.Empty;
@@ -547,16 +558,56 @@ namespace CAAC_LawLibrary.BLL
                         string nodeStr = bookStr.Split(new string[] { "@" }, StringSplitOptions.RemoveEmptyEntries)[1];
                         foreach (string nodeIdStr in nodeStr.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries))
                         {
-
+                            nodeId = nodeIdStr;
+                            if (part.Contains("refOUT"))//外部资源
+                            {
+                                OutterRef outRef = new BLL.NodeContentTag.OutterRef()
+                                {
+                                    refType = typeStr,
+                                    title = bookId,
+                                    url = nodeId
+                                };
+                                outterRefList.Add(outRef);
+                            }
+                            else//内部资源
+                            {
+                                InnerRef inRef = new BLL.NodeContentTag.InnerRef()
+                                {
+                                    refType = typeStr,
+                                    bookId=bookId,
+                                    nodeId=nodeId
+                                };
+                                innerRefList.Add(inRef);
+                            }
                         }
                     }
                     else//只含bookid
                     {
-
+                        bookId = bookStr;
+                        if (part.Contains("refOUT"))//外部资源
+                        {
+                            OutterRef outRef = new BLL.NodeContentTag.OutterRef()
+                            {
+                                refType = typeStr,
+                                title = bookId,
+                                url = string.Empty
+                            };
+                            outterRefList.Add(outRef);
+                        }
+                        else
+                        {
+                            InnerRef inRef = new BLL.NodeContentTag.InnerRef()
+                            {
+                                refType = typeStr,
+                                bookId = bookId,
+                                nodeId = string.Empty
+                            };
+                            innerRefList.Add(inRef);
+                        }
                     }
                 }
             }
-            return nct;
+            return this;
         }
     }
 
