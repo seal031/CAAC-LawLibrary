@@ -618,6 +618,7 @@ namespace CAAC_LawLibrary.Utity
 
     public sealed class Base64
     {
+        
         /// <summary>
         /// Base64解密
         /// </summary>

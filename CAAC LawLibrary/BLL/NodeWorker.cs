@@ -213,7 +213,7 @@ namespace CAAC_LawLibrary.BLL
             {
                 if (part.Contains("<s data-obj="))
                 {
-                    NodeTag tag = new NodeTag();
+                    //NodeTag tag = new NodeTag();
                     string s = part.Substring(part.IndexOf("<s data-obj="));
                     string selectedText = s.Substring(s.IndexOf(">") + 1);
                     //tag.TagContent = s.Substring(s.IndexOf(">") + 1);
@@ -227,37 +227,93 @@ namespace CAAC_LawLibrary.BLL
                         List<string> kv = dataObject.Split(new string[] {"-" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                         if (kv.Count > 1)
                         {
-                            tag.TagType = kv[0];
-                            tag.TagNode = selectedText;
-                            tag.color = getColor(tag.TagType);
-                            tag.TagType = getTypeCN(tag.TagType);
+                            //tag.TagType = kv[0];
+                            //tag.TagNode = selectedText;
+                            //tag.color = getColor(tag.TagType);
+                            //tag.TagType = getTypeCN(tag.TagType);
                             if (kv[0] == "ref")
                             {
-                                List<string> list1 = new List<string>();
-                                foreach (string partStr in kv[1].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+                                //List<string> list1 = new List<string>();
+                                //foreach (string partStr in kv[1].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+                                //{
+                                //    foreach (string subpartStr in partStr.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                                //    {
+                                //        string lawId = string.Empty;
+                                //        if (subpartStr.Contains("@"))
+                                //        {
+                                //            lawId = subpartStr.Substring(0, subpartStr.IndexOf("@"));
+                                //        }
+                                //        else
+                                //        {
+                                //            lawId = subpartStr;
+                                //        }
+                                //        Law law = db.getLawById(lawId);
+                                //        if (law != null)
+                                //        {
+                                //            list1.Add(law.title);
+                                //        }
+                                //    }
+                                //}
+                                //tag.TagContent = string.Join(",", list1);
+                                foreach (string partStr in kv[1].Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries))
                                 {
-                                    foreach (string subpartStr in partStr.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                                    string typeStr = string.Empty;
+                                    string contentStr = string.Empty;
+                                    if (partStr.Contains("_"))
                                     {
-                                        string lawId = string.Empty;
-                                        if (subpartStr.Contains("@"))
+                                        typeStr = partStr.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                                        contentStr = partStr.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                                    }
+                                    foreach (string bookStr in contentStr.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries))
+                                    {
+                                        string bookId = string.Empty;
+                                        string nodeId = string.Empty;
+                                        if (bookStr.Contains("@"))//含bookid和nodeid
                                         {
-                                            lawId = subpartStr.Substring(0, subpartStr.IndexOf("@"));
+                                            bookId = bookStr.Split(new string[] { "@" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                                            Law law = db.getLawById(bookId);
+                                            string nodeStr = bookStr.Split(new string[] { "@" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                                            foreach (string nodeIdStr in nodeStr.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries))
+                                            {
+                                                nodeId = nodeIdStr;
+                                                NodeTag tag = new NodeTag();
+                                                if (typeStr.Contains("OUT"))//外部引用
+                                                {
+                                                    tag.color = getColor("ref");
+                                                    tag.TagType = getTypeCN(typeStr);
+                                                    tag.TagNode = bookId;
+                                                    tag.TagContent = nodeId;
+                                                    tags.Add(tag);
+                                                }
+                                                else//内部引用
+                                                {
+                                                    CAAC_LawLibrary.Entity.Node tagNode = db.getNodeById(nodeId);
+                                                    if (law != null) tag.TagContent = law.title;
+                                                    if (tagNode != null) { tag.TagContent += node.title; tag.TagNode = tagNode.title; }
+                                                    tag.color = getColor("ref");
+                                                    tag.TagType = getTypeCN(typeStr);
+                                                    tag.OuterHTML = getContentButtonHtml(kv[0], node.Id, selectedText, kv[1]);
+                                                    tags.Add(tag);
+                                                }
+                                            }
                                         }
-                                        else
+                                        else//只含bookid
                                         {
-                                            lawId = subpartStr;
-                                        }
-                                        Law law = db.getLawById(lawId);
-                                        if (law != null)
-                                        {
-                                            list1.Add(law.title);
+                                            bookId = bookStr;
+                                            Law law = db.getLawById(bookId);
+                                            NodeTag tag = new NodeTag();
+                                            if (law != null) { tag.TagContent = law.title; tag.TagNode = law.title; }
+                                            tag.color = getColor("ref");
+                                            tag.TagType = getTypeCN(typeStr);
+                                            tag.OuterHTML = getContentButtonHtml(kv[0], node.Id, selectedText, kv[1]);
+                                            tags.Add(tag);
                                         }
                                     }
                                 }
-                                tag.TagContent = string.Join(",", list1);
                             }
                             else
                             {
+                                NodeTag tag = new NodeTag();
                                 List<string> list2 = new List<string>();
                                 foreach (string s1 in kv[1].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                                 {
@@ -272,12 +328,11 @@ namespace CAAC_LawLibrary.BLL
                                     }
                                 }
                                 tag.TagContent = string.Join(",",list2);
+                                tag.OuterHTML = getContentButtonHtml(kv[0], node.Id,selectedText,kv[1]);
+                                tags.Add(tag);
                             }
-                            tag.OuterHTML = getContentButtonHtml(kv[0], node.Id,selectedText,kv[1]);
                         }
                     }
-
-                    tags.Add(tag);
                 }
             }
             return tags;
@@ -293,7 +348,7 @@ namespace CAAC_LawLibrary.BLL
                     return Color.Orange;
                 case "class":
                     return Color.Gray;
-                case "":
+                case "ref":
                     return Color.Blue;
                 default:
                     return Color.White;
@@ -422,6 +477,26 @@ namespace CAAC_LawLibrary.BLL
                     return "许";
                 case "refQIANGZHI":
                     return "强";
+                case "refOUTRELATED":
+                    return "依";
+                case "refOUTPUNISH":
+                    return "罚";
+                case "refOUTCHUFA":
+                    return "政";
+                case "refOUTCHUFEN":
+                    return "律";
+                case "refOUTXINGZHENG":
+                    return "手";
+                case "refOUTZEREN":
+                    return "他";
+                case "refOUTXINGYONG":
+                    return "信";
+                case "refOUTXUKE":
+                    return "许";
+                case "refOUTQIANGZHI":
+                    return "强";
+                case "ref":
+                    return "引";
                 default:
                     return "";
             }
