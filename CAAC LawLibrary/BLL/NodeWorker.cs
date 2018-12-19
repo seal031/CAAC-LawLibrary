@@ -281,7 +281,7 @@ namespace CAAC_LawLibrary.BLL
                                                 {
                                                     tag.color = getColor("ref");
                                                     tag.TagType = getTypeCN(typeStr);
-                                                    tag.TagNode = bookId;
+                                                    tag.TagNode = Base64.DecodeBase64(bookId); //bookId;
                                                     tag.TagContent = nodeId;
                                                     tags.Add(tag);
                                                 }
@@ -452,7 +452,7 @@ namespace CAAC_LawLibrary.BLL
         private static string getTypeCN(string tagType)
         {
             switch (tagType)
-            {//todo
+            {
                 case "define":
                     return "定";
                 case "key":
@@ -639,8 +639,8 @@ namespace CAAC_LawLibrary.BLL
                                 OutterRef outRef = new BLL.NodeContentTag.OutterRef()
                                 {
                                     refType = typeStr,
-                                    title = bookId,
-                                    url = nodeId
+                                    title = Base64.DecodeBase64(bookId),// bookId,
+                                    url = Base64.DecodeBase64(nodeId), //nodeId
                                 };
                                 outterRefList.Add(outRef);
                             }
@@ -664,7 +664,7 @@ namespace CAAC_LawLibrary.BLL
                             OutterRef outRef = new BLL.NodeContentTag.OutterRef()
                             {
                                 refType = typeStr,
-                                title = bookId,
+                                title = Base64.DecodeBase64(bookId),//bookId,
                                 url = string.Empty
                             };
                             outterRefList.Add(outRef);
