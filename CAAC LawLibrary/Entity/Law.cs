@@ -119,7 +119,32 @@ namespace CAAC_LawLibrary.Entity
         [NotMapped]
         public int? versionNumber
         {
-            get { return int.Parse(version.Replace("R", "")); }
+            get
+            {
+                try
+                {
+                    return int.Parse(version.Replace("R", ""));
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        [NotMapped]
+        public DateTime orderDate
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.Parse(effectiveDate);
+                }
+                catch (Exception)
+                {
+                    return DateTime.Now;
+                }
+            }
         }
         /// <summary>
         /// 已下载的章节数量，用于重新打开程序后的继续下载

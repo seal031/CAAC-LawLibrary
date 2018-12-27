@@ -186,8 +186,8 @@ namespace CAAC_LawLibrary.UserControls
                 default:
                     break;
             }
-            lbl.Text =Base64.DecodeBase64(Encoding.Unicode,outRef.title.Replace("=","-"));
-            lbl.Tag = Base64.DecodeBase64(outRef.url.Replace("=", "-"));
+            lbl.Text =Base64.DecodeBase64(Encoding.Unicode,outRef.title);
+            lbl.Tag = Base64.DecodeBase64(outRef.url);
             lbl.Click += OutterLbl_Click;
             return lbl;
         }

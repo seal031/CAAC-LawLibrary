@@ -282,14 +282,35 @@ namespace CAAC_LawLibrary.BLL
                                                     tag.color = getColor("ref");
                                                     tag.TagType = getTypeCN(typeStr);
                                                     tag.TagNode = Base64.DecodeBase64(bookId); //bookId;
-                                                    tag.TagContent = nodeId;
+                                                    tag.TagContent = Base64.DecodeBase64(nodeId); //nodeId;
+                                                    tag.OuterHTML = getContentButtonHtml(kv[0], node.Id, selectedText, kv[1]);
                                                     tags.Add(tag);
                                                 }
                                                 else//内部引用
                                                 {
                                                     CAAC_LawLibrary.Entity.Node tagNode = db.getNodeById(nodeId);
                                                     if (law != null) tag.TagContent = law.title;
-                                                    if (tagNode != null) { tag.TagContent += node.title; tag.TagNode = tagNode.title; }
+                                                    if (tagNode != null)
+                                                    {
+                                                        tag.TagContent += node.title;
+                                                        tag.TagNode = string.IsNullOrEmpty(tagNode.title) ? (string.IsNullOrEmpty(tagNode.nodeNumber)?tagNode.content:tagNode.nodeNumber) : tagNode.title;
+
+                                                    }
+                                                    else//如果node在数据库中查不到，说明用户没有下载或打开过该法规，此时去接口中查node信息
+                                                    {
+                                                        if (Global.online == true)
+                                                        {
+                                                            if (RemoteWorker.getNodeDetail(new List<string>() { nodeId }))
+                                                            {
+                                                                tagNode = db.getNodeById(nodeId);
+                                                                if (tagNode != null)
+                                                                {
+                                                                    tag.TagContent += node.title;
+                                                                    tag.TagNode = tagNode.title;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                     tag.color = getColor("ref");
                                                     tag.TagType = getTypeCN(typeStr);
                                                     tag.OuterHTML = getContentButtonHtml(kv[0], node.Id, selectedText, kv[1]);
@@ -349,7 +370,7 @@ namespace CAAC_LawLibrary.BLL
                 case "class":
                     return Color.Gray;
                 case "ref":
-                    return Color.Blue;
+                    return Color.LightBlue;
                 default:
                     return Color.White;
             }
@@ -471,7 +492,7 @@ namespace CAAC_LawLibrary.BLL
                     return "手";
                 case "refZEREN":
                     return "他";
-                case "refXINGYONG":
+                case "refXINYONG":
                     return "信";
                 case "refXUKE":
                     return "许";
@@ -489,7 +510,7 @@ namespace CAAC_LawLibrary.BLL
                     return "手";
                 case "refOUTZEREN":
                     return "他";
-                case "refOUTXINGYONG":
+                case "refOUTXINYONG":
                     return "信";
                 case "refOUTXUKE":
                     return "许";

@@ -128,7 +128,7 @@ namespace CAAC_LawLibrary
 
         public void addVerionDropDown()
         {
-            foreach (Law law in laws.OrderByDescending(l=>l.versionNumber))
+            foreach (Law law in laws.OrderByDescending(l=>l.orderDate))
             {
                 ccb_version.Items.Add(new DictionaryEntry { Value = law.version, Key = law.lawId });
             }

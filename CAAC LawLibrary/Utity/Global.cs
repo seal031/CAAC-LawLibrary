@@ -628,14 +628,30 @@ namespace CAAC_LawLibrary.Utity
         public static string DecodeBase64(Encoding encode, string result)
         {
             string decode = "";
-            byte[] bytes = Convert.FromBase64String(result);
             try
             {
+                byte[] bytes = Convert.FromBase64String(result.Replace("=", "+"));
                 decode = encode.GetString(bytes);
             }
             catch
             {
-                decode = result;
+                try
+                {
+                    byte[] bytes = Convert.FromBase64String(result.Replace("=", "+") + "=");
+                    decode = encode.GetString(bytes);
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        byte[] bytes = Convert.FromBase64String(result.Replace("=", "+") + "==");
+                        decode = encode.GetString(bytes);
+                    }
+                    catch (Exception)
+                    {
+                        decode = result;
+                    }
+                }
             }
             return decode;
         }

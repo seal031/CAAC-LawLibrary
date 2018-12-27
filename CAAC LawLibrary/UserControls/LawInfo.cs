@@ -60,7 +60,7 @@ namespace CAAC_LawLibrary.UserControls
             laws = _laws;
             if (_laws != null)
             {
-                foreach (Law law in _laws.OrderByDescending(l=>l.versionNumber))
+                foreach (Law law in _laws.OrderByDescending(l=>l.orderDate))
                 {
                     ccb_banben.Items.Add(new DictionaryEntry { Value = law.version, Key = law.lawId });
                 }

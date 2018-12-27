@@ -86,7 +86,6 @@ E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规�
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规库单机版客户端.pdb
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航智能法规库单机版客户端.exe
 E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\民航智能法规库单机版客户端.pdb
-E:\GitHubProjects\CAAC-LawLibrary\CAAC LawLibrary\obj\Debug\CAAC LawLibrary.csprojResolveAssemblyReference.cache
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规库单机版客户端.exe.config
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规库单机版客户端.exe
 C:\Users\seal\Documents\visual studio 2015\Projects\CAAC LawLibrary\CAAC-LawLibrary\CAAC LawLibrary\bin\Debug\民航智能法规库单机版客户端.pdb

@@ -303,8 +303,11 @@ namespace CAAC_LawLibrary
         //点击右侧列表定位
         private void dgw_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string outerHTML = dgw.Rows[e.RowIndex].Cells["OuterHTML"].Value.ToString();
-            findLocation(outerHTML, true);
+            if (dgw.Rows[e.RowIndex].Cells["OuterHTML"].Value != null)
+            {
+                string outerHTML = dgw.Rows[e.RowIndex].Cells["OuterHTML"].Value.ToString();
+                findLocation(outerHTML, true);
+            }
         }
 
         //private void addTagLabels()
