@@ -630,21 +630,21 @@ namespace CAAC_LawLibrary.Utity
             string decode = "";
             try
             {
-                byte[] bytes = Convert.FromBase64String(result.Replace("=", "+"));
+                byte[] bytes = Convert.FromBase64String(result.Replace("=", "+").Replace("_","/"));
                 decode = encode.GetString(bytes);
             }
             catch
             {
                 try
                 {
-                    byte[] bytes = Convert.FromBase64String(result.Replace("=", "+") + "=");
+                    byte[] bytes = Convert.FromBase64String(result.Replace("=", "+").Replace("_", "/") + "=");
                     decode = encode.GetString(bytes);
                 }
                 catch (Exception)
                 {
                     try
                     {
-                        byte[] bytes = Convert.FromBase64String(result.Replace("=", "+") + "==");
+                        byte[] bytes = Convert.FromBase64String(result.Replace("=", "+").Replace("_", "/") + "==");
                         decode = encode.GetString(bytes);
                     }
                     catch (Exception)

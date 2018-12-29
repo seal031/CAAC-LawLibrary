@@ -223,8 +223,8 @@ namespace CAAC_LawLibrary.BLL
                     string dataObject = string.Empty;
                     if(eIndex>sIndex)
                     {
-                       dataObject= s.Substring(sIndex, eIndex - sIndex);
-                        List<string> kv = dataObject.Split(new string[] {"-" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                        dataObject= s.Substring(sIndex, eIndex - sIndex);
+                        List<string> kv = dataObject.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                         if (kv.Count > 1)
                         {
                             //tag.TagType = kv[0];
@@ -259,10 +259,10 @@ namespace CAAC_LawLibrary.BLL
                                 {
                                     string typeStr = string.Empty;
                                     string contentStr = string.Empty;
-                                    if (partStr.Contains("_"))
+                                    if (partStr.Contains("=="))//2018.12.28 分隔符替换为==
                                     {
-                                        typeStr = partStr.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[0];
-                                        contentStr = partStr.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                                        typeStr = partStr.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                                        contentStr = partStr.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries)[1];
                                     }
                                     foreach (string bookStr in contentStr.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries))
                                     {
@@ -639,10 +639,10 @@ namespace CAAC_LawLibrary.BLL
             {
                 string typeStr = string.Empty;
                 string partStr = part;
-                if (part.Contains("_"))
+                if (part.Contains("=="))//2018.12.28 分隔符替换为==
                 {
-                    typeStr = part.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[0];
-                    partStr= part.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                    typeStr = part.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                    partStr= part.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries)[1];
                 }
                 foreach (string bookStr in partStr.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries))
                 {
