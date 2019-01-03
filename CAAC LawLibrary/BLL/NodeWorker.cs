@@ -292,9 +292,13 @@ namespace CAAC_LawLibrary.BLL
                                                     if (law != null) tag.TagContent = law.title;
                                                     if (tagNode != null)
                                                     {
-                                                        tag.TagContent += node.title;
+                                                        tag.TagContent += string.IsNullOrEmpty(tagNode.nodeNumber) ? "" : "-" + tagNode.nodeNumber;
                                                         tag.TagNode = string.IsNullOrEmpty(tagNode.title) ? (string.IsNullOrEmpty(tagNode.nodeNumber)?tagNode.content:tagNode.nodeNumber) : tagNode.title;
+                                                        string tagNodeStr = string.Empty;
+                                                        if (string.IsNullOrEmpty(tagNode.title))
+                                                        {
 
+                                                        }
                                                     }
                                                     else//如果node在数据库中查不到，说明用户没有下载或打开过该法规，此时去接口中查node信息
                                                     {
@@ -305,7 +309,7 @@ namespace CAAC_LawLibrary.BLL
                                                                 tagNode = db.getNodeById(nodeId);
                                                                 if (tagNode != null)
                                                                 {
-                                                                    tag.TagContent += node.title;
+                                                                    tag.TagContent += string.IsNullOrEmpty(tagNode.nodeNumber) ? "" : "-" + tagNode.nodeNumber;
                                                                     tag.TagNode = tagNode.title;
                                                                 }
                                                             }

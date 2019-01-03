@@ -240,13 +240,20 @@ namespace CAAC_LawLibrary.UserControls
             if (law != null)
             {
                 lbl.Text = law.title;
+                if (string.IsNullOrEmpty(law.buhao) == false)
+                {
+                    lbl.Text += "(" + law.buhao + ")";
+                }
             }
             if (string.IsNullOrEmpty(inRef.nodeId) == false)
             {
                 Node node = db.getNodeById(inRef.nodeId);
                 if (node != null)
                 {
-                    lbl.Text += node.title;
+                    if (string.IsNullOrEmpty(node.nodeNumber) == false)
+                    {
+                        lbl.Text += "-" + node.nodeNumber;
+                    }
                 }
             }
             lbl.Tag = law;
