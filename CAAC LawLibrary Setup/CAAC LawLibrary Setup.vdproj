@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_00923C10151F4C5E8C92E2B8482CA124"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_37C6E7D3D15194ABBD02FA6D40EB5274"
         "OwnerKey" = "8:_8B84510257A74929941981839891E4AA"
         "MsmSig" = "8:_UNDEFINED"
@@ -22,12 +28,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3BEC8619DC77487E8426BFA5BBF8400C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_414057708A5A4B8BA296CEDB10803563"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -81,13 +81,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D7CF681ABBB043FB85693F055B5C890F"
+        "MsmKey" = "8:_D7BA9A0D3C4D4E64AE15109A5F972AF7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F6F9F49C49E5446E858F741DD8E527CD"
+        "MsmKey" = "8:_D7CF681ABBB043FB85693F055B5C890F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -228,6 +228,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00923C10151F4C5E8C92E2B8482CA124"
+            {
+            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\db.sqlite"
+            "TargetName" = "8:db.sqlite"
+            "Tag" = "8:"
+            "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_37C6E7D3D15194ABBD02FA6D40EB5274"
             {
             "AssemblyRegister" = "3:1"
@@ -274,26 +294,6 @@
                 }
             "SourcePath" = "8:..\\packages\\System.Data.SQLite.Core.1.0.108.0\\lib\\net45\\System.Data.SQLite.dll"
             "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_414057708A5A4B8BA296CEDB10803563"
-            {
-            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\民航智能法规库单机版客户端.exe.config"
-            "TargetName" = "8:民航智能法规库单机版客户端.exe.config"
             "Tag" = "8:"
             "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
             "Condition" = "8:"
@@ -505,10 +505,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D7CF681ABBB043FB85693F055B5C890F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D7BA9A0D3C4D4E64AE15109A5F972AF7"
             {
-            "SourcePath" = "8:..\\packages\\System.Data.SQLite.Core.1.0.108.0\\build\\net45\\x86\\SQLite.Interop.dll"
-            "TargetName" = "8:SQLite.Interop.dll"
+            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\民航智能法规库单机版客户端.exe.config"
+            "TargetName" = "8:民航智能法规库单机版客户端.exe.config"
             "Tag" = "8:"
             "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
             "Condition" = "8:"
@@ -525,10 +525,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F6F9F49C49E5446E858F741DD8E527CD"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D7CF681ABBB043FB85693F055B5C890F"
             {
-            "SourcePath" = "8:..\\CAAC LawLibrary\\bin\\Debug\\db.sqlite"
-            "TargetName" = "8:db.sqlite"
+            "SourcePath" = "8:..\\packages\\System.Data.SQLite.Core.1.0.108.0\\build\\net45\\x86\\SQLite.Interop.dll"
+            "TargetName" = "8:SQLite.Interop.dll"
             "Tag" = "8:"
             "Folder" = "8:_198C58D2941F48AA996BE4A8CC2E8CA6"
             "Condition" = "8:"
@@ -537,7 +537,7 @@
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
-            "Permanent" = "11:TRUE"
+            "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
@@ -624,7 +624,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:民航智能法规库单机版客户端"
         "ProductCode" = "8:{8ED75EF2-839D-4B24-99F6-CE4A75BC2474}"
-        "PackageCode" = "8:{03C00109-39DD-475C-91F2-D10D15BBC2D0}"
+        "PackageCode" = "8:{CA6D6897-E318-4D96-B277-DA2F89166A2B}"
         "UpgradeCode" = "8:{A4EBE806-0FCD-42FC-BCF1-6EED10A5A9D7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

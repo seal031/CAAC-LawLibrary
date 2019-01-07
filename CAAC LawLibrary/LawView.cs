@@ -30,7 +30,6 @@ namespace CAAC_LawLibrary
         public Form parentForm;
         private int commentShownCount = 0;
         bool bindState = false;
-        RefPanel refPanel = new UserControls.RefPanel();
 
         [DllImport("user32.dll")]
         private static extern IntPtr WindowFromPoint(Point pt);
@@ -359,6 +358,7 @@ namespace CAAC_LawLibrary
                     {
                         if (item.OuterHtml.ToLower().Contains(title)||content.Contains(ClearChar(title).ToLower()))
                         {
+                            //MessageBox.Show("找到了");
                             Point point = GetPointHead(item);
                             wb.Document.Window.ScrollTo(0, point.Y-15);//滚动条至指定位置
                             //break;
@@ -573,6 +573,7 @@ namespace CAAC_LawLibrary
             if (caption == "引用"|| caption == "依赖" || caption == "罚则" || caption == "行政处罚" || caption == "纪律处分" || caption == "行政手段" || caption == "其他责任" || caption == "信用手段" || caption == "许可手段" || caption == "行政强制")
             {
                 //bt.SetBalloonText(wb, "<input type=\"text\" onclick=\"alert(1)\" name=\"firstname\">");
+                RefPanel refPanel = new UserControls.RefPanel();
                 refPanel.setDb(db);
                 refPanel.setParentForm(this);
                 //refPanel.setText(_text);

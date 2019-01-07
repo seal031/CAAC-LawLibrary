@@ -281,8 +281,8 @@ namespace CAAC_LawLibrary.BLL
                                                 {
                                                     tag.color = getColor("ref");
                                                     tag.TagType = getTypeCN(typeStr);
-                                                    tag.TagNode = Base64.DecodeBase64(bookId); //bookId;
-                                                    tag.TagContent = Base64.DecodeBase64(nodeId); //nodeId;
+                                                    tag.TagNode = selectedText;//Base64.DecodeBase64(bookId); //bookId;
+                                                    tag.TagContent = Base64.DecodeBase64(bookId); //Base64.DecodeBase64(nodeId); //nodeId;
                                                     tag.OuterHTML = getContentButtonHtml(kv[0], node.Id, selectedText, kv[1]);
                                                     tags.Add(tag);
                                                 }
@@ -293,7 +293,7 @@ namespace CAAC_LawLibrary.BLL
                                                     if (tagNode != null)
                                                     {
                                                         tag.TagContent += string.IsNullOrEmpty(tagNode.nodeNumber) ? "" : "-" + tagNode.nodeNumber;
-                                                        tag.TagNode = string.IsNullOrEmpty(tagNode.title) ? (string.IsNullOrEmpty(tagNode.nodeNumber)?tagNode.content:tagNode.nodeNumber) : tagNode.title;
+                                                        tag.TagNode = selectedText;//string.IsNullOrEmpty(tagNode.title) ? (string.IsNullOrEmpty(tagNode.nodeNumber)?tagNode.content:tagNode.nodeNumber) : tagNode.title;
                                                         string tagNodeStr = string.Empty;
                                                         if (string.IsNullOrEmpty(tagNode.title))
                                                         {
@@ -310,7 +310,7 @@ namespace CAAC_LawLibrary.BLL
                                                                 if (tagNode != null)
                                                                 {
                                                                     tag.TagContent += string.IsNullOrEmpty(tagNode.nodeNumber) ? "" : "-" + tagNode.nodeNumber;
-                                                                    tag.TagNode = tagNode.title;
+                                                                    tag.TagNode = selectedText;//tagNode.title;
                                                                 }
                                                             }
                                                         }
@@ -327,7 +327,11 @@ namespace CAAC_LawLibrary.BLL
                                             bookId = bookStr;
                                             Law law = db.getLawById(bookId);
                                             NodeTag tag = new NodeTag();
-                                            if (law != null) { tag.TagContent = law.title; tag.TagNode = law.title; }
+                                            if (law != null)
+                                            {
+                                                tag.TagContent = law.title;
+                                                tag.TagNode = selectedText;//law.title;
+                                            }
                                             tag.color = getColor("ref");
                                             tag.TagType = getTypeCN(typeStr);
                                             tag.OuterHTML = getContentButtonHtml(kv[0], node.Id, selectedText, kv[1]);
@@ -406,7 +410,8 @@ namespace CAAC_LawLibrary.BLL
                     return " <input onclick=\"btnclick(" + nodeId + ",'罚','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #0000ff\" type=button value=罚>";
                 case "ref":
                     //return " <input onclick=\"btnclick(" + nodeId + ",'引','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=引>";
-                    return " <input onclick=\"btnclick(" + nodeId + ",'引','" + selectedText + "','" + text + "')\" " + getStyle(tagType) + " type=button value=引>";
+                    //return " <input onclick=\"btnclick(" + nodeId + ",'引','" + selectedText + "','" + text + "')\" " + getStyle(tagType) + " type=button value=引>";
+                    return " <input " + getStyle(tagType) + "onclick=\"btnclick(" + nodeId + ",'引','" + selectedText + "','" + text + "')\" " + " type=button value=引>";
                 case "refCHUFA":
                     return " <input onclick=\"btnclick(" + nodeId + ",'政','" + selectedText + "','" + text + "')\" style=\"height: 25px; width: 25px; background-color: #ffff00\" type=button value=政>";
                 case "refCHUFEN":
@@ -578,7 +583,8 @@ namespace CAAC_LawLibrary.BLL
 
                 //    break;
             }
-            return "onmousemove=\"this.className = '" + styleName + "_out'\" onmouseout=\"this.className = '" + styleName + "'\"" + " class=\"" + styleName + "\"";
+            //return "onmousemove=\"this.className = '" + styleName + "_out'\" onmouseout=\"this.className = '" + styleName + "'\"" + " class=\"" + styleName + "\"";
+            return " class=\"" + styleName + "\"" + " onmouseout=\"this.className = '" + styleName + "'\"" + " onmousemove=\"this.className = '" + styleName + "_out'\"";
         }
     }
 
