@@ -121,7 +121,10 @@ namespace CAAC_LawLibrary.BLL
                         else
                         {
                             treeNode.Image = global::CAAC_LawLibrary.Properties.Resources.Document;
-                            perTreeNode.Parent.Parent.Nodes.Add(treeNode);
+                            int levelDis = (perTreeNode.Tag as CAAC_LawLibrary.Entity.Node).nodeLevel - node.nodeLevel;
+                            if (levelDis == 1) { perTreeNode.Parent.Parent.Nodes.Add(treeNode); }
+                            if (levelDis == 2) { perTreeNode.Parent.Parent.Parent.Nodes.Add(treeNode); }
+                            if (levelDis == 3) { perTreeNode.Parent.Parent.Parent.Parent.Nodes.Add(treeNode); }
                         }
                     }
                 }

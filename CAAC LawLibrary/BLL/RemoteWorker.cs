@@ -118,7 +118,7 @@ namespace CAAC_LawLibrary.BLL
         /// </summary>
         public static int getLawResponse()
         {
-            string laws = HttpWorker.HttpGet(Global.AllBooksApi, "beginTime=" + UTC.ConvertDateTimeInt(new DateTime(2010, 01, 01)).ToString());
+            string laws = HttpWorker.HttpGet(Global.AllBooksApi, "beginTime=" + UTC.ConvertDateTimeInt(new DateTime(2010, 01, 01)).ToString()+"&pageSize=-1");
             if (laws == "error")
             {
                 return -1;

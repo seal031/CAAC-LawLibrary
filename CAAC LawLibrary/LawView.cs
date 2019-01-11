@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -583,6 +584,20 @@ namespace CAAC_LawLibrary
                 Point p1 = Control.MousePosition;
                 p1.Offset(-lawInfo1.Width, -pl_title.Height);
                 refPanel.Location = p1;
+                if (refPanel.Location.Y + refPanel.Height > this.Height)
+                {
+                    if (refPanel.Location.Y < this.Height / 2)
+                    {
+                        refPanel.Height = this.Height - refPanel.Location.Y;
+                    }
+                    else
+                    {
+                        int add = this.Height / 2;
+                        p1.Offset(0, -add);
+                        refPanel.Location = p1;
+                        refPanel.Height = this.Height - refPanel.Location.Y + add;
+                    }
+                }
                 refPanel.Show();
                 return;
             }
@@ -642,15 +657,25 @@ namespace CAAC_LawLibrary
             if (keyword == "") return;  
             if (document.selection.type.ToLower() != "none")
             {
-                searchRange = (IHTMLTxtRange) document.selection.createRange();
-                searchRange.collapse(true);
-                searchRange.moveStart("character", 1);
+                searchRange = (IHTMLTxtRange) document.selection.createRange(); 
+                if (findIndex > 0)
+                {
+                    searchRange.moveStart("character", 1);
+                    searchRange.collapse(true);
+                }
+                else
+                {
+                    searchRange.moveStart("character", -1);
+                    searchRange.moveEnd("character", -100000);
+                    searchRange.collapse(true);
+                }
             }
             else
             {
                 IHTMLBodyElement body = (IHTMLBodyElement) document.body;
                 searchRange = (IHTMLTxtRange) body.createTextRange();
-            } 
+            }
+            Trace.WriteLine(searchRange.text);
             if (searchRange.findText(keyword, findIndex, 0))// 如果找到了，就选取（高亮显示）该关键字；否则弹出消息。 
             {
                 searchRange.select();

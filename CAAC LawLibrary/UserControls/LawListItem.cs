@@ -77,6 +77,7 @@ namespace CAAC_LawLibrary
 
         private void LawListItem_Load(object sender, EventArgs e)
         {
+            ccb_version.DropDownWidth = ccb_version.Width * 3;
             showInfo();
         }
 

@@ -29,7 +29,7 @@ namespace CAAC_LawLibrary.UserControls
 
         private void LawInfo_Load(object sender, EventArgs e)
         {
-            
+            ccb_banben.DropDownWidth = ccb_banben.Width * 3;
         }
 
         public void fillLawInfo()

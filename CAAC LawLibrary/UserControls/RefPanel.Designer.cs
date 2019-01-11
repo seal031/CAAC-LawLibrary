@@ -37,7 +37,7 @@
             // 
             this.lbl_close.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_close.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_close.Location = new System.Drawing.Point(383, 2);
+            this.lbl_close.Location = new System.Drawing.Point(3, 2);
             this.lbl_close.Name = "lbl_close";
             this.lbl_close.Size = new System.Drawing.Size(20, 23);
             this.lbl_close.TabIndex = 0;
@@ -75,7 +75,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_close);
             this.Name = "RefPanel";
-            this.Size = new System.Drawing.Size(400, 85);
+            this.Size = new System.Drawing.Size(403, 99);
             this.ResumeLayout(false);
             this.PerformLayout();
 

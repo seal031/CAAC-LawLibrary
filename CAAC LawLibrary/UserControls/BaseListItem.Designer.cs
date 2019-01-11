@@ -72,12 +72,11 @@
             // 
             // lbl_name
             // 
-            this.lbl_name.AutoSize = true;
             this.lbl_name.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_name.Location = new System.Drawing.Point(916, 18);
+            this.lbl_name.Location = new System.Drawing.Point(916, 4);
             this.lbl_name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(39, 20);
+            this.lbl_name.Size = new System.Drawing.Size(230, 45);
             this.lbl_name.TabIndex = 0;
             this.lbl_name.Text = "名字";
             // 
@@ -195,7 +194,6 @@
             this.Name = "BaseListItem";
             this.Size = new System.Drawing.Size(1333, 95);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);

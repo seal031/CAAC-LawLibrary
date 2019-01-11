@@ -98,11 +98,12 @@
             // 
             // lbl_linghao
             // 
+            this.lbl_linghao.AutoSize = true;
             this.lbl_linghao.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_linghao.Location = new System.Drawing.Point(85, 77);
+            this.lbl_linghao.Location = new System.Drawing.Point(55, 78);
             this.lbl_linghao.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_linghao.Name = "lbl_linghao";
-            this.lbl_linghao.Size = new System.Drawing.Size(173, 16);
+            this.lbl_linghao.Size = new System.Drawing.Size(0, 20);
             this.lbl_linghao.TabIndex = 5;
             // 
             // label6
