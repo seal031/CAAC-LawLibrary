@@ -55,7 +55,7 @@
             this.panel1.Controls.Add(this.btn_cancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 366);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(509, 58);
             this.panel1.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             this.btn_submit.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_submit.Location = new System.Drawing.Point(269, 14);
-            this.btn_submit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_submit.Margin = new System.Windows.Forms.Padding(4);
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(100, 29);
             this.btn_submit.TabIndex = 1;
@@ -76,7 +76,7 @@
             // 
             this.btn_cancel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_cancel.Location = new System.Drawing.Point(393, 14);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(100, 29);
             this.btn_cancel.TabIndex = 0;
@@ -90,7 +90,7 @@
             this.panel2.Controls.Add(this.rtb_suggest);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 35);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(509, 331);
             this.panel2.TabIndex = 2;
@@ -100,7 +100,7 @@
             this.rtb_remark.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtb_remark.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rtb_remark.Location = new System.Drawing.Point(0, 168);
-            this.rtb_remark.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtb_remark.Margin = new System.Windows.Forms.Padding(4);
             this.rtb_remark.Name = "rtb_remark";
             this.rtb_remark.Size = new System.Drawing.Size(509, 163);
             this.rtb_remark.TabIndex = 1;
@@ -111,7 +111,7 @@
             this.rtb_suggest.Dock = System.Windows.Forms.DockStyle.Top;
             this.rtb_suggest.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rtb_suggest.Location = new System.Drawing.Point(0, 0);
-            this.rtb_suggest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtb_suggest.Margin = new System.Windows.Forms.Padding(4);
             this.rtb_suggest.Name = "rtb_suggest";
             this.rtb_suggest.Size = new System.Drawing.Size(509, 155);
             this.rtb_suggest.TabIndex = 0;
@@ -126,12 +126,13 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "AddNewSuggest";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "意见编写";
+            this.Load += new System.EventHandler(this.AddNewSuggest_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

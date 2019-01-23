@@ -31,6 +31,10 @@ namespace CAAC_LawLibrary
                 MessageBox.Show("用户名密码不能为空");
                 return;
             }
+            if (getToken(cbb_user.Text.Trim(), txt_password.Text.Trim())==false)
+            {
+                return;
+            }
             if (login(cbb_user.Text.Trim(), txt_password.Text.Trim()))
             {
                 Global.user.Name = cbb_user.Text.Trim();
@@ -109,6 +113,18 @@ namespace CAAC_LawLibrary
                 return RemoteWorker.getloginResponse(username, password);
             else
                 return db.login(username, password);
+        }
+
+        public bool getToken(string username, string password)
+        {
+            if (Global.online)
+            {
+                return RemoteWorker.getTokenResponse(username, password);
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

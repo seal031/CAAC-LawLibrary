@@ -18,6 +18,7 @@ namespace CAAC_LawLibrary
         public string lawId;
         public string nodeId;
         private DbHelper db=new DbHelper();
+        Suggest suggest;
 
         public AddNewSuggest()
         {
@@ -31,15 +32,18 @@ namespace CAAC_LawLibrary
 
         private void btn_submit_Click(object sender, EventArgs e)
         {
-            Suggest suggest = new Entity.Suggest();
-            suggest.Id = Guid.NewGuid().ToString();
-            suggest.isLocal = "1";
-            suggest.lawId = lawId;
-            suggest.nodeId = nodeId;
+            if (suggest == null)
+            {
+                suggest = new Entity.Suggest();
+                suggest.Id = Guid.NewGuid().ToString();
+                suggest.isLocal = "1";
+                suggest.lawId = lawId;
+                suggest.nodeId = nodeId;
+                suggest.suggest_date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                suggest.userId = Global.user.Id;
+            }
             suggest.remark = rtb_remark.Text.Trim();
             suggest.suggest_content = rtb_suggest.Text.Trim();
-            suggest.suggest_date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            suggest.userId = Global.user.Id;
             bool commitResult;
             if (Global.online)//联网状态下直接提交，提交失败时保存在本地数据库
             {
@@ -63,6 +67,16 @@ namespace CAAC_LawLibrary
         private bool saveSuggestLocal(Suggest suggest)
         {
             return db.saveSuggest(suggest);
+        }
+
+        private void AddNewSuggest_Load(object sender, EventArgs e)
+        {
+            suggest = db.getLocalSuggest(lawId, nodeId);
+            if (suggest != null)
+            {
+                rtb_suggest.Text = suggest.suggest_content;
+                rtb_remark.Text = suggest.remark;
+            }
         }
     }
 }

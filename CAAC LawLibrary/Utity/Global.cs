@@ -1,4 +1,6 @@
-﻿using CAAC_LawLibrary.DAL;
+﻿using CAAC_LawLibrary.BLL;
+using CAAC_LawLibrary.BLL.Entity;
+using CAAC_LawLibrary.DAL;
 using CAAC_LawLibrary.Entity;
 using System;
 using System.Collections;
@@ -25,6 +27,7 @@ namespace CAAC_LawLibrary.Utity
         public static string LoginUrl = ConfigWorker.GetConfigValue("LoginUrl");
         public static string WorkerInfoUrl = ConfigWorker.GetConfigValue("WorkerInfoUrl");
         public static string WorkerRulesUrl = ConfigWorker.GetConfigValue("WorkerRules");
+        public static string TokenUrl = ConfigWorker.GetConfigValue("TokenUrl");
         public static string ConsultCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("ConsultCommit");
         public static string OpinionListApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionList");
         public static string OpinionCommitApi = RemoteUrl + ConfigWorker.GetConfigValue("OpinionCommit");
@@ -49,6 +52,7 @@ namespace CAAC_LawLibrary.Utity
         static DbHelper db = new DbHelper();
 
         public static User user { get; set; }
+        public static TokenResponse token { get; set; }
 
         static Global()
         {
@@ -182,9 +186,24 @@ namespace CAAC_LawLibrary.Utity
                 request.ReadWriteTimeout = 1000 * 30;
                 request.Method = "GET";
                 request.ContentType = "text/html;charset=UTF-8";
-                request.Headers.Add("X-Appid", Global.Appid);
-                request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
-                request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
+                //request.Headers.Add("X-Appid", Global.Appid);
+                //request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
+                //request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
+                if (Global.token != null)
+                {
+                    if ((DateTime.Now - Global.token.tokenTime).Minutes > 120)
+                    {
+                        if (RemoteWorker.getTokenResponse(Global.user.Name, Global.user.Password))
+                        { }
+                        else
+                        {
+                            MessageBox.Show("Token已超时，重新获取Token失败，系统切换至离线状态");
+                            Global.online = false;
+                            return "error";
+                        }
+                    }
+                    request.Headers.Add("API_TOKEN", Global.token.access_token);
+                }
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream myResponseStream = response.GetResponseStream();
@@ -215,10 +234,26 @@ namespace CAAC_LawLibrary.Utity
             request.Method = "POST";
             request.ContentType = "text/html;charset=utf-8";
             //request.ContentLength = Encoding.UTF8.GetByteCount(postDataStr);
-            request.Headers.Add("X-Appid", Global.Appid);
-            request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
-            request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey+ UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
-            
+            //request.Headers.Add("X-Appid", Global.Appid);
+            //request.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
+            //request.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey+ UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
+
+            if (Global.token != null)
+            {
+                if ((DateTime.Now - Global.token.tokenTime).Minutes > 120)
+                {
+                    if (RemoteWorker.getTokenResponse(Global.user.Name, Global.user.Password))
+                    { }
+                    else
+                    {
+                        MessageBox.Show("Token已超时，重新获取Token失败，系统切换至离线状态");
+                        Global.online = false;
+                        return "error";
+                    }
+                }
+                request.Headers.Add("API_TOKEN", Global.token.access_token);
+            }
+
             Stream myRequestStream = request.GetRequestStream();
             StreamWriter myStreamWriter = new StreamWriter(myRequestStream, Encoding.GetEncoding("utf-8"));
             myStreamWriter.Write(postDataStr);
@@ -246,25 +281,41 @@ namespace CAAC_LawLibrary.Utity
             try
             {
                 string result = "";
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-                req.Method = "POST";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "POST";
                 //req.ContentType = "application/x-www-form-urlencoded";
-                req.ContentType = "application/json";
-                req.Headers.Add("X-Appid", Global.Appid);
-                req.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
-                req.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
+                request.ContentType = "application/json";
+                //req.Headers.Add("X-Appid", Global.Appid);
+                //req.Headers.Add("X-CurTime", UTC.ConvertDateTimeInt(DateTime.Now).ToString());
+                //req.Headers.Add("X-CheckSum", GetMD5String(Global.Appkey + UTC.ConvertDateTimeInt(DateTime.Now).ToString()));
+
+                if (Global.token != null)
+                {
+                    if ((DateTime.Now - Global.token.tokenTime).Minutes > 120)
+                    {
+                        if (RemoteWorker.getTokenResponse(Global.user.Name, Global.user.Password))
+                        { }
+                        else
+                        {
+                            MessageBox.Show("Token已超时，重新获取Token失败，系统切换至离线状态");
+                            Global.online = false;
+                            return "error";
+                        }
+                    }
+                    request.Headers.Add("API_TOKEN", Global.token.access_token);
+                }
 
                 #region 添加Post 参数
                 byte[] data = Encoding.UTF8.GetBytes(content);
-                req.ContentLength = data.Length;
-                using (Stream reqStream = req.GetRequestStream())
+                request.ContentLength = data.Length;
+                using (Stream reqStream = request.GetRequestStream())
                 {
                     reqStream.Write(data, 0, data.Length);
                     reqStream.Close();
                 }
                 #endregion
 
-                HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+                HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
                 Stream stream = resp.GetResponseStream();
                 //获取响应内容
                 using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))

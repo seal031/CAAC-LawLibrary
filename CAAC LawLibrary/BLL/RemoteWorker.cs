@@ -55,6 +55,30 @@ namespace CAAC_LawLibrary.BLL
             }
         }
 
+        public static bool getTokenResponse(string username, string password)
+        {
+            string responseStr = HttpWorker.HttpGet(Global.TokenUrl, "appId=client&username=" + username + "&password=" + password);
+            try
+            {
+                TokenResponse response = TranslationWorker.ConvertStringToEntity<TokenResponse>(responseStr);
+                if (response.access_token == null)
+                {
+                    Global.token = null;
+                    MessageBox.Show("获取Token失败，错误信息："+response.errmsg);
+                    return false;
+                }
+                Global.token = response;
+                Global.token.tokenTime = DateTime.Now;
+                return true;
+            }
+            catch (Exception)
+            {
+                TokenResponse response = null;
+                Global.token = response;
+                return false;
+            }
+        }
+
         /// <summary>
         /// 用户登录
         /// </summary>

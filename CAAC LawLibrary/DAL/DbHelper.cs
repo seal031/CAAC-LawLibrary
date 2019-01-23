@@ -667,6 +667,13 @@ namespace CAAC_LawLibrary.DAL
                 return context.Suggest.Where(s => s.lawId == lawId && s.userId == userId && s.isLocal == "1").ToList();
             }
         }
+        public Suggest getLocalSuggest(string lawId, string nodeId)
+        {
+            using (SqliteContext context = new SqliteContext())
+            {
+                return context.Suggest.FirstOrDefault(s => s.lawId == lawId && s.nodeId == nodeId && s.userId == Global.user.Id);
+            }
+        }
 
 
         /// <summary>
@@ -687,7 +694,9 @@ namespace CAAC_LawLibrary.DAL
                     }
                     else
                     {
-                        old = suggest;
+                        //old = suggest;
+                        old.suggest_content = suggest.suggest_content;
+                        old.remark = suggest.remark;
                     }
                     context.SaveChanges();
                     return true;

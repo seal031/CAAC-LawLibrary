@@ -10,6 +10,20 @@ using System.Windows.Forms;
 
 namespace CAAC_LawLibrary.BLL.Entity
 {
+
+    public class TokenResponse
+    {
+        public string access_token { get; set; }
+        public string err { get; set; }
+        public string subcmd { get; set; }
+        public string cmd { get; set; }
+        public string errmsg { get; set; }
+        public string expires_in { get; set; }
+        public object val { get; set; }
+
+        public DateTime tokenTime { get; set; }
+    }
+
     /// <summary>
     /// 登陆响应对象
     /// </summary>
