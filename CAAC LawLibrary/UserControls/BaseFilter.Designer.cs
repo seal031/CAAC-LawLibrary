@@ -114,7 +114,7 @@
             // txt_keyword
             // 
             this.txt_keyword.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_keyword.Location = new System.Drawing.Point(467, 53);
+            this.txt_keyword.Location = new System.Drawing.Point(467, 60);
             this.txt_keyword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_keyword.Name = "txt_keyword";
             this.txt_keyword.Size = new System.Drawing.Size(328, 27);
@@ -123,7 +123,7 @@
             // btn_search
             // 
             this.btn_search.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_search.Location = new System.Drawing.Point(817, 53);
+            this.btn_search.Location = new System.Drawing.Point(817, 60);
             this.btn_search.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(75, 30);

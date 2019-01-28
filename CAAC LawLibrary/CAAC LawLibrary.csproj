@@ -135,6 +135,12 @@
       <DependentUpon>BaseListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\DbHelper.cs" />
+    <Compile Include="UserControls\BasePaging.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BasePaging.Designer.cs">
+      <DependentUpon>BasePaging.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CommentItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\BaseListItem.resx">
       <DependentUpon>BaseListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BasePaging.resx">
+      <DependentUpon>BasePaging.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\CommentItem.resx">
       <DependentUpon>CommentItem.cs</DependentUpon>

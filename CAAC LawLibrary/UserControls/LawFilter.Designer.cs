@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CAAC_LawLibrary.Entity.Code code1 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code2 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code3 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code4 = new CAAC_LawLibrary.Entity.Code();
-            CAAC_LawLibrary.Entity.Code code5 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code7 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code8 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code9 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code10 = new CAAC_LawLibrary.Entity.Code();
+            CAAC_LawLibrary.Entity.Code code11 = new CAAC_LawLibrary.Entity.Code();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LawFilter));
+            CAAC_LawLibrary.Entity.Code code12 = new CAAC_LawLibrary.Entity.Code();
             this.ckb_showDownloaded = new System.Windows.Forms.CheckBox();
             this.ckb_selectAll = new System.Windows.Forms.CheckBox();
             this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -49,66 +50,66 @@
             // cbb_buhao
             // 
             this.cbb_buhao.DisplayMember = "desc";
-            code1.desc = "不限部号范围";
-            code1.Id = null;
-            code1.order = 0;
-            code1.type = null;
-            code1.valueMax = null;
-            code1.valueMin = null;
+            code7.desc = "不限部号范围";
+            code7.Id = null;
+            code7.order = 0;
+            code7.type = null;
+            code7.valueMax = null;
+            code7.valueMin = null;
             this.cbb_buhao.Items.AddRange(new object[] {
-            code1});
+            code7});
             this.cbb_buhao.ValueMember = "Id";
             // 
             // cbb_siju
             // 
             this.cbb_siju.DisplayMember = "desc";
-            code2.desc = "不限司局";
-            code2.Id = null;
-            code2.order = 0;
-            code2.type = null;
-            code2.valueMax = null;
-            code2.valueMin = null;
+            code8.desc = "不限司局";
+            code8.Id = null;
+            code8.order = 0;
+            code8.type = null;
+            code8.valueMax = null;
+            code8.valueMin = null;
             this.cbb_siju.Items.AddRange(new object[] {
-            code2});
+            code8});
             this.cbb_siju.ValueMember = "Id";
             // 
             // cbb_weijie
             // 
             this.cbb_weijie.DisplayMember = "desc";
-            code3.desc = "不限位阶范围";
-            code3.Id = null;
-            code3.order = 0;
-            code3.type = null;
-            code3.valueMax = null;
-            code3.valueMin = null;
+            code9.desc = "不限位阶范围";
+            code9.Id = null;
+            code9.order = 0;
+            code9.type = null;
+            code9.valueMax = null;
+            code9.valueMin = null;
             this.cbb_weijie.Items.AddRange(new object[] {
-            code3});
+            code9});
             this.cbb_weijie.ValueMember = "Id";
             // 
             // cbb_yewu
             // 
             this.cbb_yewu.DisplayMember = "desc";
-            code4.desc = "不限业务分类";
-            code4.Id = null;
-            code4.order = 0;
-            code4.type = null;
-            code4.valueMax = null;
-            code4.valueMin = null;
+            code10.desc = "不限业务分类";
+            code10.Id = null;
+            code10.order = 0;
+            code10.type = null;
+            code10.valueMax = null;
+            code10.valueMin = null;
             this.cbb_yewu.Items.AddRange(new object[] {
-            code4});
+            code10});
             this.cbb_yewu.ValueMember = "Id";
             // 
             // cbb_zidingyi
             // 
             this.cbb_zidingyi.DisplayMember = "desc";
-            code5.desc = "不限自定义标签";
-            code5.Id = null;
-            code5.order = 0;
-            code5.type = null;
-            code5.valueMax = null;
-            code5.valueMin = null;
+            code11.desc = "不限自定义标签";
+            code11.Id = null;
+            code11.order = 0;
+            code11.type = null;
+            code11.valueMax = null;
+            code11.valueMin = null;
             this.cbb_zidingyi.Items.AddRange(new object[] {
-            code5});
+            code11});
             this.cbb_zidingyi.ValueMember = "Id";
             // 
             // cbb_sort
@@ -117,14 +118,26 @@
             this.cbb_sort.Items.AddRange(new object[] {
             ((object)(resources.GetObject("cbb_sort.Items"))),
             ((object)(resources.GetObject("cbb_sort.Items1")))});
-            this.cbb_sort.Location = new System.Drawing.Point(1154, 20);
             this.cbb_sort.ValueMember = "Key";
+            // 
+            // cbb_banwendanwei
+            // 
+            this.cbb_banwendanwei.DisplayMember = "desc";
+            code12.desc = "不限办文单位";
+            code12.Id = null;
+            code12.order = 0;
+            code12.type = null;
+            code12.valueMax = null;
+            code12.valueMin = null;
+            this.cbb_banwendanwei.Items.AddRange(new object[] {
+            code12});
+            this.cbb_banwendanwei.ValueMember = "Id";
             // 
             // ckb_showDownloaded
             // 
             this.ckb_showDownloaded.AutoSize = true;
             this.ckb_showDownloaded.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ckb_showDownloaded.Location = new System.Drawing.Point(120, 57);
+            this.ckb_showDownloaded.Location = new System.Drawing.Point(103, 60);
             this.ckb_showDownloaded.Name = "ckb_showDownloaded";
             this.ckb_showDownloaded.Size = new System.Drawing.Size(136, 24);
             this.ckb_showDownloaded.TabIndex = 8;
@@ -136,7 +149,7 @@
             // 
             this.ckb_selectAll.AutoSize = true;
             this.ckb_selectAll.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ckb_selectAll.Location = new System.Drawing.Point(25, 57);
+            this.ckb_selectAll.Location = new System.Drawing.Point(19, 60);
             this.ckb_selectAll.Name = "ckb_selectAll";
             this.ckb_selectAll.Size = new System.Drawing.Size(61, 24);
             this.ckb_selectAll.TabIndex = 9;
@@ -179,7 +192,7 @@
             // btn_manageLocal
             // 
             this.btn_manageLocal.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_manageLocal.Location = new System.Drawing.Point(1154, 53);
+            this.btn_manageLocal.Location = new System.Drawing.Point(1154, 59);
             this.btn_manageLocal.Name = "btn_manageLocal";
             this.btn_manageLocal.Size = new System.Drawing.Size(164, 30);
             this.btn_manageLocal.TabIndex = 10;
@@ -190,7 +203,7 @@
             // btn_refresh
             // 
             this.btn_refresh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_refresh.Location = new System.Drawing.Point(1058, 52);
+            this.btn_refresh.Location = new System.Drawing.Point(268, 58);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(90, 30);
             this.btn_refresh.TabIndex = 11;
@@ -207,6 +220,7 @@
             this.Controls.Add(this.ckb_selectAll);
             this.Controls.Add(this.ckb_showDownloaded);
             this.Name = "LawFilter";
+            this.Controls.SetChildIndex(this.cbb_banwendanwei, 0);
             this.Controls.SetChildIndex(this.cbb_buhao, 0);
             this.Controls.SetChildIndex(this.cbb_siju, 0);
             this.Controls.SetChildIndex(this.cbb_weijie, 0);

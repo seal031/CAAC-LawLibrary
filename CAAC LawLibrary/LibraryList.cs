@@ -18,6 +18,7 @@ namespace CAAC_LawLibrary
     public partial class LibraryList : Form
     {
         DbHelper db = new DbHelper();
+        List<LawListItem> LawListItems = new List<LawListItem>();
         
 
         public LibraryList()
@@ -29,10 +30,11 @@ namespace CAAC_LawLibrary
             setFlpTopDownOnly(flp_lawLibrary);
             setFlpTopDownOnly(flp_viewHistory);
             setFlpTopDownOnly(flp_downloadTask);
-            lawFilter.onSelectedChanged += loadLocalLawList;
+            lawFilter.onSelectedChanged += loadAndBindLacalLawList;
             viewHistoryFilter.onSelectedChanged += loadViewHistoryList;
             downloadFilter.onSelectedChanged += loadDownLoadList;
             downloadFilter.onDownloadSelectedChanged += loadDownLoadList;
+            addPagingEvent();
         }
         
 
@@ -47,12 +49,49 @@ namespace CAAC_LawLibrary
             flp.AutoScroll = true;
         }
 
+        private void addPagingEvent()
+        {
+            pagingLawLibrary.ll_n.Click += LawLibrary_n_Click;
+            pagingLawLibrary.ll_p.Click += LawLibrary_p_Click;
+            pagingLawLibrary.btn_skip.Click += LawLibraryBtn_skip_Click;
+        }
+
+        #region 分页控件
+        private void LawLibraryBtn_skip_Click(object sender, EventArgs e)
+        {
+            pagingLawLibrary.currentPage = (int)(pagingLawLibrary.nud_page.Value) - 1;
+            bindLawList();
+        }
+
+        private void LawLibrary_p_Click(object sender, EventArgs e)
+        {
+            pagingLawLibrary.currentPage -= 1;
+            if (pagingLawLibrary.currentPage < 1) { pagingLawLibrary.ll_p.Enabled = false; }
+            else { pagingLawLibrary.ll_p.Enabled = true; }
+            if (pagingLawLibrary.sumPage > 1) { pagingLawLibrary.ll_n.Enabled = true; }
+            pagingLawLibrary.lbl_page.Text = "第" + (pagingLawLibrary.currentPage + 1) + "/" + pagingLawLibrary.sumPage + "页";
+            bindLawList();
+        }
+
+        private void LawLibrary_n_Click(object sender, EventArgs e)
+        {
+            pagingLawLibrary.currentPage += 1;
+            if (pagingLawLibrary.currentPage+1 ==pagingLawLibrary.sumPage) { pagingLawLibrary.ll_n.Enabled = false; }
+            else { pagingLawLibrary.ll_n.Enabled = true; }
+            pagingLawLibrary.ll_p.Enabled = true;
+            //if (pagingLawLibrary.sumPage > 1) { pagingLawLibrary.ll_n.Enabled = true; }
+            pagingLawLibrary.lbl_page.Text = "第" + (pagingLawLibrary.currentPage + 1) + "/" + pagingLawLibrary.sumPage + "页";
+            bindLawList();
+        }
+        #endregion
+
         private void LibraryList_Load(object sender, EventArgs e)
         {
             if (Global.online) { this.Text = "联网模式"; }
             else { this.Text = "离线模式"; }
             lbl_welcome.Text += Global.user.Xm;
             loadLocalLawList();
+            bindLawList();
             loadViewHistoryList();
             loadDownLoadList();
             loadUpdateHistoryList();
@@ -93,13 +132,23 @@ namespace CAAC_LawLibrary
 
         #region 加载4个列表
         /// <summary>
+        /// 加载并绑定法规列表
+        /// </summary>
+        public void loadAndBindLacalLawList()
+        {
+            loadLocalLawList();
+            bindLawList();
+        }
+
+        /// <summary>
         /// 加载法规列表
         /// </summary>
         public void loadLocalLawList()
         {
-            removeFromFlp(flp_lawLibrary);
+            //removeFromFlp(flp_lawLibrary);
             List<Law> list = db.getLaws(lawFilter.queryParam);
             List<string> addedLastVersion = new List<string>();//已经添加过的法规id
+            LawListItems = new List<LawListItem>();//法规控件列表，已排除了多版本干扰
             foreach (Law law in list)
             {
                 if (addedLastVersion.Contains(law.lastversion.ToString())) { continue; }
@@ -120,8 +169,25 @@ namespace CAAC_LawLibrary
                     item.laws = allVersionList.ToList();
                     item.parentForm = this;
                     item.addVerionDropDown();
-                    flp_lawLibrary.Controls.Add(item); 
+                    LawListItems.Add(item);
+                    //flp_lawLibrary.Controls.Add(item); 
                 }
+            }
+            pagingLawLibrary.sumPage = LawListItems.Count % pagingLawLibrary.countPerPage == 0 ? LawListItems.Count / pagingLawLibrary.countPerPage : LawListItems.Count / pagingLawLibrary.countPerPage + 1;
+            pagingLawLibrary.currentPage = 0;
+            pagingLawLibrary.lbl_page.Text = "第" + (pagingLawLibrary.currentPage + 1) + "/" + pagingLawLibrary.sumPage + "页";
+            pagingLawLibrary.nud_page.Maximum = pagingLawLibrary.sumPage;
+            pagingLawLibrary.nud_page.Minimum = 1;
+            pagingLawLibrary.ll_p.Enabled = false;
+            if (pagingLawLibrary.sumPage < 2) { pagingLawLibrary.ll_n.Enabled = false; pagingLawLibrary.ll_p.Enabled = false; }
+            else { pagingLawLibrary.ll_n.Enabled = true; }
+        }
+        public void bindLawList()
+        {
+            removeFromFlp(flp_lawLibrary);
+            foreach (LawListItem item in LawListItems.Skip(pagingLawLibrary.countPerPage * pagingLawLibrary.currentPage).Take(pagingLawLibrary.countPerPage))
+            {
+                flp_lawLibrary.Controls.Add(item);
             }
         }
         /// <summary>
@@ -292,6 +358,7 @@ namespace CAAC_LawLibrary
                 }
                 db.clearLocal();
                 loadLocalLawList();
+                bindLawList();
             }
         }
         /// <summary>
@@ -620,6 +687,7 @@ namespace CAAC_LawLibrary
         private void reloadLawList()
         {
             loadLocalLawList();
+            bindLawList();
             lawCheckBoxChange(lawFilter.ckb_selectAll.Checked); 
         }
         private void reloadHistoryList()
