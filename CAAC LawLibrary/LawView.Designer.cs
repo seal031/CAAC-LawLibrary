@@ -50,10 +50,6 @@
             this.elementStyle1 = new DevComponents.DotNetBar.ElementStyle();
             this.btn_item_tree = new DevComponents.DotNetBar.ButtonItem();
             this.np_right = new DevComponents.DotNetBar.NavigationPane();
-            this.navigationPanePanel2 = new DevComponents.DotNetBar.NavigationPanePanel();
-            this.lbl_loadMore = new System.Windows.Forms.Label();
-            this.flp_comment = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_item_comment = new DevComponents.DotNetBar.ButtonItem();
             this.navigationPanePanel1 = new DevComponents.DotNetBar.NavigationPanePanel();
             this.dgw = new System.Windows.Forms.DataGridView();
             this.tagType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +58,10 @@
             this.OuterHTML = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbb_tag = new System.Windows.Forms.ComboBox();
             this.btn_item_relation = new DevComponents.DotNetBar.ButtonItem();
+            this.navigationPanePanel2 = new DevComponents.DotNetBar.NavigationPanePanel();
+            this.lbl_loadMore = new System.Windows.Forms.Label();
+            this.flp_comment = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_item_comment = new DevComponents.DotNetBar.ButtonItem();
             this.pn_main_document = new DevComponents.DotNetBar.PanelEx();
             this.wb = new System.Windows.Forms.WebBrowser();
             this.bt = new DevComponents.DotNetBar.BalloonTip();
@@ -71,9 +71,9 @@
             this.npp_tree.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NodeTree)).BeginInit();
             this.np_right.SuspendLayout();
-            this.navigationPanePanel2.SuspendLayout();
             this.navigationPanePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgw)).BeginInit();
+            this.navigationPanePanel2.SuspendLayout();
             this.pn_main_document.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -379,54 +379,6 @@
             this.np_right.TitlePanel.TabIndex = 0;
             this.np_right.TitlePanel.Text = "关系";
             // 
-            // navigationPanePanel2
-            // 
-            this.navigationPanePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.navigationPanePanel2.Controls.Add(this.lbl_loadMore);
-            this.navigationPanePanel2.Controls.Add(this.flp_comment);
-            this.navigationPanePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationPanePanel2.Location = new System.Drawing.Point(1, 1);
-            this.navigationPanePanel2.Margin = new System.Windows.Forms.Padding(4);
-            this.navigationPanePanel2.Name = "navigationPanePanel2";
-            this.navigationPanePanel2.ParentItem = this.btn_item_comment;
-            this.navigationPanePanel2.Size = new System.Drawing.Size(283, 917);
-            this.navigationPanePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.navigationPanePanel2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.navigationPanePanel2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.navigationPanePanel2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.navigationPanePanel2.Style.GradientAngle = 90;
-            this.navigationPanePanel2.TabIndex = 3;
-            // 
-            // lbl_loadMore
-            // 
-            this.lbl_loadMore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_loadMore.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbl_loadMore.Location = new System.Drawing.Point(0, 879);
-            this.lbl_loadMore.Name = "lbl_loadMore";
-            this.lbl_loadMore.Size = new System.Drawing.Size(283, 38);
-            this.lbl_loadMore.TabIndex = 2;
-            this.lbl_loadMore.Text = "加载更多";
-            this.lbl_loadMore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_loadMore.Click += new System.EventHandler(this.lbl_loadMore_Click);
-            // 
-            // flp_comment
-            // 
-            this.flp_comment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_comment.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_comment.Location = new System.Drawing.Point(0, 0);
-            this.flp_comment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flp_comment.Name = "flp_comment";
-            this.flp_comment.Size = new System.Drawing.Size(283, 917);
-            this.flp_comment.TabIndex = 0;
-            // 
-            // btn_item_comment
-            // 
-            this.btn_item_comment.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btn_item_comment.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_comment.Image")));
-            this.btn_item_comment.Name = "btn_item_comment";
-            this.btn_item_comment.OptionGroup = "navBar";
-            this.btn_item_comment.Text = "评论";
-            // 
             // navigationPanePanel1
             // 
             this.navigationPanePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -528,6 +480,54 @@
             this.btn_item_relation.Text = "关系";
             this.btn_item_relation.Click += new System.EventHandler(this.btn_item_relation_Click);
             // 
+            // navigationPanePanel2
+            // 
+            this.navigationPanePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.navigationPanePanel2.Controls.Add(this.lbl_loadMore);
+            this.navigationPanePanel2.Controls.Add(this.flp_comment);
+            this.navigationPanePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationPanePanel2.Location = new System.Drawing.Point(1, 1);
+            this.navigationPanePanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.navigationPanePanel2.Name = "navigationPanePanel2";
+            this.navigationPanePanel2.ParentItem = this.btn_item_comment;
+            this.navigationPanePanel2.Size = new System.Drawing.Size(283, 796);
+            this.navigationPanePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.navigationPanePanel2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.navigationPanePanel2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.navigationPanePanel2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.navigationPanePanel2.Style.GradientAngle = 90;
+            this.navigationPanePanel2.TabIndex = 3;
+            // 
+            // lbl_loadMore
+            // 
+            this.lbl_loadMore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_loadMore.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbl_loadMore.Location = new System.Drawing.Point(0, 758);
+            this.lbl_loadMore.Name = "lbl_loadMore";
+            this.lbl_loadMore.Size = new System.Drawing.Size(283, 38);
+            this.lbl_loadMore.TabIndex = 2;
+            this.lbl_loadMore.Text = "加载更多";
+            this.lbl_loadMore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_loadMore.Click += new System.EventHandler(this.lbl_loadMore_Click);
+            // 
+            // flp_comment
+            // 
+            this.flp_comment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_comment.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp_comment.Location = new System.Drawing.Point(0, 0);
+            this.flp_comment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flp_comment.Name = "flp_comment";
+            this.flp_comment.Size = new System.Drawing.Size(283, 796);
+            this.flp_comment.TabIndex = 0;
+            // 
+            // btn_item_comment
+            // 
+            this.btn_item_comment.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_item_comment.Image = ((System.Drawing.Image)(resources.GetObject("btn_item_comment.Image")));
+            this.btn_item_comment.Name = "btn_item_comment";
+            this.btn_item_comment.OptionGroup = "navBar";
+            this.btn_item_comment.Text = "评论";
+            // 
             // pn_main_document
             // 
             this.pn_main_document.AllowDrop = true;
@@ -590,9 +590,9 @@
             this.npp_tree.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NodeTree)).EndInit();
             this.np_right.ResumeLayout(false);
-            this.navigationPanePanel2.ResumeLayout(false);
             this.navigationPanePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgw)).EndInit();
+            this.navigationPanePanel2.ResumeLayout(false);
             this.pn_main_document.ResumeLayout(false);
             this.ResumeLayout(false);
 

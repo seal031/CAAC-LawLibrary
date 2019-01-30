@@ -570,6 +570,8 @@ namespace CAAC_LawLibrary
 
         private void showBalloon(string caption,string selectedText, string _text,string nodeId)
         {
+            Point p = Control.MousePosition;
+            Point p1 = Control.MousePosition;
             string text = "选中文字：" + selectedText + Environment.NewLine + caption + "：" + _text;
             if (caption == "引用"|| caption == "依赖" || caption == "罚则" || caption == "行政处罚" || caption == "纪律处分" || caption == "行政手段" || caption == "其他责任" || caption == "信用手段" || caption == "许可手段" || caption == "行政强制")
             {
@@ -581,7 +583,6 @@ namespace CAAC_LawLibrary
                 refPanel.setSelectedText(selectedText);
                 refPanel.buildLabels(_text);
                 wb.Controls.Add(refPanel);
-                Point p1 = Control.MousePosition;
                 p1.Offset(-lawInfo1.Width, -pl_title.Height);
                 refPanel.Location = p1;
                 if (refPanel.Location.Y + refPanel.Height > this.Height)
@@ -592,10 +593,10 @@ namespace CAAC_LawLibrary
                     }
                     else
                     {
-                        int add = this.Height / 2;
+                        int add = (this.Height / 2) + (this.Height / 4);
                         p1.Offset(0, -add);
                         refPanel.Location = p1;
-                        refPanel.Height = this.Height - refPanel.Location.Y + add;
+                        refPanel.Height = this.Height - refPanel.Location.Y  - 100;
                     }
                 }
                 refPanel.Show();
@@ -604,7 +605,6 @@ namespace CAAC_LawLibrary
             bt.SetBalloonText(wb, text);
             bt.SetBalloonCaption(wb, caption);
 
-            Point p = Control.MousePosition;
             bt.ShowBalloon(wb);
             p.Offset(-bt.BalloonControl.TipOffset, bt.BalloonControl.TipLength - 100);
             bt.BalloonControl.Location = p;
@@ -619,16 +619,16 @@ namespace CAAC_LawLibrary
             if (findCount > 0)
             {
                 lbl_findCount.Visible = true;
-                btn_p.Visible = true;
+                //btn_p.Visible = true;
                 btn_n.Visible = true;
                 btn_n.Enabled = true;
-                btn_p.Enabled = false;
+                //btn_p.Enabled = false;
                 lbl_findCount.Text = findIndex + "/" + findCount;
             }
             else
             {
                 lbl_findCount.Visible = false;
-                btn_p.Visible = false;
+                //btn_p.Visible = false;
                 btn_n.Visible = false;
             }
         }
@@ -650,12 +650,17 @@ namespace CAAC_LawLibrary
             return 0;
         }
 
-        private void searchWord(string keyword,int findIndex)
+        private void searchWord(string keyword,int findIndex,bool fromBeging=false)
         {
             IHTMLTxtRange searchRange = null;
             IHTMLDocument2 document = (IHTMLDocument2)wb.Document.DomDocument; 
-            if (keyword == "") return;  
-            if (document.selection.type.ToLower() != "none")
+            if (keyword == "") return;
+            if (fromBeging)
+            {
+                IHTMLBodyElement body = (IHTMLBodyElement)document.body;
+                searchRange = (IHTMLTxtRange)body.createTextRange();
+            }
+            else if (document.selection.type.ToLower() != "none")
             {
                 searchRange = (IHTMLTxtRange) document.selection.createRange(); 
                 if (findIndex > 0)
@@ -688,16 +693,27 @@ namespace CAAC_LawLibrary
 
         private void btn_n_Click(object sender, EventArgs e)
         {
-            searchWord(txt_keyword.Text.Trim(), 1);
-            btn_p.Enabled = true;
-            if (findIndex == findCount)
+            //searchWord(txt_keyword.Text.Trim(), 1);
+            //btn_p.Enabled = true;
+            //if (findIndex == findCount)
+            //{
+            //    btn_n.Enabled = false;
+            //}
+            //else
+            //{
+            //    findIndex++;
+            //    btn_n.Enabled = true;
+            //}
+            //lbl_findCount.Text = findIndex + "/" + findCount;
+            if (findIndex < findCount)
             {
-                btn_n.Enabled = false;
+                searchWord(txt_keyword.Text.Trim(), 1);
+                findIndex++;
             }
             else
             {
-                findIndex++;
-                btn_n.Enabled = true;
+                searchWord(txt_keyword.Text.Trim(), 1, fromBeging: true);
+                findIndex = 1;
             }
             lbl_findCount.Text = findIndex + "/" + findCount;
         }

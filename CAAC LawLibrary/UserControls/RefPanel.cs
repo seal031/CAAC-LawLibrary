@@ -43,7 +43,7 @@ namespace CAAC_LawLibrary.UserControls
         {
             foreach (Label l in labels)
             {
-                this.Controls.Remove(l);
+                this.panel_main.Controls.Remove(l);
             }
             this.Height = 85;
         }
@@ -122,8 +122,8 @@ namespace CAAC_LawLibrary.UserControls
                 lblTitle.AutoSize = false;
                 lblTitle.Height = lblHeight;
                 lblTitle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                this.Controls.Add(lblTitle);
-                this.Controls.Add(lblContent);
+                this.panel_main.Controls.Add(lblTitle);
+                this.panel_main.Controls.Add(lblContent);
                 index++;
             }
             foreach (NodeContentTag.OutterRef outRef in nct.outterRefList)
@@ -131,8 +131,8 @@ namespace CAAC_LawLibrary.UserControls
                 this.Height += lblHeight + linklblHeight;
                 Label lblTitle;
                 LinkLabel lblContent = buildOutterLabel(outRef, out lblTitle);
-                this.Controls.Add(lblTitle);
-                this.Controls.Add(lblContent);
+                this.panel_main.Controls.Add(lblTitle);
+                this.panel_main.Controls.Add(lblContent);
                 lblTitle.Location = new Point(locationX, locationY + index * (lblHeight + linklblHeight));
                 lblContent.Location = new Point(locationX, locationY + index * (lblHeight + linklblHeight) + lblHeight);
                 //lblContent.BackColor = Color.Yellow;
@@ -144,8 +144,8 @@ namespace CAAC_LawLibrary.UserControls
                 lblTitle.AutoSize = false;
                 lblTitle.Height = lblHeight;
                 lblTitle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                this.Controls.Add(lblTitle);
-                this.Controls.Add(lblContent);
+                this.panel_main.Controls.Add(lblTitle);
+                this.panel_main.Controls.Add(lblContent);
                 index++;
             }
         }

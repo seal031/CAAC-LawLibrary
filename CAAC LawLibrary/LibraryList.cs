@@ -60,6 +60,31 @@ namespace CAAC_LawLibrary
         private void LawLibraryBtn_skip_Click(object sender, EventArgs e)
         {
             pagingLawLibrary.currentPage = (int)(pagingLawLibrary.nud_page.Value) - 1;
+            pagingLawLibrary.lbl_page.Text = "第" + (pagingLawLibrary.currentPage + 1) + "/" + pagingLawLibrary.sumPage + "页";
+            if (pagingLawLibrary.sumPage < 2)
+            {
+                pagingLawLibrary.ll_n.Enabled = false;
+                pagingLawLibrary.ll_p.Enabled = false;
+            }
+            else
+            {
+                if (pagingLawLibrary.currentPage > 0)
+                {
+                    pagingLawLibrary.ll_p.Enabled = true;
+                }
+                else
+                {
+                    pagingLawLibrary.ll_p.Enabled = false;
+                }
+                if (pagingLawLibrary.currentPage+1 < pagingLawLibrary.sumPage)
+                {
+                    pagingLawLibrary.ll_n.Enabled = true;
+                }
+                else
+                {
+                    pagingLawLibrary.ll_n.Enabled = false;
+                }
+            }
             bindLawList();
         }
 
